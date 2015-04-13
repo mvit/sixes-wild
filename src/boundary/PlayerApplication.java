@@ -39,7 +39,14 @@ public class PlayerApplication {
    * window (PlayerApplication).
    */
   public static void main(String[] args) {
-    PlayerApplication app = new PlayerApplication();
+    // start splash screen
+    SplashScreen splash = new SplashScreen();
+
+    // load resources
     
+    // close splash screen
+
+    // start main app
+    PlayerApplication app = new PlayerApplication();
   }
 }
