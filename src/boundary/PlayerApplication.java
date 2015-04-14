@@ -11,7 +11,7 @@ public class PlayerApplication {
   protected JPanel view = null;
 
   public PlayerApplication(PlayerModel model) {
-    this.model = mode;
+    this.model = model;
 
     frame = new JFrame(title);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
