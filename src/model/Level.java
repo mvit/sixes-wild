@@ -20,7 +20,7 @@ public class Level {
   int currentScore;
 
   /**
-   * Create a Level with reasonable defaults.
+   * Create a Level with reasonable default settings.
    */
   public Level() {
     rules = new Rules();

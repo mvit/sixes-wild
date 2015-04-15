@@ -10,6 +10,24 @@ public class Board {
   public static final int width = 9, height = 9;
   Cell[][] grid = new Cell[width][height];
   Rules rules;
+  
+  
+  /**
+   * Create a new blank Board with default rules
+   *
+   * Defaults to all Tiles being playable and defaulting to the probability
+   * distribution in the Rules.
+   */
+  public Board() {
+	  for (int x = 0; x < width; x++) {
+	      for (int y = 0; y < height; y++) {
+	        grid[x][y] = new Cell();
+	      }
+	    }
+	  
+	  rules = new Rules();
+	  
+  }
 
   /**
    * Create a new blank Board given a set of rules.
