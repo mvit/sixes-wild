@@ -72,7 +72,7 @@ public class Board {
   public void write(DataOutputStream out) {
     out.writeInt(width);
     out.writeInt(height);
-    // TODO: change whether we store the tiles based on the variation
+    // TODO: set based on whether we store the tiles based on the variation
     out.writeByte(1);
     for (int x = 0; x < width; x++) {
       for (int y = 0; y < height; y++) {
