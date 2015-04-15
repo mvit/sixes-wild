@@ -1,5 +1,3 @@
-package controller;
-
 import boundary.PlayerApplication;
 import boundary.PlayerLevelView;
 import model.Level;
@@ -13,7 +11,7 @@ public class PlayerLoadLevelCtrl {
   /**
    * Create the controller with the context: the application and the model.
    */
-  public LoadLevelCtrl(PlayerApplication app, PlayerModel model) {
+  public PlayerLoadLevelCtrl(PlayerApplication app, PlayerModel model) {
     this.app = app;
     this.model = model;
   }
