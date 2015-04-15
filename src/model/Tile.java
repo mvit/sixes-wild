@@ -19,6 +19,7 @@ public class Tile {
    * Creates a Tile given only a number.
    *
    * @constructor
+   * @param {int} number
    */
   public Tile(int number) {
     this.number = number;
@@ -29,10 +30,23 @@ public class Tile {
    * Creates a Tile given a number and multiplier.
    *
    * @constructor
+   * @param {int} number
+   * @param {int} multiplier
    */
   public Tile(int number, int multiplier) {
     this.number = number;
     this.multiplier = multiplier;
+  }
+
+  /**
+   * Creates a copy of the provided Tile.
+   *
+   * @constructor
+   * @parm {Tile} src
+   */
+  public Tile(Tile src) {
+    this.number = src.number;
+    this.multiplier = src.multiplier;
   }
 
   /**

@@ -26,6 +26,23 @@ public class Board {
   }
 
   /**
+   * Create a deep copy of the provided Board.
+   *
+   * @constructor
+   * @param {Board} src
+   */
+  public Board(Board src) {
+    // TODO: rules need to be copied for the snapshot usage in the Builder
+    this.rules = board.rules;
+
+    for (int x = 0; x < width; x++) {
+      for (int y = 0; y < height; y++) {
+        grid[x][y] = new Cell(src.grid[x][y]);
+      }
+    }
+  }
+
+  /**
    * Creates a Board from a DataInputStream.
    *
    * @constructor

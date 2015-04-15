@@ -13,12 +13,18 @@ public class Level {
   Rules rules;
   Board initialBoard;
 
+  // TODO: these really feel like they belong elsewhere...
+  Board currentBoard;
+  int currentScore;
+
   /**
    * Create a Level with reasonable defaults.
    */
   public Level() {
-    initialBoard = new Board();
     rules = new Rules();
+    initialBoard = new Board();
+    currentBoard = null;
+    currentScore = 0;
   }
 
   /**
@@ -45,6 +51,8 @@ public class Level {
 
     rules = new Rules(in);
     initialBoard = new Board(in);
+    currentBoard = null;
+    currentScore = 0;
   }
 
   /**
@@ -57,5 +65,26 @@ public class Level {
     out.writeInt(version);
     rules.write(out);
     initialBoard.write(out);
+  }
+
+  /**
+   * Realize the Board - fill in the unknown Tiles.
+   *
+   * Call this when we want to play a game as a player.
+   */
+  public void realizeBoard() {
+    currentBoard = new Board(initialBoard);
+    currentBoard.realizeTiles();
+    currentScore = 0;
+  }
+
+  /**
+   * Discards the realization of the Board, if applicable.
+   *
+   * Call this when we're done playing a game as a player.
+   */
+  public void discardBoard() {
+    currentBoard = null;
+    currentScore = 0;
   }
 }

@@ -31,6 +31,21 @@ public class Cell {
   }
 
   /**
+   * Create a copy of the provided Cell.
+   *
+   * @constructor
+   * @param {Cell} src
+   */
+  public Cell(Cell src) {
+    this.type = src.type;
+    if (src.tile == null) {
+      this.tile = src.tile;
+    } else {
+      this.tile = new Tile(src.tile);
+    }
+  }
+
+  /**
    * Creates a Tile from a DataInputStream.
    *
    * @constructor
