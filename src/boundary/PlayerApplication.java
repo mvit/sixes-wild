@@ -2,6 +2,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import model.PlayerModel;
 
 public class PlayerApplication {
   public static final String title = "Sixes Wild";
