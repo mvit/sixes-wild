@@ -20,8 +20,8 @@ import javax.swing.*;*/
 /**
  * Splash Screen for use in SixesWild by Maurizio Vitale
  */
-public class SplashScreen extends JWindow {
-  public SplashScreen(String file) {
+public class SplashScreenView extends JWindow {
+  public SplashScreenView(String file) {
     JPanel content = (JPanel) getContentPane();
     content.setBackground(Color.white);
 
