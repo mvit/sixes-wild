@@ -1,18 +1,15 @@
-
-import javax.swing.JPanel;
-import javax.swing.JButton;
-
-import java.awt.GridLayout;
-
-import javax.swing.JLabel;
+package boundary;
 
 import java.awt.Font;
-
-import javax.swing.GroupLayout;
+import java.awt.GridLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.LayoutStyle.ComponentPlacement;
-
-
+import model.PlayerModel;
+import controller.MainMenuCtrl;
 
 public class PlayerLevelView extends JPanel{
 	/**
@@ -20,44 +17,47 @@ public class PlayerLevelView extends JPanel{
 	 * @author Bailey Sheridan
 	 */
 	private static final long serialVersionUID = 1L;
+  PlayerApplication app;
 	PlayerModel model;
 	BoardView gamegridView;
 
-	public PlayerLevelView(PlayerModel model) {
+	public PlayerLevelView(PlayerApplication app, PlayerModel model) {
+    this.app = app;
 		this.model = model;
-		
+
 		//I don't know how to initialize the board. Haven't tested.
-		gamegridView = new BoardView(model.level.initialBoard);
-			
+		gamegridView = new BoardView(model.level.currentBoard);
+
 		JButton btnRestart = new JButton("Restart");
 		JButton btnMainMenu = new JButton("Main Menu");
-		
+    btnMainMenu.addActionListener(new MainMenuCtrl(app, model));
+
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(new GridLayout(0, 3, 0, 0));
-		
+
 		JButton button = new JButton("<->");
 		panel_1.add(button);
-		
+
 		JButton button_1 = new JButton("?");
 		panel_1.add(button_1);
-		
+
 		JButton button_2 = new JButton("??");
 		panel_1.add(button_2);
-		
+
 		JPanel panel_2 = new JPanel();
-		
+
 		JLabel lblScore = new JLabel("Score");
 		lblScore.setFont(new Font("Snap ITC", Font.PLAIN, 18));
-		
+
 		JLabel lblNewLabel = new JLabel("12345");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		
+
 		JLabel lblMovesLeft = new JLabel("Moves Left");
 		lblMovesLeft.setFont(new Font("Snap ITC", Font.PLAIN, 18));
-		
+
 		JLabel label = new JLabel("20");
 		label.setFont(new Font("Tahoma", Font.PLAIN, 22));
-		
+
 		////////////////////
 		//**DO NOT TOUCH**//
 		////////////////////

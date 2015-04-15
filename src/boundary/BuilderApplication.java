@@ -4,6 +4,9 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import java.io.IOException;
+
+import model.BuilderModel;
 
 public class BuilderApplication {
   public static final String title = "LeveL Builder";
@@ -36,9 +39,17 @@ public class BuilderApplication {
 
   public static void main(String[] args) {
     // start splash screen
-    SplashScreen splash = new SplashScreen("splash1.png");
+    SplashScreen splash;
+    try {
+      splash = new SplashScreen("splash1.png");
+    } catch (IOException err) {
+      System.err.println(err.getMessage());
+      err.printStackTrace();
+      return;
+    }
 
     // load resources
+    BuilderModel model = new BuilderModel();
     try {
       Thread.sleep(4000);
     } catch (InterruptedException err) {
@@ -49,7 +60,7 @@ public class BuilderApplication {
     }
 
     // start main app
-    BuilderApplication app = new BuilderApplication();
-    app.setView(new MainMenuView(app, model));
+    BuilderApplication app = new BuilderApplication(model);
+    app.setView(new BuilderMainScreen(app, model));
   }
 }

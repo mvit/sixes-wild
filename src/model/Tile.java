@@ -2,6 +2,7 @@ package model;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 
 /**
  * The Tile class.
@@ -20,7 +21,7 @@ public class Tile {
   /**
    * Creates a Tile given only a number.
    *
-   * @constructor
+   * @constructors
    * @param {int} number
    */
   public Tile(int number) {
@@ -57,7 +58,7 @@ public class Tile {
    * @constructor
    * @param {DataInputStream} in
    */
-  public Tile(DataInputStream in) {
+  public Tile(DataInputStream in) throws IOException {
     number = in.readInt();
     if (number < 0 || number >= Rules.maxNumber) {
       throw new RuntimeException("stored tile contains an incorrect number");
@@ -74,7 +75,7 @@ public class Tile {
    *
    * @param {DataOutputStream} out
    */
-  public void write(DataOutputStream out) {
+  public void write(DataOutputStream out) throws IOException {
     out.writeInt(number);
     out.writeInt(multiplier);
   }

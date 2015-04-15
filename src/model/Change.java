@@ -1,13 +1,13 @@
 package model;
 
 /**
- * Make a new change containing a level snapshot.
+ * Make a new change containing a board snapshot.
  */
 public class Change {
   public Level snapshot;
 
   public Change(Level baseLevel) {
-    // make a snapshot
-    snapshot = new Level(baseLevel);
+    // TODO: actually make a snapshot
+    snapshot = baseLevel;
   }
 }

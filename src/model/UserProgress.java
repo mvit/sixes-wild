@@ -2,15 +2,18 @@ package model;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.util.Iterable;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Date;
 
 /**
  * The progress the user has made in unlocking levels and the achieved scores.
  *
  * Levels are zero-indexed.
  */
-public class UserProgress extends Iterable<LevelProgress> {
+public class UserProgress implements Iterable<LevelProgress> {
   // TODO: where should these be stored?
   public static String header = "SWUP";
   public static int version = 0;
@@ -31,13 +34,13 @@ public class UserProgress extends Iterable<LevelProgress> {
    * @constructor
    * @param {DataInputStream} in
    */
-  public UserProgress(DataInputStream in) {
+  public UserProgress(DataInputStream in) throws IOException {
     byte headerBytes[] = new byte[4];
     if (in.read(headerBytes, 0, 4) != 4) {
-      throw new RuntimeError("stored user progress incomplete");
+      throw new RuntimeException("stored user progress incomplete");
     }
     if (!header.equals(new String(headerBytes, StandardCharsets.US_ASCII))) {
-      throw new RuntimeError(
+      throw new RuntimeException(
         "provided data stream is not stored user progress");
     }
 
@@ -60,7 +63,7 @@ public class UserProgress extends Iterable<LevelProgress> {
    *
    * @param {DataOutputStream} out
    */
-  public void write(DataOutputStream out) {
+  public void write(DataOutputStream out) throws IOException {
     out.write(header.getBytes(StandardCharsets.US_ASCII));
     out.writeInt(version);
     out.writeInt(levels.size());
@@ -122,7 +125,7 @@ public class UserProgress extends Iterable<LevelProgress> {
   /**
    * Encapsulates an iterator which forbids the removal of elements.
    */
-  protected static class ProgressIterator extends Iterator<LevelProgress> {
+  protected static class ProgressIterator implements Iterator<LevelProgress> {
     protected Iterator<LevelProgress> iter;
 
     protected ProgressIterator(Iterator<LevelProgress> iter) {

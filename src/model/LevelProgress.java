@@ -2,6 +2,7 @@ package model;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.Date;
 
 /**
@@ -31,7 +32,7 @@ public class LevelProgress {
    * @constructor
    * @param {DataInputStream} in
    */
-  public LevelProgress(int level, DataInputStream in) {
+  public LevelProgress(int level, DataInputStream in) throws IOException {
     this.level = level;
     lastPlayed = new Date(in.readLong());
     // TODO: what if <= 0?
@@ -43,7 +44,7 @@ public class LevelProgress {
    *
    * @param {DataOutputStream} out
    */
-  public void write(DataOutputStream out) {
+  public void write(DataOutputStream out) throws IOException {
     out.writeLong(lastPlayed.getTime());
     out.writeInt(bestScore);
   }

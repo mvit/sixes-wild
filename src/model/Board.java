@@ -2,16 +2,17 @@ package model;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 
 /**
  * The Board class.
  */
 public class Board {
   public static final int width = 9, height = 9;
-  Cell[][] grid = new Cell[width][height];
-  Rules rules;
-  
-  
+  public Cell[][] grid = new Cell[width][height];
+  public Rules rules;
+
+
   /**
    * Create a new blank Board with default rules
    *
@@ -24,9 +25,9 @@ public class Board {
 	        grid[x][y] = new Cell();
 	      }
 	    }
-	  
+
 	  rules = new Rules();
-	  
+
   }
 
   /**
@@ -68,7 +69,7 @@ public class Board {
    * @constructor
    * @param {DataInputStream} in
    */
-  public Board(Rules rules, DataInputStream in) {
+  public Board(Rules rules, DataInputStream in) throws IOException {
     this.rules = rules;
 
     if (in.readInt() != width || in.readInt() != height) {
@@ -89,7 +90,7 @@ public class Board {
    *
    * @param {DataOutputStream} out
    */
-  public void write(DataOutputStream out) {
+  public void write(DataOutputStream out) throws IOException  {
     out.writeInt(width);
     out.writeInt(height);
     // TODO: set based on whether we store the tiles based on the variation

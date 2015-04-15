@@ -3,6 +3,7 @@ package model;
 import utils.WeightedRandom;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 
 /**
  * A container for a Level's Rules.
@@ -44,7 +45,7 @@ public class Rules {
    *
    * @constructor
    */
-  public Rules(DataInputStream in) {
+  public Rules(DataInputStream in) throws IOException {
     variation = Variation.getVariation(in.readChar());
     if (variation == null) {
       throw new RuntimeException("stored rules use unknown variation type");
@@ -84,7 +85,7 @@ public class Rules {
   /**
    * Write the Rules to a DataOutputStream.
    */
-  public void write(DataOutputStream out) {
+  public void write(DataOutputStream out) throws IOException {
     out.writeChar(variation.code);
     out.writeInt(initialCounter);
     out.writeInt(scoreThresholds.length);

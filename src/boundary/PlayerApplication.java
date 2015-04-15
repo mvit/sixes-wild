@@ -2,6 +2,7 @@ package boundary;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import model.PlayerModel;
@@ -47,7 +48,14 @@ public class PlayerApplication {
    */
   public static void main(String[] args) {
     // start splash screen
-    SplashScreen splash = new SplashScreen("splash1.png");
+    SplashScreen splash;
+    try {
+      splash = new SplashScreen("splash1.png");
+    } catch (IOException err) {
+      System.err.println(err.getMessage());
+      err.printStackTrace();
+      return;
+    }
 
     // load resources
     PlayerModel model = new PlayerModel();
@@ -56,11 +64,9 @@ public class PlayerApplication {
     } catch (InterruptedException err) {
       return;
     } finally {
-      // clsoe splash screen
+      // close splash screen
       splash.close();
     }
-
-    // close splash screen
 
     // start main app
     PlayerApplication app = new PlayerApplication(model);

@@ -1,3 +1,6 @@
+package boundary;
+
+import model.BuilderModel;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
@@ -7,16 +10,25 @@ import javax.swing.JSpinner;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import controller.BuilderNewLevelCtrl;
+import controller.ExitCtrl;
 
+public class BuilderMainScreen extends JPanel {
+	BuilderApplication app;
+	BuilderModel model;
 
-public class BuilderMainScreen extends JPanel{
-	public BuilderMainScreen() {
-		
+	public BuilderMainScreen(BuilderApplication app, BuilderModel model) {
+		this.app = app;
+		this.model = model;
+
 		JButton btnNew = new JButton("New");
-		
+		btnNew.addActionListener(new BuilderNewLevelCtrl(app, model));
+
 		JButton btnOpen = new JButton("Open");
-		
+
 		JButton btnQuit = new JButton("Quit");
+		btnQuit.addActionListener(new ExitCtrl());
+
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

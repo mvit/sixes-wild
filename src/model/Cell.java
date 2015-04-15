@@ -2,13 +2,14 @@ package model;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 
 /**
  * The Cell class.
  */
 public class Cell {
-  CellType type;
-  Tile tile; // null if the cell is empty
+  public CellType type;
+  public Tile tile; // null if the cell is empty
 
   /**
    * Create a new generic Cell, which is playable and empty.
@@ -55,7 +56,7 @@ public class Cell {
    * @param {boolean} hasTile Whether the containing Board stored the Tiles for
    *   each Cell.
    */
-  public Cell(DataInputStream in, boolean hasTile) {
+  public Cell(DataInputStream in, boolean hasTile) throws IOException {
     type = CellType.getCellType(in.readByte());
     if (type == null) {
       throw new RuntimeException("stored cell has unknown cell type");
@@ -77,7 +78,7 @@ public class Cell {
    * @param {boolean} storeTile Whether to store the Tile, and whether it
    *   exists, along with the Cell.
    */
-  public void write(DataOutputStream out, boolean storeTile) {
+  public void write(DataOutputStream out, boolean storeTile) throws IOException {
     out.writeByte(type.code);
     if (storeTile) {
       if (tile == null) {

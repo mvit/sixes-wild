@@ -1,10 +1,15 @@
+package controller;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import boundary.PlayerApplication;
 import boundary.PlayerLevelView;
 import model.Level;
 import model.PlayerModel;
 import model.Rules;
 
-public class PlayerLoadLevelCtrl {
+public class PlayerLoadLevelCtrl implements ActionListener {
   PlayerApplication app;
   PlayerModel model;
 
@@ -24,6 +29,12 @@ public class PlayerLoadLevelCtrl {
   public void loadLevel(String filename) {
     // model.level = new Level(new DataInputStream(new FileInputStream(filename)));
     model.level = new Level();
-    app.setView(new PlayerLevelView(model));
+    model.level.realizeBoard();
+    app.setView(new PlayerLevelView(app, model));
+  }
+
+  public void actionPerformed(ActionEvent event) {
+    // TODO: actually though
+    loadLevel("nope");
   }
 }

@@ -3,6 +3,7 @@ package model;
 import java.nio.charset.StandardCharsets;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 
 /**
  * The Level class.
@@ -12,12 +13,12 @@ public class Level {
   public static String header = "SWLV";
   public static int version = 0;
 
-  Rules rules;
-  Board initialBoard;
+  public Rules rules;
+  public Board initialBoard;
 
   // TODO: these really feel like they belong elsewhere...
-  Board currentBoard;
-  int currentScore;
+  public Board currentBoard;
+  public int currentScore;
 
   /**
    * Create a Level with reasonable default settings.
@@ -35,7 +36,7 @@ public class Level {
    * @constructor
    * @param {DataInputStream} in
    */
-  public Level(DataInputStream in) {
+  public Level(DataInputStream in) throws IOException {
     byte headerBytes[] = new byte[4];
     if (in.read(headerBytes, 0, 4) != 4) {
       throw new RuntimeException("stored level incomplete");
@@ -62,7 +63,7 @@ public class Level {
    *
    * @param {DataOutputStream} out
    */
-  public void write(DataOutputStream out) {
+  public void write(DataOutputStream out) throws IOException {
     out.write(header.getBytes(StandardCharsets.US_ASCII));
     out.writeInt(version);
     rules.write(out);
