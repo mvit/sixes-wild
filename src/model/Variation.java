@@ -1,3 +1,6 @@
+package model;
+
+import java.util.Map;
 import java.util.HashMap;
 
 /**
@@ -9,14 +12,12 @@ public enum Variation {
   PUZZLE('P'),
   RELEASE('R');
 
-  private static final HashMap<Character, Variation> map =
-    new HashMap<Character, Variation>();
+  private static final Map<Character, Variation> map = initializeMapping();
 
   public final char code;
 
   private Variation(char code) {
     this.code = code;
-    map.put(code, this);
   }
 
   /**
@@ -27,5 +28,16 @@ public enum Variation {
    */
   public static Variation getVariation(char code) {
     return map.get(code);
+  }
+
+  /**
+   * Initialize the mapping based on the enum values.
+   */
+  private static Map<Character, Variation> initializeMapping() {
+    Map<Character, Variation> map = new HashMap<Character, Variation>();
+    for (Variation variation : Variation.values()) {
+      map.put(variation.code, variation);
+    }
+    return map;
   }
 }

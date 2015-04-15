@@ -1,3 +1,5 @@
+package boundary;
+
 import javax.swing.JPanel;
 
 public class PlayerLevelView extends JPanel {

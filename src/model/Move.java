@@ -1,4 +1,6 @@
-import java.util.HashMap;
+package model;
+
+import java.util.HashSet;
 
 /**
  * The Move class, which stores the currently selected set of points on the
@@ -18,7 +20,7 @@ public class Move {
    * A move is valid if it contains at least two tiles that sum to 6.
    */
   public boolean isValid() {
-    return points.size > 1 && moveSum == 6;
+    return points.size() > 1 && moveSum == 6;
   }
 
   /**

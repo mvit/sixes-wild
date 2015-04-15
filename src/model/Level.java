@@ -1,3 +1,5 @@
+package model;
+
 import java.nio.charset.StandardCharsets;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -22,7 +24,7 @@ public class Level {
    */
   public Level() {
     rules = new Rules();
-    initialBoard = new Board();
+    initialBoard = new Board(rules);
     currentBoard = null;
     currentScore = 0;
   }
@@ -36,21 +38,21 @@ public class Level {
   public Level(DataInputStream in) {
     byte headerBytes[] = new byte[4];
     if (in.read(headerBytes, 0, 4) != 4) {
-      throw new RuntimeError("stored level incomplete");
+      throw new RuntimeException("stored level incomplete");
     }
     if (!header.equals(new String(headerBytes, StandardCharsets.US_ASCII))) {
-      throw new RuntimeError("provided data stream is not a stored level");
+      throw new RuntimeException("provided data stream is not a stored level");
     }
 
     // not a stellar system, but good enough given that we'll likely only have
     // one or two versions in use
     int version = in.readInt();
     if (version != this.version) {
-      throw new RuntimeError("provided data stream has incompatible version");
+      throw new RuntimeException("provided data stream has incompatible version");
     }
 
     rules = new Rules(in);
-    initialBoard = new Board(in);
+    initialBoard = new Board(rules, in);
     currentBoard = null;
     currentScore = 0;
   }

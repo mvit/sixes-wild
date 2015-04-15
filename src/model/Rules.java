@@ -1,3 +1,6 @@
+package model;
+
+import utils.WeightedRandom;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 
@@ -28,7 +31,7 @@ public class Rules {
       numberWeights[i] = 1;
     }
     multiplierWeights = new int[maxMultiplier];
-    for (i = 0; i < maxMultiplier; i++) {
+    for (int i = 0; i < maxMultiplier; i++) {
       // assumes few multipliers
       multiplierWeights[i] = (int) Math.pow(2, i);
     }
@@ -73,7 +76,7 @@ public class Rules {
       numberWeights[i] = in.readInt();
     }
     multiplierWeights = new int[maxMultiplier];
-    for (i = 0; i < maxMultiplier; i++) {
+    for (int i = 0; i < maxMultiplier; i++) {
       multiplierWeights[i] = in.readInt();
     }
   }
@@ -90,10 +93,10 @@ public class Rules {
     for (int i = 0; i < scoreThresholds.length; i++) {
       out.writeInt(scoreThresholds[i]);
     }
-    for (i = 0; i < maxNumber; i++) {
+    for (int i = 0; i < maxNumber; i++) {
       out.writeInt(numberWeights[i]);
     }
-    for (i = 0; i < maxMultiplier; i++) {
+    for (int i = 0; i < maxMultiplier; i++) {
       out.writeInt(multiplierWeights[i]);
     }
   }

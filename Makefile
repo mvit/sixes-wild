@@ -1,5 +1,5 @@
 player:
-	javac src/boundary/PlayerApplication.java
+	javac -cp src/ src/boundary/PlayerApplication.java
 
 builder:
-	javac src/boundary/BuilderApplication.java
+	javac -cp src/ src/boundary/BuilderApplication.java

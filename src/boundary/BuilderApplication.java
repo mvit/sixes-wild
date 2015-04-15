@@ -1,3 +1,5 @@
+package boundary;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
@@ -15,7 +17,7 @@ public class BuilderApplication {
 
     frame = new JFrame(title);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    
+
   }
 
   public void setView(JPanel panel) {
@@ -34,11 +36,17 @@ public class BuilderApplication {
 
   public static void main(String[] args) {
     // start splash screen
-    SplashScreen splash = new SplashScreen();
+    SplashScreen splash = new SplashScreen("splash1.png");
 
     // load resources
-
-    // close splash screen
+    try {
+      Thread.sleep(4000);
+    } catch (InterruptedException err) {
+      return;
+    } finally {
+      // clsoe splash screen
+      splash.close();
+    }
 
     // start main app
     BuilderApplication app = new BuilderApplication();

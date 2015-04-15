@@ -1,3 +1,5 @@
+package model;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 
@@ -33,7 +35,7 @@ public class Board {
    */
   public Board(Board src) {
     // TODO: rules need to be copied for the snapshot usage in the Builder
-    this.rules = board.rules;
+    this.rules = src.rules;
 
     for (int x = 0; x < width; x++) {
       for (int y = 0; y < height; y++) {

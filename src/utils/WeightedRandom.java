@@ -1,3 +1,5 @@
+package utils;
+
 import java.util.Random;
 
 /**
@@ -46,7 +48,7 @@ public class WeightedRandom {
     }
 
     int compare = 0, value = random.nextInt(sum);
-    for (i = 0; i < weights.length; i++) {
+    for (int i = 0; i < weights.length; i++) {
       compare += weights[i];
 
       if (value < compare) {

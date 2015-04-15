@@ -1,3 +1,5 @@
+package model;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 
@@ -5,7 +7,7 @@ import java.io.DataOutputStream;
  * The Tile class.
  */
 public class Tile {
-  private int number, multiplier;
+  public int number, multiplier;
 
   /**
    * Creates a random Tile from the given Rules' probability distribution.

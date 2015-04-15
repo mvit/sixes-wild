@@ -1,3 +1,5 @@
+package boundary;
+
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
@@ -45,14 +47,23 @@ public class PlayerApplication {
    */
   public static void main(String[] args) {
     // start splash screen
-    SplashScreen splash = new SplashScreen();
+    SplashScreen splash = new SplashScreen("splash1.png");
 
     // load resources
+    PlayerModel model = new PlayerModel();
+    try {
+      Thread.sleep(4000);
+    } catch (InterruptedException err) {
+      return;
+    } finally {
+      // clsoe splash screen
+      splash.close();
+    }
 
     // close splash screen
 
     // start main app
-    PlayerApplication app = new PlayerApplication();
+    PlayerApplication app = new PlayerApplication(model);
     app.setView(new MainMenuView(app, model));
   }
 }
