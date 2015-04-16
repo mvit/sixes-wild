@@ -1,6 +1,7 @@
 package model;
 
 import java.util.HashSet;
+import java.util.Set;
 
 /**
  * The Move class, which stores the currently selected set of points on the
@@ -9,7 +10,7 @@ import java.util.HashSet;
 public class Move {
   // TODO: structure to optimize for the eventual removal and replacement of
   // tiles (i.e. organize the points by row)
-  HashSet<Point> points = new HashSet<Point>();
+  Set<Point> points = new HashSet<Point>();
   int moveSum = 0;
 
   public Move() {}

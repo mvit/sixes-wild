@@ -1,13 +1,10 @@
 package controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import boundary.PlayerApplication;
 import boundary.PlayerLevelSelectView;
-import model.Level;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import model.PlayerModel;
-import model.Rules;
 
 public class PlayerLoadLevelSelectCtrl implements ActionListener {
   PlayerApplication app;

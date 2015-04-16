@@ -20,14 +20,13 @@ public class Board {
    * distribution in the Rules.
    */
   public Board() {
-	  for (int x = 0; x < width; x++) {
-	      for (int y = 0; y < height; y++) {
-	        grid[x][y] = new Cell();
-	      }
-	    }
+    for (int x = 0; x < width; x++) {
+      for (int y = 0; y < height; y++) {
+        grid[x][y] = new Cell();
+      }
+    }
 
-	  rules = new Rules();
-
+    rules = new Rules();
   }
 
   /**

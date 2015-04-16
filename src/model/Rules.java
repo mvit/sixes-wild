@@ -1,9 +1,9 @@
 package model;
 
-import utils.WeightedRandom;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import utils.WeightedRandom;
 
 /**
  * A container for a Level's Rules.

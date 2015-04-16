@@ -1,13 +1,11 @@
 package controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import boundary.PlayerApplication;
 import boundary.PlayerLevelView;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import model.Level;
 import model.PlayerModel;
-import model.Rules;
 
 public class PlayerLoadLevelCtrl implements ActionListener {
   PlayerApplication app;
@@ -33,6 +31,7 @@ public class PlayerLoadLevelCtrl implements ActionListener {
     app.setView(new PlayerLevelView(app, model));
   }
 
+  @Override
   public void actionPerformed(ActionEvent event) {
     // TODO: actually though
     loadLevel("nope");

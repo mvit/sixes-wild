@@ -1,11 +1,8 @@
 package boundary;
 
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.io.IOException;
-
 import model.BuilderModel;
 
 public class BuilderApplication {
@@ -61,6 +58,6 @@ public class BuilderApplication {
 
     // start main app
     BuilderApplication app = new BuilderApplication(model);
-    app.setView(new BuilderMainScreen(app, model));
+    app.setView(new BuilderMainMenuView(app, model));
   }
 }

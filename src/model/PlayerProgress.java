@@ -5,15 +5,15 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Date;
+import java.util.Iterator;
 
 /**
  * The progress the user has made in unlocking levels and the achieved scores.
  *
  * Levels are zero-indexed.
  */
-public class UserProgress implements Iterable<LevelProgress> {
+public class PlayerProgress implements Iterable<LevelProgress> {
   // TODO: where should these be stored?
   public static String header = "SWUP";
   public static int version = 0;
@@ -21,12 +21,12 @@ public class UserProgress implements Iterable<LevelProgress> {
   ArrayList<LevelProgress> levels = new ArrayList<LevelProgress>();
 
   /**
-   * Creates an empty UserProgress.
+   * Creates an empty PlayerProgress.
    */
-  public UserProgress() {}
+  public PlayerProgress() {}
 
   /**
-   * Creates a UserProgress from a DataInputStream.
+   * Creates a PlayerProgress from a DataInputStream.
    *
    * TODO: create log-style progress? Implicitly adds recent event capabilities
    * if desired
@@ -34,7 +34,7 @@ public class UserProgress implements Iterable<LevelProgress> {
    * @constructor
    * @param {DataInputStream} in
    */
-  public UserProgress(DataInputStream in) throws IOException {
+  public PlayerProgress(DataInputStream in) throws IOException {
     byte headerBytes[] = new byte[4];
     if (in.read(headerBytes, 0, 4) != 4) {
       throw new RuntimeException("stored user progress incomplete");
@@ -59,7 +59,7 @@ public class UserProgress implements Iterable<LevelProgress> {
   }
 
   /**
-   * Write the UserProgress to a DataOutputStream.
+   * Write the PlayerProgress to a DataOutputStream.
    *
    * @param {DataOutputStream} out
    */
@@ -114,7 +114,7 @@ public class UserProgress implements Iterable<LevelProgress> {
   }
 
   /**
-   * Gets the iterator for the UserProgress.
+   * Gets the iterator for the PlayerProgress.
    *
    * @return {Iterator<LevelProgress>}
    */

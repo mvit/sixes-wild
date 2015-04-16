@@ -1,13 +1,10 @@
 package controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import boundary.BuilderApplication;
 import boundary.BuilderLevelEditorView;
-import model.Level;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import model.BuilderModel;
-import model.Rules;
 
 public class BuilderNewLevelCtrl implements ActionListener {
   BuilderApplication app;

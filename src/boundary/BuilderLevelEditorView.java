@@ -1,11 +1,8 @@
 package boundary;
 
 import boundary.BuilderApplication;
-import java.awt.BorderLayout;
+import controller.BuilderMainMenuCtrl;
 import java.awt.Component;
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
@@ -14,10 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpringLayout;
 import model.BuilderModel;
-import controller.BuilderMainScreenCtrl;
 
 public class BuilderLevelEditorView extends JPanel {
   BuilderApplication app;
@@ -31,16 +26,12 @@ public class BuilderLevelEditorView extends JPanel {
     panel.setAlignmentY(Component.TOP_ALIGNMENT);
 
     JButton btnNew = new JButton("New");
-    btnNew.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent arg0) {
-      }
-    });
 
     JButton btnOpen = new JButton("Open");
 
     JButton btnSave = new JButton("Save");
     JButton btnClose = new JButton("Close");
-    btnClose.addActionListener(new BuilderMainScreenCtrl(app, model));
+    btnClose.addActionListener(new BuilderMainMenuCtrl(app, model));
 
     JButton btnUndo = new JButton("Undo");
 

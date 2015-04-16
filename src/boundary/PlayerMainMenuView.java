@@ -1,30 +1,27 @@
 package boundary;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
-
-import java.awt.Font;
-
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
-import model.PlayerModel;
-import controller.PlayerLoadLevelSelectCtrl;
 import controller.ExitCtrl;
+import controller.PlayerLoadLevelSelectCtrl;
+import java.awt.Font;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SwingConstants;
+import model.PlayerModel;
 
 /**
- * MainMenuView for the player application
+ * PlayerMainMenuView for the player application
+ *
  * @author Bailey Sheridan
  */
-public class MainMenuView extends JPanel {
-  private static final long serialVersionUID = 1L;
+public class PlayerMainMenuView extends JPanel {
   PlayerModel model;
   PlayerApplication app;
 
-  public MainMenuView(PlayerApplication app, PlayerModel model) {
+  public PlayerMainMenuView(PlayerApplication app, PlayerModel model) {
     this.app = app;
     this.model = model;
 

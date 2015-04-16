@@ -1,22 +1,19 @@
 package controller;
 
+import boundary.PlayerApplication;
+import boundary.PlayerMainMenuView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import boundary.PlayerApplication;
-import boundary.MainMenuView;
-import model.Level;
 import model.PlayerModel;
-import model.Rules;
 
-public class MainMenuCtrl implements ActionListener {
+public class PlayerMainMenuCtrl implements ActionListener {
   PlayerApplication app;
   PlayerModel model;
 
   /**
    * Create the controller with the context: the application and the model.
    */
-  public MainMenuCtrl(PlayerApplication app, PlayerModel model) {
+  public PlayerMainMenuCtrl(PlayerApplication app, PlayerModel model) {
     this.app = app;
     this.model = model;
   }
@@ -26,9 +23,10 @@ public class MainMenuCtrl implements ActionListener {
    */
   public void loadMainMenu() {
     model.level.discardBoard();
-    app.setView(new MainMenuView(app, model));
+    app.setView(new PlayerMainMenuView(app, model));
   }
 
+  @Override
   public void actionPerformed(ActionEvent event) {
     loadMainMenu();
   }

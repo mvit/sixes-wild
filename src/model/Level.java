@@ -1,9 +1,9 @@
 package model;
 
-import java.nio.charset.StandardCharsets;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 
 /**
  * The Level class.

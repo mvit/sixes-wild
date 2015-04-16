@@ -16,7 +16,6 @@ import javax.swing.JWindow;
 /**
  * Splash Screen
  */
-
 public class SplashScreen extends JWindow {
   public SplashScreen(String file) throws IOException {
     JPanel content = (JPanel) getContentPane();

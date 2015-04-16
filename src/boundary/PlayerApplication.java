@@ -70,6 +70,6 @@ public class PlayerApplication {
 
     // start main app
     PlayerApplication app = new PlayerApplication(model);
-    app.setView(new MainMenuView(app, model));
+    app.setView(new PlayerMainMenuView(app, model));
   }
 }
