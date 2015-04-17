@@ -167,6 +167,7 @@ public class BuilderLevelEditorView extends JPanel {
     JPanel panel_10 = new JPanel();
     sl_panel_5.putConstraint(SpringLayout.NORTH, panel_10, 204, SpringLayout.NORTH, panel_5);
     sl_panel_5.putConstraint(SpringLayout.WEST, panel_10, 0, SpringLayout.WEST, panel_5);
+    sl_panel_5.putConstraint(SpringLayout.SOUTH, panel_10, -143, SpringLayout.SOUTH, panel_5);
     sl_panel_5.putConstraint(SpringLayout.EAST, panel_10, 0, SpringLayout.EAST, panel_5);
     sl_panel_5.putConstraint(SpringLayout.SOUTH, panel_9, -6, SpringLayout.NORTH, panel_10);
     
@@ -180,24 +181,9 @@ public class BuilderLevelEditorView extends JPanel {
 
     JSlider slider_4 = new JSlider();
     panel_10.add(slider_4);
-
-    JPanel panel_11 = new JPanel();
-    sl_panel_5.putConstraint(SpringLayout.NORTH, panel_11, 255, SpringLayout.NORTH, panel_5);
-    sl_panel_5.putConstraint(SpringLayout.WEST, panel_11, 0, SpringLayout.WEST, panel_5);
-    sl_panel_5.putConstraint(SpringLayout.EAST, panel_11, 0, SpringLayout.EAST, panel_5);
-    sl_panel_5.putConstraint(SpringLayout.SOUTH, panel_10, -6, SpringLayout.NORTH, panel_11);
     
     JLabel label_10 = new JLabel("50%");
     panel_10.add(label_10);
-    sl_panel_5.putConstraint(SpringLayout.SOUTH, panel_11, -300, SpringLayout.SOUTH, panel_5);
-    panel_5.add(panel_11);
-    panel_11.setLayout(new BoxLayout(panel_11, BoxLayout.X_AXIS));
-
-    JLabel label_5 = new JLabel("6");
-    panel_11.add(label_5);
-
-    JSlider slider_5 = new JSlider();
-    panel_11.add(slider_5);
     GroupLayout gl_panel_1 = new GroupLayout(panel_1);
     gl_panel_1.setHorizontalGroup(
       gl_panel_1.createParallelGroup(Alignment.LEADING)
