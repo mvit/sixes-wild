@@ -2,8 +2,11 @@ package boundary;
 
 import boundary.BuilderApplication;
 import controller.BuilderMainMenuCtrl;
+
 import java.awt.Component;
+
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -12,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 import javax.swing.SpringLayout;
+
 import model.BuilderModel;
 
 public class BuilderLevelEditorView extends JPanel {
@@ -114,6 +118,9 @@ public class BuilderLevelEditorView extends JPanel {
     sl_panel_5.putConstraint(SpringLayout.WEST, panel_7, 0, SpringLayout.WEST, panel_5);
     sl_panel_5.putConstraint(SpringLayout.EAST, panel_7, 0, SpringLayout.EAST, panel_5);
     sl_panel_5.putConstraint(SpringLayout.EAST, panel_6, 0, SpringLayout.EAST, panel_7);
+    
+    JLabel label_6 = new JLabel("50%");
+    panel_6.add(label_6);
     panel_5.add(panel_7);
     panel_7.setLayout(new BoxLayout(panel_7, BoxLayout.X_AXIS));
 
@@ -128,6 +135,9 @@ public class BuilderLevelEditorView extends JPanel {
     sl_panel_5.putConstraint(SpringLayout.WEST, panel_8, 0, SpringLayout.WEST, panel_5);
     sl_panel_5.putConstraint(SpringLayout.EAST, panel_8, 0, SpringLayout.EAST, panel_5);
     sl_panel_5.putConstraint(SpringLayout.SOUTH, panel_7, -6, SpringLayout.NORTH, panel_8);
+    
+    JLabel label_7 = new JLabel("50%");
+    panel_7.add(label_7);
     panel_5.add(panel_8);
     panel_8.setLayout(new BoxLayout(panel_8, BoxLayout.X_AXIS));
 
@@ -142,6 +152,9 @@ public class BuilderLevelEditorView extends JPanel {
     sl_panel_5.putConstraint(SpringLayout.WEST, panel_9, 0, SpringLayout.WEST, panel_5);
     sl_panel_5.putConstraint(SpringLayout.EAST, panel_9, 0, SpringLayout.EAST, panel_5);
     sl_panel_5.putConstraint(SpringLayout.SOUTH, panel_8, -6, SpringLayout.NORTH, panel_9);
+    
+    JLabel label_8 = new JLabel("50%");
+    panel_8.add(label_8);
     panel_5.add(panel_9);
     panel_9.setLayout(new BoxLayout(panel_9, BoxLayout.X_AXIS));
 
@@ -156,6 +169,9 @@ public class BuilderLevelEditorView extends JPanel {
     sl_panel_5.putConstraint(SpringLayout.WEST, panel_10, 0, SpringLayout.WEST, panel_5);
     sl_panel_5.putConstraint(SpringLayout.EAST, panel_10, 0, SpringLayout.EAST, panel_5);
     sl_panel_5.putConstraint(SpringLayout.SOUTH, panel_9, -6, SpringLayout.NORTH, panel_10);
+    
+    JLabel label_9 = new JLabel("50%");
+    panel_9.add(label_9);
     panel_5.add(panel_10);
     panel_10.setLayout(new BoxLayout(panel_10, BoxLayout.X_AXIS));
 
@@ -170,6 +186,9 @@ public class BuilderLevelEditorView extends JPanel {
     sl_panel_5.putConstraint(SpringLayout.WEST, panel_11, 0, SpringLayout.WEST, panel_5);
     sl_panel_5.putConstraint(SpringLayout.EAST, panel_11, 0, SpringLayout.EAST, panel_5);
     sl_panel_5.putConstraint(SpringLayout.SOUTH, panel_10, -6, SpringLayout.NORTH, panel_11);
+    
+    JLabel label_10 = new JLabel("50%");
+    panel_10.add(label_10);
     sl_panel_5.putConstraint(SpringLayout.SOUTH, panel_11, -300, SpringLayout.SOUTH, panel_5);
     panel_5.add(panel_11);
     panel_11.setLayout(new BoxLayout(panel_11, BoxLayout.X_AXIS));
@@ -201,5 +220,10 @@ public class BuilderLevelEditorView extends JPanel {
     add(panel);
     add(panel_1);
     add(panel_5);
+    ButtonGroup gameType = new ButtonGroup();
+    gameType.add(rdbtnPuzzle);
+    gameType.add(rdbtnLightning);
+    gameType.add(rdbtnElimination);
+    gameType.add(rdbtnRelease);
   }
 }
