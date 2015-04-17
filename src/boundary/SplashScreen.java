@@ -21,7 +21,7 @@ public class SplashScreen extends JWindow {
     JPanel content = (JPanel) getContentPane();
     content.setBackground(Color.white);
 
-    BufferedImage splashImg = ImageIO.read(new File("../img/" + file));
+    BufferedImage splashImg = ImageIO.read(new File("img/" + file));
 
     int width = splashImg.getWidth();
     int height = splashImg.getHeight();
@@ -32,7 +32,7 @@ public class SplashScreen extends JWindow {
     int y = (screen.height - height)/2;
     setBounds(x,y,width,height);
 
-    JLabel label = new JLabel(new ImageIcon("../img/" + file));
+    JLabel label = new JLabel(new ImageIcon("img/" + file));
     content.add(label, BorderLayout.CENTER);
     setVisible(true);
   }
