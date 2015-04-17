@@ -5,6 +5,7 @@ import java.awt.FlowLayout;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.Dimension;
 import javax.swing.BoxLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
@@ -15,6 +16,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
 import model.PlayerModel;
+import java.awt.GridLayout;
+import java.awt.BorderLayout;
 
 public class PlayerLevelSelectView extends JPanel {
   PlayerApplication app;
@@ -24,140 +27,98 @@ public class PlayerLevelSelectView extends JPanel {
    * Create the panel.
    */
   public PlayerLevelSelectView(PlayerApplication app, PlayerModel model) {
-    this.app = app;
+    
+	this.app = app;
     this.model = model;
-
-    //Create Two Sub Panels
-    JPanel levelSelectPanel = new JPanel();
-
-    JPanel levelPreviewPanel = new JPanel();
-
-    //Make Main panel Group Layout
-
-    GroupLayout groupLayout = new GroupLayout(this);
-    groupLayout.setHorizontalGroup(
-      groupLayout.createParallelGroup(Alignment.LEADING)
-        .addGroup(groupLayout.createSequentialGroup()
-          .addComponent(levelPreviewPanel, GroupLayout.PREFERRED_SIZE, 251, GroupLayout.PREFERRED_SIZE)
-          .addPreferredGap(ComponentPlacement.RELATED)
-          .addComponent(levelSelectPanel, GroupLayout.PREFERRED_SIZE, 241, GroupLayout.PREFERRED_SIZE)
-          .addGap(12))
-    );
-    groupLayout.setVerticalGroup(
-      groupLayout.createParallelGroup(Alignment.LEADING)
-        .addGroup(groupLayout.createSequentialGroup()
-          .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(levelPreviewPanel, GroupLayout.PREFERRED_SIZE, 379, GroupLayout.PREFERRED_SIZE)
-            .addComponent(levelSelectPanel, GroupLayout.PREFERRED_SIZE, 379, GroupLayout.PREFERRED_SIZE))
-          .addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
-
-    setLayout(groupLayout);
-
-    //Set Level Select Panel, add buttons
-
-    levelSelectPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 5, 5));
-
+    setMinimumSize(new Dimension(800,600));
+    setPreferredSize(new Dimension(800, 600));
+    setLayout(new GridLayout(0, 2, 0, 0));
+    
+    //Two SubPanels
+    
+    //levelPreviewPanel - contains level preview, name type and previous score, along with options for the level
+    JPanel panelLevel = new JPanel();
+    panelLevel.setLayout(new BorderLayout(0, 0));
+    this.add(panelLevel);
+    
+    JPanel panelLevelPreview = new JPanel();
+    panelLevel.add(panelLevelPreview, BorderLayout.CENTER);
+    
+    JPanel panelLevelOptions = new JPanel();
+    panelLevelOptions.setBorder(null);
+    panelLevel.add(panelLevelOptions, BorderLayout.SOUTH);
+   
+    JButton btnPlayLevel = new JButton("Play Level");
+    panelLevelOptions.add(btnPlayLevel);
+    
+    JPanel panelLevelInfo = new JPanel();
+    panelLevelInfo.setLayout(new GridLayout(0, 1, 0, 0));
+    
+    JLabel lblLevel = new JLabel("Level ");
+    panelLevelInfo.add(lblLevel);
+    lblLevel.setHorizontalAlignment(SwingConstants.CENTER);
+        
+    JLabel lblType = new JLabel("Type: ");
+    panelLevelInfo.add(lblType);
+            
+    JLabel lblScore = new JLabel("Score: ");
+    panelLevelInfo.add(lblScore);
+    panelLevel.add(panelLevelInfo, BorderLayout.NORTH);
+    
+    btnPlayLevel.addActionListener(new PlayerLoadLevelCtrl(app, model));
+    
+  //panelLevelGrid - Contains Buttons for each level that exists
+    JPanel panelLevelGrid = new JPanel();
+    panelLevelGrid.setLayout(new GridLayout(0, 4, 0, 0));
+    this.add(panelLevelGrid);
+    
+    //Buttons for Level Select Grid
     JButton btnLevel1 = new JButton("Level 1");
-    levelSelectPanel.add(btnLevel1);
+    panelLevelGrid.add(btnLevel1);
 
     JButton btnLevel2 = new JButton("Level 2");
-    levelSelectPanel.add(btnLevel2);
-
+    panelLevelGrid.add(btnLevel2);
+    
     JButton btnLevel3 = new JButton("Level 3");
-    levelSelectPanel.add(btnLevel3);
-
+    panelLevelGrid.add(btnLevel3);
+    
     JButton btnLevel4 = new JButton("Level 4");
-    levelSelectPanel.add(btnLevel4);
-
+    panelLevelGrid.add(btnLevel4);
+    
     JButton btnLevel5 = new JButton("Level 5");
-    levelSelectPanel.add(btnLevel5);
-
+    panelLevelGrid.add(btnLevel5);
+    
     JButton btnLevel6 = new JButton("Level 6");
-    levelSelectPanel.add(btnLevel6);
-
+    panelLevelGrid.add(btnLevel6);
+    
     JButton btnLevel7 = new JButton("Level 7");
-    levelSelectPanel.add(btnLevel7);
-
+    panelLevelGrid.add(btnLevel7);
+    
     JButton btnLevel8 = new JButton("Level 8");
-    levelSelectPanel.add(btnLevel8);
-
+    panelLevelGrid.add(btnLevel8);
+    
     JButton btnLevel9 = new JButton("Level 9");
-    levelSelectPanel.add(btnLevel9);
-
+    panelLevelGrid.add(btnLevel9);
+    
     JButton btnLevel10 = new JButton("Level 10");
-    levelSelectPanel.add(btnLevel10);
-
+    panelLevelGrid.add(btnLevel10);
+    
     JButton btnLevel11 = new JButton("Level 11");
-    levelSelectPanel.add(btnLevel11);
-
+    panelLevelGrid.add(btnLevel11);
+    
     JButton btnLevel12 = new JButton("Level 12");
-    levelSelectPanel.add(btnLevel12);
-
+    panelLevelGrid.add(btnLevel12);
+    
     JButton btnLevel13 = new JButton("Level 13");
-    levelSelectPanel.add(btnLevel13);
-
+    panelLevelGrid.add(btnLevel13);
+    
     JButton btnLevel14 = new JButton("Level 14");
-    levelSelectPanel.add(btnLevel14);
-
+    panelLevelGrid.add(btnLevel14);
+    
     JButton btnLevel15 = new JButton("Level 15");
-    levelSelectPanel.add(btnLevel15);
-
+    panelLevelGrid.add(btnLevel15);
+    
     JButton btnLevel16 = new JButton("Level 16");
-    levelSelectPanel.add(btnLevel16);
-    //Level Preview Pane
-
-    JButton btnPlayLevel = new JButton("Play Level");
-
-    btnPlayLevel.addActionListener(new PlayerLoadLevelCtrl(app, model));
-
-    JLabel lblLevel = new JLabel("Level 1");
-    lblLevel.setHorizontalAlignment(SwingConstants.CENTER);
-
-    JLabel lblScore = new JLabel("Score: ");
-
-    JLabel lblType = new JLabel("Type:");
-
-    JPanel levelPreviewLoadPanel = new JPanel();
-
-    GroupLayout gl_levelPreviewPanel = new GroupLayout(levelPreviewPanel);
-    gl_levelPreviewPanel.setHorizontalGroup(
-      gl_levelPreviewPanel.createParallelGroup(Alignment.LEADING)
-        .addGroup(gl_levelPreviewPanel.createSequentialGroup()
-          .addGroup(gl_levelPreviewPanel.createParallelGroup(Alignment.LEADING)
-            .addGroup(gl_levelPreviewPanel.createSequentialGroup()
-              .addGap(102)
-              .addComponent(lblLevel))
-            .addGroup(gl_levelPreviewPanel.createSequentialGroup()
-              .addGap(14)
-              .addGroup(gl_levelPreviewPanel.createParallelGroup(Alignment.LEADING)
-                .addComponent(lblType)
-                .addComponent(lblScore))))
-          .addContainerGap(79, Short.MAX_VALUE))
-        .addComponent(levelPreviewLoadPanel, GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
-        .addGroup(gl_levelPreviewPanel.createSequentialGroup()
-          .addGap(67)
-          .addComponent(btnPlayLevel)
-          .addContainerGap(79, Short.MAX_VALUE))
-    );
-    gl_levelPreviewPanel.setVerticalGroup(
-      gl_levelPreviewPanel.createParallelGroup(Alignment.TRAILING)
-        .addGroup(Alignment.LEADING, gl_levelPreviewPanel.createSequentialGroup()
-          .addContainerGap()
-          .addGroup(gl_levelPreviewPanel.createParallelGroup(Alignment.TRAILING)
-            .addGroup(gl_levelPreviewPanel.createSequentialGroup()
-              .addComponent(lblLevel)
-              .addGap(24))
-            .addGroup(gl_levelPreviewPanel.createSequentialGroup()
-              .addComponent(lblType)
-              .addPreferredGap(ComponentPlacement.RELATED)))
-          .addComponent(lblScore)
-          .addGap(11)
-          .addComponent(levelPreviewLoadPanel, GroupLayout.PREFERRED_SIZE, 253, GroupLayout.PREFERRED_SIZE)
-          .addPreferredGap(ComponentPlacement.UNRELATED)
-          .addComponent(btnPlayLevel)
-          .addContainerGap(12, Short.MAX_VALUE))
-    );
-    levelPreviewPanel.setLayout(gl_levelPreviewPanel);
+    panelLevelGrid.add(btnLevel16);
   }
 }
