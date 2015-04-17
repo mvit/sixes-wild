@@ -2,8 +2,11 @@ package boundary;
 
 import boundary.BuilderApplication;
 import controller.BuilderMainMenuCtrl;
+
 import java.awt.Component;
+
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
@@ -12,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 import javax.swing.SpringLayout;
+
 import model.BuilderModel;
 
 public class BuilderLevelEditorView extends JPanel {
@@ -216,5 +220,10 @@ public class BuilderLevelEditorView extends JPanel {
     add(panel);
     add(panel_1);
     add(panel_5);
+    ButtonGroup gameType = new ButtonGroup();
+    gameType.add(rdbtnPuzzle);
+    gameType.add(rdbtnLightning);
+    gameType.add(rdbtnElimination);
+    gameType.add(rdbtnRelease);
   }
 }
