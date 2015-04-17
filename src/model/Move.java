@@ -10,8 +10,8 @@ import java.util.Set;
 public class Move {
   // TODO: structure to optimize for the eventual removal and replacement of
   // tiles (i.e. organize the points by row)
-  Set<Point> points = new HashSet<Point>();
-  int moveSum = 0;
+  public Set<Point> points = new HashSet<Point>();
+  public int moveSum = 0;
 
   public Move() {}
 
@@ -29,9 +29,9 @@ public class Move {
    *
    * Precondition: board contains a tile at the given x, y point.
    */
-  public void expand(Board board, int x, int y) {
-    if (points.add(new Point(x, y))) {
-      moveSum += board.grid[x][y].tile.number;
+  public void expand(Board board, Point point) {
+    if (points.add(point)) {
+      moveSum += board.grid[point.x][point.y].tile.number;
     }
   }
 }

@@ -7,10 +7,30 @@ import java.util.Map;
  * The variation enumeration.
  */
 public enum Variation {
-  ELIMINATION('E'),
-  LIGHTNING('L'),
-  PUZZLE('P'),
-  RELEASE('R');
+  ELIMINATION('E') {
+    @Override
+    public VariationCtrl createCtrl(PlayerApplication app, PlayerModel model) {
+      return new EliminationCtrl(app, model);
+    }
+  },
+  LIGHTNING('L') {
+    @Override
+    public VariationCtrl createCtrl(PlayerApplication app, PlayerModel model) {
+      return new LightningCtrl(app, model);
+    }
+  },
+  PUZZLE('P') {
+    @Override
+    public VariationCtrl createCtrl(PlayerApplication app, PlayerModel model) {
+      return new PuzzleCtrl(app, model);
+    }
+  },
+  RELEASE('R') {
+    @Override
+    public VariationCtrl createCtrl(PlayerApplication app, PlayerModel model) {
+      return new ReleaseCtrl(app, model);
+    }
+  };
 
   private static final Map<Character, Variation> map = initializeMapping();
 
@@ -40,4 +60,6 @@ public enum Variation {
     }
     return map;
   }
+
+  abstract public VariationCtrl createCtrl(PlayerApplication app, PlayerModel model);
 }

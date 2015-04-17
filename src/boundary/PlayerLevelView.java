@@ -18,14 +18,14 @@ public class PlayerLevelView extends JPanel {
    */
   PlayerApplication app;
   PlayerModel model;
-  PlayerBoardView gamegridView;
+  public PlayerBoardView boardView;
 
   public PlayerLevelView(PlayerApplication app, PlayerModel model) {
     this.app = app;
     this.model = model;
 
     //I don't know how to initialize the board. Haven't tested.
-    gamegridView = new PlayerBoardView(model.level.currentBoard);
+    boardView = new PlayerBoardView(app, model);
 
     JButton btnRestart = new JButton("Restart");
     JButton btnMainMenu = new JButton("Main Menu");
@@ -65,7 +65,7 @@ public class PlayerLevelView extends JPanel {
       groupLayout.createParallelGroup(Alignment.LEADING)
         .addGroup(groupLayout.createSequentialGroup()
           .addGap(10)
-          .addComponent(gamegridView, GroupLayout.PREFERRED_SIZE, 545, GroupLayout.PREFERRED_SIZE)
+          .addComponent(boardView, GroupLayout.PREFERRED_SIZE, 545, GroupLayout.PREFERRED_SIZE)
           .addGap(34)
           .addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
             .addGroup(groupLayout.createSequentialGroup()
@@ -93,7 +93,7 @@ public class PlayerLevelView extends JPanel {
         .addGroup(groupLayout.createSequentialGroup()
           .addGap(11)
           .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-            .addComponent(gamegridView, GroupLayout.PREFERRED_SIZE, 545, GroupLayout.PREFERRED_SIZE)
+            .addComponent(boardView, GroupLayout.PREFERRED_SIZE, 545, GroupLayout.PREFERRED_SIZE)
             .addGroup(groupLayout.createSequentialGroup()
               .addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
                 .addComponent(btnRestart, GroupLayout.PREFERRED_SIZE, 62, GroupLayout.PREFERRED_SIZE)
