@@ -3,11 +3,11 @@ package controller;
 import boundary.PlayerApplication;
 import model.PlayerModel;
 
-public class PlayerwLightningCtrl implements PlayerVariationCtrl {
+public class PlayerLightningCtrl implements PlayerVariationCtrl {
   PlayerApplication app;
   PlayerModel model;
 
-  public PlayerwLightningCtrl(PlayerApplication app, PlayerModel model) {
+  public PlayerLightningCtrl(PlayerApplication app, PlayerModel model) {
 
   }
 
