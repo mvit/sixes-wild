@@ -1,57 +1,84 @@
 package boundary;
 
 import controller.PlayerLoadLevelCtrl;
-import java.awt.FlowLayout;
-import java.awt.Panel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import controller.PlayerMainMenuCtrl;
+
 import java.awt.Dimension;
-import javax.swing.BoxLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.SpringLayout;
 import javax.swing.SwingConstants;
+import javax.swing.BoxLayout;
+
 import model.PlayerModel;
+
 import java.awt.GridLayout;
 import java.awt.BorderLayout;
 
+
 public class PlayerLevelSelectView extends JPanel {
+    /**
+     * The View for Selecting a Level
+     * @author Maurizio Vitale
+     */
+	  
   PlayerApplication app;
   PlayerModel model;
 
-  /**
-   * Create the panel.
-   */
   public PlayerLevelSelectView(PlayerApplication app, PlayerModel model) {
-    
+
 	this.app = app;
     this.model = model;
+    
     setMinimumSize(new Dimension(800,600));
     setPreferredSize(new Dimension(800, 600));
     setLayout(new GridLayout(0, 2, 0, 0));
     
     //Two SubPanels
     
-    //levelPreviewPanel - contains level preview, name type and previous score, along with options for the level
+    //panelLevel - contains level preview, name type and previous score, along with options for the level
+    
     JPanel panelLevel = new JPanel();
     panelLevel.setLayout(new BorderLayout(0, 0));
-    this.add(panelLevel);
+    
+    //panelLevelPreview - where gameboard will be loaded
     
     JPanel panelLevelPreview = new JPanel();
     panelLevel.add(panelLevelPreview, BorderLayout.CENTER);
     
+    //panelLevelOptions - holds play level and reset score
+    
     JPanel panelLevelOptions = new JPanel();
     panelLevelOptions.setBorder(null);
     panelLevel.add(panelLevelOptions, BorderLayout.SOUTH);
-   
+    
+    //btnPLayLevel, explanatory
+    
     JButton btnPlayLevel = new JButton("Play Level");
     panelLevelOptions.add(btnPlayLevel);
+    btnPlayLevel.addActionListener(new PlayerLoadLevelCtrl(app, model));
+    
+    //debating heavily on this one, holds level info and navigation panel, 
+    //considering merging level info and gameboard into a single panel instead
+    
+    JPanel panelTopContent = new JPanel();
+    panelTopContent.setLayout(new BoxLayout(panelTopContent,BoxLayout.Y_AXIS));
+    panelLevel.add(panelTopContent, BorderLayout.NORTH);
+    
+    //panelNavigation holds whatever navigation purpose you need
+    
+    JPanel panelNavigation = new JPanel();
+    panelTopContent.add(panelNavigation);
+    
+    //btnMainMenu
+    
+    JButton btnMainMenu = new JButton("Main Menu");
+    btnMainMenu.setSize(btnMainMenu.getWidth(), 29);    
+    panelNavigation.add(btnMainMenu);
+    btnMainMenu.addActionListener(new PlayerMainMenuCtrl(app, model));
     
     JPanel panelLevelInfo = new JPanel();
+    
     panelLevelInfo.setLayout(new GridLayout(0, 1, 0, 0));
     
     JLabel lblLevel = new JLabel("Level ");
@@ -63,14 +90,16 @@ public class PlayerLevelSelectView extends JPanel {
             
     JLabel lblScore = new JLabel("Score: ");
     panelLevelInfo.add(lblScore);
-    panelLevel.add(panelLevelInfo, BorderLayout.NORTH);
     
-    btnPlayLevel.addActionListener(new PlayerLoadLevelCtrl(app, model));
+    panelTopContent.add(panelLevelInfo);
+    
+
+    
+    this.add(panelLevel);
     
   //panelLevelGrid - Contains Buttons for each level that exists
     JPanel panelLevelGrid = new JPanel();
     panelLevelGrid.setLayout(new GridLayout(0, 4, 0, 0));
-    this.add(panelLevelGrid);
     
     //Buttons for Level Select Grid
     JButton btnLevel1 = new JButton("Level 1");
@@ -120,5 +149,7 @@ public class PlayerLevelSelectView extends JPanel {
     
     JButton btnLevel16 = new JButton("Level 16");
     panelLevelGrid.add(btnLevel16);
+    
+    this.add(panelLevelGrid);
   }
 }
