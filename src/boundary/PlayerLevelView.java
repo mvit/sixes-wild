@@ -1,18 +1,19 @@
 package boundary;
 
 import controller.PlayerMainMenuCtrl;
+import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import model.PlayerModel;
-import javax.swing.BoxLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.Component;
 
 /**
  * The view when a player loads up a level.
+ *
  * @author Bailey Sheridan, Maurizio Vitale, and Eli Skeggs
  */
 public class PlayerLevelView extends JPanel {
@@ -24,7 +25,7 @@ public class PlayerLevelView extends JPanel {
     this.app = app;
     this.model = model;
 
-    setMinimumSize(new Dimension(600,480));
+    setMinimumSize(new Dimension(600, 480));
     setPreferredSize(new Dimension(600, 480));
     setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
@@ -71,7 +72,7 @@ public class PlayerLevelView extends JPanel {
     panelNavigation.setLayout(new BoxLayout(panelNavigation, BoxLayout.X_AXIS));
 
     JButton btnRestart = new JButton("Restart");
-    btnRestart.addActionListener(new PlayerResetLevelCtrl(app,model));
+    btnRestart.addActionListener(new PlayerRestartLevelCtrl(app, model));
     panelNavigation.add(btnRestart);
 
     JButton btnMainMenu = new JButton("Main Menu");

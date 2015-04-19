@@ -28,12 +28,10 @@ public class PlayerBoardView extends JPanel {
 
   PlayerApplication app;
   PlayerModel model;
-  Board board;
 
   public PlayerBoardView(PlayerApplication app, PlayerModel model) {
     this.app = app;
     this.model = model;
-    board = model.level.currentBoard;
 
     addMouseListener(new PlayerBoardMouseCtrl(app, model));
   }
@@ -51,6 +49,7 @@ public class PlayerBoardView extends JPanel {
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
 
+    Board board = model.level.currentBoard;
     Dimension size = getSize();
     int width = Math.min(size.width, size.height);
     int xOffset = (size.width - width) / 2;
