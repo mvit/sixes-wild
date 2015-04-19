@@ -17,7 +17,6 @@ public class BuilderApplication {
 
     frame = new JFrame(title);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
   }
 
   public void setView(JPanel panel) {

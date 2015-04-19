@@ -1,5 +1,13 @@
 package model;
 
+// TODO: we shouldn't need to import boundary and controller in the model
+// package
+import boundary.PlayerApplication;
+import controller.PlayerEliminationCtrl;
+import controller.PlayerLightningCtrl;
+import controller.PlayerPuzzleCtrl;
+import controller.PlayerReleaseCtrl;
+import controller.PlayerVariationCtrl;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,26 +17,26 @@ import java.util.Map;
 public enum Variation {
   ELIMINATION('E') {
     @Override
-    public VariationCtrl createCtrl(PlayerApplication app, PlayerModel model) {
-      return new EliminationCtrl(app, model);
+    public PlayerVariationCtrl createCtrl(PlayerApplication app, PlayerModel model) {
+      return new PlayerEliminationCtrl(app, model);
     }
   },
   LIGHTNING('L') {
     @Override
-    public VariationCtrl createCtrl(PlayerApplication app, PlayerModel model) {
-      return new LightningCtrl(app, model);
+    public PlayerVariationCtrl createCtrl(PlayerApplication app, PlayerModel model) {
+      return new PlayerLightningCtrl(app, model);
     }
   },
   PUZZLE('P') {
     @Override
-    public VariationCtrl createCtrl(PlayerApplication app, PlayerModel model) {
-      return new PuzzleCtrl(app, model);
+    public PlayerVariationCtrl createCtrl(PlayerApplication app, PlayerModel model) {
+      return new PlayerPuzzleCtrl(app, model);
     }
   },
   RELEASE('R') {
     @Override
-    public VariationCtrl createCtrl(PlayerApplication app, PlayerModel model) {
-      return new ReleaseCtrl(app, model);
+    public PlayerVariationCtrl createCtrl(PlayerApplication app, PlayerModel model) {
+      return new PlayerReleaseCtrl(app, model);
     }
   };
 
@@ -61,5 +69,5 @@ public enum Variation {
     return map;
   }
 
-  abstract public VariationCtrl createCtrl(PlayerApplication app, PlayerModel model);
+  abstract public PlayerVariationCtrl createCtrl(PlayerApplication app, PlayerModel model);
 }

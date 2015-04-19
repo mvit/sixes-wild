@@ -6,6 +6,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import model.PlayerModel;
+import model.PlayerState;
+import model.Point;
 
 public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
 {
@@ -15,7 +17,7 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
   PlayerRemoveCtrl removeCtrl;
   PlayerSwapCtrl swapCtrl;
 
-  PlayerExtendMoveCtrl expandMoveCtrl;
+  PlayerExpandMoveCtrl expandMoveCtrl;
   PlayerFinishMoveCtrl finishMoveCtrl;
   PlayerStartMoveCtrl startMoveCtrl;
 
@@ -26,7 +28,7 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
     removeCtrl = new PlayerRemoveCtrl(app, model);
     swapCtrl = new PlayerSwapCtrl(app, model);
 
-    expandMoveCtrl = new PlayerExtendMoveCtrl(app, model);
+    expandMoveCtrl = new PlayerExpandMoveCtrl(app, model);
     finishMoveCtrl = new PlayerFinishMoveCtrl(app, model);
     startMoveCtrl = new PlayerStartMoveCtrl(app, model);
   }
@@ -37,7 +39,7 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
   }
 
   @Override
-  void mouseClicked(MouseEvent event) {
+  public void mouseClicked(MouseEvent event) {
     if (event.getButton() != MouseEvent.BUTTON1) {
       return;
     }
@@ -54,13 +56,13 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
   }
 
   @Override
-  void mouseEntered(MouseEvent event) {}
+  public void mouseEntered(MouseEvent event) {}
 
   @Override
-  void mouseExit(MouseEvent event) {}
+  public void mouseExited(MouseEvent event) {}
 
   @Override
-  void mousePressed(MouseEvent event) {
+  public void mousePressed(MouseEvent event) {
     if (event.getButton() != MouseEvent.BUTTON1) {
       return;
     }
@@ -71,7 +73,7 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
   }
 
   @Override
-  void mouseReleased(MouseEvent event) {
+  public void mouseReleased(MouseEvent event) {
     if (event.getButton() != MouseEvent.BUTTON1) {
       return;
     }
@@ -82,7 +84,7 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
   }
 
   @Override
-  void mouseDragged(MouseEvent event) {
+  public void mouseDragged(MouseEvent event) {
     if (event.getButton() != MouseEvent.BUTTON1) {
       return;
     }
@@ -94,5 +96,5 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
   }
 
   @Override
-  void mouseMoved(MouseEvent event) {}
+  public void mouseMoved(MouseEvent event) {}
 }

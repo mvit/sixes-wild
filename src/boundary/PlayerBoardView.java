@@ -1,5 +1,6 @@
 package boundary;
 
+import controller.PlayerBoardMouseCtrl;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -7,6 +8,8 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JPanel;
 import model.Board;
+import model.PlayerModel;
+import model.Point;
 
 /**
  * Actual view for the playable grid in-game.
@@ -14,7 +17,7 @@ import model.Board;
  * @author Eli Skeggs
  */
 public class PlayerBoardView extends JPanel {
-  private static final Color[] colors = new Colors[] {
+  private static final Color[] colors = new Color[] {
     Color.GREEN,
     Color.YELLOW,
     Color.ORANGE,
@@ -60,9 +63,9 @@ public class PlayerBoardView extends JPanel {
         int number = board.grid[x][y].tile.number;
 
         if (number < colors.length || number >= colors.length) {
-          System.err.println("[WARN] Bad number for color lookup: " + number);
           g.setColor(colors[number]);
         } else {
+          System.err.println("[WARN] Bad number for color lookup: " + number);
           g.setColor(Color.WHITE);
         }
 

@@ -3,6 +3,8 @@ package controller;
 import boundary.PlayerApplication;
 import model.PlayerModel;
 import model.PlayerState;
+import model.Point;
+import model.Move;
 
 public class PlayerStartMoveCtrl {
   PlayerApplication app;

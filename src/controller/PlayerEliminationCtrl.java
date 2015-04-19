@@ -8,14 +8,15 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
   PlayerModel model;
 
   public PlayerEliminationCtrl(PlayerApplication app, PlayerModel model) {
-
+    this.app = app;
+    this.model = model;
   }
 
   public boolean specialMove() {
-
+    return false;
   }
 
   public boolean finishMove() {
-
+    return false;
   }
 }

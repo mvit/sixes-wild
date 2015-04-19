@@ -2,6 +2,7 @@ package controller;
 
 import boundary.PlayerApplication;
 import model.PlayerModel;
+import model.Point;
 
 public class PlayerExpandMoveCtrl {
   PlayerApplication app;

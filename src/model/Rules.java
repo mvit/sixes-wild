@@ -13,10 +13,10 @@ public class Rules {
 
   // TODO: load seed from input?
   WeightedRandom random = new WeightedRandom();
-  Variation variation;
+  public Variation variation;
   // represents the remaining moves or remaining time, depending on variation
-  int initialCounter;
-  int[] numberWeights, multiplierWeights, scoreThresholds;
+  public int initialCounter;
+  public int[] numberWeights, multiplierWeights, scoreThresholds;
 
   /**
    * The default constructor which creates some reasonable rules.

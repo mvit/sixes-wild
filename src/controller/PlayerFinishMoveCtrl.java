@@ -2,6 +2,8 @@ package controller;
 
 import boundary.PlayerApplication;
 import model.PlayerModel;
+import model.PlayerState;
+import model.Point;
 
 public class PlayerFinishMoveCtrl {
   PlayerApplication app;

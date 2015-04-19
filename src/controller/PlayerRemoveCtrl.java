@@ -1,10 +1,19 @@
 package controller;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import boundary.PlayerApplication;
+import model.PlayerModel;
+import model.Point;
 
-public class PlayerRemoveCtrl implements ActionListener {
-  protected void actionPerformed(ActionEvent event) {
+public class PlayerRemoveCtrl {
+  PlayerApplication app;
+  PlayerModel model;
+
+  public PlayerRemoveCtrl(PlayerApplication app, PlayerModel model) {
+    this.app = app;
+    this.model = model;
+  }
+
+  public void mouseClicked(Point point) {
 
   }
 }
