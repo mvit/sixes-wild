@@ -1,6 +1,7 @@
 package boundary;
 
 import controller.PlayerMainMenuCtrl;
+import controller.PlayerRestartLevelCtrl;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
