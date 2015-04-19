@@ -2,9 +2,8 @@ package boundary;
 
 import boundary.BuilderApplication;
 import controller.BuilderMainMenuCtrl;
-
+import controller.BuilderUndoCtrl;
 import java.awt.Component;
-
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout.Alignment;
@@ -14,10 +13,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
-import javax.swing.SpringLayout;
-
-import model.BuilderModel;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.SpringLayout;
+import model.BuilderModel;
 
 public class BuilderLevelEditorView extends JPanel {
   BuilderApplication app;
@@ -39,6 +37,7 @@ public class BuilderLevelEditorView extends JPanel {
     btnClose.addActionListener(new BuilderMainMenuCtrl(app, model));
 
     JButton btnUndo = new JButton("Undo");
+    btnUndo.addActionListener(new BuilderUndoCtrl(app, model));
 
     JButton btnRedo = new JButton("Redo");
     GroupLayout gl_panel = new GroupLayout(panel);
@@ -229,5 +228,9 @@ public class BuilderLevelEditorView extends JPanel {
     gameType.add(rdbtnLightning);
     gameType.add(rdbtnElimination);
     gameType.add(rdbtnRelease);
+  }
+
+  public void updateView(){
+	
   }
 }

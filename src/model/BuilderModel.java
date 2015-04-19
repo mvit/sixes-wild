@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class BuilderModel {
   public Level level = null;
   public ArrayList<Change> history = new ArrayList<Change>();
+  public int redoIndex = 0;
 
   /**
    * Create a new builder model.
