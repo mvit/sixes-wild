@@ -2,8 +2,11 @@ package boundary;
 
 import boundary.BuilderApplication;
 import controller.BuilderMainMenuCtrl;
+import controller.BuilderRedoCtrl;
 import controller.BuilderUndoCtrl;
+
 import java.awt.Component;
+
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout.Alignment;
@@ -15,6 +18,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SpringLayout;
+
 import model.BuilderModel;
 
 public class BuilderLevelEditorView extends JPanel {
@@ -40,6 +44,9 @@ public class BuilderLevelEditorView extends JPanel {
     btnUndo.addActionListener(new BuilderUndoCtrl(app, model));
 
     JButton btnRedo = new JButton("Redo");
+    btnUndo.addActionListener(new BuilderRedoCtrl(app, model));
+    
+    
     GroupLayout gl_panel = new GroupLayout(panel);
     gl_panel.setHorizontalGroup(
       gl_panel.createParallelGroup(Alignment.LEADING)
