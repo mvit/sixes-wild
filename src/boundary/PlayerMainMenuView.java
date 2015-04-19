@@ -13,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import model.PlayerModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * PlayerMainMenuView for the player application
@@ -54,7 +56,11 @@ public class PlayerMainMenuView extends JPanel {
     btnLevelSelect.setAlignmentY(Component.CENTER_ALIGNMENT);
 
 
-    JButton btnNewButton = new JButton("Achievements");
+    JButton btnNewButton = new JButton("Instructions");
+    btnNewButton.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent arg0) {
+    	}
+    });
     panelContent.add(btnNewButton);
     btnNewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     btnNewButton.setAlignmentY(Component.CENTER_ALIGNMENT);
