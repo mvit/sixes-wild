@@ -5,8 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -21,8 +21,10 @@ public class SplashScreen extends JWindow {
     JPanel content = (JPanel) getContentPane();
     content.setBackground(Color.white);
 
-    BufferedImage splashImg = ImageIO.read(new File("img/" + file));
-
+    BufferedImage splashImg; 
+    	
+    splashImg = ImageIO.read(new File("img/" + file));
+    
     int width = splashImg.getWidth();
     int height = splashImg.getHeight();
 
@@ -32,7 +34,7 @@ public class SplashScreen extends JWindow {
     int y = (screen.height - height)/2;
     setBounds(x,y,width,height);
 
-    JLabel label = new JLabel(new ImageIcon("img/" + file));
+    JLabel label = new JLabel(new ImageIcon(splashImg));
     content.add(label, BorderLayout.CENTER);
     setVisible(true);
   }
