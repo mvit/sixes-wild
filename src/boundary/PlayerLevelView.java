@@ -47,13 +47,13 @@ public class PlayerLevelView extends JPanel {
     panelLeft.add(panelControls);
     panelControls.setLayout(new BoxLayout(panelControls, BoxLayout.Y_AXIS));
 
-    JButton btnSwap = new JButton("Z");
+    JButton btnSwap = new JButton("↔");
     panelControls.add(btnSwap);
 
-    JButton btnRemove = new JButton("X");
+    JButton btnRemove = new JButton("✘");
     panelControls.add(btnRemove);
 
-    JButton btnScramble = new JButton("C");
+    JButton btnScramble = new JButton("⟲");
     panelControls.add(btnScramble);
 
     //Panel Right

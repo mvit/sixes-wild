@@ -43,7 +43,7 @@ public class PlayerMainMenuView extends JPanel {
     add(panelContent);
     panelContent.setLayout(new BoxLayout(panelContent, BoxLayout.Y_AXIS));
 
-    JLabel lblSixesWild = new JLabel("Sixes Wild");
+    JLabel lblSixesWild = new JLabel("☭");
     panelContent.add(lblSixesWild);
     lblSixesWild.setFont(new Font("Matura MT Script Capitals", Font.PLAIN, 26));
     lblSixesWild.setAlignmentX(Component.CENTER_ALIGNMENT);
