@@ -5,12 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.PlayerModel;
 
-public class PlayerResetLevelCtrl implements ActionListener{
+public class PlayerRestartLevelCtrl implements ActionListener{
 	
 	 PlayerApplication app;
 	  PlayerModel model;
 
-	  public PlayerResetLevelCtrl(PlayerApplication app, PlayerModel model) {
+	  public PlayerRestartLevelCtrl(PlayerApplication app, PlayerModel model) {
 	    this.app = app;
 	    this.model = model;
 	  }
