@@ -17,6 +17,7 @@ import javax.swing.JSlider;
 import javax.swing.SpringLayout;
 
 import model.BuilderModel;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class BuilderLevelEditorView extends JPanel {
   BuilderApplication app;
@@ -165,11 +166,11 @@ public class BuilderLevelEditorView extends JPanel {
     panel_9.add(slider_3);
 
     JPanel panel_10 = new JPanel();
+    sl_panel_5.putConstraint(SpringLayout.SOUTH, panel_9, -6, SpringLayout.NORTH, panel_10);
+    sl_panel_5.putConstraint(SpringLayout.SOUTH, panel_10, 249, SpringLayout.NORTH, panel_5);
     sl_panel_5.putConstraint(SpringLayout.NORTH, panel_10, 204, SpringLayout.NORTH, panel_5);
     sl_panel_5.putConstraint(SpringLayout.WEST, panel_10, 0, SpringLayout.WEST, panel_5);
-    sl_panel_5.putConstraint(SpringLayout.SOUTH, panel_10, -143, SpringLayout.SOUTH, panel_5);
     sl_panel_5.putConstraint(SpringLayout.EAST, panel_10, 0, SpringLayout.EAST, panel_5);
-    sl_panel_5.putConstraint(SpringLayout.SOUTH, panel_9, -6, SpringLayout.NORTH, panel_10);
     
     JLabel label_9 = new JLabel("50%");
     panel_9.add(label_9);
@@ -206,6 +207,23 @@ public class BuilderLevelEditorView extends JPanel {
     add(panel);
     add(panel_1);
     add(panel_5);
+    
+    JPanel panel_2 = new JPanel();
+    sl_panel_5.putConstraint(SpringLayout.NORTH, panel_2, 6, SpringLayout.SOUTH, panel_10);
+    sl_panel_5.putConstraint(SpringLayout.WEST, panel_2, 0, SpringLayout.WEST, panel_6);
+    sl_panel_5.putConstraint(SpringLayout.SOUTH, panel_2, 51, SpringLayout.SOUTH, panel_10);
+    sl_panel_5.putConstraint(SpringLayout.EAST, panel_2, 0, SpringLayout.EAST, panel_6);
+    panel_5.add(panel_2);
+    panel_2.setLayout(new BoxLayout(panel_2, BoxLayout.X_AXIS));
+    
+    JLabel label_5 = new JLabel("6");
+    panel_2.add(label_5);
+    
+    JSlider slider_5 = new JSlider();
+    panel_2.add(slider_5);
+    
+    JLabel label_11 = new JLabel("50%");
+    panel_2.add(label_11);
     ButtonGroup gameType = new ButtonGroup();
     gameType.add(rdbtnPuzzle);
     gameType.add(rdbtnLightning);
