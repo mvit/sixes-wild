@@ -18,4 +18,9 @@ public class PlayerModel {
    * @constructor
    */
   public PlayerModel() {}
+  
+  public void reset() {
+	  playerState = PlayerState.NONE;
+	  move = null;
+  }
 }
