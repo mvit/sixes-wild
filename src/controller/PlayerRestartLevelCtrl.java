@@ -19,6 +19,7 @@ public class PlayerRestartLevelCtrl implements ActionListener{
   public void actionPerformed(ActionEvent event) {
     model.level.discardBoard();
     model.level.realizeBoard();
+    model.reset();
 
     PlayerBoardView boardView = ((PlayerLevelView) app.getView()).boardView;
     boardView.repaint();
