@@ -13,7 +13,7 @@ import java.awt.Component;
 
 /**
  * The view when a player loads up a level.
- * @author Bailey Sheridan &amp; Maurizio Vitale &amp; Eli Skeggs
+ * @author Bailey Sheridan, Maurizio Vitale, and Eli Skeggs
  */
 public class PlayerLevelView extends JPanel {
   PlayerApplication app;
@@ -65,7 +65,7 @@ public class PlayerLevelView extends JPanel {
     //Panel Navigation
 
     JPanel panelNavigation = new JPanel();
-    panelNavigation.setAlignmentX(0.0f);
+    panelNavigation.setAlignmentX(0);
     panelNavigation.setAlignmentY(Component.BOTTOM_ALIGNMENT);
     panelRight.add(panelNavigation);
     panelNavigation.setLayout(new BoxLayout(panelNavigation, BoxLayout.X_AXIS));
