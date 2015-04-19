@@ -2,10 +2,7 @@ package boundary;
 
 import controller.PlayerMainMenuCtrl;
 import controller.PlayerRestartLevelCtrl;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -43,7 +40,7 @@ public class PlayerLevelView extends JPanel {
     //Panel Controls
 
     JPanel panelControls = new JPanel();
-    panelControls.setAlignmentY(Component.TOP_ALIGNMENT);
+    panelControls.setAlignmentY(0);
     panelLeft.add(panelControls);
     panelControls.setLayout(new BoxLayout(panelControls, BoxLayout.Y_AXIS));
 
@@ -59,7 +56,6 @@ public class PlayerLevelView extends JPanel {
     //Panel Right
 
     JPanel panelRight = new JPanel();
-    panelRight.setAlignmentX(0);
     panelRight.setAlignmentY(0);
     add(panelRight);
     panelRight.setLayout(new BoxLayout(panelRight, BoxLayout.Y_AXIS));
@@ -68,7 +64,6 @@ public class PlayerLevelView extends JPanel {
 
     JPanel panelNavigation = new JPanel();
     panelNavigation.setAlignmentX(0);
-    panelNavigation.setAlignmentY(Component.BOTTOM_ALIGNMENT);
     panelRight.add(panelNavigation);
     panelNavigation.setLayout(new BoxLayout(panelNavigation, BoxLayout.X_AXIS));
 
