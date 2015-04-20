@@ -2,13 +2,20 @@ package boundary;
 
 import controller.BuilderNewLevelCtrl;
 import controller.ExitCtrl;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.GroupLayout;
+import java.awt.Component;
+import java.awt.GridBagLayout;
+import java.awt.Dimension;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import model.BuilderModel;
 
+/**
+ * PlayerMainMenuView for the player application
+ *
+ * @author Cem Unsal & Maurizio Vitale
+ */
 public class BuilderMainMenuView extends JPanel {
   BuilderApplication app;
   BuilderModel model;
@@ -16,37 +23,42 @@ public class BuilderMainMenuView extends JPanel {
   public BuilderMainMenuView(BuilderApplication app, BuilderModel model) {
     this.app = app;
     this.model = model;
+    
+    setMinimumSize(new Dimension(600,480));
+    setPreferredSize(new Dimension(600, 480));
+    //Make Layout GridBagLayout
+    GridBagLayout gridBagLayout = new GridBagLayout();
+    setLayout(gridBagLayout);
+    //Add ContentPanel in center
+    JPanel panelContent = new JPanel();
+    panelContent.setBorder(null);
+    panelContent.setSize(300,500);
+    panelContent.setLayout(new BoxLayout(panelContent, BoxLayout.Y_AXIS));
+    add(panelContent);
+    //Add Labels and Buttons to center ContentPanel
+    JLabel lblBuilder = new JLabel("\u262D Builder");
+    lblBuilder.setAlignmentX(Component.CENTER_ALIGNMENT);
+    lblBuilder.setAlignmentY(Component.CENTER_ALIGNMENT);
+    panelContent.add(lblBuilder);
+    
+    JButton btnNewLevel = new JButton("New Level");
+    btnNewLevel.addActionListener(new BuilderNewLevelCtrl(app, model));
+    btnNewLevel.setAlignmentX(Component.CENTER_ALIGNMENT);
+    btnNewLevel.setAlignmentY(Component.CENTER_ALIGNMENT);
+    panelContent.add(btnNewLevel);
 
-    JButton btnNew = new JButton("New");
-    btnNew.addActionListener(new BuilderNewLevelCtrl(app, model));
+    JButton btnOpen = new JButton("Open Level");
+    btnOpen.addActionListener(new BuilderNewLevelCtrl(app, model));
+    btnOpen.setAlignmentX(Component.CENTER_ALIGNMENT);
+    btnOpen.setAlignmentY(Component.CENTER_ALIGNMENT);
+    panelContent.add(btnOpen);
+    
+    JButton btnQuitBuilder = new JButton("Quit Builder");
+    btnQuitBuilder.addActionListener(new ExitCtrl());
+    btnQuitBuilder.addActionListener(new BuilderNewLevelCtrl(app, model));
+    btnQuitBuilder.setAlignmentX(Component.CENTER_ALIGNMENT);
+    btnQuitBuilder.setAlignmentY(Component.CENTER_ALIGNMENT);
+    panelContent.add(btnQuitBuilder);
 
-    JButton btnOpen = new JButton("Open");
-
-    JButton btnQuit = new JButton("Quit");
-    btnQuit.addActionListener(new ExitCtrl());
-
-    GroupLayout groupLayout = new GroupLayout(this);
-    groupLayout.setHorizontalGroup(
-      groupLayout.createParallelGroup(Alignment.LEADING)
-        .addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
-          .addGap(234)
-          .addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-            .addComponent(btnQuit, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
-            .addComponent(btnOpen, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
-            .addComponent(btnNew, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-          .addGap(276))
-    );
-    groupLayout.setVerticalGroup(
-      groupLayout.createParallelGroup(Alignment.LEADING)
-        .addGroup(groupLayout.createSequentialGroup()
-          .addGap(65)
-          .addComponent(btnNew, GroupLayout.PREFERRED_SIZE, 20, Short.MAX_VALUE)
-          .addPreferredGap(ComponentPlacement.RELATED)
-          .addComponent(btnOpen, GroupLayout.PREFERRED_SIZE, 20, Short.MAX_VALUE)
-          .addPreferredGap(ComponentPlacement.RELATED)
-          .addComponent(btnQuit, GroupLayout.PREFERRED_SIZE, 20, Short.MAX_VALUE)
-          .addGap(80))
-    );
-    setLayout(groupLayout);
   }
 }
