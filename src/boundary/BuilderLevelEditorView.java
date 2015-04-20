@@ -15,7 +15,11 @@ import javax.swing.JSlider;
 
 import model.BuilderModel;
 import java.awt.FlowLayout;
-
+/**
+ * BuilderLevelEditorView for the builder application
+ *
+ * @author Cem Unsal & Maurizio Vitale
+ */
 public class BuilderLevelEditorView extends JPanel {
   BuilderApplication app;
   BuilderModel model;
@@ -27,12 +31,13 @@ public class BuilderLevelEditorView extends JPanel {
     setMinimumSize(new Dimension(600,480));
     setPreferredSize(new Dimension(600, 480));
     setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
+    
     //panelControls contain all control buttons 
 
     JPanel panelControls = new JPanel();
     panelControls.setAlignmentY(0);
-    add(panelControls);
     panelControls.setLayout(new BoxLayout(panelControls, BoxLayout.PAGE_AXIS));
+    add(panelControls);
 
     JButton btnNew = new JButton("New");
     panelControls.add(btnNew);

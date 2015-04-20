@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import model.BuilderModel;
 
 /**
- * PlayerMainMenuView for the player application
+ * BuilderMainMenuView for the builder application
  *
  * @author Cem Unsal & Maurizio Vitale
  */
