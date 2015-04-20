@@ -4,7 +4,9 @@ import boundary.BuilderApplication;
 import controller.BuilderMainMenuCtrl;
 import controller.BuilderRedoCtrl;
 import controller.BuilderUndoCtrl;
+
 import java.awt.Dimension;
+
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -12,7 +14,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
+
 import model.BuilderModel;
+
 import java.awt.FlowLayout;
 
 /**
@@ -23,6 +27,7 @@ import java.awt.FlowLayout;
 public class BuilderLevelEditorView extends JPanel {
     BuilderApplication app;
     BuilderModel model;
+    public PlayerBoardView boardView;
 
     public BuilderLevelEditorView(BuilderApplication app, BuilderModel model) {
         this.app = app;
@@ -92,6 +97,7 @@ public class BuilderLevelEditorView extends JPanel {
         JPanel panelBoard = new JPanel();
         panelBoard.setAlignmentY(0);
         panelGame.add(panelBoard);
+        panelBoard.setLayout(new BoxLayout(panelBoard, BoxLayout.Y_AXIS));
         
         //panelType contains mutually exclusive radio buttons
     
@@ -123,6 +129,7 @@ public class BuilderLevelEditorView extends JPanel {
         //panelGrid contains the Board Inside
         JPanel panelGrid = new JPanel();
         panelGrid.setLayout(new BoxLayout(panelGrid, BoxLayout.X_AXIS));
+        panelGrid.setSize(400,400);
         panelBoard.add(panelGrid);
     
         
