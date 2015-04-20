@@ -14,8 +14,11 @@ public class PlayerApplication {
   protected JFrame frame;
   protected JPanel view = null;
 
-  public PlayerApplication(PlayerModel model) {
+  ResourceLoader loader;
+
+  public PlayerApplication(PlayerModel model, ResourceLoader loader) {
     this.model = model;
+    this.loader = loader;
 
     frame = new JFrame(title);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -47,6 +50,12 @@ public class PlayerApplication {
    * window (PlayerApplication).
    */
   public static void main(String[] args) {
+    ResourceLoader loader = new ResourceLoader();
+
+    for (int i = 1; i <= 6; i++) {
+      loader.addResource(i + ".png");
+    }
+
     // start splash screen
     SplashScreen splash;
     try {
@@ -58,18 +67,34 @@ public class PlayerApplication {
     }
 
     // load resources
+    long loadStart = System.currentTimeMillis();
     PlayerModel model = new PlayerModel();
     try {
-      Thread.sleep(4000);
-    } catch (InterruptedException err) {
+      loader.loadResources();
+    } catch (IOException err) {
+      System.err.println(err.getMessage());
+      err.printStackTrace();
       return;
-    } finally {
-      // close splash screen
-      splash.close();
+    }
+
+    // initialize main app
+    PlayerApplication app = new PlayerApplication(model, loader);
+    JPanel initialView = new PlayerMainMenuView(app, model);
+
+    // extend time if necessary
+    long loadElapsed = System.currentTimeMillis() - loadStart;
+    if (loadElapsed < 2000) {
+      try {
+        Thread.sleep(2000 - loadElapsed);
+      } catch (InterruptedException err) {
+        // if we've been interrupted, just close the splash screen
+      } finally {
+        // close splash screen
+        splash.close();
+      }
     }
 
     // start main app
-    PlayerApplication app = new PlayerApplication(model);
-    app.setView(new PlayerMainMenuView(app, model));
+    app.setView(initialView);
   }
 }

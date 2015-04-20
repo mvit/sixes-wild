@@ -2,106 +2,67 @@ package boundary;
 
 import controller.PlayerBoardMouseCtrl;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontMetrics;
 import java.awt.Graphics;
-import java.util.HashMap;
-import java.util.Map;
-import javax.swing.JPanel;
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
 import model.Board;
 import model.PlayerModel;
-import model.Point;
 
 /**
  * Actual view for the playable grid in-game.
  *
  * @author Eli Skeggs
  */
-public class PlayerBoardView extends JPanel {
-  private static final Color[] colors = new Color[] {
-    Color.GREEN,
-    Color.YELLOW,
-    Color.ORANGE,
-    Color.RED,
-    Color.BLUE,
-    Color.GRAY
-  };
-
-  private static final Font font = new Font("SansSerif", Font.BOLD, 18);
-
+public class PlayerBoardView extends BoardView {
   PlayerApplication app;
   PlayerModel model;
 
   public PlayerBoardView(PlayerApplication app, PlayerModel model) {
+    super(false, Board.width, Board.height);
+
     this.app = app;
     this.model = model;
 
     addMouseListener(new PlayerBoardMouseCtrl(app, model));
   }
 
-  public Point identifyPoint(int mouseX, int mouseY) {
-    Dimension size = getSize();
-    int width = Math.min(size.width, size.height);
-    int xOffset = (size.width - width) / 2;
-    int yOffset = (size.height - width) / 2;
+  protected BufferedImage scaleImage(BufferedImage source,
+      int width, int height) {
+    if (width == source.getWidth() && height == source.getHeight()) {
+      return source;
+    }
 
-    return new Point((mouseX - xOffset) * Board.width / width, (mouseY - yOffset) * Board.height / width);
-  }
+    BufferedImage scaled = new BufferedImage(width, height,
+      BufferedImage.TYPE_INT_ARGB);
 
-  protected void drawStringCentered(Graphics g, String string, int x, int y) {
-    FontMetrics fontMetrics = g.getFontMetrics();
-    x -= fontMetrics.stringWidth(string) / 2;
-    // y = fontMetrics.getAscent() + (y - fontMetrics.getAscent() - fontMetrics.getDescent()) / 2;
-    g.drawString(string, x, y);
+    AffineTransform transform = new AffineTransform();
+    transform.scale((double) width / source.getWidth(),
+      (double) height / source.getHeight());
+
+    AffineTransformOp transformOp = new AffineTransformOp(transform,
+      AffineTransformOp.TYPE_BILINEAR);
+
+    scaled = transformOp.filter(source, scaled);
+
+    return scaled;
   }
 
   @Override
-  protected void paintComponent(Graphics g) {
-    super.paintComponent(g);
+  protected void paintCell(Graphics g, int x, int y,
+      int x1, int y1, int x2, int y2) {
+    // wooooo assumptions!
+    int number = model.level.currentBoard.grid[x][y].tile.number;
+    BufferedImage image = app.loader.getResource((number + 1) + ".png");
 
-    g.setFont(font);
-
-    Board board = model.level.currentBoard;
-    Dimension size = getSize();
-
-    int width, height;
-    if (size.width * Board.height < size.height * Board.width) {
-      width = size.width - 1;
-      height = size.width * Board.height / Board.width - 1;
+    if (image == null) {
+      System.err.println("[WARN] Bad number for color lookup: " + number);
+      g.setColor(Color.WHITE);
+      g.fillRect(x1, y1, x2 - x1, y2 - y1);
     } else {
-      width = size.height * Board.width / Board.height - 1;
-      height = size.height - 1;
+      image = scaleImage(image, x2 - x1, y2 - y1);
+      g.drawImage(image, x1, y1, null);
     }
-
-    int xOffset = (size.width - width + 1) / 2 - 1;
-    int yOffset = (size.height - height + 1) / 2 - 1;
-
-    for (int x = 0; x < Board.width; x++) {
-      for (int y = 0; y < Board.height; y++) {
-        int xPos = xOffset + width * x / Board.width;
-        int yPos = yOffset + height * y / Board.height;
-        int number = board.grid[x][y].tile.number;
-
-        if (number < colors.length || number >= colors.length) {
-          g.setColor(colors[number]);
-        } else {
-          System.err.println("[WARN] Bad number for color lookup: " + number);
-          g.setColor(Color.WHITE);
-        }
-
-        g.fillRect(xPos, yPos, xOffset + width * (x + 1) / Board.width - xPos,
-          yOffset + height * (y + 1) / Board.height - yPos);
-        g.setColor(Color.BLACK);
-        drawStringCentered(g, "" + (number + 1), (int) (xOffset + width * (y
-          + 0.5d) / Board.width), (int) (yOffset + height * (y + 1.5d)
-          / Board.height));
-        g.drawLine(xOffset, yPos, xOffset + width, yPos);
-        g.drawLine(xPos, yOffset, xPos, yOffset + height);
-      }
-    }
-
-    g.drawLine(xOffset, yOffset + height, xOffset + width, yOffset + height);
-    g.drawLine(xOffset + width, yOffset, xOffset + width, yOffset + height);
   }
 }

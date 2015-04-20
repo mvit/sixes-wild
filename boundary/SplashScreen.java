@@ -21,7 +21,8 @@ public class SplashScreen extends JWindow {
     JPanel content = (JPanel) getContentPane();
     content.setBackground(Color.WHITE);
 
-    BufferedImage splashImg = ImageIO.read(this.getClass().getResource("/resource/img/" + file));
+    BufferedImage splashImg = ImageIO.read(getClass()
+      .getResource("/resource/img/" + file));
 
     int width = splashImg.getWidth();
     int height = splashImg.getHeight();
