@@ -4,9 +4,8 @@ import boundary.BuilderApplication;
 import controller.BuilderMainMenuCtrl;
 import controller.BuilderRedoCtrl;
 import controller.BuilderUndoCtrl;
-
 import java.awt.Dimension;
-
+import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -14,15 +13,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
-
 import model.BuilderModel;
-
-import java.awt.FlowLayout;
 
 /**
 * BuilderLevelEditorView for the builder application
 *
-* @author Cem Unsal & Maurizio Vitale
+* @author Cem Unsal and Maurizio Vitale
 */
 public class BuilderLevelEditorView extends JPanel {
     BuilderApplication app;
@@ -32,12 +28,12 @@ public class BuilderLevelEditorView extends JPanel {
     public BuilderLevelEditorView(BuilderApplication app, BuilderModel model) {
         this.app = app;
         this.model = model;
-    
+
         setMinimumSize(new Dimension(600,480));
         setPreferredSize(new Dimension(600, 480));
         setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
-    
-        //panelControls contain all Top control buttons 
+
+        //panelControls contain all Top control buttons
 
         JPanel panelTopControls = new JPanel();
         panelTopControls.setAlignmentX(0);
@@ -47,60 +43,60 @@ public class BuilderLevelEditorView extends JPanel {
 
         JButton btnNew = new JButton("New");
         panelTopControls.add(btnNew);
-    
+
         JButton btnOpen = new JButton("Open");
         panelTopControls.add(btnOpen);
-    
+
         JButton btnSave = new JButton("Save");
         panelTopControls.add(btnSave);
-    
+
         JButton btnClose = new JButton("Close");
         btnClose.addActionListener(new BuilderMainMenuCtrl(app, model));
         panelTopControls.add(btnClose);
-        
+
         //panelGame contains all Game related options
-        
+
         JPanel panelGame = new JPanel();
         panelGame.setAlignmentX(0);
         panelGame.setLayout(new BoxLayout(panelGame, BoxLayout.X_AXIS));
         add(panelGame);
-        
+
         //panelControls contains controls related to the board
-        
+
         JPanel panelControls = new JPanel();
         panelControls.setLayout(new BoxLayout(panelControls, BoxLayout.Y_AXIS));
         panelControls.setAlignmentY(0);
         panelGame.add(panelControls);
-        
+
         JButton btnUndo = new JButton("Undo");
         btnUndo.addActionListener(new BuilderUndoCtrl(app, model));
         panelControls.add(btnUndo);
-    
+
         JButton btnRedo = new JButton("Redo");
         btnUndo.addActionListener(new BuilderRedoCtrl(app, model));
         panelControls.add(btnRedo);
-        
+
         JButton btnMakePlayable = new JButton("[  ]");
         panelControls.add(btnMakePlayable);
-        
+
         JButton btnMakeInert = new JButton("[X]");
         panelControls.add(btnMakeInert);
-        
+
         JButton btnMakeSix = new JButton("6");
         panelControls.add(btnMakeSix);
-        
+
         JButton btnMakeSlot = new JButton("[6]");
         panelControls.add(btnMakeSlot);
-        
+
         //panelBoard contains panelType and panelGrid
-    
+
         JPanel panelBoard = new JPanel();
         panelBoard.setAlignmentY(0);
         panelGame.add(panelBoard);
         panelBoard.setLayout(new BoxLayout(panelBoard, BoxLayout.Y_AXIS));
-        
+
         //panelType contains mutually exclusive radio buttons
-    
+
         JPanel panelType = new JPanel();
         panelType.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
         panelBoard.add(panelType);
@@ -116,33 +112,33 @@ public class BuilderLevelEditorView extends JPanel {
 
         JRadioButton rdbtnRelease = new JRadioButton("Release");
         panelType.add(rdbtnRelease);
-    
+
         //Button Group contains radio Buttons to make them mutually exclusive
-    
+
         ButtonGroup gameType = new ButtonGroup();
-    
+
         gameType.add(rdbtnPuzzle);
         gameType.add(rdbtnLightning);
         gameType.add(rdbtnElimination);
         gameType.add(rdbtnRelease);
-    
+
         //panelGrid contains the Board Inside
         JPanel panelGrid = new JPanel();
         panelGrid.setLayout(new BoxLayout(panelGrid, BoxLayout.X_AXIS));
         panelGrid.setSize(400,400);
         panelBoard.add(panelGrid);
-    
-        
+
+
         //panelSliders contain probability Sliders for number generation
         JPanel panelSliders = new JPanel();
         panelGame.add(panelSliders);
         panelSliders.setAlignmentY(0);
         panelSliders.setLayout(new BoxLayout(panelSliders, BoxLayout.Y_AXIS));
-        
+
         //Code for each slider
         int x = 20;//Major Tick Spacing
         int y = 10;//Minor Tick Spacing
-        
+
         //Slider 1
         //Make the panel
         JPanel panelSlider1 = new JPanel();
@@ -159,7 +155,7 @@ public class BuilderLevelEditorView extends JPanel {
         slider1.setSnapToTicks(true);
         slider1.setPaintTicks(true);
         panelSlider1.add(slider1);
-        
+
         //Slider 2
         //Make the panel
         JPanel panelSlider2 = new JPanel();
@@ -176,7 +172,7 @@ public class BuilderLevelEditorView extends JPanel {
         slider2.setSnapToTicks(true);
         slider2.setPaintTicks(true);
         panelSlider2.add(slider2);
-        
+
         //Slider 3
         //Make the panel
         JPanel panelSlider3 = new JPanel();
@@ -193,7 +189,7 @@ public class BuilderLevelEditorView extends JPanel {
         slider3.setSnapToTicks(true);
         slider3.setPaintTicks(true);
         panelSlider3.add(slider3);
-        
+
         //Slider 4
         //Make the panel
         JPanel panelSlider4 = new JPanel();
@@ -210,7 +206,7 @@ public class BuilderLevelEditorView extends JPanel {
         slider4.setSnapToTicks(true);
         slider4.setPaintTicks(true);
         panelSlider4.add(slider4);
-            
+
         //Slider 5
         //Make the panel
         JPanel panelSlider5 = new JPanel();
@@ -227,7 +223,7 @@ public class BuilderLevelEditorView extends JPanel {
         slider5.setSnapToTicks(true);
         slider5.setPaintTicks(true);
         panelSlider5.add(slider5);
-            
+
         //Slider 6
         //Make the panel
         JPanel panelSlider6 = new JPanel();

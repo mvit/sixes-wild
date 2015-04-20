@@ -15,7 +15,7 @@ import model.PlayerModel;
 /**
  * PlayerMainMenuView for the player application
  *
- * @author Bailey Sheridan & Maurizio Vitale
+ * @author Bailey Sheridan and Maurizio Vitale
  */
 public class PlayerMainMenuView extends JPanel {
   PlayerModel model;
@@ -24,23 +24,23 @@ public class PlayerMainMenuView extends JPanel {
   public PlayerMainMenuView(PlayerApplication app, PlayerModel model) {
     this.app = app;
     this.model = model;
-    
+
     //set Sizes
     setMinimumSize(new Dimension(600,480));
     setPreferredSize(new Dimension(600, 480));
-    
+
     //set Layout to gridBagLayout
     GridBagLayout gridBagLayout = new GridBagLayout();
     setLayout(gridBagLayout);
-    
+
     //make a panel for menu content
-    
+
     JPanel panelContent = new JPanel();
     panelContent.setBorder(null);
     panelContent.setSize(300,500);
     panelContent.setLayout(new BoxLayout(panelContent, BoxLayout.Y_AXIS));
     add(panelContent);
-    
+
     //add labels and buttons to menu content
 
     JLabel lblSixesWild = new JLabel("\u262D");
