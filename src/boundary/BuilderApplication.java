@@ -6,7 +6,7 @@ import javax.swing.JPanel;
 import model.BuilderModel;
 
 public class BuilderApplication {
-  public static final String title = "LeveL Builder";
+  public static final String title = "Level Builder";
 
   protected BuilderModel model;
   protected JFrame frame;
@@ -51,7 +51,7 @@ public class BuilderApplication {
     } catch (InterruptedException err) {
       return;
     } finally {
-      // clsoe splash screen
+      // close splash screen
       splash.close();
     }
 
