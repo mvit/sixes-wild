@@ -4,22 +4,17 @@ import boundary.BuilderApplication;
 import controller.BuilderMainMenuCtrl;
 import controller.BuilderRedoCtrl;
 import controller.BuilderUndoCtrl;
-
-import java.awt.Component;
-
+import java.awt.Dimension;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.GroupLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.SpringLayout;
 
 import model.BuilderModel;
+import java.awt.FlowLayout;
 
 public class BuilderLevelEditorView extends JPanel {
   BuilderApplication app;
@@ -28,216 +23,186 @@ public class BuilderLevelEditorView extends JPanel {
   public BuilderLevelEditorView(BuilderApplication app, BuilderModel model) {
     this.app = app;
     this.model = model;
+    
+    setMinimumSize(new Dimension(600,480));
+    setPreferredSize(new Dimension(600, 480));
+    setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
+    //panelControls contain all control buttons 
 
-    JPanel panel = new JPanel();
-    panel.setAlignmentY(Component.TOP_ALIGNMENT);
+    JPanel panelControls = new JPanel();
+    panelControls.setAlignmentY(0);
+    add(panelControls);
+    panelControls.setLayout(new BoxLayout(panelControls, BoxLayout.PAGE_AXIS));
 
     JButton btnNew = new JButton("New");
-
+    panelControls.add(btnNew);
+    
     JButton btnOpen = new JButton("Open");
-
+    panelControls.add(btnOpen);
+    
     JButton btnSave = new JButton("Save");
+    panelControls.add(btnSave);
+    
     JButton btnClose = new JButton("Close");
     btnClose.addActionListener(new BuilderMainMenuCtrl(app, model));
-
+    panelControls.add(btnClose);
+    
     JButton btnUndo = new JButton("Undo");
     btnUndo.addActionListener(new BuilderUndoCtrl(app, model));
-
+    panelControls.add(btnUndo);
+    
     JButton btnRedo = new JButton("Redo");
     btnUndo.addActionListener(new BuilderRedoCtrl(app, model));
+    panelControls.add(btnRedo);
     
+    //panelBoard contains panelType and panelGrid
     
-    GroupLayout gl_panel = new GroupLayout(panel);
-    gl_panel.setHorizontalGroup(
-      gl_panel.createParallelGroup(Alignment.LEADING)
-        .addGroup(gl_panel.createSequentialGroup()
-          .addGap(10)
-          .addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-            .addGroup(gl_panel.createSequentialGroup()
-              .addComponent(btnNew, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-              .addGap(6)
-              .addComponent(btnOpen, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE))
-            .addGroup(gl_panel.createSequentialGroup()
-              .addComponent(btnSave, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-              .addGap(6)
-              .addComponent(btnClose, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE))
-            .addGroup(gl_panel.createSequentialGroup()
-              .addComponent(btnUndo, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE)
-              .addGap(7)
-              .addComponent(btnRedo, GroupLayout.PREFERRED_SIZE, 109, GroupLayout.PREFERRED_SIZE))))
-    );
-    gl_panel.setVerticalGroup(
-      gl_panel.createParallelGroup(Alignment.LEADING)
-        .addGroup(gl_panel.createSequentialGroup()
-          .addGap(10)
-          .addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-            .addComponent(btnNew)
-            .addComponent(btnOpen))
-          .addGap(6)
-          .addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-            .addComponent(btnSave)
-            .addComponent(btnClose))
-          .addGap(6)
-          .addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
-            .addComponent(btnUndo)
-            .addComponent(btnRedo)))
-    );
-    panel.setLayout(gl_panel);
-
-    JPanel panel_1 = new JPanel();
-
-    JPanel panel_4 = new JPanel();
-    panel_4.setLayout(new BoxLayout(panel_4, BoxLayout.X_AXIS));
+    JPanel panelBoard = new JPanel();
+    panelBoard.setAlignmentY(0);
+    add(panelBoard);
+    
+    //panelType contains mutually exclusive radio buttons
+    
+    JPanel panelType = new JPanel();
+    panelType.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+    panelBoard.add(panelType);
 
     JRadioButton rdbtnPuzzle = new JRadioButton("Puzzle");
-    panel_4.add(rdbtnPuzzle);
+    panelType.add(rdbtnPuzzle);
 
     JRadioButton rdbtnLightning = new JRadioButton("Lightning");
-    panel_4.add(rdbtnLightning);
+    panelType.add(rdbtnLightning);
 
     JRadioButton rdbtnElimination = new JRadioButton("Elimination");
-    panel_4.add(rdbtnElimination);
+    panelType.add(rdbtnElimination);
 
     JRadioButton rdbtnRelease = new JRadioButton("Release");
-    panel_4.add(rdbtnRelease);
-
-    JPanel gridPanel = new JPanel();
-
-    JPanel panel_5 = new JPanel();
-    SpringLayout sl_panel_5 = new SpringLayout();
-    panel_5.setLayout(sl_panel_5);
-
-    JPanel panel_6 = new JPanel();
-    sl_panel_5.putConstraint(SpringLayout.SOUTH, panel_6, 45, SpringLayout.NORTH, panel_5);
-    sl_panel_5.putConstraint(SpringLayout.NORTH, panel_6, 0, SpringLayout.NORTH, panel_5);
-    sl_panel_5.putConstraint(SpringLayout.WEST, panel_6, 0, SpringLayout.WEST, panel_5);
-    panel_5.add(panel_6);
-    panel_6.setLayout(new BoxLayout(panel_6, BoxLayout.X_AXIS));
-
-    JLabel label = new JLabel("1");
-    panel_6.add(label);
-
-    JSlider slider = new JSlider();
-    panel_6.add(slider);
-
-    JPanel panel_7 = new JPanel();
-    sl_panel_5.putConstraint(SpringLayout.NORTH, panel_7, 6, SpringLayout.SOUTH, panel_6);
-    sl_panel_5.putConstraint(SpringLayout.WEST, panel_7, 0, SpringLayout.WEST, panel_5);
-    sl_panel_5.putConstraint(SpringLayout.EAST, panel_7, 0, SpringLayout.EAST, panel_5);
-    sl_panel_5.putConstraint(SpringLayout.EAST, panel_6, 0, SpringLayout.EAST, panel_7);
+    panelType.add(rdbtnRelease);
     
-    JLabel label_6 = new JLabel("50%");
-    panel_6.add(label_6);
-    panel_5.add(panel_7);
-    panel_7.setLayout(new BoxLayout(panel_7, BoxLayout.X_AXIS));
-
-    JLabel label_1 = new JLabel("2");
-    panel_7.add(label_1);
-
-    JSlider slider_1 = new JSlider();
-    panel_7.add(slider_1);
-
-    JPanel panel_8 = new JPanel();
-    sl_panel_5.putConstraint(SpringLayout.NORTH, panel_8, 102, SpringLayout.NORTH, panel_5);
-    sl_panel_5.putConstraint(SpringLayout.WEST, panel_8, 0, SpringLayout.WEST, panel_5);
-    sl_panel_5.putConstraint(SpringLayout.EAST, panel_8, 0, SpringLayout.EAST, panel_5);
-    sl_panel_5.putConstraint(SpringLayout.SOUTH, panel_7, -6, SpringLayout.NORTH, panel_8);
+    //Button Group contains radio Buttons to make them mutually exclusive
     
-    JLabel label_7 = new JLabel("50%");
-    panel_7.add(label_7);
-    panel_5.add(panel_8);
-    panel_8.setLayout(new BoxLayout(panel_8, BoxLayout.X_AXIS));
-
-    JLabel label_2 = new JLabel("3");
-    panel_8.add(label_2);
-
-    JSlider slider_2 = new JSlider();
-    panel_8.add(slider_2);
-
-    JPanel panel_9 = new JPanel();
-    sl_panel_5.putConstraint(SpringLayout.NORTH, panel_9, 153, SpringLayout.NORTH, panel_5);
-    sl_panel_5.putConstraint(SpringLayout.WEST, panel_9, 0, SpringLayout.WEST, panel_5);
-    sl_panel_5.putConstraint(SpringLayout.EAST, panel_9, 0, SpringLayout.EAST, panel_5);
-    sl_panel_5.putConstraint(SpringLayout.SOUTH, panel_8, -6, SpringLayout.NORTH, panel_9);
-    
-    JLabel label_8 = new JLabel("50%");
-    panel_8.add(label_8);
-    panel_5.add(panel_9);
-    panel_9.setLayout(new BoxLayout(panel_9, BoxLayout.X_AXIS));
-
-    JLabel label_3 = new JLabel("4");
-    panel_9.add(label_3);
-
-    JSlider slider_3 = new JSlider();
-    panel_9.add(slider_3);
-
-    JPanel panel_10 = new JPanel();
-    sl_panel_5.putConstraint(SpringLayout.SOUTH, panel_9, -6, SpringLayout.NORTH, panel_10);
-    sl_panel_5.putConstraint(SpringLayout.SOUTH, panel_10, 249, SpringLayout.NORTH, panel_5);
-    sl_panel_5.putConstraint(SpringLayout.NORTH, panel_10, 204, SpringLayout.NORTH, panel_5);
-    sl_panel_5.putConstraint(SpringLayout.WEST, panel_10, 0, SpringLayout.WEST, panel_5);
-    sl_panel_5.putConstraint(SpringLayout.EAST, panel_10, 0, SpringLayout.EAST, panel_5);
-    
-    JLabel label_9 = new JLabel("50%");
-    panel_9.add(label_9);
-    panel_5.add(panel_10);
-    panel_10.setLayout(new BoxLayout(panel_10, BoxLayout.X_AXIS));
-
-    JLabel label_4 = new JLabel("5");
-    panel_10.add(label_4);
-
-    JSlider slider_4 = new JSlider();
-    panel_10.add(slider_4);
-    
-    JLabel label_10 = new JLabel("50%");
-    panel_10.add(label_10);
-    GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-    gl_panel_1.setHorizontalGroup(
-      gl_panel_1.createParallelGroup(Alignment.LEADING)
-        .addComponent(gridPanel, GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
-        .addGroup(Alignment.TRAILING, gl_panel_1.createSequentialGroup()
-          .addContainerGap()
-          .addComponent(panel_4, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-          .addContainerGap())
-    );
-    gl_panel_1.setVerticalGroup(
-      gl_panel_1.createParallelGroup(Alignment.LEADING)
-        .addGroup(gl_panel_1.createSequentialGroup()
-          .addGap(10)
-          .addComponent(panel_4, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-          .addGap(10)
-          .addComponent(gridPanel, GroupLayout.DEFAULT_SIZE, 543, Short.MAX_VALUE))
-    );
-    panel_1.setLayout(gl_panel_1);
-    setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-    add(panel);
-    add(panel_1);
-    add(panel_5);
-    
-    JPanel panel_2 = new JPanel();
-    sl_panel_5.putConstraint(SpringLayout.NORTH, panel_2, 6, SpringLayout.SOUTH, panel_10);
-    sl_panel_5.putConstraint(SpringLayout.WEST, panel_2, 0, SpringLayout.WEST, panel_6);
-    sl_panel_5.putConstraint(SpringLayout.SOUTH, panel_2, 51, SpringLayout.SOUTH, panel_10);
-    sl_panel_5.putConstraint(SpringLayout.EAST, panel_2, 0, SpringLayout.EAST, panel_6);
-    panel_5.add(panel_2);
-    panel_2.setLayout(new BoxLayout(panel_2, BoxLayout.X_AXIS));
-    
-    JLabel label_5 = new JLabel("6");
-    panel_2.add(label_5);
-    
-    JSlider slider_5 = new JSlider();
-    panel_2.add(slider_5);
-    
-    JLabel label_11 = new JLabel("50%");
-    panel_2.add(label_11);
     ButtonGroup gameType = new ButtonGroup();
     gameType.add(rdbtnPuzzle);
     gameType.add(rdbtnLightning);
     gameType.add(rdbtnElimination);
     gameType.add(rdbtnRelease);
-  }
+    
+    //panelGrid contains the Board Inside
+    JPanel panelGrid = new JPanel();
+    panelGrid.setLayout(new BoxLayout(panelGrid, BoxLayout.X_AXIS));
+    panelBoard.add(panelGrid);
 
-  public void updateView(){
-	
+    
+    //panelSliders contain probability Sliders for number generation
+    JPanel panelSliders = new JPanel();
+    panelSliders.setAlignmentY(0);
+    panelSliders.setLayout(new BoxLayout(panelSliders, BoxLayout.Y_AXIS));
+    add(panelSliders);
+   
+    //Code for each slider
+    int x = 20;
+    int y = 10;
+    
+    //Slider 1
+    //Make the panel
+    JPanel panelSlider1 = new JPanel();
+    panelSlider1.setLayout(new BoxLayout(panelSlider1, BoxLayout.X_AXIS));
+    panelSliders.add(panelSlider1);
+    //Make the Label
+    JLabel lblNum1 = new JLabel("1");
+    panelSlider1.add(lblNum1);
+    //Make the Slider
+    JSlider slider1 = new JSlider();
+    slider1.setPaintLabels(true);
+    slider1.setMajorTickSpacing(x);
+    slider1.setMinorTickSpacing(y);
+    slider1.setSnapToTicks(true);
+    slider1.setPaintTicks(true);
+    panelSlider1.add(slider1);
+    
+    //Slider 2
+    //Make the panel
+    JPanel panelSlider2 = new JPanel();
+    panelSlider2.setLayout(new BoxLayout(panelSlider2, BoxLayout.X_AXIS));
+    panelSliders.add(panelSlider2);
+    //Make the Label
+    JLabel lblNum2 = new JLabel("2");
+    panelSlider2.add(lblNum2);
+    //Make the Slider
+    JSlider slider2 = new JSlider();
+    slider2.setPaintLabels(true);
+    slider2.setMajorTickSpacing(x);
+    slider2.setMinorTickSpacing(y);
+    slider2.setSnapToTicks(true);
+    slider2.setPaintTicks(true);
+    panelSlider2.add(slider2);
+    
+    //Slider 3
+    //Make the panel
+    JPanel panelSlider3 = new JPanel();
+    panelSlider3.setLayout(new BoxLayout(panelSlider3, BoxLayout.X_AXIS));
+    panelSliders.add(panelSlider3);
+    //Make the Label
+    JLabel lblNum3 = new JLabel("3");
+    panelSlider3.add(lblNum3);
+    //Make the Slider
+    JSlider slider3 = new JSlider();
+    slider3.setPaintLabels(true);
+    slider3.setMajorTickSpacing(x);
+    slider3.setMinorTickSpacing(y);
+    slider3.setSnapToTicks(true);
+    slider3.setPaintTicks(true);
+    panelSlider3.add(slider3);
+
+    //Slider 4
+    //Make the panel
+    JPanel panelSlider4 = new JPanel();
+    panelSlider4.setLayout(new BoxLayout(panelSlider4, BoxLayout.X_AXIS));
+    panelSliders.add(panelSlider4);
+    //Make the Label
+    JLabel lblNum4 = new JLabel("4");
+    panelSlider4.add(lblNum4);
+    //Make the Slider
+    JSlider slider4 = new JSlider();
+    slider4.setPaintLabels(true);
+    slider4.setMajorTickSpacing(x);
+    slider4.setMinorTickSpacing(y);
+    slider4.setSnapToTicks(true);
+    slider4.setPaintTicks(true);
+    panelSlider4.add(slider4);
+    
+    //Slider 5
+    //Make the panel
+    JPanel panelSlider5 = new JPanel();
+    panelSlider5.setLayout(new BoxLayout(panelSlider5, BoxLayout.X_AXIS));
+    panelSliders.add(panelSlider5);
+    //Make the Label
+    JLabel lblNum5 = new JLabel("5");
+    panelSlider5.add(lblNum5);
+    //Make the Slider
+    JSlider slider5 = new JSlider();
+    slider5.setPaintLabels(true);
+    slider5.setMajorTickSpacing(x);
+    slider5.setMinorTickSpacing(y);
+    slider5.setSnapToTicks(true);
+    slider5.setPaintTicks(true);
+    panelSlider5.add(slider5);
+    
+    //Slider 6
+    //Make the panel
+    JPanel panelSlider6 = new JPanel();
+    panelSlider6.setLayout(new BoxLayout(panelSlider6, BoxLayout.X_AXIS));
+    panelSliders.add(panelSlider6);
+    //Make the Label
+    JLabel lblNum6 = new JLabel("6");
+    panelSlider6.add(lblNum6);
+    //Make the Slider
+    JSlider slider6 = new JSlider();
+    slider6.setPaintLabels(true);
+    slider6.setMajorTickSpacing(x);
+    slider6.setMinorTickSpacing(y);
+    slider6.setSnapToTicks(true);
+    slider6.setPaintTicks(true);
+    panelSlider6.add(slider6);
   }
 }
