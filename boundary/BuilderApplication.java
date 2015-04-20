@@ -37,7 +37,7 @@ public class BuilderApplication {
     // start splash screen
     SplashScreen splash;
     try {
-      splash = new SplashScreen("splash1.png");
+      splash = new SplashScreen("splash1levelbuilder.png");
     } catch (IOException err) {
       System.err.println(err.getMessage());
       err.printStackTrace();
