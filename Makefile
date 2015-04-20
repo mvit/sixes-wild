@@ -1,5 +1,2 @@
-player:
-	javac -cp src/ src/boundary/PlayerApplication.java
-
-builder:
-	javac -cp src/ src/boundary/BuilderApplication.java
+build:
+	javac boundary/*.java controller/*.java model/*.java utils/*.java
