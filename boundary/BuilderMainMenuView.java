@@ -1,14 +1,18 @@
 package boundary;
 
 import controller.BuilderNewLevelCtrl;
+import controller.BuilderOpenLevelCtrl;
 import controller.ExitCtrl;
+
 import java.awt.Component;
 import java.awt.GridBagLayout;
 import java.awt.Dimension;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 import model.BuilderModel;
 
 /**
@@ -54,14 +58,13 @@ public class BuilderMainMenuView extends JPanel {
     panelContent.add(btnNewLevel);
 
     JButton btnOpen = new JButton("Open Level");
-    btnOpen.addActionListener(new BuilderNewLevelCtrl(app, model));
+    btnOpen.addActionListener(new BuilderOpenLevelCtrl(app, model));
     btnOpen.setAlignmentX(Component.CENTER_ALIGNMENT);
     btnOpen.setAlignmentY(Component.CENTER_ALIGNMENT);
     panelContent.add(btnOpen);
 
     JButton btnQuitBuilder = new JButton("Quit Builder");
     btnQuitBuilder.addActionListener(new ExitCtrl());
-    btnQuitBuilder.addActionListener(new BuilderNewLevelCtrl(app, model));
     btnQuitBuilder.setAlignmentX(Component.CENTER_ALIGNMENT);
     btnQuitBuilder.setAlignmentY(Component.CENTER_ALIGNMENT);
     panelContent.add(btnQuitBuilder);

@@ -2,10 +2,13 @@ package boundary;
 
 import boundary.BuilderApplication;
 import controller.BuilderMainMenuCtrl;
+import controller.BuilderNewLevelCtrl;
 import controller.BuilderRedoCtrl;
 import controller.BuilderUndoCtrl;
+
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -13,6 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
+
 import model.BuilderModel;
 
 /**
@@ -42,6 +46,7 @@ public class BuilderLevelEditorView extends JPanel {
     add(panelTopControls);
 
     JButton btnNew = new JButton("New");
+    btnNew.addActionListener(new BuilderNewLevelCtrl (app, model));
     panelTopControls.add(btnNew);
 
     JButton btnOpen = new JButton("Open");
