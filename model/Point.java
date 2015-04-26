@@ -17,6 +17,10 @@ public class Point {
     this.x = x;
     this.y = y;
   }
+  
+  public int hashCode() {
+	  return (new int[] {x, y}).hashCode();
+  }
 
   public boolean equals(Point other) {
     return x == other.x && y == other.y;
