@@ -21,7 +21,8 @@ public class BuilderSetInertCtrl implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent event) {
-	  //Skeleton
+
+	  model.tileType='i';
 	  
 	  
   }

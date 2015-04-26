@@ -6,14 +6,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.BuilderModel;
 
-public class fBuilderSetSixCtrl implements ActionListener {
+public class BuilderSetSixCtrl implements ActionListener {
   BuilderApplication app;
   BuilderModel model;
 
   /**
    * Create the controller with the context: the application and the model.
    */
-  public fBuilderSetSixCtrl(BuilderApplication app, BuilderModel model) {
+  public BuilderSetSixCtrl(BuilderApplication app, BuilderModel model) {
     this.app = app;
     this.model = model;
   }
@@ -21,7 +21,7 @@ public class fBuilderSetSixCtrl implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent event) {
-	  //Skeleton
+	  model.tileType=6;
 	  
 	  
   }

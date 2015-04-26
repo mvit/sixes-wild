@@ -21,7 +21,7 @@ public class BuilderSetSlotCtrl implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent event) {
-	  //Skeleton
+	  model.tileType='s';
 	  
 	  
   }

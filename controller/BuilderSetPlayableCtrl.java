@@ -21,7 +21,7 @@ public class BuilderSetPlayableCtrl implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent event) {
-	  //Skeleton
+	  model.tileType='p';
 	  
 	  
   }
