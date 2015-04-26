@@ -14,6 +14,7 @@ public class PlayerRemoveCtrl {
   }
 
   public void mouseClicked(Point point) {
-
+	    //TODO: generic implementation
+	  model.variation.specialMove();
   }
 }

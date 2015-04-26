@@ -15,6 +15,7 @@ public class PlayerScrambleCtrl implements ActionListener {
   }
 
   public void actionPerformed(ActionEvent event) {
-
+	//TODO: generic implementation
+	  model.variation.specialMove();
   }
 }
