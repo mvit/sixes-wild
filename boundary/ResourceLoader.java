@@ -1,6 +1,7 @@
 package boundary;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
 import javax.imageio.ImageIO;
 
 public class ResourceLoader {
@@ -25,8 +27,7 @@ public class ResourceLoader {
   }
 
   protected void loadResource(String resource) throws IOException {
-    loadedResources.put(resource, ImageIO.read(getClass()
-      .getResource("/resource/img/" + resource)));
+    loadedResources.put(resource, ImageIO.read(new File("resource/img/" + resource)));
   }
 
   public void loadResources() throws IOException {
