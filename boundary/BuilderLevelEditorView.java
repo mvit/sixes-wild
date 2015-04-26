@@ -86,6 +86,7 @@ public class BuilderLevelEditorView extends JPanel {
     panelControls.add(btnRedo);
 
     JButton btnMakePlayable = new JButton("[  ]");
+    
     panelControls.add(btnMakePlayable);
 
     JButton btnMakeInert = new JButton("[X]");
