@@ -8,6 +8,7 @@ import controller.PlayerVariationCtrl;
 public class PlayerModel {
   public Level level = null;
   public Move move = null;
+  public int counter = 0;
 
   public PlayerVariationCtrl variation = null;
   public PlayerState playerState = PlayerState.NONE;
