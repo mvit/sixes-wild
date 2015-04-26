@@ -3,7 +3,9 @@ package boundary;
 import boundary.BuilderApplication;
 import controller.BuilderMainMenuCtrl;
 import controller.BuilderNewLevelCtrl;
+import controller.BuilderOpenLevelCtrl;
 import controller.BuilderRedoCtrl;
+import controller.BuilderSaveLevelCtrl;
 import controller.BuilderUndoCtrl;
 
 import java.awt.Dimension;
@@ -50,9 +52,11 @@ public class BuilderLevelEditorView extends JPanel {
     panelTopControls.add(btnNew);
 
     JButton btnOpen = new JButton("Open");
+    btnOpen.addActionListener(new BuilderOpenLevelCtrl (app, model));
     panelTopControls.add(btnOpen);
 
     JButton btnSave = new JButton("Save");
+    btnOpen.addActionListener(new BuilderSaveLevelCtrl (app, model));
     panelTopControls.add(btnSave);
 
     JButton btnClose = new JButton("Close");
