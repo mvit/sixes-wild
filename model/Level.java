@@ -22,6 +22,8 @@ public class Level {
 
   /**
    * Create a Level with reasonable default settings.
+   *
+   * @constructor
    */
   public Level() {
     rules = new Rules();
@@ -31,7 +33,20 @@ public class Level {
   }
 
   /**
-   * Creates a Board from a DataInputStream.
+   * Clones a Level from the given Level.
+   *
+   * @param {Level} src
+   * @constructor
+   */
+  public Level(Level src) {
+    rules = new Rules(src.rules);
+    initialBoard = new Board(src.initialBoard);
+    currentBoard = null;
+    currentScore = 0;
+  }
+
+  /**
+   * Creates a Level from a DataInputStream.
    *
    * @constructor
    * @param {DataInputStream} in

@@ -83,6 +83,32 @@ public class Rules {
   }
 
   /**
+   * Clones a Rules instance from the given Rules.
+   *
+   * @constructor
+   * @param {Rules} rules
+   */
+  public Rules(Rules rules) {
+    variation = rules.variation;
+    initialCounter = rules.initialCounter;
+
+    numberWeights = new int[rules.numberWeights.length];
+    for (int i = 0; i < rules.numberWeights.length; i++) {
+      numberWeights[i] = rules.numberWeights[i];
+    }
+
+    multiplierWeights = new int[rules.multiplierWeights.length];
+    for (int i = 0; i < rules.multiplierWeights.length; i++) {
+      multiplierWeights[i] = rules.multiplierWeights[i];
+    }
+
+    scoreThresholds = new int[rules.scoreThresholds.length];
+    for (int i = 0; i < rules.scoreThresholds.length; i++) {
+      scoreThresholds[i] = rules.scoreThresholds[i];
+    }
+  }
+
+  /**
    * Write the Rules to a DataOutputStream.
    */
   public void write(DataOutputStream out) throws IOException {
