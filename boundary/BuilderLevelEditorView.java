@@ -56,15 +56,15 @@ public class BuilderLevelEditorView extends JPanel {
     add(panelTopControls);
 
     JButton btnNew = new JButton("New");
-    btnNew.addActionListener(new BuilderNewLevelCtrl (app, model));
+    btnNew.addActionListener(new BuilderNewLevelCtrl(app, model));
     panelTopControls.add(btnNew);
 
     JButton btnOpen = new JButton("Open");
-    btnOpen.addActionListener(new BuilderOpenLevelCtrl (app, model));
+    btnOpen.addActionListener(new BuilderOpenLevelCtrl(app, model));
     panelTopControls.add(btnOpen);
 
     JButton btnSave = new JButton("Save");
-    btnOpen.addActionListener(new BuilderSaveLevelCtrl (app, model));
+    btnOpen.addActionListener(new BuilderSaveLevelCtrl(app, model));
     panelTopControls.add(btnSave);
 
     JButton btnClose = new JButton("Close");
