@@ -16,6 +16,7 @@ import controller.BuilderSetSixCtrl;
 import controller.BuilderSetSlotCtrl;
 import controller.BuilderUndoCtrl;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 
@@ -37,7 +38,7 @@ import model.BuilderModel;
 public class BuilderLevelEditorView extends JPanel {
   BuilderApplication app;
   BuilderModel model;
-  public PlayerBoardView boardView;
+  public BuilderBoardView boardView;
 
   public BuilderLevelEditorView(BuilderApplication app, BuilderModel model) {
     this.app = app;
@@ -114,13 +115,13 @@ public class BuilderLevelEditorView extends JPanel {
     JPanel panelBoard = new JPanel();
     panelBoard.setAlignmentY(0);
     panelGame.add(panelBoard);
-    panelBoard.setLayout(new BoxLayout(panelBoard, BoxLayout.Y_AXIS));
+    panelBoard.setLayout(new BorderLayout());
 
     //panelType contains mutually exclusive radio buttons
 
     JPanel panelType = new JPanel();
     panelType.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-    panelBoard.add(panelType);
+    panelBoard.add(panelType, BorderLayout.NORTH);
 
     JRadioButton rdbtnPuzzle = new JRadioButton("Puzzle");
     btnUndo.addActionListener(new BuilderSetPuzzleCtrl(app, model));
@@ -147,12 +148,11 @@ public class BuilderLevelEditorView extends JPanel {
     gameType.add(rdbtnElimination);
     gameType.add(rdbtnRelease);
 
-    //panelGrid contains the Board Inside
-    JPanel panelGrid = new JPanel();
-    panelGrid.setLayout(new BoxLayout(panelGrid, BoxLayout.X_AXIS));
-    panelGrid.setSize(400,400);
-    panelBoard.add(panelGrid);
+    //boardView contains the board
 
+    boardView = new BuilderBoardView(app, model);
+    boardView.setAlignmentY(0);
+    panelBoard.add(boardView);
 
     //panelSliders contain probability Sliders for number generation
     JPanel panelSliders = new JPanel();
