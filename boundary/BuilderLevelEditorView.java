@@ -6,10 +6,8 @@ import controller.BuilderNewLevelCtrl;
 import controller.BuilderOpenLevelCtrl;
 import controller.BuilderRedoCtrl;
 import controller.BuilderSaveLevelCtrl;
-import controller.BuilderSetInertCtrl;
-import controller.BuilderSetPlayableCtrl;
-import controller.BuilderSetSixCtrl;
-import controller.BuilderSetSlotCtrl;
+import controller.BuilderSetCellTypeCtrl;
+import controller.BuilderSetTileCtrl;
 import controller.BuilderSetVariationCtrl;
 import controller.BuilderUndoCtrl;
 
@@ -28,6 +26,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 
 import model.BuilderModel;
+import model.CellType;
 import model.Variation;
 
 /**
@@ -94,23 +93,26 @@ public class BuilderLevelEditorView extends JPanel {
     panelControls.add(btnUndo);
 
     JButton btnRedo = new JButton("Redo");
-    btnUndo.addActionListener(new BuilderRedoCtrl(app, model));
+    btnRedo.addActionListener(new BuilderRedoCtrl(app, model));
     panelControls.add(btnRedo);
 
     JButton btnMakePlayable = new JButton("[  ]");
-    btnUndo.addActionListener(new BuilderSetPlayableCtrl(app, model));
+    btnMakePlayable.addActionListener(new BuilderSetCellTypeCtrl(app, model,
+      CellType.PLAYABLE));
     panelControls.add(btnMakePlayable);
 
     JButton btnMakeInert = new JButton("[X]");
-    btnUndo.addActionListener(new BuilderSetInertCtrl(app, model));
+    btnMakeInert.addActionListener(new BuilderSetCellTypeCtrl(app, model,
+      CellType.INERT));
     panelControls.add(btnMakeInert);
 
     JButton btnMakeSix = new JButton("6");
-    btnUndo.addActionListener(new BuilderSetSixCtrl(app, model));
+    btnMakeSix.addActionListener(new BuilderSetTileCtrl(app, model, 5, 1));
     panelControls.add(btnMakeSix);
 
     JButton btnMakeSlot = new JButton("[6]");
-    btnUndo.addActionListener(new BuilderSetSlotCtrl(app, model));
+    btnMakeSlot.addActionListener(new BuilderSetCellTypeCtrl(app, model,
+      CellType.BUCKET));
     panelControls.add(btnMakeSlot);
 
     //panelBoard contains panelType and panelGrid

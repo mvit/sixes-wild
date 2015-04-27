@@ -1,10 +1,10 @@
 package boundary;
 
-// import controller.BuilderBoardMouseCtrl;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import controller.BuilderBoardMouseCtrl;
 import model.Board;
 import model.BuilderModel;
 import model.Cell;
@@ -24,13 +24,12 @@ public class BuilderBoardView extends BoardView {
     this.app = app;
     this.model = model;
 
-    // addMouseListener(new BuilderBoardMouseCtrl(app, model));
+    addMouseListener(new BuilderBoardMouseCtrl(app, model));
   }
 
   @Override
   protected void paintCell(Graphics g, int x, int y,
       int x1, int y1, int x2, int y2) {
-	System.out.println("OH SHIT");
     Cell cell = model.level.initialBoard.grid[x][y];
 
     switch (cell.type) {

@@ -40,11 +40,12 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
 
   @Override
   public void mouseClicked(MouseEvent event) {
-    if (event.getButton() != MouseEvent.BUTTON1) {
+    Point point;
+    if (event.getButton() != MouseEvent.BUTTON1 ||
+        (point = identifyPoint(event)) == null) {
       return;
     }
 
-    Point point = identifyPoint(event);
     switch (model.playerState) {
     case REMOVE:
       removeCtrl.mouseClicked(point);
@@ -52,6 +53,8 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
     case SWAP:
       swapCtrl.mouseClicked(point);
       break;
+    default:
+      // do nothing!
     }
   }
 
@@ -63,35 +66,31 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
 
   @Override
   public void mousePressed(MouseEvent event) {
-    if (event.getButton() != MouseEvent.BUTTON1) {
-      return;
-    }
-
-    if (model.playerState == PlayerState.NONE) {
-      startMoveCtrl.startMove(identifyPoint(event));
+    Point point;
+    if (event.getButton() == MouseEvent.BUTTON1 &&
+        model.playerState == PlayerState.NONE &&
+        (point = identifyPoint(event)) != null) {
+      startMoveCtrl.startMove(point);
     }
   }
 
   @Override
   public void mouseReleased(MouseEvent event) {
-    if (event.getButton() != MouseEvent.BUTTON1) {
-      return;
-    }
-
-    if (model.playerState == PlayerState.SELECT) {
-      finishMoveCtrl.finishMove(identifyPoint(event));
+    Point point;
+    if (event.getButton() == MouseEvent.BUTTON1 &&
+        model.playerState == PlayerState.SELECT &&
+        (point = identifyPoint(event)) != null) {
+      finishMoveCtrl.finishMove(point);
     }
   }
 
   @Override
   public void mouseDragged(MouseEvent event) {
-    if (event.getButton() != MouseEvent.BUTTON1) {
-      return;
-    }
-
-    // we might be expanding the move!
-    if (model.playerState == PlayerState.SELECT) {
-      expandMoveCtrl.expandMove(identifyPoint(event));
+    Point point;
+    if (event.getButton() == MouseEvent.BUTTON1 &&
+        model.playerState == PlayerState.SELECT &&
+        (point = identifyPoint(event)) != null) {
+      expandMoveCtrl.expandMove(point);
     }
   }
 
