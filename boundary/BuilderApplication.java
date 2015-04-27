@@ -39,6 +39,7 @@ public class BuilderApplication {
   public static void main(String[] args) {
     ResourceLoader loader = new ResourceLoader();
 
+    loader.addResource("questionmark.png");
     for (int i = 1; i <= 6; i++) {
       loader.addResource(i + ".png");
     }

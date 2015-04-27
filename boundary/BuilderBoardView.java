@@ -35,20 +35,22 @@ public class BuilderBoardView extends BoardView {
 
     switch (cell.type) {
     case PLAYABLE:
+      String filename = null;
+      Color fallback = null;
       if (cell.tile == null) {
-        g.setColor(Color.WHITE);
+        filename = "questionmark.png";
+        fallback = Color.WHITE;
+      } else {
+        filename = (cell.tile.number + 1) + ".png";
+        fallback = Color.MAGENTA;
+      }
+      BufferedImage image = app.loader.getResource(filename);
+      if (image == null) {
+        System.err.println("[WARN] Bad filename for image lookup: " + filename);
         g.fillRect(x1, y1, x2 - x1, y2 - y1);
       } else {
-        int number = cell.tile.number;
-        BufferedImage image = app.loader.getResource((number + 1) + ".png");
-        if (image == null) {
-          System.err.println("[WARN] Bad number for color lookup: " + number);
-          g.setColor(Color.MAGENTA);
-          g.fillRect(x1, y1, x2 - x1, y2 - y1);
-        } else {
-          image = utils.ScaleImage.scaleImage(image, x2 - x1, y2 - y1);
-          g.drawImage(image, x1, y1, null);
-        }
+        image = utils.ScaleImage.scaleImage(image, x2 - x1, y2 - y1);
+        g.drawImage(image, x1, y1, null);
       }
       break;
 
