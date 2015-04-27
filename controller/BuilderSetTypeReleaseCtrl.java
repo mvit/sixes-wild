@@ -6,14 +6,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.BuilderModel;
 
-public class BuilderSetReleaseCtrl implements ActionListener {
+public class BuilderSetTypeReleaseCtrl implements ActionListener {
   BuilderApplication app;
   BuilderModel model;
 
   /**
    * Create the controller with the context: the application and the model.
    */
-  public BuilderSetReleaseCtrl(BuilderApplication app, BuilderModel model) {
+  public BuilderSetTypeReleaseCtrl(BuilderApplication app, BuilderModel model) {
     this.app = app;
     this.model = model;
   }

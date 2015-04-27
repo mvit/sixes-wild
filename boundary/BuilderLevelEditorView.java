@@ -6,14 +6,14 @@ import controller.BuilderNewLevelCtrl;
 import controller.BuilderOpenLevelCtrl;
 import controller.BuilderRedoCtrl;
 import controller.BuilderSaveLevelCtrl;
-import controller.BuilderSetEliminationCtrl;
 import controller.BuilderSetInertCtrl;
-import controller.BuilderSetLightningCtrl;
 import controller.BuilderSetPlayableCtrl;
-import controller.BuilderSetPuzzleCtrl;
-import controller.BuilderSetReleaseCtrl;
 import controller.BuilderSetSixCtrl;
 import controller.BuilderSetSlotCtrl;
+import controller.BuilderSetTypeEliminationCtrl;
+import controller.BuilderSetTypeLightningCtrl;
+import controller.BuilderSetTypePuzzleCtrl;
+import controller.BuilderSetTypeReleaseCtrl;
 import controller.BuilderUndoCtrl;
 
 import java.awt.BorderLayout;
@@ -124,19 +124,19 @@ public class BuilderLevelEditorView extends JPanel {
     panelBoard.add(panelType, BorderLayout.NORTH);
 
     JRadioButton rdbtnPuzzle = new JRadioButton("Puzzle");
-    btnUndo.addActionListener(new BuilderSetPuzzleCtrl(app, model));
+    btnUndo.addActionListener(new BuilderSetTypePuzzleCtrl(app, model));
     panelType.add(rdbtnPuzzle);
 
     JRadioButton rdbtnLightning = new JRadioButton("Lightning");
-    btnUndo.addActionListener(new BuilderSetLightningCtrl(app, model));
+    btnUndo.addActionListener(new BuilderSetTypeLightningCtrl(app, model));
     panelType.add(rdbtnLightning);
 
     JRadioButton rdbtnElimination = new JRadioButton("Elimination");
-    btnUndo.addActionListener(new BuilderSetEliminationCtrl(app, model));
+    btnUndo.addActionListener(new BuilderSetTypeEliminationCtrl(app, model));
     panelType.add(rdbtnElimination);
 
     JRadioButton rdbtnRelease = new JRadioButton("Release");
-    btnUndo.addActionListener(new BuilderSetReleaseCtrl(app, model));
+    btnUndo.addActionListener(new BuilderSetTypeReleaseCtrl(app, model));
     panelType.add(rdbtnRelease);
 
     //Button Group contains radio Buttons to make them mutually exclusive
