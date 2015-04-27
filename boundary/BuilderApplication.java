@@ -12,8 +12,11 @@ public class BuilderApplication {
   protected JFrame frame;
   protected JPanel view = null;
 
-  public BuilderApplication(BuilderModel model) {
+  ResourceLoader loader;
+
+  public BuilderApplication(BuilderModel model, ResourceLoader loader) {
     this.model = model;
+    this.loader = loader;
 
     frame = new JFrame(title);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,6 +37,12 @@ public class BuilderApplication {
   }
 
   public static void main(String[] args) {
+    ResourceLoader loader = new ResourceLoader();
+
+    for (int i = 1; i <= 6; i++) {
+      loader.addResource(i + ".png");
+    }
+
     // start splash screen
     SplashScreen splash;
     try {
@@ -45,18 +54,34 @@ public class BuilderApplication {
     }
 
     // load resources
+    long loadStart = System.currentTimeMillis();
     BuilderModel model = new BuilderModel();
     try {
-      Thread.sleep(4000);
-    } catch (InterruptedException err) {
+      loader.loadResources();
+    } catch (IOException err) {
+      System.err.println(err.getMessage());
+      err.printStackTrace();
       return;
-    } finally {
-      // close splash screen
-      splash.close();
+    }
+
+    // initialize main app
+    BuilderApplication app = new BuilderApplication(model, loader);
+    JPanel initialView = new BuilderMainMenuView(app, model);
+
+    // extend time if necessary
+    long loadElapsed = System.currentTimeMillis() - loadStart;
+    if (loadElapsed < 2000) {
+      try {
+        Thread.sleep(4000);
+      } catch (InterruptedException err) {
+        // if we've been interrupted, just close the splash screen
+      } finally {
+        // close splash screen
+        splash.close();
+      }
     }
 
     // start main app
-    BuilderApplication app = new BuilderApplication(model);
-    app.setView(new BuilderMainMenuView(app, model));
+    app.setView(initialView);
   }
 }
