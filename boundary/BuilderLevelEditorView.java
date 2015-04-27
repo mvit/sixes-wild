@@ -10,15 +10,14 @@ import controller.BuilderSetInertCtrl;
 import controller.BuilderSetPlayableCtrl;
 import controller.BuilderSetSixCtrl;
 import controller.BuilderSetSlotCtrl;
-import controller.BuilderSetTypeEliminationCtrl;
-import controller.BuilderSetTypeLightningCtrl;
-import controller.BuilderSetTypePuzzleCtrl;
-import controller.BuilderSetTypeReleaseCtrl;
+import controller.BuilderSetVariationCtrl;
 import controller.BuilderUndoCtrl;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
@@ -29,6 +28,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JSlider;
 
 import model.BuilderModel;
+import model.Variation;
 
 /**
 * BuilderLevelEditorView for the builder application
@@ -39,6 +39,9 @@ public class BuilderLevelEditorView extends JPanel {
   BuilderApplication app;
   BuilderModel model;
   public BuilderBoardView boardView;
+  public ButtonGroup variationGroup;
+  public Map<Variation, JRadioButton> variationButtons =
+    new HashMap<Variation, JRadioButton>();
 
   public BuilderLevelEditorView(BuilderApplication app, BuilderModel model) {
     this.app = app;
@@ -123,30 +126,39 @@ public class BuilderLevelEditorView extends JPanel {
     panelType.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
     panelBoard.add(panelType, BorderLayout.NORTH);
 
-    JRadioButton rdbtnPuzzle = new JRadioButton("Puzzle");
-    btnUndo.addActionListener(new BuilderSetTypePuzzleCtrl(app, model));
-    panelType.add(rdbtnPuzzle);
+    JRadioButton variationButton = new JRadioButton("Puzzle");
+    variationButton.addActionListener(new BuilderSetVariationCtrl(app, model,
+      Variation.PUZZLE));
+    variationButtons.put(Variation.PUZZLE, variationButton);
+    panelType.add(variationButton);
 
-    JRadioButton rdbtnLightning = new JRadioButton("Lightning");
-    btnUndo.addActionListener(new BuilderSetTypeLightningCtrl(app, model));
-    panelType.add(rdbtnLightning);
+    variationButton = new JRadioButton("Lightning");
+    variationButton.addActionListener(new BuilderSetVariationCtrl(app, model,
+      Variation.LIGHTNING));
+    variationButtons.put(Variation.LIGHTNING, variationButton);
+    panelType.add(variationButton);
 
-    JRadioButton rdbtnElimination = new JRadioButton("Elimination");
-    btnUndo.addActionListener(new BuilderSetTypeEliminationCtrl(app, model));
-    panelType.add(rdbtnElimination);
+    variationButton = new JRadioButton("Elimination");
+    variationButton.addActionListener(new BuilderSetVariationCtrl(app, model,
+      Variation.ELIMINATION));
+    variationButtons.put(Variation.ELIMINATION, variationButton);
+    panelType.add(variationButton);
 
-    JRadioButton rdbtnRelease = new JRadioButton("Release");
-    btnUndo.addActionListener(new BuilderSetTypeReleaseCtrl(app, model));
-    panelType.add(rdbtnRelease);
+    variationButton = new JRadioButton("Release");
+    variationButton.addActionListener(new BuilderSetVariationCtrl(app, model,
+      Variation.RELEASE));
+    variationButtons.put(Variation.RELEASE, variationButton);
+    panelType.add(variationButton);
 
     //Button Group contains radio Buttons to make them mutually exclusive
 
-    ButtonGroup gameType = new ButtonGroup();
+    variationGroup = new ButtonGroup();
 
-    gameType.add(rdbtnPuzzle);
-    gameType.add(rdbtnLightning);
-    gameType.add(rdbtnElimination);
-    gameType.add(rdbtnRelease);
+    for (JRadioButton btn : variationButtons.values()) {
+      variationGroup.add(btn);
+    }
+
+    variationButtons.get(model.level.rules.variation).setSelected(true);
 
     //boardView contains the board
 
