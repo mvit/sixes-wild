@@ -1,6 +1,7 @@
 package controller;
 
 import boundary.PlayerApplication;
+import model.Move;
 import model.PlayerModel;
 import model.Point;
 import model.Variation;
@@ -21,7 +22,9 @@ public class PlayerRemoveCtrl {
 	  {
 		  //GO INTO PLAYERMODEL AND REPLACE PLAYERVARIATIONCTRL WITH VARIATION
 		  //TODO: This is suboptimal, decide whether to change PlayerVariationCtrl.specialMove() to individual methods for each special move
-		  //TODO: Create new move, resolve the move
+		  //TODO: resolve the move
+		  Move reMove = new Move();
+		  reMove.expand(model.level.currentBoard, point);
 	  }
 	  pVar.specialMove();
   }
