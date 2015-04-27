@@ -20,7 +20,8 @@ public class PlayerFinishMoveCtrl {
   public void finishMove(Point point) {
     model.playerState = PlayerState.NONE;
     model.move.expand(model.level.currentBoard, point);
-    if (model.variation.finishMove()) {
+    PlayerVariationCtrl pVar = model.variation.createCtrl(app, model);
+    if (pVar.finishMove()) {
       // TODO: finish the move!
     }
   }
