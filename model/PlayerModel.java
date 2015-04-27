@@ -10,7 +10,7 @@ public class PlayerModel {
   public Move move = null;
   public int counter = 0;
 
-  public PlayerVariationCtrl variation = null;
+  public Variation variation = null;
   public PlayerState playerState = PlayerState.NONE;
 
   /**
