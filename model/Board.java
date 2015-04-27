@@ -12,7 +12,6 @@ public class Board {
   public Cell[][] grid = new Cell[width][height];
   public Rules rules;
 
-
   /**
    * Create a new blank Board with default rules
    *

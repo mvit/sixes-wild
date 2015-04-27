@@ -5,6 +5,7 @@ import boundary.BuilderLevelEditorView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.BuilderModel;
+import model.Level;
 
 public class BuilderNewLevelCtrl implements ActionListener {
   BuilderApplication app;
@@ -22,6 +23,8 @@ public class BuilderNewLevelCtrl implements ActionListener {
    * Load levelselect
    */
   public void loadEditorView() {
+    // model.level = new Level(new DataInputStream(new FileInputStream(filename)));
+    model.level = new Level();
     app.setView(new BuilderLevelEditorView(app, model));
   }
 
