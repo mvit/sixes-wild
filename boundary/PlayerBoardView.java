@@ -26,7 +26,9 @@ public class PlayerBoardView extends BoardView {
     this.app = app;
     this.model = model;
 
-    addMouseListener(new PlayerBoardMouseCtrl(app, model));
+    PlayerBoardMouseCtrl ctrl = new PlayerBoardMouseCtrl(app, model);
+    addMouseListener(ctrl);
+    addMouseMotionListener(ctrl);
   }
 
   @Override

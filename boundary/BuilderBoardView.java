@@ -24,7 +24,9 @@ public class BuilderBoardView extends BoardView {
     this.app = app;
     this.model = model;
 
-    addMouseListener(new BuilderBoardMouseCtrl(app, model));
+    BuilderBoardMouseCtrl ctrl = new BuilderBoardMouseCtrl(app, model);
+    addMouseListener(ctrl);
+    addMouseMotionListener(ctrl);
   }
 
   @Override

@@ -16,6 +16,8 @@ public class BuilderBoardMouseCtrl extends MouseAdapter {
   BuilderApplication app;
   BuilderModel model;
 
+  boolean dragging = false;
+
   public BuilderBoardMouseCtrl(BuilderApplication app, BuilderModel model) {
     this.app = app;
     this.model = model;
@@ -27,12 +29,11 @@ public class BuilderBoardMouseCtrl extends MouseAdapter {
   }
 
   protected void applyCell(MouseEvent event) {
-    System.out.println("APPLY CELL");
     BuilderLevelEditorView view = (BuilderLevelEditorView) app.getView();
     BoardView boardView = view.boardView;
 
     Point point;
-    if (event.getButton() == MouseEvent.BUTTON1 && model.currentType != null &&
+    if (model.currentType != null &&
         (point = boardView.identifyPoint(event.getX(), event.getY())) != null) {
       Cell cell = model.level.initialBoard.grid[point.x][point.y];
       if (model.currentUseNumber) {
@@ -52,16 +53,24 @@ public class BuilderBoardMouseCtrl extends MouseAdapter {
 
   @Override
   public void mousePressed(MouseEvent event) {
-    applyCell(event);
+    if (event.getButton() == MouseEvent.BUTTON1) {
+      dragging = true;
+      applyCell(event);
+    }
   }
 
   @Override
   public void mouseReleased(MouseEvent event) {
-    applyCell(event);
+    if (event.getButton() == MouseEvent.BUTTON1) {
+      applyCell(event);
+      dragging = false;
+    }
   }
 
   @Override
   public void mouseDragged(MouseEvent event) {
-    applyCell(event);
+    if (dragging) {
+      applyCell(event);
+    }
   }
 }
