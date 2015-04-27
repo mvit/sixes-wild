@@ -6,6 +6,14 @@ import controller.BuilderNewLevelCtrl;
 import controller.BuilderOpenLevelCtrl;
 import controller.BuilderRedoCtrl;
 import controller.BuilderSaveLevelCtrl;
+import controller.BuilderSetEliminationCtrl;
+import controller.BuilderSetInertCtrl;
+import controller.BuilderSetLightningCtrl;
+import controller.BuilderSetPlayableCtrl;
+import controller.BuilderSetPuzzleCtrl;
+import controller.BuilderSetReleaseCtrl;
+import controller.BuilderSetSixCtrl;
+import controller.BuilderSetSlotCtrl;
 import controller.BuilderUndoCtrl;
 
 import java.awt.Dimension;
@@ -86,16 +94,19 @@ public class BuilderLevelEditorView extends JPanel {
     panelControls.add(btnRedo);
 
     JButton btnMakePlayable = new JButton("[  ]");
-    
+    btnUndo.addActionListener(new BuilderSetPlayableCtrl(app, model));
     panelControls.add(btnMakePlayable);
 
     JButton btnMakeInert = new JButton("[X]");
+    btnUndo.addActionListener(new BuilderSetInertCtrl(app, model));
     panelControls.add(btnMakeInert);
 
     JButton btnMakeSix = new JButton("6");
+    btnUndo.addActionListener(new BuilderSetSixCtrl(app, model));
     panelControls.add(btnMakeSix);
 
     JButton btnMakeSlot = new JButton("[6]");
+    btnUndo.addActionListener(new BuilderSetSlotCtrl(app, model));
     panelControls.add(btnMakeSlot);
 
     //panelBoard contains panelType and panelGrid
@@ -112,15 +123,19 @@ public class BuilderLevelEditorView extends JPanel {
     panelBoard.add(panelType);
 
     JRadioButton rdbtnPuzzle = new JRadioButton("Puzzle");
+    btnUndo.addActionListener(new BuilderSetPuzzleCtrl(app, model));
     panelType.add(rdbtnPuzzle);
 
     JRadioButton rdbtnLightning = new JRadioButton("Lightning");
+    btnUndo.addActionListener(new BuilderSetLightningCtrl(app, model));
     panelType.add(rdbtnLightning);
 
     JRadioButton rdbtnElimination = new JRadioButton("Elimination");
+    btnUndo.addActionListener(new BuilderSetEliminationCtrl(app, model));
     panelType.add(rdbtnElimination);
 
     JRadioButton rdbtnRelease = new JRadioButton("Release");
+    btnUndo.addActionListener(new BuilderSetReleaseCtrl(app, model));
     panelType.add(rdbtnRelease);
 
     //Button Group contains radio Buttons to make them mutually exclusive
