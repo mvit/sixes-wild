@@ -28,7 +28,7 @@ public class PlayerLoadLevelCtrl implements ActionListener {
     // model.level = new Level(new DataInputStream(new FileInputStream(filename)));
     model.level = new Level();
     model.level.realizeBoard();
-    model.variation = model.level.rules.variation.createCtrl(app, model);
+    model.variation = model.level.rules.variation;
     app.setView(new PlayerLevelView(app, model));
   }
 
