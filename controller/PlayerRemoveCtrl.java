@@ -3,6 +3,7 @@ package controller;
 import boundary.PlayerApplication;
 import model.PlayerModel;
 import model.Point;
+import model.Variation;
 
 public class PlayerRemoveCtrl {
   PlayerApplication app;
@@ -15,6 +16,12 @@ public class PlayerRemoveCtrl {
 
   public void mouseClicked(Point point) {
 	    //TODO: generic implementation
-	  model.variation.specialMove();
+	  PlayerVariationCtrl pVar = model.variation.createCtrl(app, model);
+	  if (model.variation != Variation.RELEASE && model.level.currentBoard.grid[point.x][point.y].tile.number == 6)
+	  {
+		  //GO INTO PLAYERMODEL AND REPLACE PLAYERVARIATIONCTRL WITH VARIATION
+		  //TODO: This is suboptimal, decide whether to change PlayerVariationCtrl.specialMove() to individual methods for each special move
+	  }
+	  pVar.specialMove();
   }
 }
