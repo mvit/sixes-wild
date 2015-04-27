@@ -47,6 +47,7 @@ public class BuilderBoardView extends BoardView {
       BufferedImage image = app.loader.getResource(filename);
       if (image == null) {
         System.err.println("[WARN] Bad filename for image lookup: " + filename);
+        g.setColor(fallback);
         g.fillRect(x1, y1, x2 - x1, y2 - y1);
       } else {
         image = utils.ScaleImage.scaleImage(image, x2 - x1, y2 - y1);
