@@ -33,13 +33,16 @@ public class Rules {
     for (int i = 0; i < maxNumber; i++) {
       numberWeights[i] = 1;
     }
+
     multiplierWeights = new int[maxMultiplier];
     for (int i = 0; i < maxMultiplier; i++) {
       // assumes few multipliers
       multiplierWeights[i] = (int) Math.pow(2, i);
     }
+
     variation = Variation.PUZZLE;
     initialCounter = 100;
+    scoreThresholds = new int[] {10, 20, 40};
   }
 
   /**
@@ -114,7 +117,7 @@ public class Rules {
    * Write the Rules to a DataOutputStream.
    */
   public void write(DataOutputStream out) throws IOException {
-    out.writeChar(variation.code);
+    out.writeByte((byte) variation.code);
     out.writeInt(initialCounter);
     out.writeInt(scoreThresholds.length);
     out.writeInt(maxNumber);

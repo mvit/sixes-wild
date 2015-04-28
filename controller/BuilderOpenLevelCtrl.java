@@ -37,13 +37,13 @@ public class BuilderOpenLevelCtrl implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent event) {
     FileDialog dialog = new FileDialog(app, "Open a Level", FileDialog.LOAD);
-    dialog.setDirectory(levelspath);
+    dialog.setDirectory(BuilderOpenLevelCtrl.levelspath);
     dialog.setVisible(true);
     String filename = dialog.getFile();
     if (filename != null) {
       try {
-        model.level = new Level(new DataInputStream(new FileInputStream(
-          dialog.getDirectory() + filename)));
+        model.level = new Level(new DataInputStream(new FileInputStream(dialog
+          .getDirectory() + filename)));
       } catch (IOException err) {
         // TODO: dialog?
         System.err.println(err.getMessage());
