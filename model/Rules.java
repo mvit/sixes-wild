@@ -46,7 +46,7 @@ public class Rules {
    * @constructor
    */
   public Rules(DataInputStream in) throws IOException {
-    variation = Variation.getVariation(in.readChar());
+    variation = Variation.getVariation((char) in.readByte());
     if (variation == null) {
       throw new RuntimeException("stored rules use unknown variation type");
     }

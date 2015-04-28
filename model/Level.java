@@ -63,7 +63,7 @@ public class Level {
     // not a stellar system, but good enough given that we'll likely only have
     // one or two versions in use
     int version = in.readInt();
-    if (version != this.version) {
+    if (version != Level.version) {
       throw new RuntimeException("provided data stream has incompatible version");
     }
 
