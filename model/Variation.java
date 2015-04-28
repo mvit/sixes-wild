@@ -15,25 +15,25 @@ import java.util.Map;
  * The variation enumeration.
  */
 public enum Variation {
-  ELIMINATION('E') {
+  ELIMINATION('E', "Elimination") {
     @Override
     public PlayerVariationCtrl createCtrl(PlayerApplication app, PlayerModel model) {
       return new PlayerEliminationCtrl(app, model);
     }
   },
-  LIGHTNING('L') {
+  LIGHTNING('L', "Lightning") {
     @Override
     public PlayerVariationCtrl createCtrl(PlayerApplication app, PlayerModel model) {
       return new PlayerLightningCtrl(app, model);
     }
   },
-  PUZZLE('P') {
+  PUZZLE('P', "Puzzle") {
     @Override
     public PlayerVariationCtrl createCtrl(PlayerApplication app, PlayerModel model) {
       return new PlayerPuzzleCtrl(app, model);
     }
   },
-  RELEASE('R') {
+  RELEASE('R', "Release") {
     @Override
     public PlayerVariationCtrl createCtrl(PlayerApplication app, PlayerModel model) {
       return new PlayerReleaseCtrl(app, model);
@@ -43,9 +43,11 @@ public enum Variation {
   private static final Map<Character, Variation> map = initializeMapping();
 
   public final char code;
+  public final String name;
 
-  private Variation(char code) {
+  private Variation(char code, String name) {
     this.code = code;
+    this.name = name;
   }
 
   /**

@@ -128,29 +128,13 @@ public class BuilderLevelEditorView extends JPanel {
     panelType.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
     panelBoard.add(panelType, BorderLayout.NORTH);
 
-    JRadioButton variationButton = new JRadioButton("Puzzle");
-    variationButton.addActionListener(new BuilderSetVariationCtrl(app, model,
-      Variation.PUZZLE));
-    variationButtons.put(Variation.PUZZLE, variationButton);
-    panelType.add(variationButton);
-
-    variationButton = new JRadioButton("Lightning");
-    variationButton.addActionListener(new BuilderSetVariationCtrl(app, model,
-      Variation.LIGHTNING));
-    variationButtons.put(Variation.LIGHTNING, variationButton);
-    panelType.add(variationButton);
-
-    variationButton = new JRadioButton("Elimination");
-    variationButton.addActionListener(new BuilderSetVariationCtrl(app, model,
-      Variation.ELIMINATION));
-    variationButtons.put(Variation.ELIMINATION, variationButton);
-    panelType.add(variationButton);
-
-    variationButton = new JRadioButton("Release");
-    variationButton.addActionListener(new BuilderSetVariationCtrl(app, model,
-      Variation.RELEASE));
-    variationButtons.put(Variation.RELEASE, variationButton);
-    panelType.add(variationButton);
+    for (Variation variation : Variation.values()) {
+      JRadioButton button = new JRadioButton(variation.name);
+      button.addActionListener(new BuilderSetVariationCtrl(app, model,
+        variation));
+      variationButtons.put(variation, button);
+      panelType.add(button);
+    }
 
     //Button Group contains radio Buttons to make them mutually exclusive
 
