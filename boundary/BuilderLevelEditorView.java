@@ -4,6 +4,7 @@ import boundary.BuilderApplication;
 import controller.BuilderMainMenuCtrl;
 import controller.BuilderNewLevelCtrl;
 import controller.BuilderOpenLevelCtrl;
+import controller.BuilderPreviewLevelCtrl;
 import controller.BuilderRedoCtrl;
 import controller.BuilderSaveLevelCtrl;
 import controller.BuilderSetCellTypeCtrl;
@@ -67,6 +68,10 @@ public class BuilderLevelEditorView extends JPanel {
     JButton btnOpen = new JButton("Open");
     btnOpen.addActionListener(new BuilderOpenLevelCtrl(app, model));
     panelTopControls.add(btnOpen);
+
+    JButton btnPreview = new JButton("Preview");
+    btnPreview.addActionListener(new BuilderPreviewLevelCtrl(app, model));
+    panelTopControls.add(btnPreview);
 
     JButton btnSave = new JButton("Save");
     btnOpen.addActionListener(new BuilderSaveLevelCtrl(app, model));
@@ -146,8 +151,6 @@ public class BuilderLevelEditorView extends JPanel {
       variationGroup.add(btn);
     }
 
-    variationButtons.get(model.level.rules.variation).setSelected(true);
-
     // contains the board
 
     boardView = new BuilderBoardView(app, model);
@@ -183,9 +186,13 @@ public class BuilderLevelEditorView extends JPanel {
 
       panelSliders.add(panel);
     }
+
+    updateView();
   }
 
   public void updateView() {
     // TODO: implement me!
+    // TODO: level diffs
+    variationButtons.get(model.level.rules.variation).setSelected(true);
   }
 }

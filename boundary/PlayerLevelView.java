@@ -3,6 +3,7 @@ package boundary;
 import controller.PlayerMainMenuCtrl;
 import controller.PlayerRestartLevelCtrl;
 import java.awt.Dimension;
+import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -19,7 +20,7 @@ public class PlayerLevelView extends JPanel {
   PlayerModel model;
   public PlayerBoardView boardView;
 
-  public PlayerLevelView(PlayerApplication app, PlayerModel model) {
+  public PlayerLevelView(ActionListener quitListener, PlayerApplication app, PlayerModel model) {
     this.app = app;
     this.model = model;
 
@@ -71,8 +72,8 @@ public class PlayerLevelView extends JPanel {
     btnRestart.addActionListener(new PlayerRestartLevelCtrl(app, model));
     panelNavigation.add(btnRestart);
 
-    JButton btnMainMenu = new JButton("Main Menu");
-    btnMainMenu.addActionListener(new PlayerMainMenuCtrl(app, model));
+    JButton btnMainMenu = new JButton("Quit");
+    btnMainMenu.addActionListener(quitListener);
     panelNavigation.add(btnMainMenu);
 
     //Panel Info

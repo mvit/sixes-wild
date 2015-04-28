@@ -7,37 +7,36 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import model.PlayerModel;
 
-public class PlayerApplication {
+public class PlayerApplication extends JFrame {
   public static final String title = "Sixes Wild";
 
   protected PlayerModel model;
-  protected JFrame frame;
   protected JPanel view = null;
 
   ResourceLoader loader;
 
   public PlayerApplication(PlayerModel model, ResourceLoader loader) {
+    super(title);
+
     this.model = model;
     this.loader = loader;
+  }
 
-    frame = new JFrame(title);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-    // use instead of setDefaultCloseOeration for advanced window close handling
-    /*frame.addWindowListener(new WindowAdapter() {
-      public void windowClosing(WindowEvent e) {
-        System.exit(0);
-      }
-    });*/
+  public void addQuitListener(QuitListener onQuit) {
+    if (onQuit == null) {
+      setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    } else {
+      addWindowListener(onQuit);
+    }
   }
 
   public void setView(JPanel panel) {
     boolean wasHidden = view == null;
     view = panel;
-    frame.setContentPane(panel);
-    frame.pack();
+    setContentPane(panel);
+    pack();
     if (wasHidden) {
-      frame.setVisible(true);
+      setVisible(true);
     }
   }
 

@@ -27,9 +27,8 @@ public class PlayerLoadLevelCtrl implements ActionListener {
   public void loadLevel(String filename) {
     // model.level = new Level(new DataInputStream(new FileInputStream(filename)));
     model.level = new Level();
-    model.level.realizeBoard();
-    model.variation = model.level.rules.variation;
-    app.setView(new PlayerLevelView(app, model));
+    model.realizeLevel();
+    app.setView(new PlayerLevelView(new PlayerMainMenuCtrl(app, model), app, model));
   }
 
   @Override

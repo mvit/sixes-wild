@@ -5,30 +5,28 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import model.BuilderModel;
 
-public class BuilderApplication {
+public class BuilderApplication extends JFrame {
   public static final String title = "Level Builder";
 
   protected BuilderModel model;
-  protected JFrame frame;
   protected JPanel view = null;
 
-  ResourceLoader loader;
+  public ResourceLoader loader;
 
   public BuilderApplication(BuilderModel model, ResourceLoader loader) {
     this.model = model;
     this.loader = loader;
 
-    frame = new JFrame(title);
-    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
 
   public void setView(JPanel panel) {
     boolean wasHidden = view == null;
     view = panel;
-    frame.setContentPane(panel);
-    frame.pack();
+    setContentPane(panel);
+    pack();
     if (wasHidden) {
-      frame.setVisible(true);
+      setVisible(true);
     }
   }
 

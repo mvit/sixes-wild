@@ -19,7 +19,28 @@ public class PlayerModel {
    * @constructor
    */
   public PlayerModel() {}
-  
+
+  /**
+   * Create a player model from a builder model to enable previews.
+   */
+  public PlayerModel(BuilderModel model) {
+    level = model.level;
+  }
+
+  public void discardLevel() {
+    // discard the board
+    if (level != null) {
+      level.discardBoard();
+    }
+  }
+
+  public void realizeLevel() {
+    level.realizeBoard();
+    counter = level.rules.initialCounter;
+    variation = level.rules.variation;
+  }
+
+  // TODO: be specific, what are we resetting?
   public void reset() {
 	  playerState = PlayerState.NONE;
 	  move = null;

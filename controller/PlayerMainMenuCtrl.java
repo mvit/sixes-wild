@@ -22,10 +22,8 @@ public class PlayerMainMenuCtrl implements ActionListener {
    * Switch to the main menu.
    */
   public void loadMainMenu() {
-    // discard the board if we're leaving the playerboardview
-    if (model.level != null) {
-      model.level.discardBoard();
-    }
+    // discard the board if we're leaving the PlayerLevelView
+    model.discardLevel();
     app.setView(new PlayerMainMenuView(app, model));
   }
 
