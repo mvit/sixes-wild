@@ -10,6 +10,7 @@ import java.io.IOException;
 public class Cell {
   public CellType type;
   public Tile tile; // null if the cell is empty
+  public boolean marked; // for elimination variation
 
   /**
    * Create a new generic Cell, which is playable and empty.
@@ -31,6 +32,7 @@ public class Cell {
   public Cell(CellType type, Tile tile) {
     this.type = type;
     this.tile = tile;
+    this.marked = false;
   }
 
   /**
