@@ -31,6 +31,7 @@ public class SplashScreen {
    * @param {String} file The image file to display.
    */
   public SplashScreen(String file) throws IOException {
+    window = new JWindow();
     JPanel content = (JPanel) window.getContentPane();
     content.setBackground(Color.WHITE);
 
