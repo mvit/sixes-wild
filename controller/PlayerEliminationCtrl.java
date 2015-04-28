@@ -1,10 +1,15 @@
 package controller;
 
+import java.util.Set;
+
 import boundary.PlayerApplication;
 import model.PlayerModel;
+import model.Point;
 
 /**
- * @author Eli Skeggs
+ * Controller for the Elimination variation.
+ *
+ * @author Bailey Sheridan
  */
 public class PlayerEliminationCtrl implements PlayerVariationCtrl {
   PlayerApplication app;
@@ -20,6 +25,18 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
   }
 
   public boolean finishMove() {
-    return false;
+    if (model.counter <= 0) {
+      return false;
+    }
+
+    model.counter--;
+
+    // set the cells to marked
+    for (Point point : model.move.points) {
+      model.level.currentBoard.grid[point.x][point.y].marked = true;
+    }
+
+    // TODO: if all required cells are marked, endLevel()
+    return true;
   }
 }
