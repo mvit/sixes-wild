@@ -5,6 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.BuilderModel;
 
+/**
+ * @author Cem Unsal
+ */
 public class BuilderSaveLevelCtrl implements ActionListener {
   BuilderApplication app;
   BuilderModel model;
@@ -17,11 +20,8 @@ public class BuilderSaveLevelCtrl implements ActionListener {
     this.model = model;
   }
 
-
   @Override
   public void actionPerformed(ActionEvent event) {
-	  //Skeleton
-	  
-	  
+    // TODO: implement me!
   }
 }
