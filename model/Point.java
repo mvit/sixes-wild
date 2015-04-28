@@ -21,7 +21,7 @@ public class Point {
   }
 
   public int hashCode() {
-	  return (new int[] {x, y}).hashCode();
+    return (new int[] {x, y}).hashCode();
   }
 
   public boolean equals(Point other) {

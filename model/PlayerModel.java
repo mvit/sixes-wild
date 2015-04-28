@@ -44,7 +44,7 @@ public class PlayerModel {
 
   // TODO: be specific, what are we resetting?
   public void reset() {
-	  playerState = PlayerState.NONE;
-	  move = null;
+    playerState = PlayerState.NONE;
+    move = null;
   }
 }
