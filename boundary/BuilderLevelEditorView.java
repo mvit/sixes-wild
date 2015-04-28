@@ -164,9 +164,6 @@ public class BuilderLevelEditorView extends JPanel {
     panelSliders.setAlignmentY(0);
     panelSliders.setLayout(new BoxLayout(panelSliders, BoxLayout.Y_AXIS));
 
-    int x = 20; // major tick spacing
-    int y = 10; // minor tick spacing
-
     // make the slider panels, styling specific to a given panel can be put in
     // an array, which would then be used in the loop
     for (int i = 0; i < Rules.maxNumber; i++) {

@@ -1,7 +1,5 @@
 package model;
 
-import controller.PlayerVariationCtrl;
-
 /**
  * Top-level player container.
  */

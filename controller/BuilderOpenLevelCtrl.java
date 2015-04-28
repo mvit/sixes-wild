@@ -10,7 +10,6 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.URISyntaxException;
 
 import model.BuilderModel;
 import model.Level;
