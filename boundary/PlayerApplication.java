@@ -7,6 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import model.PlayerModel;
 
+/**
+ * @author Eli Skeggs
+ */
 public class PlayerApplication extends JFrame {
   public static final String title = "Sixes Wild";
 

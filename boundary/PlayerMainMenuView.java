@@ -13,14 +13,23 @@ import javax.swing.JPanel;
 import model.PlayerModel;
 
 /**
- * PlayerMainMenuView for the player application
+ * PlayerMainMenuView which displays the main menu for the player application.
  *
- * @author Bailey Sheridan and Maurizio Vitale
+ * @author Bailey Sheridan, and Maurizio Vitale
  */
 public class PlayerMainMenuView extends JPanel {
   PlayerModel model;
   PlayerApplication app;
 
+  /**
+   * Create a new main menu view.
+   *
+   * PlayerApplication and PlayerModel are used to create the controllers.
+   *
+   * @constructor
+   * @param {PlayerApplication} app
+   * @param {PlayerModel} model
+   */
   public PlayerMainMenuView(PlayerApplication app, PlayerModel model) {
     this.app = app;
     this.model = model;

@@ -5,7 +5,16 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 
+/**
+ * A quit listener. All subclasses must implement the onQuit method, which
+ * handles a quit event.
+ *
+ * @author Eli Skeggs
+ */
 abstract public class QuitListener implements ActionListener, WindowListener {
+  /**
+   * Handle a quit event.
+   */
   abstract public void onQuit();
 
   @Override

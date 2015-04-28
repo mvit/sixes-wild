@@ -12,6 +12,11 @@ import model.Cell;
 import model.Point;
 import model.Tile;
 
+/**
+ * The controller which handles mouse events on the builder's board view.
+ *
+ * @author Eli Skeggs
+ */
 public class BuilderBoardMouseCtrl extends MouseAdapter {
   BuilderApplication app;
   BuilderModel model;

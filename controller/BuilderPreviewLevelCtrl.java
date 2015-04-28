@@ -14,6 +14,8 @@ import model.BuilderModel;
 import model.PlayerModel;
 
 /**
+ * Preview a work-in-progress level from the builder application.
+ *
  * @author Eli Skeggs
  */
 public class BuilderPreviewLevelCtrl implements ActionListener {

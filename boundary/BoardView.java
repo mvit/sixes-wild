@@ -17,22 +17,57 @@ public abstract class BoardView extends JPanel {
   protected boolean paintBorders;
   protected int boardWidth, boardHeight;
 
+  /**
+   * Create a board view with the given grid dimensions. The paintBorders flag
+   * specifies whether to paint borders between cells.
+   *
+   * @constructor
+   * @param {boolean} paintBorders
+   * @param {int} width
+   * @param {int} height
+   */
   public BoardView(boolean paintBorders, int width, int height) {
     this.paintBorders = paintBorders;
     boardWidth = width;
     boardHeight = height;
   }
 
+  /**
+   * Update the board grid size to the given width and height.
+   *
+   * @param {int} width
+   * @param {int} height
+   */
   protected void setBoardSize(int width, int height) {
     boardWidth = width;
     boardHeight = height;
   }
 
-  // x and y are the logical cell coordinates, x1, y1, x2, and y2 are the screen
-  // coordinates of the rectangle to draw in
+  /**
+   * Abstract paint cell method, paints the cell with the implementation-
+   * specific painting code.
+   *
+   * x and y are the logical cell coordinates, x1, y1, x2, and y2 are the screen
+   * coordinates of the rectangle to draw in
+   *
+   * @param {Graphics} g
+   * @param {int} x
+   * @param {int} y
+   * @param {int} x1
+   * @param {int} y1
+   * @param {int} x2
+   * @param {int} y2
+   */
   protected abstract void paintCell(Graphics g, int x, int y,
     int x1, int y1, int x2, int y2);
 
+  /**
+   * Identify the given mouse coordinates as a grid Point.
+   *
+   * @param {int} mouseX
+   * @param {int} mouseY
+   * @return {Point}
+   */
   public Point identifyPoint(int mouseX, int mouseY) {
     Dimension size = getSize();
 
@@ -48,10 +83,17 @@ public abstract class BoardView extends JPanel {
     int xOffset = (size.width - width + 1) / 2 - 1;
     int yOffset = (size.height - height + 1) / 2 - 1;
 
+    // TODO: return null if out of bounds!!!
     return new Point((mouseX - xOffset) * boardWidth / width,
       (mouseY - yOffset) * boardHeight / height);
   }
 
+  /**
+   * Actually paint the board. Delegates to paintCell to actually paint stuff,
+   * unless paintBorders specifies that borders should be painted.
+   *
+   * @param {Graphics} g
+   */
   @Override
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);

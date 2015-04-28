@@ -5,6 +5,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import model.BuilderModel;
 
+/**
+ * @author Eli Skeggs, and Maurizio Vitale
+ */
 public class BuilderApplication extends JFrame {
   public static final String title = "Level Builder";
 

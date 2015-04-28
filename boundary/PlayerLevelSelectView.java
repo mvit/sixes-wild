@@ -13,7 +13,8 @@ import javax.swing.SwingConstants;
 import model.PlayerModel;
 
 /**
- * The View for Selecting a Level
+ * The View for Selecting a Level.
+ *
  * @author Maurizio Vitale
  */
 public class PlayerLevelSelectView extends JPanel {

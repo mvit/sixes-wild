@@ -5,6 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.BuilderModel;
 
+/**
+ * Open a level from the filesystem.
+ *
+ * @author Cem Unsal
+ */
 public class BuilderOpenLevelCtrl implements ActionListener {
   BuilderApplication app;
   BuilderModel model;
@@ -17,11 +22,8 @@ public class BuilderOpenLevelCtrl implements ActionListener {
     this.model = model;
   }
 
-
   @Override
   public void actionPerformed(ActionEvent event) {
-	  //Skeleton
-	  
-	  
+	  // TODO: implement me!
   }
 }

@@ -14,9 +14,18 @@ import javax.swing.JPanel;
 import javax.swing.JWindow;
 
 /**
- * Splash Screen
+ * A generic splash screen which displays the given image until the close method
+ * is called.
+ *
+ * @author Eli Skeggs, and Maurizio Vitale
  */
 public class SplashScreen extends JWindow {
+  /**
+   * Create and display a splash screen with the given image.
+   *
+   * @constructor
+   * @param {String} file The image file to display.
+   */
   public SplashScreen(String file) throws IOException {
     JPanel content = (JPanel) getContentPane();
     content.setBackground(Color.WHITE);
@@ -37,6 +46,9 @@ public class SplashScreen extends JWindow {
     setVisible(true);
   }
 
+  /**
+   * Close the splash screen, and dispose of associated resources.
+   */
   public void close() {
     setVisible(false);
     dispose();

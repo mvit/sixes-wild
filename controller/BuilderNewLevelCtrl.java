@@ -7,6 +7,11 @@ import java.awt.event.ActionListener;
 import model.BuilderModel;
 import model.Level;
 
+/**
+ * Create a new level.
+ *
+ * @author Eli Skeggs
+ */
 public class BuilderNewLevelCtrl implements ActionListener {
   BuilderApplication app;
   BuilderModel model;
@@ -20,7 +25,7 @@ public class BuilderNewLevelCtrl implements ActionListener {
   }
 
   /**
-   * Load levelselect
+   * Load the level select view.
    */
   public void loadEditorView() {
     // model.level = new Level(new DataInputStream(new FileInputStream(filename)));

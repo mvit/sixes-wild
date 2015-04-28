@@ -6,6 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.BuilderModel;
 
+/**
+ * Switch builder views to the main menu.
+ *
+ * @author Eli Skeggs
+ */
 public class BuilderMainMenuCtrl implements ActionListener {
   BuilderApplication app;
   BuilderModel model;

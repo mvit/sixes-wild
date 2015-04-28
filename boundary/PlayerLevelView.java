@@ -13,14 +13,30 @@ import model.PlayerModel;
 /**
  * The view when a player loads up a level.
  *
- * @author Bailey Sheridan, Maurizio Vitale, and Eli Skeggs
+ * @author Bailey Sheridan, Eli Skeggs, and Maurizio Vitale
  */
 public class PlayerLevelView extends JPanel {
   PlayerApplication app;
   PlayerModel model;
   public PlayerBoardView boardView;
 
-  public PlayerLevelView(ActionListener quitListener, PlayerApplication app, PlayerModel model) {
+  /**
+   * Create a level view for the player application.
+   *
+   * The quit listener is invoked when the quit button is clicked, indicating
+   * either that the player is done playing the level, or the builder is done
+   * previewing the level.
+   *
+   * The PlayerApplication and PlayerModel are used to create the constituent
+   * views and controllers.
+   *
+   * @constructor
+   * @param {ActionListener} onQuit
+   * @param {PlayerApplication} app
+   * @param {PlayerModel} model
+   */
+  public PlayerLevelView(ActionListener onQuit, PlayerApplication app,
+      PlayerModel model) {
     this.app = app;
     this.model = model;
 
@@ -73,7 +89,7 @@ public class PlayerLevelView extends JPanel {
     panelNavigation.add(btnRestart);
 
     JButton btnMainMenu = new JButton("Quit");
-    btnMainMenu.addActionListener(quitListener);
+    btnMainMenu.addActionListener(onQuit);
     panelNavigation.add(btnMainMenu);
 
     //Panel Info
