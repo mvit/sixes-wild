@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 import model.PlayerModel;
 
 /**
+ * The player application boundary class.
+ *
  * @author Eli Skeggs
  */
 public class PlayerApplication extends JFrame {
@@ -16,6 +18,13 @@ public class PlayerApplication extends JFrame {
 
   ResourceLoader loader;
 
+  /**
+   * Create a player application from the given model and resource loader.
+   *
+   * @constructor
+   * @param {PlayerModel} model
+   * @param {ResourceLoader} loader
+   */
   public PlayerApplication(PlayerModel model, ResourceLoader loader) {
     super(title);
 
@@ -23,6 +32,12 @@ public class PlayerApplication extends JFrame {
     this.loader = loader;
   }
 
+  /**
+   * Add a quit listener for when the user clicks the close button on the
+   * window.
+   *
+   * @param {QuitListener} onQuit
+   */
   public void addQuitListener(QuitListener onQuit) {
     if (onQuit == null) {
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -31,6 +46,12 @@ public class PlayerApplication extends JFrame {
     }
   }
 
+  /**
+   * Set the currently displayed JPanel. Makes the application visible if it's
+   * not already.
+   *
+   * @param {JPanel} panel
+   */
   public void setView(JPanel panel) {
     boolean wasHidden = view == null;
     view = panel;
@@ -41,6 +62,11 @@ public class PlayerApplication extends JFrame {
     }
   }
 
+  /**
+   * Get the currently displayed JPanel.
+   *
+   * @return {JPanel}
+   */
   public JPanel getView() {
     return view;
   }
@@ -48,6 +74,8 @@ public class PlayerApplication extends JFrame {
   /**
    * Creates the splash screen, loads resources, then initializes the main
    * window (PlayerApplication).
+   *
+   * @param {String[]} args The command-line parameters for the application.
    */
   public static void main(String[] args) {
     ResourceLoader loader = new ResourceLoader();

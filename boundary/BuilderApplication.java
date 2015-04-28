@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 import model.BuilderModel;
 
 /**
+ * The builder application boundary class.
+ *
  * @author Eli Skeggs, and Maurizio Vitale
  */
 public class BuilderApplication extends JFrame {
@@ -16,13 +18,27 @@ public class BuilderApplication extends JFrame {
 
   public ResourceLoader loader;
 
+  /**
+   * Create a builder application from the given model and resource loader.
+   *
+   * @constructor
+   * @param {BuilderModel} model
+   * @param {ResourceLoader} loader
+   */
   public BuilderApplication(BuilderModel model, ResourceLoader loader) {
     this.model = model;
     this.loader = loader;
 
+    // always exit the JVM when the user closes the window
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
 
+  /**
+   * Set the currently displayed JPanel. Makes the application visible if it's
+   * not already.
+   *
+   * @param {JPanel} panel
+   */
   public void setView(JPanel panel) {
     boolean wasHidden = view == null;
     view = panel;
@@ -33,10 +49,21 @@ public class BuilderApplication extends JFrame {
     }
   }
 
+  /**
+   * Get the currently displayed JPanel.
+   *
+   * @return {JPanel}
+   */
   public JPanel getView() {
     return view;
   }
 
+  /**
+   * Creates the splash screen, loads resources, then initializes the main
+   * window (BuilderApplication).
+   *
+   * @param {String[]} args The command-line parameters for the application.
+   */
   public static void main(String[] args) {
     ResourceLoader loader = new ResourceLoader();
 
