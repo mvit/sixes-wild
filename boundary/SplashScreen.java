@@ -17,9 +17,13 @@ import javax.swing.JWindow;
  * A generic splash screen which displays the given image until the close method
  * is called.
  *
+ * Does not inherit from JWindow to minimize exposed functionality.
+ *
  * @author Eli Skeggs, and Maurizio Vitale
  */
-public class SplashScreen extends JWindow {
+public class SplashScreen {
+  JWindow window;
+
   /**
    * Create and display a splash screen with the given image.
    *
@@ -27,7 +31,7 @@ public class SplashScreen extends JWindow {
    * @param {String} file The image file to display.
    */
   public SplashScreen(String file) throws IOException {
-    JPanel content = (JPanel) getContentPane();
+    JPanel content = (JPanel) window.getContentPane();
     content.setBackground(Color.WHITE);
 
     BufferedImage splashImg = ImageIO.read(new File("resource/img/" + file));
@@ -39,18 +43,18 @@ public class SplashScreen extends JWindow {
 
     int x = (screen.width - width) / 2;
     int y = (screen.height - height) / 2;
-    setBounds(x, y, width, height);
+    window.setBounds(x, y, width, height);
 
     JLabel label = new JLabel(new ImageIcon(splashImg));
     content.add(label, BorderLayout.CENTER);
-    setVisible(true);
+    window.setVisible(true);
   }
 
   /**
    * Close the splash screen, and dispose of associated resources.
    */
   public void close() {
-    setVisible(false);
-    dispose();
+    window.setVisible(false);
+    window.dispose();
   }
 }
