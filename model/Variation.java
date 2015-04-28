@@ -1,7 +1,6 @@
 package model;
 
-// TODO: we shouldn't need to import boundary and controller in the model
-// package
+// TODO: don't import boundary/controller from model package :(
 import boundary.PlayerApplication;
 import controller.PlayerEliminationCtrl;
 import controller.PlayerLightningCtrl;
@@ -13,6 +12,8 @@ import java.util.Map;
 
 /**
  * The variation enumeration.
+ *
+ * @author Eli Skeggs
  */
 public enum Variation {
   ELIMINATION('E', "Elimination") {

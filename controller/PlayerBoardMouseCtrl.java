@@ -9,6 +9,9 @@ import model.PlayerModel;
 import model.PlayerState;
 import model.Point;
 
+/**
+ * @author Eli Skeggs
+ */
 public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
 {
   PlayerApplication app;

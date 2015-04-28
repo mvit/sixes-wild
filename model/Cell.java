@@ -6,6 +6,8 @@ import java.io.IOException;
 
 /**
  * The Cell class.
+ *
+ * @author Eli Skeggs
  */
 public class Cell {
   public CellType type;

@@ -6,6 +6,9 @@ import model.PlayerState;
 import model.Point;
 import model.Move;
 
+/**
+ * @author Eli Skeggs
+ */
 public class PlayerStartMoveCtrl {
   PlayerApplication app;
   PlayerModel model;
@@ -16,7 +19,7 @@ public class PlayerStartMoveCtrl {
   }
 
   /**
-   * TODO: are there anything in the boundary that needs to get updated?
+   * TODO: is there anything in the boundary that needs to get updated?
    */
   public void startMove(Point point) {
     model.playerState = PlayerState.SELECT;

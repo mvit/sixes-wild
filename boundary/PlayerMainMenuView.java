@@ -15,7 +15,7 @@ import model.PlayerModel;
 /**
  * PlayerMainMenuView which displays the main menu for the player application.
  *
- * @author Bailey Sheridan, and Maurizio Vitale
+ * @author Bailey Sheridan, Eli Skeggs, and Maurizio Vitale
  */
 public class PlayerMainMenuView extends JPanel {
   PlayerModel model;

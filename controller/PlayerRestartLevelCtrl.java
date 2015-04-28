@@ -7,6 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.PlayerModel;
 
+/**
+ * @author Eli Skeggs, and Nick Chaput
+ */
 public class PlayerRestartLevelCtrl implements ActionListener{
   PlayerApplication app;
   PlayerModel model;

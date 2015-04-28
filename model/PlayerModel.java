@@ -2,6 +2,8 @@ package model;
 
 /**
  * Top-level player container.
+ *
+ * @author Eli Skeggs
  */
 public class PlayerModel {
   public Level level = null;

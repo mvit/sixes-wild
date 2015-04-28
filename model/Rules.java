@@ -7,6 +7,8 @@ import utils.WeightedRandom;
 
 /**
  * A container for a Level's Rules.
+ *
+ * @author Eli Skeggs
  */
 public class Rules {
   public static final int maxNumber = 6, maxMultiplier = 3;

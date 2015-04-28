@@ -8,6 +8,9 @@ import java.awt.event.ActionListener;
 import model.BuilderModel;
 import model.Variation;
 
+/**
+ * @author Eli Skeggs
+ */
 public class BuilderSetVariationCtrl implements ActionListener {
   BuilderApplication app;
   BuilderModel model;

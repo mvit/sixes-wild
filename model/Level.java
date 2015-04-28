@@ -7,6 +7,8 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * The Level class.
+ *
+ * @author Eli Skeggs
  */
 public class Level {
   // TODO: where should these be stored?

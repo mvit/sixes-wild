@@ -2,6 +2,8 @@ package model;
 
 /**
  * An x, y point.
+ *
+ * @author Eli Skeggs
  */
 public class Point {
   public int x, y;
@@ -17,7 +19,7 @@ public class Point {
     this.x = x;
     this.y = y;
   }
-  
+
   public int hashCode() {
 	  return (new int[] {x, y}).hashCode();
   }

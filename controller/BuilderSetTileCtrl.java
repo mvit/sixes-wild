@@ -7,6 +7,9 @@ import model.BuilderModel;
 import model.CellType;
 import boundary.BuilderApplication;
 
+/**
+ * @author Eli Skeggs
+ */
 public class BuilderSetTileCtrl implements ActionListener {
   BuilderApplication app;
   BuilderModel model;

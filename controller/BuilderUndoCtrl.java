@@ -6,6 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.BuilderModel;
 
+/**
+ * @author Cem Unsal
+ */
 public class BuilderUndoCtrl implements ActionListener {
   BuilderApplication app;
   BuilderModel model;
@@ -20,7 +23,7 @@ public class BuilderUndoCtrl implements ActionListener {
     if (model.redoIndex > 0) {
       model.redoIndex--;
       model.level = model.history.get(model.redoIndex).snapshot;
-      
+
       ((BuilderLevelEditorView) app.getView()).updateView();
     }
   }

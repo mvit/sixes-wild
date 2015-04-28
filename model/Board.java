@@ -6,6 +6,8 @@ import java.io.IOException;
 
 /**
  * The Board class.
+ *
+ * @author Eli Skeggs
  */
 public class Board {
   public static final int width = 9, height = 9;

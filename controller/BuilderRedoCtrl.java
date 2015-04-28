@@ -6,6 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.BuilderModel;
 
+/**
+ * @author Cem Unsal
+ */
 public class BuilderRedoCtrl implements ActionListener {
   BuilderApplication app;
   BuilderModel model;

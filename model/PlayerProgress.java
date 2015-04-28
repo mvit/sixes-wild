@@ -12,6 +12,8 @@ import java.util.Iterator;
  * The progress the user has made in unlocking levels and the achieved scores.
  *
  * Levels are zero-indexed.
+ *
+ * @author Eli Skeggs
  */
 public class PlayerProgress implements Iterable<LevelProgress> {
   // TODO: where should these be stored?

@@ -6,6 +6,8 @@ import java.io.IOException;
 
 /**
  * The Tile class.
+ *
+ * @author Eli Skeggs
  */
 public class Tile {
   public int number, multiplier;

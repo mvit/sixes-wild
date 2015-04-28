@@ -5,6 +5,8 @@ import java.util.Map;
 
 /**
  * The CellType for the Cell class.
+ *
+ * @author Eli Skeggs
  */
 public enum CellType {
   PLAYABLE((byte) 0),

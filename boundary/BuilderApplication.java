@@ -8,7 +8,7 @@ import model.BuilderModel;
 /**
  * The builder application boundary class.
  *
- * @author Eli Skeggs, and Maurizio Vitale
+ * @author Cem Unsal, Eli Skeggs, and Maurizio Vitale
  */
 public class BuilderApplication extends JFrame {
   public static final String title = "Level Builder";

@@ -6,6 +6,8 @@ import java.util.Set;
 /**
  * The Move class, which stores the currently selected set of points on the
  * PlayerApplication's board.
+ *
+ * @author Bailey Sheridan, Nick Chaput, and Eli Skeggs
  */
 public class Move {
   // TODO: structure to optimize for the eventual removal and replacement of

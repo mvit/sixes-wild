@@ -5,6 +5,9 @@ import model.PlayerModel;
 import model.PlayerState;
 import model.Point;
 
+/**
+ * @author Eli Skeggs, Nick Chaput
+ */
 public class PlayerFinishMoveCtrl {
   PlayerApplication app;
   PlayerModel model;

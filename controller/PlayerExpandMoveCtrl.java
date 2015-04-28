@@ -4,6 +4,9 @@ import boundary.PlayerApplication;
 import model.PlayerModel;
 import model.Point;
 
+/**
+ * @author Eli Skeggs
+ */
 public class PlayerExpandMoveCtrl {
   PlayerApplication app;
   PlayerModel model;

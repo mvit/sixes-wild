@@ -18,7 +18,7 @@ import model.BuilderModel;
 /**
  * BuilderMainMenuView for the builder application
  *
- * @author Cem Unsal and Maurizio Vitale
+ * @author Cem Unsal, Eli Skeggs, and Maurizio Vitale
  */
 public class BuilderMainMenuView extends JPanel {
   BuilderApplication app;

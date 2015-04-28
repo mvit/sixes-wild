@@ -6,6 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.PlayerModel;
 
+/**
+ * @author Eli Skeggs
+ */
 public class PlayerMainMenuCtrl implements ActionListener {
   PlayerApplication app;
   PlayerModel model;

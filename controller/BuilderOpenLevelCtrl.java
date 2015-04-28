@@ -17,7 +17,7 @@ import model.Level;
 /**
  * Open a level from the filesystem.
  *
- * @author Cem Unsal
+ * @author Cem Unsal, and Eli Skeggs
  */
 public class BuilderOpenLevelCtrl implements ActionListener {
   public static final String levelspath = new File("resource/levels")
@@ -27,7 +27,7 @@ public class BuilderOpenLevelCtrl implements ActionListener {
   BuilderModel model;
 
   /**
-   * Create the controller with the context: the application and the model.
+   * Create the controller with the application and the model.
    */
   public BuilderOpenLevelCtrl(BuilderApplication app, BuilderModel model) {
     this.app = app;

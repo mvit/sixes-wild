@@ -4,6 +4,8 @@ import java.util.ArrayList;
 
 /**
  * Top-level player container.
+ *
+ * @author Cem Unsal, and Eli Skeggs
  */
 public class BuilderModel {
   public Level level = null;

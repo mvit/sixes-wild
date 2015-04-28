@@ -34,7 +34,7 @@ import model.Variation;
 /**
 * BuilderLevelEditorView for the builder application
 *
-* @author Cem Unsal and Maurizio Vitale
+* @author Cem Unsal, and Eli Skeggs
 */
 public class BuilderLevelEditorView extends JPanel {
   BuilderApplication app;

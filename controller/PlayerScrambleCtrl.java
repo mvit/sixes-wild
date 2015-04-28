@@ -5,6 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import model.PlayerModel;
 
+/**
+ * @author Eli Skeggs, and Nick Chaput
+ */
 public class PlayerScrambleCtrl implements ActionListener {
   PlayerApplication app;
   PlayerModel model;
@@ -15,7 +18,7 @@ public class PlayerScrambleCtrl implements ActionListener {
   }
 
   public void actionPerformed(ActionEvent event) {
-	//TODO: generic implementation
-	//  model.variation.specialMove();
+    // TODO: generic implementation
+    // model.variation.specialMove();
   }
 }

@@ -7,6 +7,8 @@ import java.util.Date;
 
 /**
  * The progress the user has made for a specific level.
+ *
+ * @author Eli Skeggs
  */
 public class LevelProgress {
   Date lastPlayed;

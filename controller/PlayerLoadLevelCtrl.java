@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 import model.Level;
 import model.PlayerModel;
 
+/**
+ * @author Eli Skeggs
+ */
 public class PlayerLoadLevelCtrl implements ActionListener {
   PlayerApplication app;
   PlayerModel model;
