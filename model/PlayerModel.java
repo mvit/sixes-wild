@@ -13,6 +13,8 @@ public class PlayerModel {
   public Variation variation = null;
   public PlayerState playerState = PlayerState.NONE;
 
+  public PlayerProgress progress = null;
+
   /**
    * Create a new player model.
    *

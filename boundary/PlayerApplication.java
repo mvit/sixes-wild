@@ -1,5 +1,6 @@
 package boundary;
 
+import controller.PlayerLoadProgressCtrl;
 import java.io.IOException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -108,6 +109,8 @@ public class PlayerApplication extends JFrame {
     // initialize main app
     PlayerApplication app = new PlayerApplication(model, loader);
     JPanel initialView = new PlayerMainMenuView(app, model);
+
+    (new PlayerLoadProgressCtrl(app, model)).loadProgress();
 
     // extend time if necessary
     long loadElapsed = System.currentTimeMillis() - loadStart;

@@ -37,6 +37,11 @@ public class PlayerProgress implements Iterable<LevelProgress> {
    * @param {DataInputStream} in
    */
   public PlayerProgress(DataInputStream in) throws IOException {
+    // if we don't have an input stream, do nothing!
+    if (in == null) {
+      return;
+    }
+
     byte headerBytes[] = new byte[4];
     if (in.read(headerBytes, 0, 4) != 4) {
       throw new RuntimeException("stored user progress incomplete");
