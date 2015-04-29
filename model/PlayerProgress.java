@@ -97,6 +97,16 @@ public class PlayerProgress implements Iterable<LevelProgress> {
   }
 
   /**
+   * Get the LevelProgress instance corresponding to the given level number.
+   *
+   * @param level The level to get progress for.
+   * @return The LevelProgress instance.
+   */
+  public LevelProgress getLevelProgress(int level) {
+    return levels.get(level);
+  }
+
+  /**
    * Set the achieved score for the given level and score at the current time.
    *
    * TODO: patch specific file bytes?
