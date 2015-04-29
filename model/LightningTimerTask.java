@@ -3,6 +3,7 @@ package model;
 import java.util.TimerTask;
 
 import boundary.PlayerApplication;
+import boundary.PlayerLevelView;
 
 /**
  * TimerTask for the LightningTimer for the Lightning variation.
@@ -24,6 +25,7 @@ public class LightningTimerTask extends TimerTask {
   public void run() {
     if (model.counter > 0) {
       model.counter--;
+      ((PlayerLevelView) app.getView()).update();
     }
 
     if (model.counter == 0) {
