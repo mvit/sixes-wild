@@ -17,8 +17,6 @@ public class PlayerModel {
 
   /**
    * Create a new player model.
-   *
-   * @constructor
    */
   public PlayerModel() {}
 

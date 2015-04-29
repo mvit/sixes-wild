@@ -22,7 +22,6 @@ public class PlayerApplication extends JFrame {
   /**
    * Create a player application from the given model and resource loader.
    *
-   * @constructor
    * @param model
    * @param loader
    */

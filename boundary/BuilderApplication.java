@@ -21,7 +21,6 @@ public class BuilderApplication extends JFrame {
   /**
    * Create a builder application from the given model and resource loader.
    *
-   * @constructor
    * @param model
    * @param loader
    */

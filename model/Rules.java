@@ -25,8 +25,6 @@ public class Rules {
    *
    * TODO: should we have constructors like this at all? Not really the job of
    * the rules class to do this...
-   *
-   * @constructor
    */
   public Rules() {
     numberWeights = new int[maxNumber];
@@ -48,7 +46,7 @@ public class Rules {
   /**
    * Creates a Rules instance from a DataInputStream.
    *
-   * @constructor
+   * @param in
    */
   public Rules(DataInputStream in) throws IOException {
     variation = Variation.getVariation((char) in.readByte());
@@ -90,7 +88,6 @@ public class Rules {
   /**
    * Clones a Rules instance from the given Rules.
    *
-   * @constructor
    * @param rules
    */
   public Rules(Rules rules) {

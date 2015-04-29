@@ -27,7 +27,6 @@ public class SplashScreen {
   /**
    * Create and display a splash screen with the given image.
    *
-   * @constructor
    * @param file The image file to display.
    */
   public SplashScreen(String file) throws IOException {

@@ -24,8 +24,6 @@ public class Level {
 
   /**
    * Create a Level with reasonable default settings.
-   *
-   * @constructor
    */
   public Level() {
     rules = new Rules();
@@ -38,7 +36,6 @@ public class Level {
    * Clones a Level from the given Level.
    *
    * @param src
-   * @constructor
    */
   public Level(Level src) {
     rules = new Rules(src.rules);
@@ -50,7 +47,6 @@ public class Level {
   /**
    * Creates a Level from a DataInputStream.
    *
-   * @constructor
    * @param in
    */
   public Level(DataInputStream in) throws IOException {

@@ -23,7 +23,6 @@ public class Tile {
   /**
    * Creates a Tile given only a number.
    *
-   * @constructors
    * @param number
    */
   public Tile(int number) {
@@ -34,7 +33,6 @@ public class Tile {
   /**
    * Creates a Tile given a number and multiplier.
    *
-   * @constructor
    * @param number
    * @param multiplier
    */
@@ -46,8 +44,7 @@ public class Tile {
   /**
    * Creates a copy of the provided Tile.
    *
-   * @constructor
-   * @parm {Tile} src
+   * @param src
    */
   public Tile(Tile src) {
     this.number = src.number;
@@ -57,7 +54,6 @@ public class Tile {
   /**
    * Creates a Tile from a DataInputStream.
    *
-   * @constructor
    * @param in
    */
   public Tile(DataInputStream in) throws IOException {

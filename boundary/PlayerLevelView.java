@@ -29,7 +29,6 @@ public class PlayerLevelView extends JPanel {
    * The PlayerApplication and PlayerModel are used to create the constituent
    * views and controllers.
    *
-   * @constructor
    * @param onQuit
    * @param app
    * @param model

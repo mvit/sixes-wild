@@ -36,7 +36,6 @@ public class PlayerLoadProgressCtrl {
   /**
    * Create a PlayerLoadProgressCtrl.
    *
-   * @constructor
    * @param app
    * @param model
    */

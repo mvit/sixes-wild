@@ -10,8 +10,6 @@ public class WeightedRandom {
 
   /**
    * Create a WeightedRandom instance without a seed.
-   *
-   * @constructor
    */
   public WeightedRandom() {
     random = new Random();
@@ -19,8 +17,6 @@ public class WeightedRandom {
 
   /**
    * Create a WeightedRandom instance with a seed.
-   *
-   * @constructor
    */
   public WeightedRandom(long seed) {
     random = new Random(seed);

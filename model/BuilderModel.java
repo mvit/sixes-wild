@@ -19,8 +19,6 @@ public class BuilderModel {
 
   /**
    * Create a new builder model.
-   *
-   * @constructor
    */
   public BuilderModel() {}
 

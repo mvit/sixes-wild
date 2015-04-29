@@ -16,8 +16,6 @@ public class Cell {
 
   /**
    * Create a new generic Cell, which is playable and empty.
-   *
-   * @constructor
    */
   public Cell() {
     this(CellType.PLAYABLE, null);
@@ -27,7 +25,6 @@ public class Cell {
    * Create a new Cell from a CellType and a Tile. Primarily for testing
    * purposes.
    *
-   * @constructor
    * @param type
    * @param tile
    */
@@ -40,7 +37,6 @@ public class Cell {
   /**
    * Create a copy of the provided Cell.
    *
-   * @constructor
    * @param src
    */
   public Cell(Cell src) {
@@ -55,7 +51,6 @@ public class Cell {
   /**
    * Creates a Tile from a DataInputStream.
    *
-   * @constructor
    * @param in
    * @param hasTile Whether the containing Board stored the Tiles for
    *   each Cell.

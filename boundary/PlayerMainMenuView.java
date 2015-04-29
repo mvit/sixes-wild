@@ -30,7 +30,6 @@ public class PlayerMainMenuView extends JPanel {
    *
    * PlayerApplication and PlayerModel are used to create the controllers.
    *
-   * @constructor
    * @param app
    * @param model
    */

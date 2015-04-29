@@ -31,9 +31,8 @@ public class PlayerProgress implements Iterable<LevelProgress> {
    * Creates a PlayerProgress from a DataInputStream.
    *
    * TODO: create log-style progress? Implicitly adds recent event capabilities
-   * if desired
+   * if desired.
    *
-   * @constructor
    * @param in
    */
   public PlayerProgress(DataInputStream in) throws IOException {

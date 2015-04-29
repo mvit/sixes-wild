@@ -21,7 +21,6 @@ public abstract class BoardView extends JPanel {
    * Create a board view with the given grid dimensions. The paintBorders flag
    * specifies whether to paint borders between cells.
    *
-   * @constructor
    * @param paintBorders
    * @param width
    * @param height

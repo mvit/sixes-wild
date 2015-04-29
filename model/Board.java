@@ -49,7 +49,6 @@ public class Board {
   /**
    * Create a deep copy of the provided Board.
    *
-   * @constructor
    * @param src
    */
   public Board(Board src) {
@@ -66,7 +65,6 @@ public class Board {
   /**
    * Creates a Board from a DataInputStream.
    *
-   * @constructor
    * @param in
    */
   public Board(Rules rules, DataInputStream in) throws IOException {

@@ -11,7 +11,6 @@ public class Point {
   /**
    * Create a Point.
    *
-   * @constructor
    * @param x
    * @param y
    */

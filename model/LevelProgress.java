@@ -18,7 +18,6 @@ public class LevelProgress {
    * Create a new LevelProgress for a given level and a given acheived score,
    * assumes this progress occurred at the current time.
    *
-   * @constructor
    * @param level
    * @param score
    */
@@ -31,7 +30,6 @@ public class LevelProgress {
   /**
    * Creates a LevelProgress from a DataInputStream.
    *
-   * @constructor
    * @param in
    */
   public LevelProgress(int level, DataInputStream in) throws IOException {
