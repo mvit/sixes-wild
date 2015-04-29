@@ -2,6 +2,7 @@ package model;
 
 import java.util.TimerTask;
 
+import controller.PlayerEndLevelCtrl;
 import boundary.PlayerApplication;
 import boundary.PlayerLevelView;
 
@@ -30,7 +31,8 @@ public class LightningTimerTask extends TimerTask {
 
     if (model.counter == 0) {
     	cancel();
-    	model.level.endLevel();
+        PlayerEndLevelCtrl end = new PlayerEndLevelCtrl(app, model);
+        end.endLevel();
     }
   }
 }

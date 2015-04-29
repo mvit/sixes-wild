@@ -140,7 +140,4 @@ public class Level {
     currentScore = 0;
   }
   
-  public void endLevel() {
-	  JOptionPane.showMessageDialog(new PlayerEndLevelView(), "Level Complete!");
-  }
 }

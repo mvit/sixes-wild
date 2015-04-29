@@ -41,7 +41,8 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
     			return true;
     	}
     }
-    model.level.endLevel();
+    PlayerEndLevelCtrl end = new PlayerEndLevelCtrl(app, model);
+    end.endLevel();
     return true;
   }
 }
