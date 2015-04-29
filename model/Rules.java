@@ -29,13 +29,13 @@ public class Rules {
   public Rules() {
     numberWeights = new int[maxNumber];
     for (int i = 0; i < maxNumber; i++) {
-      numberWeights[i] = 50;
+      numberWeights[i] = 1;
     }
 
     multiplierWeights = new int[maxMultiplier];
     for (int i = 0; i < maxMultiplier; i++) {
       // assumes few multipliers
-      multiplierWeights[i] = 50;
+      multiplierWeights[i] = 1;
     }
 
     variation = Variation.PUZZLE;
