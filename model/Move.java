@@ -32,8 +32,16 @@ public class Move {
    * Precondition: board contains a tile at the given x, y point.
    */
   public void expand(Board board, Point point) {
-    if (points.add(point)) {
-      moveSum += board.grid[point.x][point.y].tile.number;
-    }
+	boolean isUnique = true;
+	for (Point p : points) {
+  	    if (point.x == p.x && point.y == p.y) {
+  	    	isUnique = false;
+  	    }
+  	}
+	if (isUnique) {
+		if (points.add(point)) {
+			moveSum += (board.grid[point.x][point.y].tile.number + 1);
+    	}
+	}
   }
 }

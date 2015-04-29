@@ -1,6 +1,7 @@
 package controller;
 
 import boundary.PlayerApplication;
+import model.Move;
 import model.PlayerModel;
 import model.PlayerState;
 import model.Point;
@@ -26,12 +27,19 @@ public class PlayerFinishMoveCtrl {
     PlayerVariationCtrl pVar = model.variation.createCtrl(app, model);
     //TODO: implement variation controllers
     if (pVar.finishMove()) {
-    	for (Point p : model.move.points) {
-    	    model.level.currentBoard.grid[p.x][p.y].tile = null;
+    	if (model.move.isValid()) {
+
+        	for (Point p : model.move.points) {
+        	    model.level.currentBoard.grid[p.x][p.y].tile = null;
+        	}
+        	model.level.currentBoard.processBoard();
+        	app.getView().repaint();
     	}
-    	model.level.currentBoard.processBoard();
-    	app.getView().repaint();
+    	else {
+    		//I don't know what happens here
+    	}
     }
+    model.move = new Move();
     //TODO: implement everything else that happens after a move finishes (update score, counter, etc)
   }
   
