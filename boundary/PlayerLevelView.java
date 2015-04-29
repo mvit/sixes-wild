@@ -123,22 +123,29 @@ public class PlayerLevelView extends JPanel {
   }
   
   public void drawMove(Point curr, Point prev) {
-	     int x1 = curr.x * 10;
-	     int y1 = curr.y * 10;
-	     int x2 = prev.x * 10;
-	     int y2 = prev.y * 10;
-	     
-		 BufferedImage blob = app.loader.getResource("selected.png");
-		 BufferedImage blob_tlc = blob.getSubimage(0, 0, blob.getWidth()/3, blob.getHeight()/3);
-		 BufferedImage blob_trc = blob.getSubimage((blob.getWidth()/3)*2, 0, blob.getWidth()/3, blob.getHeight()/3);
-		 BufferedImage blob_blc = blob.getSubimage(0,(blob.getHeight()/3)*2,blob.getWidth()/3, blob.getHeight()/3);
-		 BufferedImage blob_brc = blob.getSubimage((blob.getWidth()/3)*2, (blob.getHeight()/3)*2, blob.getWidth()/3, blob.getHeight()/3);
-		 
-		this.getGraphics().drawImage(blob_tlc, x1, y1, null);
-		this.getGraphics().drawImage(blob_blc, x1 , y1 + (blob.getHeight()/3) * 2, null);
-		this.getGraphics().drawImage(blob_trc, x1 + blob_trc.getWidth(), y1, null);
-		this.getGraphics().drawImage(blob_brc, x1 + blob_brc.getWidth(), y1 + (blob.getHeight()/3) * 2, null);
-  }
+	  int cellSize; 
+		     
+	  if (this.boardView.getHeight() > this.boardView.getWidth()) cellSize = this.boardView.getHeight()/9;
+	  else cellSize = this.boardView.getWidth()/9;
+		    
+	  int x1 = curr.x * cellSize;
+	  int y1 = curr.y * cellSize;
+	  //int x2 = prev.x * cellSize;
+	  //int y2 = prev.y * cellSize;
+	  //CORNERS
+	  BufferedImage blob = app.loader.getResource("selected.png");
+	  BufferedImage blob_tlc = blob.getSubimage(0, 0, blob.getWidth()/3, blob.getHeight()/3);
+	  BufferedImage blob_trc = blob.getSubimage(blob.getWidth() * (2/3), 0, blob.getWidth()/3, blob.getHeight()/3);
+	  BufferedImage blob_blc = blob.getSubimage(0,blob.getHeight() * (2/3),blob.getWidth()/3, blob.getHeight()/3);
+	  BufferedImage blob_brc = blob.getSubimage(blob.getWidth()* (2/3), blob.getHeight() * (3*2), blob.getWidth()/3, blob.getHeight()/3);
+	  //SIDES
+	  BufferedImage blob_top = blob.getSubimage(blob.getWidth() /3, 0, blob.getWidth() /3, blob.getHeight()/3);
+	  BufferedImage blob_bot = blob.getSubimage(blob.getWidth() /3, blob.getHeight()* (2/3), blob.getWidth()/3, blob.getHeight()/3);
+	  BufferedImage blob_left = blob.getSubimage(0, blob.getHeight() /3, blob.getWidth()/3, blob.getHeight()/3);
+	  BufferedImage blob_right = blob.getSubimage(blob.getWidth() * (2/3), blob.getHeight() / 3, blob.getWidth()/3, blob.getHeight()/3);
+	  //FILL
+	  BufferedImage blob_center = blob.getSubimage(blob.getWidth()/3, blob.getWidth()/3, blob.getWidth()/3, blob.getWidth()/3);
+	}
   
   public void update() {
 	  lblScoreNum.setText(Integer.toString(model.score));
