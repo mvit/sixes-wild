@@ -29,13 +29,12 @@ public class PlayerFinishMoveCtrl {
     //TODO: implement variation controllers
     if (model.move.isValid()) {
     	if (pVar.finishMove()) {
-
+            updateScore(model.move);
         	for (Point p : model.move.points) {
         	    model.level.currentBoard.grid[p.x][p.y].tile = null;
         	}
         	model.level.currentBoard.processBoard();
         	app.getView().repaint();
-            updateScore(model.move);
     	}
     }
     else {
