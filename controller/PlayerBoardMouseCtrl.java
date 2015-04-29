@@ -75,6 +75,7 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
     if (model.playerState == PlayerState.SELECT) {
       model.playerState = PlayerState.NONE;
       model.move = new Move();
+      app.getView().repaint();
     }
   }
 
@@ -85,6 +86,7 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
         model.playerState == PlayerState.NONE &&
         (point = identifyPoint(event)) != null) {
       startMoveCtrl.startMove(point);
+      app.getView().repaint();
     }
   }
 
