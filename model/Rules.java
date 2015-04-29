@@ -111,6 +111,30 @@ public class Rules {
   }
 
   /**
+   * Generate a random number for a tile using the configured rules.
+   *
+   * @return The generated tile number.
+   */
+  public int randomNumber() {
+    return random.weightedRandom(numberWeights);
+  }
+
+  /**
+   * Generate a random multiplier for a tile with the given number.
+   *
+   * Will return a multiplier of 1 for tiles with the maximum number.
+   *
+   * @param number The number for which to generate a multiplier.
+   * @return The generated multiplier.
+   */
+  public int randomMultiplier(int number) {
+    if (number == maxNumber - 1) {
+      return 1;
+    }
+    return random.weightedRandom(multiplierWeights) + 1;
+  }
+
+  /**
    * Write the Rules to a DataOutputStream.
    */
   public void write(DataOutputStream out) throws IOException {

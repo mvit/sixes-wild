@@ -16,8 +16,8 @@ public class Tile {
    * Creates a random Tile from the given Rules' probability distribution.
    */
   public Tile(Rules rules) {
-    this.number = rules.random.weightedRandom(rules.numberWeights);
-    this.multiplier = rules.random.weightedRandom(rules.multiplierWeights) + 1;
+    number = rules.randomNumber();
+    multiplier = rules.randomMultiplier(number);
   }
 
   /**
