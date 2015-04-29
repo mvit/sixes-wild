@@ -17,6 +17,8 @@ public abstract class BoardView extends JPanel {
   protected boolean paintBorders;
   protected int boardWidth, boardHeight;
 
+  protected int prevWidth, prevHeight;
+
   /**
    * Create a board view with the given grid dimensions. The paintBorders flag
    * specifies whether to paint borders between cells.
@@ -43,19 +45,29 @@ public abstract class BoardView extends JPanel {
   }
 
   /**
+   * Provides a cache hook to resize any necessary images.
+   *
+   * Defaults to doing nothing.
+   *
+   * @param width The new cell width to cache.
+   * @param height The new cell height to cache.
+   */
+  protected void cellSizeChange(int width, int height) {}
+
+  /**
    * Abstract paint cell method, paints the cell with the implementation-
    * specific painting code.
    *
    * x and y are the logical cell coordinates, x1, y1, x2, and y2 are the screen
    * coordinates of the rectangle to draw in
    *
-   * @param g
-   * @param x
-   * @param y
-   * @param x1
-   * @param y1
-   * @param x2
-   * @param y2
+   * @param g The graphics object to use to draw.
+   * @param x The grid coordinate to paint, used to locate the Cell in question.
+   * @param y The grid coordinate to paint, used to locate the Cell in question.
+   * @param x1 The left side of the cell to draw, translate to the screen.
+   * @param y1 The top side of the cell to draw, translate to the screen.
+   * @param x2 The right side of the cell to draw, translate to the screen.
+   * @param y2 The bottom side of the cell to draw, translate to the screen.
    */
   protected abstract void paintCell(Graphics g, int x, int y,
     int x1, int y1, int x2, int y2);
@@ -121,7 +133,14 @@ public abstract class BoardView extends JPanel {
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
 
-    // TODO: cache resized images
+    // cache resized images
+    Box preBox = identifyCell(0, 0);
+    if (preBox.x2 - preBox.x1 != prevWidth ||
+        preBox.y2 - preBox.y1 != prevHeight) {
+      prevWidth = preBox.x2 - preBox.x1;
+      prevHeight = preBox.y2 - preBox.y1;
+      cellSizeChange(prevWidth, prevHeight);
+    }
 
     for (int x = 0; x < boardWidth; x++) {
       for (int y = 0; y < boardHeight; y++) {
@@ -156,7 +175,7 @@ public abstract class BoardView extends JPanel {
     /**
      * Construct a bounding box around the given coordinates.
      *
-     * Assumes x1 &lt; x2 and y1 &lt; y2.
+     * Assumes <code>x1 &lt; x2 &amp;&amp; y1 &lt; y2</code>.
      */
     protected Box(int x1, int y1, int x2, int y2) {
       this.x1 = x1;
