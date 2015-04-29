@@ -1,15 +1,19 @@
 package boundary;
 
 import controller.ExitCtrl;
+import controller.PlayerInstructionsCtrl;
 import controller.PlayerLoadLevelSelectCtrl;
+
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagLayout;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 import model.PlayerModel;
 
 /**
@@ -64,10 +68,11 @@ public class PlayerMainMenuView extends JPanel {
     btnLevelSelect.setAlignmentX(Component.CENTER_ALIGNMENT);
     btnLevelSelect.setAlignmentY(Component.CENTER_ALIGNMENT);
 
-    JButton btnNewButton = new JButton("Instructions");
-    panelContent.add(btnNewButton);
-    btnNewButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-    btnNewButton.setAlignmentY(Component.CENTER_ALIGNMENT);
+    JButton btnInstructions = new JButton("Instructions");
+    btnInstructions.addActionListener(new PlayerInstructionsCtrl(app, model));
+    panelContent.add(btnInstructions);
+    btnInstructions.setAlignmentX(Component.CENTER_ALIGNMENT);
+    btnInstructions.setAlignmentY(Component.CENTER_ALIGNMENT);
 
     JButton btnExit = new JButton("Exit");
     panelContent.add(btnExit);
