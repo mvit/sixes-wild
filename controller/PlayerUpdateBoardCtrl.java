@@ -23,18 +23,32 @@ public class PlayerUpdateBoardCtrl {
 	}
 	
 	 public void processBoard() {
-		 app.getView().validate();
-		  for (int y = Board.height - 1; y >= 0; y--) {
-			  for (int x = Board.width - 1; x >= 0; x--) {
+		  for (int x = Board.width - 1; x >= 0; x--) {
+			  try {
+			       Thread.sleep(60);
+					 app.getView().paintImmediately(0, 0, 500, 500);
+			    } catch (InterruptedException ie) {
+			    }
+			  for (int y = Board.height - 1; y >= 0; y--) {
 				  if (model.level.currentBoard.grid[y][x].type != CellType.INERT 
 						  && model.level.currentBoard.grid[y][x].type != CellType.BUCKET
 						  && model.level.currentBoard.grid[y][x].tile == null) {
 					  model.level.currentBoard.grid[y][x].tile = model.level.currentBoard.takeTileAbove(new Point(x,y));
+					    /*try {
+						       Thread.sleep(30);
+								 app.getView().paintImmediately(50, 50, 500, 500);
+						    } catch (InterruptedException ie) {
+						    }*/
 				  }
 				  if (model.level.currentBoard.grid[y][x].type == CellType.BUCKET
 						  && model.level.currentBoard.getTileAbove(new Point(x,y)).number == 5
 						  && model.level.currentBoard.grid[y][x].tile == null) {
 					  model.level.currentBoard.grid[y][x].tile = model.level.currentBoard.takeTileAbove(new Point(x,y));
+					    /*try {
+						       Thread.sleep(30);
+								 app.getView().paintImmediately(50, 50, 500, 500);
+						    } catch (InterruptedException ie) {
+						    }*/
 				  }
 			  }
 		  }
