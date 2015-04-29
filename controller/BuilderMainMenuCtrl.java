@@ -27,6 +27,7 @@ public class BuilderMainMenuCtrl implements ActionListener {
    * Switch to the main menu.
    */
   public void loadMainScreen() {
+    model.clearHistory();
     app.setView(new BuilderMainMenuView(app, model));
   }
 

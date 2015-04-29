@@ -28,5 +28,6 @@ public class BuilderSetVariationCtrl implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent event) {
     model.level.rules.variation = variation;
+    model.takeSnapshot();
   }
 }

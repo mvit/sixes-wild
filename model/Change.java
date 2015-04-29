@@ -8,8 +8,7 @@ package model;
 public class Change {
   public Level snapshot;
 
-  public Change(Level baseLevel) {
-    // TODO: actually make a snapshot
-    snapshot = baseLevel;
+  public Change(Level level) {
+    snapshot = level;
   }
 }

@@ -19,12 +19,15 @@ public class BuilderUndoCtrl implements ActionListener {
   }
 
   @Override
-  public void actionPerformed(ActionEvent e) {
+  public void actionPerformed(ActionEvent event) {
     if (model.redoIndex > 0) {
-      model.redoIndex--;
-      model.level = model.history.get(model.redoIndex).snapshot;
+      model.level = model.history.get(--model.redoIndex).snapshot;
+      model.clearTempState();
 
-      ((BuilderLevelEditorView) app.getView()).updateView();
+      BuilderLevelEditorView view = (BuilderLevelEditorView) app.getView();
+      view.updateView();
+      view.boardView.repaint();
+      view.revalidate();
     }
   }
 }

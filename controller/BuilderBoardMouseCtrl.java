@@ -66,9 +66,10 @@ public class BuilderBoardMouseCtrl extends MouseAdapter {
 
   @Override
   public void mouseReleased(MouseEvent event) {
-    if (event.getButton() == MouseEvent.BUTTON1) {
+    if (dragging && event.getButton() == MouseEvent.BUTTON1) {
       applyCell(event);
       dragging = false;
+      model.takeSnapshot();
     }
   }
 

@@ -23,4 +23,35 @@ public class BuilderModel {
    * @constructor
    */
   public BuilderModel() {}
+
+  /**
+   * Clear the temporary state.
+   */
+  public void clearTempState() {
+    currentType = null;
+    currentUseNumber = false;
+    currentNumber = 0;
+    currentMultiplier = 1;
+  }
+
+  public void clearHistory() {
+    history.removeAll();
+    history.trimToSize();
+  }
+
+  /**
+   * Adds a snapshot of the current state to the history.
+   */
+  public void takeSnapshot() {
+    if (redoIndex < history.size() - 1) {
+      history.subList(redoIndex + 1, history.size()).clear();
+      history.trimToSize();
+    }
+
+    if (history.size() > 0) {
+      redoIndex++;
+    }
+
+    history.add(new Change(new Level(level)));
+  }
 }

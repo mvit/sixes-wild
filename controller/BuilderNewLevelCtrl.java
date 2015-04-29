@@ -28,8 +28,9 @@ public class BuilderNewLevelCtrl implements ActionListener {
    * Load the level select view.
    */
   public void loadEditorView() {
-    // model.level = new Level(new DataInputStream(new FileInputStream(filename)));
     model.level = new Level();
+    model.clearHistory();
+    model.takeSnapshot();
     app.setView(new BuilderLevelEditorView(app, model));
   }
 

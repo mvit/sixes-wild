@@ -51,6 +51,9 @@ public class BuilderOpenLevelCtrl implements ActionListener {
         return;
       }
 
+      model.clearHistory();
+      model.takeSnapshot();
+
       app.setView(new BuilderLevelEditorView(app, model));
     }
   }
