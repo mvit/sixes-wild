@@ -70,26 +70,45 @@ public abstract class BoardView extends JPanel {
   public Point identifyPoint(int mouseX, int mouseY) {
     Dimension size = getSize();
 
-    int width, height;
-    if (size.width * boardHeight < size.height * boardWidth) {
-      width = size.width - 1;
-      height = size.width * boardHeight / boardWidth - 1;
-    } else {
-      width = size.height * boardWidth / boardHeight - 1;
-      height = size.height - 1;
-    }
+    int cellSize = Math.min(size.width / boardWidth, size.height / boardHeight);
+    int xOffset = (size.width - boardWidth * cellSize) / 2;
+    int yOffset = (size.height - boardHeight * cellSize) / 2;
 
-    int xOffset = (size.width - width + 1) / 2 - 1;
-    int yOffset = (size.height - height + 1) / 2 - 1;
-
-    if (mouseX < xOffset || mouseY < yOffset || mouseX > xOffset + width ||
-        mouseY > yOffset + height) {
+    if (mouseX < xOffset || mouseX > xOffset + cellSize * boardWidth ||
+        mouseY < yOffset || mouseY > yOffset + cellSize * boardHeight) {
       return null;
     }
 
-    // TODO: return null if out of bounds!!!
-    return new Point((mouseX - xOffset) * boardWidth / width,
-      (mouseY - yOffset) * boardHeight / height);
+    // the Math.min handles the edges of the bottom cells
+    return new Point(Math.min((mouseX - xOffset) / cellSize, boardWidth),
+      Math.min((mouseY - yOffset) / cellSize, boardHeight));
+  }
+
+  /**
+   * Get the bounding box for the given x and y (which represent grid
+   * coordinates as opposed to screen coordinates).
+   *
+   * @return The bounding box for the identified cell.
+   */
+  public Box identifyCell(int x, int y) {
+    Dimension size = getSize();
+
+    int cellSize = Math.min(size.width / boardWidth, size.height / boardHeight);
+    int xOffset = (size.width - boardWidth * cellSize) / 2;
+    int yOffset = (size.height - boardHeight * cellSize) / 2;
+
+    int left = xOffset + x * cellSize, top = yOffset + y * cellSize;
+
+    return new Box(left, top, left + cellSize, top + cellSize);
+  }
+
+  /**
+   * Get the bounding box for the given Point.
+   *
+   * @return The bounding box for the identified cell.
+   */
+  public Box identifyCell(Point point) {
+    return identifyCell(point.x, point.y);
   }
 
   /**
@@ -102,51 +121,48 @@ public abstract class BoardView extends JPanel {
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
 
-    Dimension size = getSize();
-
-    int width, height;
-    if (size.width * boardHeight < size.height * boardWidth) {
-      width = size.width - 1;
-      height = size.width * boardHeight / boardWidth - 1;
-    } else {
-      width = size.height * boardWidth / boardHeight - 1;
-      height = size.height - 1;
-    }
-
-    double scaledWidth = (double) width / boardWidth,
-      scaledHeight = (double) height / boardHeight;
-
-    int xOffset = (size.width - width + 1) / 2 - 1;
-    int yOffset = (size.height - height + 1) / 2 - 1;
-
-    int prevX = xOffset, prevY = yOffset;
+    // TODO: cache resized images
 
     for (int x = 0; x < boardWidth; x++) {
-      int nextX;
-
       for (int y = 0; y < boardHeight; y++) {
-        int nextY = (int) (yOffset + scaledHeight * (y + 1));
-        nextX = (int) (xOffset + scaledWidth * (x + 1));
-        paintCell(g, x, y, prevX, prevY, nextX, nextY);
-        prevY = nextY;
+        Box box = identifyCell(x, y);
+        paintCell(g, x, y, box.x1, box.y1, box.x2, box.y2);
       }
-
-      prevX = (int) (xOffset + scaledWidth * (x + 1));
-      prevY = yOffset;
     }
 
     if (paintBorders) {
-      prevY = yOffset + height;
+      int bottom = identifyCell(0, boardHeight).y1;
       for (int x = 0; x <= boardWidth; x++) {
-        prevX = (int) (xOffset + scaledWidth * x);
-        g.drawLine(prevX, yOffset, prevX, prevY);
+        Box box = identifyCell(x, 0);
+        g.drawLine(box.x1, box.y1, box.x1, bottom);
       }
 
-      prevX = xOffset + width;
+      int right = identifyCell(0, boardWidth).x1;
       for (int y = 0; y <= boardHeight; y++) {
-        prevY = (int) (yOffset + scaledHeight * y);
-        g.drawLine(xOffset, prevY, prevX, prevY);
+        Box box = identifyCell(0, y);
+        g.drawLine(box.x1, box.y1, right, box.y1);
       }
+    }
+  }
+
+  /**
+   * Represents a bounding-box around a given cell.
+   *
+   * @author Eli Skeggs
+   */
+  protected class Box {
+    public int x1, y1, x2, y2;
+
+    /**
+     * Construct a bounding box around the given coordinates.
+     *
+     * Assumes x1 &lt; x2 and y1 &lt; y2.
+     */
+    protected Box(int x1, int y1, int x2, int y2) {
+      this.x1 = x1;
+      this.y1 = y1;
+      this.x2 = x2;
+      this.y2 = y2;
     }
   }
 }
