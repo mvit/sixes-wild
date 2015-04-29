@@ -40,7 +40,7 @@ public class BuilderBoardView extends BoardView {
       String filename = null;
       Color fallback = null;
       if (cell.tile == null) {
-        filename = "questionmark.png";
+        filename = "selected.png";
         fallback = Color.WHITE;
       } else {
         filename = (cell.tile.number + 1) + ".png";

@@ -5,7 +5,7 @@ import model.PlayerModel;
 import model.Point;
 
 /**
- * @author Eli Skeggs, Nick Chaput
+ * @author Eli Skeggs, Nick Chaput and Maurizio Vitale
  */
 public class PlayerExpandMoveCtrl {
   PlayerApplication app;

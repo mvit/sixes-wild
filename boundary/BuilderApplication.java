@@ -66,7 +66,7 @@ public class BuilderApplication extends JFrame {
   public static void main(String[] args) {
     ResourceLoader loader = new ResourceLoader();
 
-    loader.addResource("questionmark.png");
+    loader.addResource("playable.png");
     for (int i = 1; i <= 6; i++) {
       loader.addResource(i + ".png");
     }

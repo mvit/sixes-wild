@@ -11,7 +11,7 @@ import model.PlayerModel;
 /**
  * Actual view for the playable grid in-game.
  *
- * @author Eli Skeggs
+ * @author Eli Skeggs & Maurizio Vitale
  */
 public class PlayerBoardView extends BoardView {
   PlayerApplication app;

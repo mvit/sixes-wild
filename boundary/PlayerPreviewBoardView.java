@@ -35,7 +35,7 @@ public class PlayerPreviewBoardView extends BoardView {
       String filename = null;
       Color fallback = null;
       if (cell.tile == null) {
-        filename = "questionmark.png";
+        filename = "playable.png";
         fallback = Color.WHITE;
       } else {
         filename = (cell.tile.number + 1) + ".png";
