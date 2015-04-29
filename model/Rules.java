@@ -8,7 +8,7 @@ import utils.WeightedRandom;
 /**
  * A container for a Level's Rules.
  *
- * @author Eli Skeggs
+ * @author Eli Skeggs, and Cem Unsal
  */
 public class Rules {
   public static final int maxNumber = 6, maxMultiplier = 3;
@@ -29,7 +29,7 @@ public class Rules {
   public Rules() {
     numberWeights = new int[maxNumber];
     for (int i = 0; i < maxNumber; i++) {
-      numberWeights[i] = 1;
+      numberWeights[i] = 50;
     }
 
     multiplierWeights = new int[maxMultiplier];

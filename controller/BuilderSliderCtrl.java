@@ -1,11 +1,6 @@
 package controller;
 
 import boundary.BuilderApplication;
-import boundary.BuilderLevelEditorView;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -18,19 +13,19 @@ import model.BuilderModel;
 public class BuilderSliderCtrl implements ChangeListener {
   BuilderApplication app;
   BuilderModel model;
+  int num;
 
   public BuilderSliderCtrl(BuilderApplication app, BuilderModel model, int num) {
     this.app = app;
     this.model = model;
+    this.num=num;
   }
 
-
-@Override
-public void stateChanged(ChangeEvent e) { 
-	JSlider source = (JSlider)e.getSource();
-	int val= source.getValue();
-	
-	
-	
-}
+	@Override
+	public void stateChanged(ChangeEvent e) {
+		JSlider source = (JSlider) e.getSource();
+		int val = source.getValue();
+		model.level.rules.numberWeights[num]=val;
+		model.takeSnapshot();
+	}
 }
