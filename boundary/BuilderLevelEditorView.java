@@ -1,5 +1,8 @@
 package boundary;
 
+//TO DO: score treshold, multiplier weighs slider, initial timer value
+
+
 import boundary.BuilderApplication;
 import controller.BuilderMainMenuCtrl;
 import controller.BuilderNewLevelCtrl;
