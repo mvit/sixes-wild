@@ -27,6 +27,7 @@ public class PlayerLevelSelectView extends JPanel {
   PlayerApplication app;
   PlayerModel model;
   String currentLevel;
+  public PlayerPreviewBoardView boardView;
 
   public PlayerLevelSelectView(PlayerApplication app, PlayerModel model, String currentLevel) {
     this.app = app;
@@ -48,6 +49,11 @@ public class PlayerLevelSelectView extends JPanel {
 
     JPanel panelLevelPreview = new JPanel();
     panelLevel.add(panelLevelPreview, BorderLayout.CENTER);
+    if (currentLevel != null) {
+    	boardView = new PlayerPreviewBoardView(app, model);
+    	boardView.setAlignmentY(0);
+    	panelLevel.add(boardView);
+    }
 
     //panelLevelOptions - holds play level and reset score
 

@@ -84,8 +84,10 @@ public class PlayerApplication extends JFrame {
       loader.addResource(i + ".png");
     }
     for (int i = 2; i <= 3; i++) {
-        loader.addResource("x" + i + ".png");
+      loader.addResource("x" + i + ".png");
     }
+    
+    loader.addResource("questionmark.png");
 
     // start splash screen
     SplashScreen splash;
