@@ -26,33 +26,34 @@ public class PlayerFinishMoveCtrl {
     model.playerState = PlayerState.NONE;
     model.move.expand(model.level.currentBoard, point);
     PlayerVariationCtrl pVar = model.variation.createCtrl(app, model);
-    //TODO: implement variation controllers
+    // TODO: implement variation controllers
     if (model.move.isValid()) {
-    	if (pVar.finishMove()) {
-            updateScore(model.move);
-        	for (Point p : model.move.points) {
-        	    model.level.currentBoard.grid[p.x][p.y].tile = null;
-        	}
-        	model.level.currentBoard.processBoard();
-        	app.getView().repaint();
-    	}
+      if (pVar.finishMove()) {
+        updateScore(model.move);
+        for (Point p : model.move.points) {
+          model.level.currentBoard.grid[p.x][p.y].tile = null;
+        }
+        model.level.currentBoard.processBoard();
+      }
+    } else {
+      //I don't know what happens here
     }
-    else {
-		//I don't know what happens here
-	}
     model.move = new Move();
-    //TODO: implement everything else that happens after a move finishes (update score, counter, etc)
+    // TODO: implement everything else that happens after a move finishes (update score, counter, etc)
+
+    app.getView().repaint();
   }
-  
+
   public int updateScore(Move move) {
-	  int newScore = 10;
-	  newScore = newScore * move.points.size();
-	  for (Point p : move.points) {
-		  newScore = newScore * model.level.currentBoard.grid[p.x][p.y].tile.multiplier;
-	  }
-	  model.score += newScore;
-	  ((PlayerLevelView)app.getView()).update();
-	  
-	  return newScore;
+    int newScore = 10;
+    newScore = newScore * move.points.size();
+    for (Point p : move.points) {
+      newScore = newScore * model.level.currentBoard.grid[p.x][p.y].tile.multiplier;
+    }
+
+    model.score += newScore;
+    ((PlayerLevelView) app.getView()).update();
+
+    return newScore;
   }
 }
