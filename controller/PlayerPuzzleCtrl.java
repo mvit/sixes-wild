@@ -4,7 +4,7 @@ import boundary.PlayerApplication;
 import model.PlayerModel;
 
 /**
- * @author Eli Skeggs, Nick Chaput
+ * @author Eli Skeggs, Nick Chaput, Bailey Sheridan
  */
 public class PlayerPuzzleCtrl implements PlayerVariationCtrl {
   PlayerApplication app;
@@ -20,6 +20,10 @@ public class PlayerPuzzleCtrl implements PlayerVariationCtrl {
   }
 
   public boolean finishMove() {
+    if(model.counter<=0)
+      return false;
+
+    model.counter--;
     return true;
   }
 }
