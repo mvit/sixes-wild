@@ -8,14 +8,14 @@ import javax.swing.event.ChangeListener;
 import model.BuilderModel;
 
 /**
- * The controller to handle altered multiplier weights.
+ * The controller to handle altered number weights.
  *
  * @author Cem Unsal
  */
-public class BuilderMultiplierWeightCtrl implements ChangeListener {
+public class BuilderNumberWeightCtrl implements ChangeListener {
   BuilderApplication app;
   BuilderModel model;
-  int multiplier;
+  int number;
 
   /**
    * Create a BuilderMultiplierWeightCtrl, given a BuilderApplication and a
@@ -25,11 +25,11 @@ public class BuilderMultiplierWeightCtrl implements ChangeListener {
    * @param model
    * @param multiplier The multiplier to which this controller applies.
    */
-  public BuilderMultiplierWeightCtrl(BuilderApplication app, BuilderModel model,
-      int multiplier) {
+  public BuilderNumberWeightCtrl(BuilderApplication app, BuilderModel model,
+      int number) {
     this.app = app;
     this.model = model;
-    this.multiplier = multiplier;
+    this.number = number;
   }
 
   /**
@@ -41,7 +41,7 @@ public class BuilderMultiplierWeightCtrl implements ChangeListener {
   public void stateChanged(ChangeEvent event) {
     JSlider source = (JSlider) event.getSource();
     int val = source.getValue();
-    model.level.rules.multiplierWeights[multiplier] = val;
+    model.level.rules.numberWeights[number] = val;
     model.takeSnapshot();
   }
 }

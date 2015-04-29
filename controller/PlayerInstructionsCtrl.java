@@ -8,23 +8,32 @@ import boundary.PlayerApplication;
 import boundary.PlayerInstructionsView;
 
 /**
- * Loads Instructions page.
- * @author Bailey Sheridan
+ * Display the instructions view.
  *
+ * @author Bailey Sheridan
  */
-public class PlayerInstructionsCtrl implements ActionListener{
+public class PlayerInstructionsCtrl implements ActionListener {
+  PlayerApplication app;
+  PlayerModel model;
 
-	PlayerApplication app;
-	PlayerModel model;
-	
-	public PlayerInstructionsCtrl(PlayerApplication app, PlayerModel model){
-		this.app = app;
-		this.model = model;
-	}
-	
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		app.setView(new PlayerInstructionsView(app, model));
-	}
+  /**
+   * Create the instructions view controller.
+   *
+   * @param app
+   * @param model
+   */
+  public PlayerInstructionsCtrl(PlayerApplication app, PlayerModel model) {
+    this.app = app;
+    this.model = model;
+  }
 
+  /**
+   * Handle the instructions button being pressed.
+   *
+   * @param event Details about the action event.
+   */
+  @Override
+  public void actionPerformed(ActionEvent event) {
+    app.setView(new PlayerInstructionsView(app, model));
+  }
 }

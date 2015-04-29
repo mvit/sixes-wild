@@ -1,12 +1,9 @@
 package boundary;
 
-//TO DO: score treshold, multiplier weighs slider, initial timer value
-
-
 import boundary.BuilderApplication;
 import controller.BuilderMainMenuCtrl;
 import controller.BuilderNewLevelCtrl;
-import controller.BuilderNumWeightCtrl;
+import controller.BuilderNumberWeightCtrl;
 import controller.BuilderOpenLevelCtrl;
 import controller.BuilderPreviewLevelCtrl;
 import controller.BuilderRedoCtrl;
@@ -36,10 +33,12 @@ import model.Rules;
 import model.Variation;
 
 /**
-* BuilderLevelEditorView for the builder application
-*
-* @author Cem Unsal, and Eli Skeggs
-*/
+ * BuilderLevelEditorView for the builder application
+ *
+ * TODO: score threshold, multiplier weight sliders, initial timer value
+ *
+ * @author Cem Unsal, and Eli Skeggs
+ */
 public class BuilderLevelEditorView extends JPanel {
   BuilderApplication app;
   BuilderModel model;
@@ -178,7 +177,7 @@ public class BuilderLevelEditorView extends JPanel {
       panel.add(label);
 
       JSlider slider = new JSlider();
-      slider.addChangeListener(new BuilderNumWeightCtrl(app, model, i));
+      slider.addChangeListener(new BuilderNumberWeightCtrl(app, model, i));
       slider.setPaintLabels(true);
       slider.setMajorTickSpacing(20);
       slider.setMinorTickSpacing(10);
