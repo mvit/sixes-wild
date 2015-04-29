@@ -4,7 +4,7 @@ package model;
  * Stores the current state of the player's game. Represents the action they are
  * currently undertaking, if any.
  *
- * @author Eli Skeggs
+ * @author Eli Skeggs, Nick Chaput
  */
 public enum PlayerState {
   NONE,
@@ -13,5 +13,21 @@ public enum PlayerState {
   // disable user interaction
   SCRAMBLE,
   SELECT,
-  SWAP
+  SWAP;
+  
+  public String toString() {
+	  switch (this) {
+	    case REMOVE:
+	          return "REMOVE";
+	    case SCRAMBLE:
+		      return "SCRAMBLE";
+	    case SELECT:
+		      return "SELECT";
+	    case SWAP:
+	          return "SWAP";
+	    default:
+	    	  return "NONE";
+	      // do nothing!
+	    }
+  }
 }

@@ -7,7 +7,7 @@ import model.Point;
 import model.Move;
 
 /**
- * @author Eli Skeggs
+ * @author Eli Skeggs, Nick Chaput
  */
 public class PlayerStartMoveCtrl {
   PlayerApplication app;
@@ -23,6 +23,7 @@ public class PlayerStartMoveCtrl {
    */
   public void startMove(Point point) {
     model.playerState = PlayerState.SELECT;
+   // System.out.println(model.playerState.toString());
     model.move = new Move();
     model.move.expand(model.level.currentBoard, point);
   }

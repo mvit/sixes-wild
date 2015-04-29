@@ -5,7 +5,7 @@ import model.PlayerModel;
 import model.Point;
 
 /**
- * @author Eli Skeggs
+ * @author Eli Skeggs, Nick Chaput
  */
 public class PlayerExpandMoveCtrl {
   PlayerApplication app;
@@ -18,6 +18,7 @@ public class PlayerExpandMoveCtrl {
 
   /**
    * TODO: are there anything in the boundary that needs to get updated?
+   * Also we need sanity checks (tiles actualy adjacent to each other)
    */
   public void expandMove(Point point) {
     model.move.expand(model.level.currentBoard, point);

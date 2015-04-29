@@ -4,7 +4,7 @@ import boundary.PlayerApplication;
 import model.PlayerModel;
 
 /**
- * @author Eli Skeggs
+ * @author Eli Skeggs, Nick Chaput
  */
 public class PlayerReleaseCtrl implements PlayerVariationCtrl {
   PlayerApplication app;
@@ -20,6 +20,6 @@ public class PlayerReleaseCtrl implements PlayerVariationCtrl {
   }
 
   public boolean finishMove() {
-    return false;
+    return true;
   }
 }

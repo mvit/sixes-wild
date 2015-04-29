@@ -7,7 +7,7 @@ import java.io.IOException;
 /**
  * The Board class.
  *
- * @author Eli Skeggs
+ * @author Eli Skeggs, Nick Chaput
  */
 public class Board {
   public static final int width = 9, height = 9;
@@ -114,5 +114,48 @@ public class Board {
         }
       }
     }
+  }
+  
+  /**
+   * 
+   * @param p
+   * @return the closest non-empty tile above the given point and sets that tile to empty
+   */
+  public Tile takeTileAbove(Point p) {
+	  if (p.x == 0) {
+		  return new Tile(rules);
+	  }
+	  for (int x = p.x-1; x>=0; x--) {
+		  if (grid[p.y][x].tile != null) {
+			  Tile newTile = grid[p.y][x].tile;
+			  grid[p.y][x].tile = null;
+			  return newTile;
+		  }
+	  }
+	  return new Tile(rules);
+  }
+  
+  /**
+   * Updates the board to make all empty tiles fill from tiles above
+   */
+  public void processBoard() {
+	  for (int y = 8; y >= 0; y--) {
+		  for (int x = 8; x >= 0; x--) {
+			  System.out.println("1" + y + x);
+			  
+			  if (grid[y][x].tile != null) {
+				  System.out.println("Tile Value: " + grid[y][x].tile.number);
+			  }
+			  else {
+				  System.out.println("Tile Value: Null");
+			  }
+			  
+			  if (grid[y][x].type != CellType.INERT && grid[y][x].tile == null) {
+				  grid[y][x].tile = takeTileAbove(new Point(x,y));
+			  }
+			  System.out.println("2" + y + x);
+		  }
+		//  System.out.println("10");
+	  }
   }
 }
