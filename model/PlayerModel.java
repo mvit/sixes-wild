@@ -38,6 +38,7 @@ public class PlayerModel {
   public void realizeLevel() {
     level.realizeBoard();
     counter = level.rules.initialCounter;
+    score = 0;
     variation = level.rules.variation;
   }
 
