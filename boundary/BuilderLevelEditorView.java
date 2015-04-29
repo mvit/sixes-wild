@@ -10,6 +10,7 @@ import controller.BuilderSaveLevelCtrl;
 import controller.BuilderSetCellTypeCtrl;
 import controller.BuilderSetTileCtrl;
 import controller.BuilderSetVariationCtrl;
+import controller.BuilderSliderCtrl;
 import controller.BuilderUndoCtrl;
 
 import java.awt.BorderLayout;
@@ -174,6 +175,7 @@ public class BuilderLevelEditorView extends JPanel {
       panel.add(label);
 
       JSlider slider = new JSlider();
+      slider.addChangeListener(new BuilderSliderCtrl(app, model, i));
       slider.setPaintLabels(true);
       slider.setMajorTickSpacing(20);
       slider.setMinorTickSpacing(10);
