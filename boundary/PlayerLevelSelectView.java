@@ -2,14 +2,18 @@ package boundary;
 
 import controller.PlayerLoadLevelCtrl;
 import controller.PlayerMainMenuCtrl;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.io.File;
+
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
 import model.PlayerModel;
 
 /**
@@ -94,59 +98,25 @@ public class PlayerLevelSelectView extends JPanel {
 
   this.add(panelLevel);
 
-  //panelLevelGrid - Contains Buttons for each level that exists
-  JPanel panelLevelGrid = new JPanel();
-  panelLevelGrid.setLayout(new GridLayout(0, 4, 0, 0));
-
-  //Buttons for Level Select Grid
-  JButton btnLevel1 = new JButton("Level 1");
-  panelLevelGrid.add(btnLevel1);
-
-  JButton btnLevel2 = new JButton("Level 2");
-  panelLevelGrid.add(btnLevel2);
-
-  JButton btnLevel3 = new JButton("Level 3");
-  panelLevelGrid.add(btnLevel3);
-
-  JButton btnLevel4 = new JButton("Level 4");
-  panelLevelGrid.add(btnLevel4);
-
-  JButton btnLevel5 = new JButton("Level 5");
-  panelLevelGrid.add(btnLevel5);
-
-  JButton btnLevel6 = new JButton("Level 6");
-  panelLevelGrid.add(btnLevel6);
-
-  JButton btnLevel7 = new JButton("Level 7");
-  panelLevelGrid.add(btnLevel7);
-
-  JButton btnLevel8 = new JButton("Level 8");
-  panelLevelGrid.add(btnLevel8);
-
-  JButton btnLevel9 = new JButton("Level 9");
-  panelLevelGrid.add(btnLevel9);
-
-  JButton btnLevel10 = new JButton("Level 10");
-  panelLevelGrid.add(btnLevel10);
-
-  JButton btnLevel11 = new JButton("Level 11");
-  panelLevelGrid.add(btnLevel11);
-
-  JButton btnLevel12 = new JButton("Level 12");
-  panelLevelGrid.add(btnLevel12);
-
-  JButton btnLevel13 = new JButton("Level 13");
-  panelLevelGrid.add(btnLevel13);
-
-  JButton btnLevel14 = new JButton("Level 14");
-  panelLevelGrid.add(btnLevel14);
-
-  JButton btnLevel15 = new JButton("Level 15");
-  panelLevelGrid.add(btnLevel15);
-
-  JButton btnLevel16 = new JButton("Level 16");
-  panelLevelGrid.add(btnLevel16);
-
-  this.add(panelLevelGrid);
+  this.add(makeLevelGrid());
+  }
+  
+  private JPanel makeLevelGrid() {
+	  JPanel content = new JPanel();
+	  content.setLayout(new GridLayout(4,4,0,0));
+	  int i = 1;
+	  File dir = new File("resource/levels/");
+	  File[] list = dir.listFiles();
+	  if (list != null){
+		  for(File file: list) {
+			 if (!file.getName().equals("README.md")) {
+			  JPanel panelLevel = new JPanel();
+			  JButton btnLevel = new JButton(file.getName());
+			  panelLevel.add(btnLevel);
+			  content.add(panelLevel);
+			 }
+		  }
+	  }
+	  return content;
   }
 }
