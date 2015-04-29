@@ -65,7 +65,7 @@ public class PlayerApplication extends JFrame {
   /**
    * Get the currently displayed JPanel.
    *
-   * @return {JPanel}
+   * @return The currently visible JPanel.
    */
   public JPanel getView() {
     return view;

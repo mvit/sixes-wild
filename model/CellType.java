@@ -25,7 +25,7 @@ public enum CellType {
    * Get the cell type corresponding to the provided code.
    *
    * @param code
-   * @return {CellType}
+   * @return The CellType value corresponding to the code byte.
    */
   public static CellType getCellType(byte code) {
     return map.get(code);

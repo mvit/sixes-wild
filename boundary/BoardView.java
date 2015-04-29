@@ -65,7 +65,7 @@ public abstract class BoardView extends JPanel {
    *
    * @param mouseX
    * @param mouseY
-   * @return {Point}
+   * @return The identified point.
    */
   public Point identifyPoint(int mouseX, int mouseY) {
     Dimension size = getSize();

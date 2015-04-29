@@ -55,7 +55,7 @@ public enum Variation {
    * Get the variation corresponding to the provided character code.
    *
    * @param code
-   * @return {Variation}
+   * @return The variation corresponding to the given code character.
    */
   public static Variation getVariation(char code) {
     return map.get(code);

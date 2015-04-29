@@ -81,7 +81,7 @@ public class ResourceLoader {
    *
    * @param resource The filename of the resource to load from within
    *   the resource/img directory.
-   * @return {BufferedImage}
+   * @return The preloaded image.
    */
   public BufferedImage getResource(String resource) {
     return loadedResources.get(resource);

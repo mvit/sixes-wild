@@ -27,7 +27,7 @@ public class WeightedRandom {
    * the weights in the array.
    *
    * @param weights The weights to select from.
-   * @return {int} The index into the weights array that has been selected.
+   * @return The index into the weights array that has been selected.
    */
   public int weightedRandom(int[] weights) {
     int sum = 0, onlyValid = 0;

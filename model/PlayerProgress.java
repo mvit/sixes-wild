@@ -81,7 +81,7 @@ public class PlayerProgress implements Iterable<LevelProgress> {
   /**
    * Get the number of completed levels.
    *
-   * @return {int}
+   * @return The number of completed levels.
    */
   public int completedLevels() {
     return levels.size();
@@ -90,7 +90,7 @@ public class PlayerProgress implements Iterable<LevelProgress> {
   /**
    * Get the number of unlocked levels.
    *
-   * @return {int}
+   * @return The number of unlocked levels.
    */
   public int unlockedLevels() {
     return levels.size() + 1;
@@ -122,7 +122,8 @@ public class PlayerProgress implements Iterable<LevelProgress> {
   /**
    * Gets the iterator for the PlayerProgress.
    *
-   * @return {Iterator<LevelProgress>}
+   * @return An iterator for iterating over the LevelProgress objects in the
+   *   in the user's progress.
    */
   public Iterator<LevelProgress> iterator() {
     return new ProgressIterator(levels.iterator());
