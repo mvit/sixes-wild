@@ -23,7 +23,6 @@ public class PlayerStartMoveCtrl {
    */
   public void startMove(Point point) {
     model.playerState = PlayerState.SELECT;
-   // System.out.println(model.playerState.toString());
     model.move = new Move();
     model.move.expand(model.level.currentBoard, point);
   }
