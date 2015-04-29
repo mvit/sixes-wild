@@ -32,17 +32,11 @@ public class Move {
    * Precondition: board contains a tile at the given x, y point.
    */
   public void expand(Board board, Point point) {
-	boolean isUnique = true;
-	for (Point p : points) {
-  	    if (point.x == p.x && point.y == p.y) {
-  	    	isUnique = false;
-  	    }
-  	}
-	if (isUnique) {
-		if (points.add(point)) {
-			moveSum += (board.grid[point.x][point.y].tile.number + 1);
-    	}
-	}
+    if (points.size() == 0 || isAdjacent(point)) {
+      if (points.add(point)) {
+        moveSum += (board.grid[point.x][point.y].tile.number + 1);
+      }
+    }
   }
 
   /**
@@ -54,11 +48,13 @@ public class Move {
    *   in the move).
    */
   public boolean isAdjacent(Point point) {
-	  boolean isAdjacent = false;
-	  for (Point p : points) {
-		  isAdjacent = ((Math.abs(point.x-p.x) == 1 && point.y-p.y == 0)
-				  		|| (point.x-p.x == 0 && Math.abs(point.y-p.y) == 1));
-	  }
-	  return isAdjacent;
+    for (Point p : points) {
+      if (((Math.abs(point.x - p.x) == 1 && point.y == p.y) ||
+          (point.x == p.x && Math.abs(point.y - p.y) == 1))) {
+        return true;
+      }
+    }
+
+    return false;
   }
 }
