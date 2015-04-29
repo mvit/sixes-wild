@@ -37,15 +37,28 @@ public class PlayerBoardView extends BoardView {
     }
 
     int number = cell.tile.number;
+    int multiplier = cell.tile.multiplier;
     BufferedImage image = app.loader.getResource((number + 1) + ".png");
 
+
     if (image == null) {
-      System.err.println("[WARN] Bad number for color lookup: " + number);
+      System.err.println("[WARN] Bad number for image lookup: " + number);
       g.setColor(Color.WHITE);
       g.fillRect(x1, y1, x2 - x1, y2 - y1);
     } else {
       image = utils.ScaleImage.scaleImage(image, x2 - x1, y2 - y1);
       g.drawImage(image, x1, y1, null);
     }
+    if (multiplier > 1) {
+    	BufferedImage multImage = app.loader.getResource("x"+ multiplier + ".png");
+    	if (multImage == null) {
+    	      System.err.println("[WARN] Bad number for image lookup: " + multiplier);
+    	}
+    	else {
+    		multImage = utils.ScaleImage.scaleImage(multImage, x2 - x1, y2 - y1);
+    		g.drawImage(multImage, x1, y1, null);
+    	}
+    }
+    
   }
 }
