@@ -2,7 +2,10 @@ package model;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -21,6 +24,39 @@ public class Level {
   // TODO: these really feel like they belong elsewhere...
   public Board currentBoard;
   public int currentScore;
+
+  /**
+   * Checks the header of the given InputStream to ensure it is a level.
+   *
+   * @param in The stream to check.
+   * @return Whether the given file could be a valid level.
+   */
+  protected static boolean checkHeader(InputStream in) throws IOException {
+    byte headerBytes[] = new byte[4];
+    if (in.read(headerBytes) != headerBytes.length) {
+      return false;
+    }
+
+    if (!header.equals(new String(headerBytes, StandardCharsets.US_ASCII))) {
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * Checks the header of the given file to ensure it is a level.
+   *
+   * @param file
+   * @return Whether the given file could be a valid level.
+   */
+  public static boolean checkHeader(File file) {
+    try {
+      return Level.checkHeader(new FileInputStream(file));
+    } catch (IOException err) {
+      return false;
+    }
+  }
 
   /**
    * Create a Level with reasonable default settings.
@@ -50,11 +86,7 @@ public class Level {
    * @param in
    */
   public Level(DataInputStream in) throws IOException {
-    byte headerBytes[] = new byte[4];
-    if (in.read(headerBytes, 0, 4) != 4) {
-      throw new RuntimeException("stored level incomplete");
-    }
-    if (!header.equals(new String(headerBytes, StandardCharsets.US_ASCII))) {
+    if (!Level.checkHeader(in)) {
       throw new RuntimeException("provided data stream is not a stored level");
     }
 
