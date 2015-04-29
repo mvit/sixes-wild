@@ -1,5 +1,6 @@
 package boundary;
 
+import controller.PlayerLevelSelectionCtrl;
 import controller.PlayerLoadLevelCtrl;
 import controller.PlayerMainMenuCtrl;
 
@@ -30,6 +31,7 @@ public class PlayerLevelSelectView extends JPanel {
   public PlayerLevelSelectView(PlayerApplication app, PlayerModel model, String currentLevel) {
     this.app = app;
     this.model = model;
+    this.currentLevel = currentLevel;
 
     setMinimumSize(new Dimension(800,600));
     setPreferredSize(new Dimension(800, 600));
@@ -135,6 +137,7 @@ public class PlayerLevelSelectView extends JPanel {
         // TODO: when we add the action listeners to these buttons, they should
         // reference (levelNumber - 1)
         JButton selectButton = new JButton(name);
+        selectButton.addActionListener(new PlayerLevelSelectionCtrl(app, model, name));
         panelLevel.add(selectButton);
         content.add(panelLevel);
       }
