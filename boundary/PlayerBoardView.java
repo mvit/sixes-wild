@@ -21,6 +21,9 @@ public class PlayerBoardView extends BoardView {
 
   BufferedImage[] numberCache = new BufferedImage[Rules.maxNumber];
 
+  /**
+   * Create a PlayerBoardView.
+   */
   public PlayerBoardView(PlayerApplication app, PlayerModel model) {
     super(false, Board.width, Board.height);
 
