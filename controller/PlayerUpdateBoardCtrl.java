@@ -25,7 +25,7 @@ public class PlayerUpdateBoardCtrl {
 	 public void processBoard() {
 		  for (int x = Board.width - 1; x >= 0; x--) {
 			  try {
-			       Thread.sleep(60);
+			       Thread.sleep(25);
 					 app.getView().paintImmediately(0, 0, 500, 500);
 			    } catch (InterruptedException ie) {
 			    }
@@ -51,6 +51,11 @@ public class PlayerUpdateBoardCtrl {
 						    }*/
 				  }
 			  }
+			  try {
+			       Thread.sleep(25);
+					// app.getView().paintImmediately(0, 0, 500, 500);
+			    } catch (InterruptedException ie) {
+			    }
 		  }
 	 }
 	
