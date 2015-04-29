@@ -24,7 +24,11 @@ public class BuilderSetTimerCtrl implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
+	  String entry = ((JTextField) e.getSource()).getText();
+	  int num = Integer.parseInt(entry);
 	  
-	  //Skeleton
+	  model.level.rules.initialCounter=num;
+	  model.takeSnapshot();
+	  
   }
 }
