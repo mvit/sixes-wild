@@ -25,7 +25,7 @@ public class PlayerLoadLevelCtrl implements ActionListener {
   /**
    * Load level from specified file into the model.
    *
-   * @param {String} filename
+   * @param filename
    */
   public void loadLevel(String filename) {
     // model.level = new Level(new DataInputStream(new FileInputStream(filename)));

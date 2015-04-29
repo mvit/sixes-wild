@@ -28,7 +28,7 @@ public class SplashScreen {
    * Create and display a splash screen with the given image.
    *
    * @constructor
-   * @param {String} file The image file to display.
+   * @param file The image file to display.
    */
   public SplashScreen(String file) throws IOException {
     window = new JWindow();

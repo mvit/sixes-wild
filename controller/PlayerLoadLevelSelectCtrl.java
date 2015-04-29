@@ -22,9 +22,7 @@ public class PlayerLoadLevelSelectCtrl implements ActionListener {
   }
 
   /**
-   * Load levelselect
-   *
-   * @param
+   * Load level select.
    */
   public void loadLevelSelect() {
     // discard the board if we're leaving the PlayerLevelView

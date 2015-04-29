@@ -24,7 +24,7 @@ public class Tile {
    * Creates a Tile given only a number.
    *
    * @constructors
-   * @param {int} number
+   * @param number
    */
   public Tile(int number) {
     this.number = number;
@@ -35,8 +35,8 @@ public class Tile {
    * Creates a Tile given a number and multiplier.
    *
    * @constructor
-   * @param {int} number
-   * @param {int} multiplier
+   * @param number
+   * @param multiplier
    */
   public Tile(int number, int multiplier) {
     this.number = number;
@@ -58,7 +58,7 @@ public class Tile {
    * Creates a Tile from a DataInputStream.
    *
    * @constructor
-   * @param {DataInputStream} in
+   * @param in
    */
   public Tile(DataInputStream in) throws IOException {
     number = in.readInt();
@@ -75,7 +75,7 @@ public class Tile {
   /**
    * Write the Tile to a DataOutputStream.
    *
-   * @param {DataOutputStream} out
+   * @param out
    */
   public void write(DataOutputStream out) throws IOException {
     out.writeInt(number);

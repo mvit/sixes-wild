@@ -31,8 +31,8 @@ public class PlayerMainMenuView extends JPanel {
    * PlayerApplication and PlayerModel are used to create the controllers.
    *
    * @constructor
-   * @param {PlayerApplication} app
-   * @param {PlayerModel} model
+   * @param app
+   * @param model
    */
   public PlayerMainMenuView(PlayerApplication app, PlayerModel model) {
     this.app = app;

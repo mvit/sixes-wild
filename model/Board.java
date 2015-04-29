@@ -50,7 +50,7 @@ public class Board {
    * Create a deep copy of the provided Board.
    *
    * @constructor
-   * @param {Board} src
+   * @param src
    */
   public Board(Board src) {
     // TODO: rules need to be copied for the snapshot usage in the Builder
@@ -67,7 +67,7 @@ public class Board {
    * Creates a Board from a DataInputStream.
    *
    * @constructor
-   * @param {DataInputStream} in
+   * @param in
    */
   public Board(Rules rules, DataInputStream in) throws IOException {
     this.rules = rules;
@@ -88,7 +88,7 @@ public class Board {
   /**
    * Write the Board to a DataOutputStream.
    *
-   * @param {DataOutputStream} out
+   * @param out
    */
   public void write(DataOutputStream out) throws IOException  {
     out.writeInt(width);

@@ -23,8 +23,8 @@ public class PlayerApplication extends JFrame {
    * Create a player application from the given model and resource loader.
    *
    * @constructor
-   * @param {PlayerModel} model
-   * @param {ResourceLoader} loader
+   * @param model
+   * @param loader
    */
   public PlayerApplication(PlayerModel model, ResourceLoader loader) {
     super(title);
@@ -37,7 +37,7 @@ public class PlayerApplication extends JFrame {
    * Add a quit listener for when the user clicks the close button on the
    * window.
    *
-   * @param {QuitListener} onQuit
+   * @param onQuit
    */
   public void addQuitListener(QuitListener onQuit) {
     if (onQuit == null) {
@@ -51,7 +51,7 @@ public class PlayerApplication extends JFrame {
    * Set the currently displayed JPanel. Makes the application visible if it's
    * not already.
    *
-   * @param {JPanel} panel
+   * @param panel
    */
   public void setView(JPanel panel) {
     boolean wasHidden = view == null;
@@ -76,7 +76,7 @@ public class PlayerApplication extends JFrame {
    * Creates the splash screen, loads resources, then initializes the main
    * window (PlayerApplication).
    *
-   * @param {String[]} args The command-line parameters for the application.
+   * @param args The command-line parameters for the application.
    */
   public static void main(String[] args) {
     ResourceLoader loader = new ResourceLoader();

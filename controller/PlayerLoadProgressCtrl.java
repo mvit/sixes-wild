@@ -37,8 +37,8 @@ public class PlayerLoadProgressCtrl {
    * Create a PlayerLoadProgressCtrl.
    *
    * @constructor
-   * @param {PlayerApplication} app
-   * @param {PlayerModel} model
+   * @param app
+   * @param model
    */
   public PlayerLoadProgressCtrl(PlayerApplication app, PlayerModel model) {
     this.app = app;

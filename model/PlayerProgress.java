@@ -34,7 +34,7 @@ public class PlayerProgress implements Iterable<LevelProgress> {
    * if desired
    *
    * @constructor
-   * @param {DataInputStream} in
+   * @param in
    */
   public PlayerProgress(DataInputStream in) throws IOException {
     // if we don't have an input stream, do nothing!
@@ -68,7 +68,7 @@ public class PlayerProgress implements Iterable<LevelProgress> {
   /**
    * Write the PlayerProgress to a DataOutputStream.
    *
-   * @param {DataOutputStream} out
+   * @param out
    */
   public void write(DataOutputStream out) throws IOException {
     out.write(header.getBytes(StandardCharsets.US_ASCII));
@@ -104,8 +104,8 @@ public class PlayerProgress implements Iterable<LevelProgress> {
    *
    * No-op if the specified level has not been unlocked.
    *
-   * @param {int} level
-   * @param {int} score
+   * @param level
+   * @param score
    */
   public void setAchievedScore(int level, int score) {
     int completedLevels = levels.size();

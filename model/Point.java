@@ -12,8 +12,8 @@ public class Point {
    * Create a Point.
    *
    * @constructor
-   * @param {int} x
-   * @param {int} y
+   * @param x
+   * @param y
    */
   public Point(int x, int y) {
     this.x = x;

@@ -28,8 +28,8 @@ public class Cell {
    * purposes.
    *
    * @constructor
-   * @param {CellType} type
-   * @param {Tile} tile
+   * @param type
+   * @param tile
    */
   public Cell(CellType type, Tile tile) {
     this.type = type;
@@ -41,7 +41,7 @@ public class Cell {
    * Create a copy of the provided Cell.
    *
    * @constructor
-   * @param {Cell} src
+   * @param src
    */
   public Cell(Cell src) {
     this.type = src.type;
@@ -56,8 +56,8 @@ public class Cell {
    * Creates a Tile from a DataInputStream.
    *
    * @constructor
-   * @param {DataInputStream} in
-   * @param {boolean} hasTile Whether the containing Board stored the Tiles for
+   * @param in
+   * @param hasTile Whether the containing Board stored the Tiles for
    *   each Cell.
    */
   public Cell(DataInputStream in, boolean hasTile) throws IOException {
@@ -78,8 +78,8 @@ public class Cell {
    * TODO: have a separate class that handles exactly how to store the Tile,
    * which varies based on the Level's variation?
    *
-   * @param {DataOutputStream} out
-   * @param {boolean} storeTile Whether to store the Tile, and whether it
+   * @param out
+   * @param storeTile Whether to store the Tile, and whether it
    *   exists, along with the Cell.
    */
   public void write(DataOutputStream out, boolean storeTile) throws IOException {

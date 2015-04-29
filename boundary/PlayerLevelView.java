@@ -30,9 +30,9 @@ public class PlayerLevelView extends JPanel {
    * views and controllers.
    *
    * @constructor
-   * @param {ActionListener} onQuit
-   * @param {PlayerApplication} app
-   * @param {PlayerModel} model
+   * @param onQuit
+   * @param app
+   * @param model
    */
   public PlayerLevelView(ActionListener onQuit, PlayerApplication app,
       PlayerModel model) {

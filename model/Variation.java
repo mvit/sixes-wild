@@ -54,7 +54,7 @@ public enum Variation {
   /**
    * Get the variation corresponding to the provided character code.
    *
-   * @param {char} code
+   * @param code
    * @return {Variation}
    */
   public static Variation getVariation(char code) {

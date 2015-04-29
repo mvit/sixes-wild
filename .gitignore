@@ -1,3 +1,4 @@
 *.class
 /resource
 /bin
+/doc

@@ -22,9 +22,9 @@ public abstract class BoardView extends JPanel {
    * specifies whether to paint borders between cells.
    *
    * @constructor
-   * @param {boolean} paintBorders
-   * @param {int} width
-   * @param {int} height
+   * @param paintBorders
+   * @param width
+   * @param height
    */
   public BoardView(boolean paintBorders, int width, int height) {
     this.paintBorders = paintBorders;
@@ -35,8 +35,8 @@ public abstract class BoardView extends JPanel {
   /**
    * Update the board grid size to the given width and height.
    *
-   * @param {int} width
-   * @param {int} height
+   * @param width
+   * @param height
    */
   protected void setBoardSize(int width, int height) {
     boardWidth = width;
@@ -50,13 +50,13 @@ public abstract class BoardView extends JPanel {
    * x and y are the logical cell coordinates, x1, y1, x2, and y2 are the screen
    * coordinates of the rectangle to draw in
    *
-   * @param {Graphics} g
-   * @param {int} x
-   * @param {int} y
-   * @param {int} x1
-   * @param {int} y1
-   * @param {int} x2
-   * @param {int} y2
+   * @param g
+   * @param x
+   * @param y
+   * @param x1
+   * @param y1
+   * @param x2
+   * @param y2
    */
   protected abstract void paintCell(Graphics g, int x, int y,
     int x1, int y1, int x2, int y2);
@@ -64,8 +64,8 @@ public abstract class BoardView extends JPanel {
   /**
    * Identify the given mouse coordinates as a grid Point.
    *
-   * @param {int} mouseX
-   * @param {int} mouseY
+   * @param mouseX
+   * @param mouseY
    * @return {Point}
    */
   public Point identifyPoint(int mouseX, int mouseY) {
@@ -92,7 +92,7 @@ public abstract class BoardView extends JPanel {
    * Actually paint the board. Delegates to paintCell to actually paint stuff,
    * unless paintBorders specifies that borders should be painted.
    *
-   * @param {Graphics} g
+   * @param g
    */
   @Override
   protected void paintComponent(Graphics g) {

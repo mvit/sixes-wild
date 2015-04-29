@@ -31,7 +31,7 @@ public class ResourceLoader {
   /**
    * Emit a progress event (a double) to all registered listeners.
    *
-   * @param {double} progress
+   * @param progress
    */
   protected void emitProgress(double progress) {
     for (ProgressListener listener : listeners) {
@@ -42,7 +42,7 @@ public class ResourceLoader {
   /**
    * Load the given resource.
    *
-   * @param {String} resource The filename of the resource to load from within
+   * @param resource The filename of the resource to load from within
    *   the resource/img directory.
    */
   protected void loadResource(String resource) throws IOException {
@@ -65,7 +65,7 @@ public class ResourceLoader {
   /**
    * Add a resource to be loaded.
    *
-   * @param {String} resource The filename of the resource to load from within
+   * @param resource The filename of the resource to load from within
    *   the resource/img directory.
    */
   public void addResource(String resource) {
@@ -79,7 +79,7 @@ public class ResourceLoader {
   /**
    * Get the BufferedImage for the given resource.
    *
-   * @param {String} resource The filename of the resource to load from within
+   * @param resource The filename of the resource to load from within
    *   the resource/img directory.
    * @return {BufferedImage}
    */
@@ -90,7 +90,7 @@ public class ResourceLoader {
   /**
    * Register a progress listener.
    *
-   * @param {ProgressListener} listener
+   * @param listener
    */
   public void onProgress(ProgressListener listener) {
     listeners.add(listener);
@@ -99,7 +99,7 @@ public class ResourceLoader {
   /**
    * Deregister a progress listener.
    *
-   * @param {ProgressListener} listener
+   * @param listener
    */
   public void offProgress(ProgressListener listener) {
     listeners.remove(listener);

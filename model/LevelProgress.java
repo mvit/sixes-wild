@@ -19,8 +19,8 @@ public class LevelProgress {
    * assumes this progress occurred at the current time.
    *
    * @constructor
-   * @param {int} level
-   * @param {int} score
+   * @param level
+   * @param score
    */
   public LevelProgress(int level, int score) {
     this.level = level;
@@ -32,7 +32,7 @@ public class LevelProgress {
    * Creates a LevelProgress from a DataInputStream.
    *
    * @constructor
-   * @param {DataInputStream} in
+   * @param in
    */
   public LevelProgress(int level, DataInputStream in) throws IOException {
     this.level = level;
@@ -44,7 +44,7 @@ public class LevelProgress {
   /**
    * Write the LevelProgress to a DataOutputStream.
    *
-   * @param {DataOutputStream} out
+   * @param out
    */
   public void write(DataOutputStream out) throws IOException {
     out.writeLong(lastPlayed.getTime());

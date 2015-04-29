@@ -22,8 +22,8 @@ public class BuilderApplication extends JFrame {
    * Create a builder application from the given model and resource loader.
    *
    * @constructor
-   * @param {BuilderModel} model
-   * @param {ResourceLoader} loader
+   * @param model
+   * @param loader
    */
   public BuilderApplication(BuilderModel model, ResourceLoader loader) {
     this.model = model;
@@ -37,7 +37,7 @@ public class BuilderApplication extends JFrame {
    * Set the currently displayed JPanel. Makes the application visible if it's
    * not already.
    *
-   * @param {JPanel} panel
+   * @param panel
    */
   public void setView(JPanel panel) {
     boolean wasHidden = view == null;
@@ -62,7 +62,7 @@ public class BuilderApplication extends JFrame {
    * Creates the splash screen, loads resources, then initializes the main
    * window (BuilderApplication).
    *
-   * @param {String[]} args The command-line parameters for the application.
+   * @param args The command-line parameters for the application.
    */
   public static void main(String[] args) {
     ResourceLoader loader = new ResourceLoader();

@@ -30,7 +30,7 @@ public class WeightedRandom {
    * The primary function which selects an index in the weights array based on
    * the weights in the array.
    *
-   * @param {int[]} weights The weights to select from.
+   * @param weights The weights to select from.
    * @return {int} The index into the weights array that has been selected.
    */
   public int weightedRandom(int[] weights) {

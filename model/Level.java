@@ -37,7 +37,7 @@ public class Level {
   /**
    * Clones a Level from the given Level.
    *
-   * @param {Level} src
+   * @param src
    * @constructor
    */
   public Level(Level src) {
@@ -51,7 +51,7 @@ public class Level {
    * Creates a Level from a DataInputStream.
    *
    * @constructor
-   * @param {DataInputStream} in
+   * @param in
    */
   public Level(DataInputStream in) throws IOException {
     byte headerBytes[] = new byte[4];
@@ -78,7 +78,7 @@ public class Level {
   /**
    * Write the Level to a DataOutputStream.
    *
-   * @param {DataOutputStream} out
+   * @param out
    */
   public void write(DataOutputStream out) throws IOException {
     out.write(header.getBytes(StandardCharsets.US_ASCII));

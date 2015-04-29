@@ -24,7 +24,7 @@ public enum CellType {
   /**
    * Get the cell type corresponding to the provided code.
    *
-   * @param {byte} code
+   * @param code
    * @return {CellType}
    */
   public static CellType getCellType(byte code) {

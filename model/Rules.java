@@ -91,7 +91,7 @@ public class Rules {
    * Clones a Rules instance from the given Rules.
    *
    * @constructor
-   * @param {Rules} rules
+   * @param rules
    */
   public Rules(Rules rules) {
     variation = rules.variation;
