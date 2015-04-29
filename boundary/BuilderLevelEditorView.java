@@ -10,6 +10,8 @@ import controller.BuilderPreviewLevelCtrl;
 import controller.BuilderRedoCtrl;
 import controller.BuilderSaveLevelCtrl;
 import controller.BuilderSetCellTypeCtrl;
+import controller.BuilderSetCounterCtrl;
+import controller.BuilderSetScoreCtrl;
 import controller.BuilderSetTileCtrl;
 import controller.BuilderSetVariationCtrl;
 import controller.BuilderUndoCtrl;
@@ -172,16 +174,20 @@ public class BuilderLevelEditorView extends JPanel {
     panelSliders.add(new JLabel("Counter"));
     JTextField tfCounter = new JTextField();
     panelSliders.add(tfCounter);
+    tfCounter.addActionListener(new BuilderSetCounterCtrl (app, model));
     panelSliders.add(new JLabel("Thresholds"));
     JPanel panelThresholds = new JPanel();
     panelSliders.add(panelThresholds);
     panelThresholds.setLayout(new BoxLayout(panelThresholds, BoxLayout.X_AXIS));
     JTextField tfThreshold1 = new JTextField();
     panelThresholds.add(tfThreshold1);
+    tfThreshold1.addActionListener(new BuilderSetScoreCtrl (app, model, 0));
     JTextField tfThreshold2 = new JTextField();
     panelThresholds.add(tfThreshold2);
+    tfThreshold2.addActionListener(new BuilderSetScoreCtrl (app, model, 1));
     JTextField tfThreshold3 = new JTextField();
     panelThresholds.add(tfThreshold3);    
+    tfThreshold3.addActionListener(new BuilderSetScoreCtrl (app, model, 2));
     
     panelSliders.add(new JLabel("Number Probability"));
     // make the slider panels, styling specific to a given panel can be put in
@@ -220,6 +226,7 @@ public class BuilderLevelEditorView extends JPanel {
         slider.setMinorTickSpacing(10);
         slider.setSnapToTicks(true);
         slider.setPaintTicks(true);
+        slider.addChangeListener(new BuilderMultiplierWeightCtrl(app, model, i));
         panel.add(slider);
 
         panelSliders.add(panel);
