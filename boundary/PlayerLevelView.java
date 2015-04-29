@@ -1,6 +1,7 @@
 package boundary;
 
 import controller.PlayerRestartLevelCtrl;
+import controller.PlayerUpdateBoardCtrl;
 
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
@@ -117,6 +118,7 @@ public class PlayerLevelView extends JPanel {
     panelInfo.add(lblCounterNum);
 
     update();
+    app.getView().repaint();
   }
 
   /*public void drawMove(Point curr, Point prev) {
@@ -147,7 +149,7 @@ public class PlayerLevelView extends JPanel {
   public void update() {
     lblScoreNum.setText(Integer.toString(model.score));
     lblCounterNum.setText(Integer.toString(model.counter));
-    this.revalidate();
+    this.validate();
     this.repaint();
   }
 }

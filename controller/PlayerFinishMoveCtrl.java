@@ -33,7 +33,8 @@ public class PlayerFinishMoveCtrl {
         for (Point p : model.move.points) {
           model.level.currentBoard.grid[p.x][p.y].tile = null;
         }
-        model.level.currentBoard.processBoard();
+        PlayerUpdateBoardCtrl updateBoardCtrl = new PlayerUpdateBoardCtrl(app, model);
+        updateBoardCtrl.processBoard();
       }
     } else {
       // I don't know what happens here
