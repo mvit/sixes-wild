@@ -27,7 +27,7 @@ public class Move {
   }
 
   /**
-   * Expand the move to include another point.
+   * Expand the move to include another unique point.
    *
    * Precondition: board contains a tile at the given x, y point.
    */
@@ -43,5 +43,20 @@ public class Move {
 			moveSum += (board.grid[point.x][point.y].tile.number + 1);
     	}
 	}
+  }
+  
+  /**
+   * 
+   * @param point
+   * @return true if the given point is adjacent to at least one point in the current move (does not check that the new point
+   * is not already contained in the move)
+   */
+  public boolean isAdjacent(Point point) {
+	  boolean isAdjacent = false;
+	  for (Point p : points) {
+		  isAdjacent = ((Math.abs(point.x-p.x) == 1 && point.y-p.y == 0)
+				  		|| (point.x-p.x == 0 && Math.abs(point.y-p.y) == 1));
+	  }
+	  return isAdjacent;
   }
 }
