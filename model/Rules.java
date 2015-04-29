@@ -35,7 +35,7 @@ public class Rules {
     multiplierWeights = new int[maxMultiplier];
     for (int i = 0; i < maxMultiplier; i++) {
       // assumes few multipliers
-      multiplierWeights[i] = (int) Math.pow(2, i);
+      multiplierWeights[i] = 50;
     }
 
     variation = Variation.PUZZLE;

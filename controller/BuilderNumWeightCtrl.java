@@ -10,12 +10,12 @@ import model.BuilderModel;
 /**
  * @author Cem Unsal
  */
-public class BuilderSliderCtrl implements ChangeListener {
+public class BuilderNumWeightCtrl implements ChangeListener {
   BuilderApplication app;
   BuilderModel model;
   int num;
 
-  public BuilderSliderCtrl(BuilderApplication app, BuilderModel model, int num) {
+  public BuilderNumWeightCtrl(BuilderApplication app, BuilderModel model, int num) {
     this.app = app;
     this.model = model;
     this.num=num;
