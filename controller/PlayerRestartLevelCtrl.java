@@ -1,7 +1,6 @@
 package controller;
 
 import boundary.PlayerApplication;
-import boundary.PlayerBoardView;
 import boundary.PlayerLevelView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

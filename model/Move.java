@@ -44,12 +44,14 @@ public class Move {
     	}
 	}
   }
-  
+
   /**
-   * 
-   * @param point
-   * @return true if the given point is adjacent to at least one point in the current move (does not check that the new point
-   * is not already contained in the move)
+   * Check whether the given point is adjacent to any of the points in the move.
+   *
+   * @param point The point to check for adjacency.
+   * @return Whether the given point is adjacent to at least one point in the
+   *   current move (does not check that the new point is not already contained
+   *   in the move).
    */
   public boolean isAdjacent(Point point) {
 	  boolean isAdjacent = false;

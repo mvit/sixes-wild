@@ -14,9 +14,9 @@ import model.Point;
 
 /**
  * @author Eli Skeggs, Nick Chaput
+ *
+ * TODO: implement "Swap" special move, add validity checks to basic moves
  */
-
-//TODO: Implement "Swap" special move, Add validity checks to basic moves
 public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
 {
   PlayerApplication app;
@@ -57,14 +57,11 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
     switch (model.playerState) {
     case REMOVE:
       removeCtrl.mouseClicked(point);
-     // System.out.println("Remove Click");
       break;
     case SWAP:
       swapCtrl.mouseClicked(point);
-     // System.out.println("Swap Click");
       break;
     default:
-    //	System.out.println("Default Click");
       // do nothing!
     }
   }
@@ -72,13 +69,13 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
   @Override
   public void mouseEntered(MouseEvent event) {}
 
-  
+
   @Override
   public void mouseExited(MouseEvent event) {
-	  if (model.playerState == PlayerState.SELECT) {
-		  model.playerState = PlayerState.NONE;
-		  model.move = new Move();
-	  }
+    if (model.playerState == PlayerState.SELECT) {
+      model.playerState = PlayerState.NONE;
+      model.move = new Move();
+    }
   }
 
   @Override
