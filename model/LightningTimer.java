@@ -3,7 +3,6 @@ package model;
 import java.util.Timer;
 
 import boundary.PlayerApplication;
-import boundary.PlayerLevelView;
 
 /**
  * Timer class for the Lightning variation's countdown.

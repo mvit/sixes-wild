@@ -3,9 +3,7 @@ package boundary;
 import controller.PlayerRestartLevelCtrl;
 
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -13,7 +11,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.PlayerModel;
-import model.Point;
 
 /**
  * The view when a player loads up a level.
@@ -24,7 +21,7 @@ public class PlayerLevelView extends JPanel {
   PlayerApplication app;
   PlayerModel model;
   public PlayerBoardView boardView;
-  
+
   JLabel lblScoreNum;
   JLabel lblCounterNum;
 
@@ -118,39 +115,39 @@ public class PlayerLevelView extends JPanel {
 
     lblCounterNum = new JLabel("20");
     panelInfo.add(lblCounterNum);
-    
+
     update();
   }
-  
-  public void drawMove(Point curr, Point prev) {
-	  int cellSize; 
-		     
-	  if (this.boardView.getHeight() > this.boardView.getWidth()) cellSize = this.boardView.getHeight()/9;
-	  else cellSize = this.boardView.getWidth()/9;
-		    
-	  int x1 = curr.x * cellSize;
-	  int y1 = curr.y * cellSize;
-	  //int x2 = prev.x * cellSize;
-	  //int y2 = prev.y * cellSize;
-	  //CORNERS
-	  BufferedImage blob = app.loader.getResource("selected.png");
-	  BufferedImage blob_tlc = blob.getSubimage(0, 0, blob.getWidth()/3, blob.getHeight()/3);
-	  BufferedImage blob_trc = blob.getSubimage(blob.getWidth() * (2/3), 0, blob.getWidth()/3, blob.getHeight()/3);
-	  BufferedImage blob_blc = blob.getSubimage(0,blob.getHeight() * (2/3),blob.getWidth()/3, blob.getHeight()/3);
-	  BufferedImage blob_brc = blob.getSubimage(blob.getWidth()* (2/3), blob.getHeight() * (3*2), blob.getWidth()/3, blob.getHeight()/3);
-	  //SIDES
-	  BufferedImage blob_top = blob.getSubimage(blob.getWidth() /3, 0, blob.getWidth() /3, blob.getHeight()/3);
-	  BufferedImage blob_bot = blob.getSubimage(blob.getWidth() /3, blob.getHeight()* (2/3), blob.getWidth()/3, blob.getHeight()/3);
-	  BufferedImage blob_left = blob.getSubimage(0, blob.getHeight() /3, blob.getWidth()/3, blob.getHeight()/3);
-	  BufferedImage blob_right = blob.getSubimage(blob.getWidth() * (2/3), blob.getHeight() / 3, blob.getWidth()/3, blob.getHeight()/3);
-	  //FILL
-	  BufferedImage blob_center = blob.getSubimage(blob.getWidth()/3, blob.getWidth()/3, blob.getWidth()/3, blob.getWidth()/3);
-	}
-  
+
+  /*public void drawMove(Point curr, Point prev) {
+    int cellSize;
+
+    if (this.boardView.getHeight() > this.boardView.getWidth()) cellSize = this.boardView.getHeight()/9;
+    else cellSize = this.boardView.getWidth()/9;
+
+    int x1 = curr.x * cellSize;
+    int y1 = curr.y * cellSize;
+    //int x2 = prev.x * cellSize;
+    //int y2 = prev.y * cellSize;
+    //CORNERS
+    BufferedImage blob = app.loader.getResource("selected.png");
+    BufferedImage blob_tlc = blob.getSubimage(0, 0, blob.getWidth()/3, blob.getHeight()/3);
+    BufferedImage blob_trc = blob.getSubimage(blob.getWidth() * (2/3), 0, blob.getWidth()/3, blob.getHeight()/3);
+    BufferedImage blob_blc = blob.getSubimage(0,blob.getHeight() * (2/3),blob.getWidth()/3, blob.getHeight()/3);
+    BufferedImage blob_brc = blob.getSubimage(blob.getWidth()* (2/3), blob.getHeight() * (3*2), blob.getWidth()/3, blob.getHeight()/3);
+    //SIDES
+    BufferedImage blob_top = blob.getSubimage(blob.getWidth() /3, 0, blob.getWidth() /3, blob.getHeight()/3);
+    BufferedImage blob_bot = blob.getSubimage(blob.getWidth() /3, blob.getHeight()* (2/3), blob.getWidth()/3, blob.getHeight()/3);
+    BufferedImage blob_left = blob.getSubimage(0, blob.getHeight() /3, blob.getWidth()/3, blob.getHeight()/3);
+    BufferedImage blob_right = blob.getSubimage(blob.getWidth() * (2/3), blob.getHeight() / 3, blob.getWidth()/3, blob.getHeight()/3);
+    //FILL
+    BufferedImage blob_center = blob.getSubimage(blob.getWidth()/3, blob.getWidth()/3, blob.getWidth()/3, blob.getWidth()/3);
+  }*/
+
   public void update() {
-	  lblScoreNum.setText(Integer.toString(model.score));
-	  lblCounterNum.setText(Integer.toString(model.counter));
-	  this.revalidate();
-	  this.repaint();
+    lblScoreNum.setText(Integer.toString(model.score));
+    lblCounterNum.setText(Integer.toString(model.counter));
+    this.revalidate();
+    this.repaint();
   }
 }

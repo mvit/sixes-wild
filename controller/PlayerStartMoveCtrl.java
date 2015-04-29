@@ -1,6 +1,7 @@
 package controller;
 
 import boundary.PlayerApplication;
+import boundary.PlayerLevelView;
 import model.PlayerModel;
 import model.PlayerState;
 import model.Point;
@@ -25,5 +26,6 @@ public class PlayerStartMoveCtrl {
     model.playerState = PlayerState.SELECT;
     model.move = new Move();
     model.move.expand(model.level.currentBoard, point);
+    ((PlayerLevelView) app.getView()).boardView.repaint();
   }
 }
