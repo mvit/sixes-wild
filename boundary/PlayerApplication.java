@@ -83,6 +83,9 @@ public class PlayerApplication extends JFrame {
     for (int i = 1; i <= 6; i++) {
       loader.addResource(i + ".png");
     }
+    for (int i = 1; i <=2; i++) {
+        loader.addResource("x" + (i + 1) + ".png");
+    }
 
     // start splash screen
     SplashScreen splash;
@@ -108,6 +111,8 @@ public class PlayerApplication extends JFrame {
     // initialize main app
     PlayerApplication app = new PlayerApplication(model, loader);
     JPanel initialView = new PlayerMainMenuView(app, model);
+    
+    app.addQuitListener(null);
 
     (new PlayerLoadProgressCtrl(app, model)).loadProgress();
 
