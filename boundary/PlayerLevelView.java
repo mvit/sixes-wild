@@ -118,6 +118,8 @@ public class PlayerLevelView extends JPanel {
 
     lblCounterNum = new JLabel("20");
     panelInfo.add(lblCounterNum);
+    
+    update();
   }
   
   public void drawMove(Point curr, Point prev) {
