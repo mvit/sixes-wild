@@ -49,7 +49,7 @@ public class PlayerBoardView extends BoardView {
       g.drawImage(image, x1, y1, null);
     }
 
-    if (multiplier > 1) {
+    if (multiplier > 1 && number < 6) {
       BufferedImage multImage = app.loader.getResource("x" + multiplier +
         ".png");
       if (multImage == null) {
