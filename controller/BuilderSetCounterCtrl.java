@@ -13,11 +13,11 @@ import model.BuilderModel;
 /**
  * @author Cem Unsal
  */
-public class BuilderSetTimerCtrl implements ActionListener {
+public class BuilderSetCounterCtrl implements ActionListener {
   BuilderApplication app;
   BuilderModel model;
 
-  public BuilderSetTimerCtrl(BuilderApplication app, BuilderModel model) {
+  public BuilderSetCounterCtrl(BuilderApplication app, BuilderModel model) {
     this.app = app;
     this.model = model;
   }
