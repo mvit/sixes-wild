@@ -106,14 +106,7 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
     Point point;
     point = identifyPoint(event);
     if (model.playerState == PlayerState.SELECT && point != null) {
-    	 if (point.x < 9 && point.x > -1
-    			 && point.y < 9 && point.y > -1) {
-        	 expandMoveCtrl.expandMove(point);
-    	 }
-    	 else {
-    		 model.playerState = PlayerState.NONE;
-   		     model.move = new Move();
-    	 }
+      expandMoveCtrl.expandMove(point);
     }
   }
 

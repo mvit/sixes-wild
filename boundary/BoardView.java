@@ -82,6 +82,11 @@ public abstract class BoardView extends JPanel {
     int xOffset = (size.width - width + 1) / 2 - 1;
     int yOffset = (size.height - height + 1) / 2 - 1;
 
+    if (mouseX < xOffset || mouseY < yOffset || mouseX > xOffset + width ||
+        mouseY > yOffset + height) {
+      return null;
+    }
+
     // TODO: return null if out of bounds!!!
     return new Point((mouseX - xOffset) * boardWidth / width,
       (mouseY - yOffset) * boardHeight / height);
