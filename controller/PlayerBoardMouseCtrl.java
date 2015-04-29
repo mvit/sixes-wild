@@ -16,7 +16,7 @@ import model.Point;
  * @author Eli Skeggs, Nick Chaput
  */
 
-//TODO: Implement "Swap" special move
+//TODO: Implement "Swap" special move, Add validity checks to basic moves
 public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
 {
   PlayerApplication app;
