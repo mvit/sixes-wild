@@ -35,7 +35,7 @@ public class BuilderModel {
   }
 
   public void clearHistory() {
-    history.removeAll();
+    history.clear();
     history.trimToSize();
   }
 
