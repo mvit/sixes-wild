@@ -20,10 +20,10 @@ public class PlayerPuzzleCtrl implements PlayerVariationCtrl {
   }
 
   public boolean finishMove() {
-	  if(model.counter<=0)
-		  return false;
-	  
-	  model.counter--;
-	  return true;
+    if(model.counter<=0)
+      return false;
+
+    model.counter--;
+    return true;
   }
 }
