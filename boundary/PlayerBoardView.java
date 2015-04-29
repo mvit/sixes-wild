@@ -1,12 +1,10 @@
 package boundary;
 
 import controller.PlayerBoardMouseCtrl;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.Rectangle;
-
 import model.Board;
 import model.Cell;
 import model.PlayerModel;
@@ -154,7 +152,7 @@ public class PlayerBoardView extends BoardView {
       } else if (hasAbove && !hasLeft) {
         g.drawImage(selectedCache[0][1], x1, y1, null);
       } else {
-        // TODO: need different image
+        g.drawImage(selectedCache[1][0], x1, y1, null);
       }
 
       if (!hasRight && !hasAbove) {
@@ -164,7 +162,7 @@ public class PlayerBoardView extends BoardView {
       } else if (hasAbove && !hasRight) {
         g.drawImage(selectedCache[2][1], x1 + rw, y1, null);
       } else {
-        // TODO: need different image
+        g.drawImage(selectedCache[2][1], x1 + rw, y1, null);
       }
 
       if (!hasLeft && !hasBelow) {
@@ -174,7 +172,7 @@ public class PlayerBoardView extends BoardView {
       } else if (hasBelow && !hasLeft) {
         g.drawImage(selectedCache[0][1], x1, y1 + bh, null);
       } else {
-        // TODO: need different image
+        g.drawImage(selectedCache[1][2], x1, y1 + bh, null);
       }
 
       if (!hasRight && !hasBelow) {
@@ -184,7 +182,7 @@ public class PlayerBoardView extends BoardView {
       } else if (hasBelow && !hasRight) {
         g.drawImage(selectedCache[2][1], x1 + rw, y1 + bh, null);
       } else {
-        // TODO: need different image
+        g.drawImage(selectedCache[0][1], x1 + rw, y1 + bh, null);
       }
     }
   }

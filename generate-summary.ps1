@@ -1,0 +1,1 @@
+gci -rec -include *.java | foreach-object { echo $_.FullName; git blame -p $_.FullName | grep -E "^(author|committer) " | sed 's/^[a-z]\+ /  /' | grep -v "Not Committed Yet" | sort | uniq } > summary.txt
