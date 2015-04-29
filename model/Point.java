@@ -19,11 +19,28 @@ public class Point {
     this.y = y;
   }
 
+  /**
+   * Hash code for the point, based on the netbeans recommendation.
+   *
+   * @return The hash code for this point.
+   */
+  @Override
   public int hashCode() {
-    return (new int[] {x, y}).hashCode();
+    return 71 * (497 + x) + y;
   }
 
-  public boolean equals(Point other) {
-    return x == other.x && y == other.y;
+  /**
+   * Check if two points are equal.
+   *
+   * @param other The point to compare against.
+   * @return Whether the points are equal.
+   */
+  @Override
+  public boolean equals(Object other) {
+    if (other instanceof Point) {
+      Point point = (Point) other;
+      return x == point.x && y == point.y;
+    }
+    return false;
   }
 }
