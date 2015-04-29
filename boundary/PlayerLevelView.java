@@ -24,6 +24,9 @@ public class PlayerLevelView extends JPanel {
   PlayerApplication app;
   PlayerModel model;
   public PlayerBoardView boardView;
+  
+  JLabel lblScoreNum;
+  JLabel lblCounterNum;
 
   /**
    * Create a level view for the player application.
@@ -107,13 +110,13 @@ public class PlayerLevelView extends JPanel {
     JLabel lblScore = new JLabel("Score");
     panelInfo.add(lblScore);
 
-    JLabel lblScoreNum = new JLabel("12345");
+    lblScoreNum = new JLabel("12345");
     panelInfo.add(lblScoreNum);
 
     JLabel lblCounter = new JLabel("Moves Left");
     panelInfo.add(lblCounter);
 
-    JLabel lblCounterNum = new JLabel("20");
+    lblCounterNum = new JLabel("20");
     panelInfo.add(lblCounterNum);
   }
   
@@ -133,5 +136,12 @@ public class PlayerLevelView extends JPanel {
 		this.getGraphics().drawImage(blob_blc, x1 , y1 + (blob.getHeight()/3) * 2, null);
 		this.getGraphics().drawImage(blob_trc, x1 + blob_trc.getWidth(), y1, null);
 		this.getGraphics().drawImage(blob_brc, x1 + blob_brc.getWidth(), y1 + (blob.getHeight()/3) * 2, null);
+  }
+  
+  public void update() {
+	  lblScoreNum.setText(Integer.toString(model.score));
+	  lblCounterNum.setText(Integer.toString(model.counter));
+	  this.revalidate();
+	  this.repaint();
   }
 }
