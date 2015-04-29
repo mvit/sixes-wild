@@ -36,6 +36,7 @@ public class BuilderBoardView extends BoardView {
 
     switch (cell.type) {
     case PLAYABLE:
+      // TODO: add multiplier
       String filename = null;
       Color fallback = null;
       if (cell.tile == null) {
