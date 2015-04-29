@@ -117,6 +117,23 @@ public class Board {
   }
 
   /**
+   * 
+   * @param p
+   * @return the closest non-empty tile above the given point
+   */
+  public Tile getTileAbove(Point p) {
+	  if (p.x == 0) {
+		  return new Tile(rules);
+	  }
+	  for (int x = p.x-1; x>=0; x--) {
+		  if (grid[p.y][x].tile != null) {
+			  return grid[p.y][x].tile;
+		  }
+	  }
+	  return new Tile(rules);
+  }
+  
+  /**
    *
    * @param p
    * @return the closest non-empty tile above the given point and sets that tile to empty
@@ -141,7 +158,14 @@ public class Board {
   public void processBoard() {
 	  for (int y = Board.height - 1; y >= 0; y--) {
 		  for (int x = Board.width - 1; x >= 0; x--) {
-			  if (grid[y][x].type != CellType.INERT && grid[y][x].tile == null) {
+			  if (grid[y][x].type != CellType.INERT 
+					  && grid[y][x].type != CellType.BUCKET
+					  && grid[y][x].tile == null) {
+				  grid[y][x].tile = takeTileAbove(new Point(x,y));
+			  }
+			  if (grid[y][x].type == CellType.BUCKET
+					  && getTileAbove(new Point(x,y)).number == 5
+					  && grid[y][x].tile == null) {
 				  grid[y][x].tile = takeTileAbove(new Point(x,y));
 			  }
 		  }
