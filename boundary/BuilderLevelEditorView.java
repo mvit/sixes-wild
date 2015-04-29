@@ -2,6 +2,7 @@ package boundary;
 
 import boundary.BuilderApplication;
 import controller.BuilderMainMenuCtrl;
+import controller.BuilderMultiplierWeightCtrl;
 import controller.BuilderNewLevelCtrl;
 import controller.BuilderNumberWeightCtrl;
 import controller.BuilderOpenLevelCtrl;
@@ -26,6 +27,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JSlider;
+import javax.swing.JTextField;
 
 import model.BuilderModel;
 import model.CellType;
@@ -166,7 +168,21 @@ public class BuilderLevelEditorView extends JPanel {
     panelGame.add(panelSliders);
     panelSliders.setAlignmentY(0);
     panelSliders.setLayout(new BoxLayout(panelSliders, BoxLayout.Y_AXIS));
-
+    
+    
+    JTextField tfCounter = new JTextField();
+    panelSliders.add(tfCounter);
+    JPanel panelThresholds = new JPanel();
+    panelSliders.add(panelThresholds);
+    panelThresholds.setLayout(new BoxLayout(panelThresholds, BoxLayout.X_AXIS));
+    JTextField tfThreshold1 = new JTextField();
+    panelThresholds.add(tfThreshold1);
+    JTextField tfThreshold2 = new JTextField();
+    panelThresholds.add(tfThreshold2);
+    JTextField tfThreshold3 = new JTextField();
+    panelThresholds.add(tfThreshold3);    
+    
+    panelSliders.add(new JLabel("Number Probability"));
     // make the slider panels, styling specific to a given panel can be put in
     // an array, which would then be used in the loop
     for (int i = 0; i < Rules.maxNumber; i++) {
@@ -187,6 +203,27 @@ public class BuilderLevelEditorView extends JPanel {
 
       panelSliders.add(panel);
     }
+    
+    panelSliders.add(new JLabel("Multiplier Probability"));
+    for (int i = 0; i < Rules.maxMultiplier; i++) {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+
+        JLabel label = new JLabel("" + (i + 1));
+        panel.add(label);
+
+        JSlider slider = new JSlider();
+        slider.addChangeListener(new BuilderMultiplierWeightCtrl(app, model, i));
+        slider.setPaintLabels(true);
+        slider.setMajorTickSpacing(20);
+        slider.setMinorTickSpacing(10);
+        slider.setSnapToTicks(true);
+        slider.setPaintTicks(true);
+        panel.add(slider);
+
+        panelSliders.add(panel);
+      }
+    
 
     updateView();
   }
