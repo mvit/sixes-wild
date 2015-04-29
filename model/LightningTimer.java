@@ -3,6 +3,7 @@ package model;
 import java.util.Timer;
 
 import boundary.PlayerApplication;
+import boundary.PlayerLevelView;
 
 /**
  * Timer class for the Lightning variation's countdown.
@@ -14,6 +15,11 @@ public class LightningTimer extends Timer {
   PlayerModel model;
   LightningTimerTask task;
 
+  /**
+   * Creates a new LightningTimer.
+   * @param app
+   * @param model
+   */
   public LightningTimer(PlayerApplication app, PlayerModel model) {
     this.app = app;
     this.model = model;

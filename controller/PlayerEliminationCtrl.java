@@ -35,6 +35,13 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
     }
 
     // TODO: if all required cells are marked, endLevel()
+    for(int i = 0; i<9; i++) {
+    	for(int j = 0; j<9; j++) {
+    		if(!model.level.currentBoard.grid[i][j].marked)
+    			return true;
+    	}
+    }
+    model.level.endLevel();
     return true;
   }
 }
