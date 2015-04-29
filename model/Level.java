@@ -8,6 +8,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 
+import javax.swing.JOptionPane;
+
 /**
  * The Level class.
  *
@@ -134,5 +136,9 @@ public class Level {
   public void discardBoard() {
     currentBoard = null;
     currentScore = 0;
+  }
+  
+  public void endLevel() {
+	  JOptionPane.showMessageDialog(null, "Level Complete!");
   }
 }

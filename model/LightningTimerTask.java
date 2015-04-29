@@ -27,8 +27,8 @@ public class LightningTimerTask extends TimerTask {
     }
 
     if (model.counter == 0) {
-      // TODO: cancel()
-      // TODO: endLevel()
+    	cancel();
+    	model.level.endLevel();
     }
   }
 }
