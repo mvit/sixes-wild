@@ -25,8 +25,9 @@ import model.PlayerModel;
 public class PlayerLevelSelectView extends JPanel {
   PlayerApplication app;
   PlayerModel model;
+  String currentLevel;
 
-  public PlayerLevelSelectView(PlayerApplication app, PlayerModel model) {
+  public PlayerLevelSelectView(PlayerApplication app, PlayerModel model, String currentLevel) {
     this.app = app;
     this.model = model;
 
@@ -55,8 +56,8 @@ public class PlayerLevelSelectView extends JPanel {
     //btnPLayLevel, explanatory
 
     JButton btnPlayLevel = new JButton("Play Level");
+    updatePlayButton(btnPlayLevel);
     panelLevelOptions.add(btnPlayLevel);
-    btnPlayLevel.addActionListener(new PlayerLoadLevelCtrl(app, model));
 
     //debating heavily on this one, holds level info and navigation panel,
     //considering merging level info and gameboard into a single panel instead
@@ -139,5 +140,14 @@ public class PlayerLevelSelectView extends JPanel {
       }
     }
     return content;
+  }
+  
+  private void updatePlayButton(JButton button) {
+	  if(currentLevel == null) {
+		  button.setEnabled(false);
+	  }
+	  else { 
+		  button.addActionListener(new PlayerLoadLevelCtrl(app, model, currentLevel));
+	  }
   }
 }

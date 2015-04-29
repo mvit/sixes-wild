@@ -27,7 +27,7 @@ public class PlayerLoadLevelSelectCtrl implements ActionListener {
   public void loadLevelSelect() {
     // discard the board if we're leaving the PlayerLevelView
     model.discardLevel();
-    app.setView(new PlayerLevelSelectView(app, model));
+    app.setView(new PlayerLevelSelectView(app, model, null));
   }
 
   @Override
