@@ -53,8 +53,8 @@ public class BuilderLevelEditorView extends JPanel {
     this.app = app;
     this.model = model;
 
-    setMinimumSize(new Dimension(600,480));
-    setPreferredSize(new Dimension(600, 480));
+    //setMinimumSize(new Dimension(600,480));
+    //setPreferredSize(new Dimension(600, 480));
     setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
     // contains all top control buttons
@@ -169,9 +169,10 @@ public class BuilderLevelEditorView extends JPanel {
     panelSliders.setAlignmentY(0);
     panelSliders.setLayout(new BoxLayout(panelSliders, BoxLayout.Y_AXIS));
     
-    
+    panelSliders.add(new JLabel("Counter"));
     JTextField tfCounter = new JTextField();
     panelSliders.add(tfCounter);
+    panelSliders.add(new JLabel("Thresholds"));
     JPanel panelThresholds = new JPanel();
     panelSliders.add(panelThresholds);
     panelThresholds.setLayout(new BoxLayout(panelThresholds, BoxLayout.X_AXIS));
