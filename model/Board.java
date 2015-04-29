@@ -115,9 +115,9 @@ public class Board {
       }
     }
   }
-  
+
   /**
-   * 
+   *
    * @param p
    * @return the closest non-empty tile above the given point and sets that tile to empty
    */
@@ -134,13 +134,13 @@ public class Board {
 	  }
 	  return new Tile(rules);
   }
-  
+
   /**
    * Updates the board to make all empty tiles fill from tiles above
    */
   public void processBoard() {
-	  for (int y = 8; y >= 0; y--) {
-		  for (int x = 8; x >= 0; x--) {
+	  for (int y = Board.height - 1; y >= 0; y--) {
+		  for (int x = Board.width - 1; x >= 0; x--) {
 			  if (grid[y][x].type != CellType.INERT && grid[y][x].tile == null) {
 				  grid[y][x].tile = takeTileAbove(new Point(x,y));
 			  }

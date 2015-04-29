@@ -1,6 +1,7 @@
 package controller;
 
 import boundary.PlayerApplication;
+import boundary.PlayerLevelView;
 import model.PlayerModel;
 import model.Point;
 
@@ -22,5 +23,6 @@ public class PlayerExpandMoveCtrl {
    */
   public void expandMove(Point point) {
     model.move.expand(model.level.currentBoard, point);
+    ((PlayerLevelView) app.getView()).boardView.repaint();
   }
 }
