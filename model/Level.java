@@ -10,6 +10,8 @@ import java.nio.charset.StandardCharsets;
 
 import javax.swing.JOptionPane;
 
+import boundary.PlayerEndLevelView;
+
 /**
  * The Level class.
  *
@@ -138,7 +140,4 @@ public class Level {
     currentScore = 0;
   }
   
-  public void endLevel() {
-	  JOptionPane.showMessageDialog(null, "Level Complete!");
-  }
 }

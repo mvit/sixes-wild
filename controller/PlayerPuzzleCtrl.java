@@ -21,9 +21,15 @@ public class PlayerPuzzleCtrl implements PlayerVariationCtrl {
 
   public boolean finishMove() {
     if(model.counter<=0)
-      return false;
+    	return false;
 
     model.counter--;
+    
+    if(model.counter==0) {
+        PlayerEndLevelCtrl end = new PlayerEndLevelCtrl(app, model);
+        end.endLevel();
+        return true;
+    }
     return true;
   }
 }
