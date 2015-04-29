@@ -7,27 +7,21 @@ package model;
  * @author Eli Skeggs, Nick Chaput
  */
 public enum PlayerState {
-  NONE,
-  REMOVE,
+  NONE("NONE"),
+  REMOVE("REMOVE"),
   // if we want an animation or something, this could be the current move to
   // disable user interaction
-  SCRAMBLE,
-  SELECT,
-  SWAP;
+  SCRAMBLE("SCRAMBLE"),
+  SELECT("SELECT"),
+  SWAP("SWAP");
+
+  public final String str;
+
+  private PlayerState(String str) {
+    this.str = str;
+  }
   
   public String toString() {
-	  switch (this) {
-	    case REMOVE:
-	          return "REMOVE";
-	    case SCRAMBLE:
-		      return "SCRAMBLE";
-	    case SELECT:
-		      return "SELECT";
-	    case SWAP:
-	          return "SWAP";
-	    default:
-	    	  return "NONE";
-	      // do nothing!
-	    }
+    return str;
   }
 }
