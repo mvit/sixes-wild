@@ -2,9 +2,12 @@ package controller;
 
 import boundary.PlayerApplication;
 import boundary.PlayerLevelView;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+
+import model.Move;
 import model.PlayerModel;
 import model.PlayerState;
 import model.Point;
@@ -54,14 +57,14 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
     switch (model.playerState) {
     case REMOVE:
       removeCtrl.mouseClicked(point);
-      System.out.println("Remove Click");
+     // System.out.println("Remove Click");
       break;
     case SWAP:
       swapCtrl.mouseClicked(point);
-      System.out.println("Swap Click");
+     // System.out.println("Swap Click");
       break;
     default:
-    	System.out.println("Default Click");
+    //	System.out.println("Default Click");
       // do nothing!
     }
   }
@@ -70,9 +73,13 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
   public void mouseEntered(MouseEvent event) {}
 
   
-  //TODO: Implement so that moves fizzle if mouse leaves boardview ONLY if playerstate == selection
   @Override
-  public void mouseExited(MouseEvent event) {}
+  public void mouseExited(MouseEvent event) {
+	  if (model.playerState == PlayerState.SELECT) {
+		  model.playerState = PlayerState.NONE;
+		  model.move = new Move();
+	  }
+  }
 
   @Override
   public void mousePressed(MouseEvent event) {
@@ -81,9 +88,7 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
         model.playerState == PlayerState.NONE &&
         (point = identifyPoint(event)) != null) {
       startMoveCtrl.startMove(point);
-     //System.out.println("Select Press");
     }
-    //System.out.println("Default Press");
   }
 
   @Override
@@ -93,19 +98,22 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
         model.playerState == PlayerState.SELECT &&
         (point = identifyPoint(event)) != null) {
       finishMoveCtrl.finishMove(point);
-     // System.out.println("Select Release");
     }
-   // System.out.println("Default Release");
   }
 
   @Override
   public void mouseDragged(MouseEvent event) {
     Point point;
     point = identifyPoint(event);
-    System.out.println("Blah: " + point.x + point.y);
     if (model.playerState == PlayerState.SELECT && point != null) {
-    	 System.out.println(model.playerState.toString());
-    	 expandMoveCtrl.expandMove(point);
+    	 if (point.x < 9 && point.x > -1
+    			 && point.y < 9 && point.y > -1) {
+        	 expandMoveCtrl.expandMove(point);
+    	 }
+    	 else {
+    		 model.playerState = PlayerState.NONE;
+   		     model.move = new Move();
+    	 }
     }
   }
 

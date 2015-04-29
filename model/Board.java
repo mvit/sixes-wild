@@ -141,21 +141,10 @@ public class Board {
   public void processBoard() {
 	  for (int y = 8; y >= 0; y--) {
 		  for (int x = 8; x >= 0; x--) {
-			  System.out.println("1" + y + x);
-			  
-			  if (grid[y][x].tile != null) {
-				  System.out.println("Tile Value: " + grid[y][x].tile.number);
-			  }
-			  else {
-				  System.out.println("Tile Value: Null");
-			  }
-			  
 			  if (grid[y][x].type != CellType.INERT && grid[y][x].tile == null) {
 				  grid[y][x].tile = takeTileAbove(new Point(x,y));
 			  }
-			  System.out.println("2" + y + x);
 		  }
-		//  System.out.println("10");
 	  }
   }
 }
