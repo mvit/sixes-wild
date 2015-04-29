@@ -10,6 +10,19 @@ import model.BuilderModel;
 /**
  * The controller to handle altered number weights.
  *
+ * Example probability distributions:
+ *
+ * <pre>
+ * 16.7%, 16.7%, 16.7%, 16.7%, 16.7%, 16.7%
+ * 1,     1,     1,     1,     1,     1     => 6
+ *
+ * 10%,   18%,   18%,   18%,   18%,   18%
+ * 5,     9,     9,     9,     9,     9     => 50
+ *
+ * 10%,   20%,   17.5%, 17.5%, 17.5%, 17.5%
+ * 4,     8,     7,     7,     7,     7     => 40
+ * </pre>
+ *
  * @author Cem Unsal
  */
 public class BuilderNumberWeightCtrl implements ChangeListener {
