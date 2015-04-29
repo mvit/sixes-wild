@@ -35,12 +35,12 @@ public class PlayerFinishMoveCtrl {
         	}
         	model.level.currentBoard.processBoard();
         	app.getView().repaint();
+            updateScore(model.move);
     	}
     }
     else {
 		//I don't know what happens here
 	}
-    updateScore(model.move);
     model.move = new Move();
     //TODO: implement everything else that happens after a move finishes (update score, counter, etc)
   }
