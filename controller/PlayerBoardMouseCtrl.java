@@ -75,7 +75,8 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
     if (model.playerState == PlayerState.SELECT) {
       model.playerState = PlayerState.NONE;
       model.move = new Move();
-      app.getView().repaint();
+      model.counter--;
+      ((PlayerLevelView)app.getView()).update();
     }
   }
 
@@ -86,9 +87,8 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
         model.playerState == PlayerState.NONE &&
         (point = identifyPoint(event)) != null) {
       startMoveCtrl.startMove(point);
-      model.counter--;
-      app.getView().repaint();
     }
+    ((PlayerLevelView)app.getView()).repaint();
   }
 
   @Override
@@ -105,14 +105,16 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
   public void mouseDragged(MouseEvent event) {
     Point point;
     point = identifyPoint(event);
-    if (model.playerState == PlayerState.SELECT && point != null) {
-      expandMoveCtrl.expandMove(point);
-    }
-    else {
-        model.playerState = PlayerState.NONE;
-        model.move = new Move();
-        model.counter--;
-        app.getView().repaint();
+    if (model.playerState == PlayerState.SELECT) {
+      if (point != null) {
+    	expandMoveCtrl.expandMove(point);
+      }
+      else {
+          model.playerState = PlayerState.NONE;
+          model.move = new Move();
+          model.counter--;
+          ((PlayerLevelView)app.getView()).update();
+      }
     }
   }
 
