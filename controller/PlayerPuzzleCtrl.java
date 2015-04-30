@@ -38,6 +38,7 @@ public class PlayerPuzzleCtrl implements PlayerVariationCtrl {
 	    	});
 	        return true;
 	    }
+	    return true;
     }
     return false;
   }
