@@ -122,7 +122,9 @@ public class PlayerProgress implements Iterable<LevelProgress> {
       levels.add(new LevelProgress(level, score));
     } else if (level <= completedLevels) {
       LevelProgress progress = levels.get(level);
-      progress.bestScore = score;
+      if (progress.bestScore < score) {
+        progress.bestScore = score;
+      }
       progress.lastPlayed = new Date();
     } else {
       // HAHA NOPE
