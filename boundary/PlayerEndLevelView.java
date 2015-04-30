@@ -1,6 +1,5 @@
 package boundary;
 
-import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,6 +13,11 @@ import javax.swing.JPanel;
 import controller.PlayerLoadLevelSelectCtrl;
 import model.PlayerModel;
 
+/**
+ * PlayerEndLevelView comes up when a level is completed.
+ * @author Bailey Sheridan
+ *
+ */
 public class PlayerEndLevelView extends JDialog{
 
 	PlayerApplication app;
@@ -22,30 +26,16 @@ public class PlayerEndLevelView extends JDialog{
 	public PlayerEndLevelView(PlayerApplication app, PlayerModel model) {
 		this.app = app;
 		this.model = model;
-        final JFrame f = new JFrame();
-        openDialog(f);
 	}
 	
-    private void openDialog(Frame f)
+    public void openDialog(String endMsg)
     {
-		String endMsg = "You won! Good job.";
-		if(model.score < model.level.rules.scoreThresholds[0])
-			endMsg = "You didn't pass.";
-		else if(model.score < model.level.rules.scoreThresholds[1]) {
-			endMsg += " 1 Star";
-			model.progress.setAchievedScore(1, model.score);
-		}
-		else if(model.score < model.level.rules.scoreThresholds[2]) {
-			endMsg += " 2 Star!";
-			model.progress.setAchievedScore(1, model.score);
-		}
-		else {
-			endMsg += " 3 Star!!";
-			model.progress.setAchievedScore(1, model.score);
-		}
+    	JFrame f = new JFrame();
 		
         final JDialog dialog = new JDialog(app, "Level Finished", true);
         final JButton backBut = new JButton("Level Select");
+        
+        // Ugly, I know. Can be extracted out later if someone really wants to.
         backBut.addActionListener(new ActionListener(){
 
 			@Override
@@ -56,8 +46,10 @@ public class PlayerEndLevelView extends JDialog{
 			}
         	
         });
+        
         JPanel panel = new JPanel();
         panel.add(new JLabel(endMsg));
+        panel.add(new JLabel("Score: " + model.score));
         panel.add(backBut);
         JButton[] buttons = { backBut };
         JOptionPane optionPane = new JOptionPane(panel,
@@ -67,6 +59,7 @@ public class PlayerEndLevelView extends JDialog{
         dialog.getContentPane().add(optionPane);
         dialog.setSize(300,200);
         dialog.setLocationRelativeTo(f);
+        dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         dialog.setVisible(true);
     }
 }

@@ -1,11 +1,14 @@
 package controller;
 
-import javax.swing.JOptionPane;
-
 import model.PlayerModel;
 import boundary.PlayerApplication;
 import boundary.PlayerEndLevelView;
 
+/**
+ * PlayerEndLevelCtrl handles what occurs at the end of a level.
+ * @author Kyra
+ *
+ */
 public class PlayerEndLevelCtrl {
 
 	PlayerApplication app;
@@ -19,9 +22,23 @@ public class PlayerEndLevelCtrl {
 	public void endLevel() {		
 		PlayerEndLevelView endView = new PlayerEndLevelView(app, model);
 		
-		/*JOptionPane jop = new JOptionPane();
-		String[] s = { "Level Select" };
-		jop.setOptions(s);
-		JOptionPane.showMessageDialog(jop, endMsg, "Level Finished", JOptionPane.PLAIN_MESSAGE);*/
+		String endMsg = "You won! Good job! You got ";
+		
+		if(model.score < model.level.rules.scoreThresholds[0])
+			endMsg = "You didn't pass.";
+		else if(model.score < model.level.rules.scoreThresholds[1]) {
+			endMsg += "1 Star";
+			model.progress.setAchievedScore(1, model.score);
+		}
+		else if(model.score < model.level.rules.scoreThresholds[2]) {
+			endMsg += "2 Stars!";
+			model.progress.setAchievedScore(1, model.score);
+		}
+		else {
+			endMsg += "3 Stars!!";
+			model.progress.setAchievedScore(1, model.score);
+		}
+		
+		endView.openDialog(endMsg);
 	}
 }
