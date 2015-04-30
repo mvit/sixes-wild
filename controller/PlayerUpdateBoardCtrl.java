@@ -10,7 +10,7 @@ import boundary.PlayerApplication;
 /**
  * 
  * @author Nick Chaput
- *
+ *TODO: Change calls to paintImmediately() to use actual measurements instead of just a large number (currently 1500)
  */
 
 public class PlayerUpdateBoardCtrl {
