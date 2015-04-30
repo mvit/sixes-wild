@@ -171,25 +171,29 @@ public class BuilderLevelEditorView extends JPanel {
     panelSliders.setAlignmentY(0);
     panelSliders.setLayout(new BoxLayout(panelSliders, BoxLayout.Y_AXIS));
     
+    
+    //Counter
     panelSliders.add(new JLabel("Counter"));
     JTextField tfCounter = new JTextField();
+    tfCounter.setMaximumSize( new Dimension(Integer.MAX_VALUE, tfCounter.getPreferredSize().height));
     panelSliders.add(tfCounter);
     tfCounter.addActionListener(new BuilderSetCounterCtrl (app, model));
+    
+    //Thresholds
     panelSliders.add(new JLabel("Thresholds"));
     JPanel panelThresholds = new JPanel();
     panelSliders.add(panelThresholds);
     panelThresholds.setLayout(new BoxLayout(panelThresholds, BoxLayout.X_AXIS));
-    JTextField tfThreshold1 = new JTextField();
-    panelThresholds.add(tfThreshold1);
-    tfThreshold1.addActionListener(new BuilderSetScoreCtrl (app, model, 0));
-    JTextField tfThreshold2 = new JTextField();
-    panelThresholds.add(tfThreshold2);
-    tfThreshold2.addActionListener(new BuilderSetScoreCtrl (app, model, 1));
-    JTextField tfThreshold3 = new JTextField();
-    panelThresholds.add(tfThreshold3);    
-    tfThreshold3.addActionListener(new BuilderSetScoreCtrl (app, model, 2));
     
-    panelSliders.add(new JLabel("Number Probability"));
+    for (int i = 0; i < 3; i++) {
+    JTextField tfThreshold = new JTextField();
+    tfThreshold.setMaximumSize( new Dimension(Integer.MAX_VALUE, tfThreshold.getPreferredSize().height));
+    panelThresholds.add(tfThreshold);
+    tfThreshold.addActionListener(new BuilderSetScoreCtrl (app, model, i));
+    }
+    
+    //Tile Probabilities
+    panelSliders.add(new JLabel("Tile Probabilities"));
     // make the slider panels, styling specific to a given panel can be put in
     // an array, which would then be used in the loop
     for (int i = 0; i < Rules.maxNumber; i++) {
@@ -210,8 +214,9 @@ public class BuilderLevelEditorView extends JPanel {
 
       panelSliders.add(panel);
     }
-    
+    //Multiplier probabilities
     panelSliders.add(new JLabel("Multiplier Probability"));
+    
     for (int i = 0; i < Rules.maxMultiplier; i++) {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
@@ -226,12 +231,10 @@ public class BuilderLevelEditorView extends JPanel {
         slider.setMinorTickSpacing(10);
         slider.setSnapToTicks(true);
         slider.setPaintTicks(true);
-        slider.addChangeListener(new BuilderMultiplierWeightCtrl(app, model, i));
         panel.add(slider);
 
         panelSliders.add(panel);
       }
-    
 
     updateView();
   }
