@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import controller.PlayerLoadLevelSelectCtrl;
+import controller.PlayerRestartLevelCtrl;
 import model.PlayerModel;
 
 /**
@@ -33,25 +34,37 @@ public class PlayerEndLevelView extends JDialog{
     	JFrame f = new JFrame();
 		
         final JDialog dialog = new JDialog(app, "Level Finished", true);
-        final JButton backBut = new JButton("Level Select");
+        JButton backBut = new JButton("Level Select");
+        JButton retryBut = new JButton("Replay?");
         
         // Ugly, I know. Can be extracted out later if someone really wants to.
         backBut.addActionListener(new ActionListener(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				PlayerLoadLevelSelectCtrl pllsc = new PlayerLoadLevelSelectCtrl(app, model);
-				pllsc.actionPerformed(e);
+				PlayerLoadLevelSelectCtrl load = new PlayerLoadLevelSelectCtrl(app, model);
+				load.actionPerformed(e);
 				dialog.dispose();
 			}
         	
+        });
+        
+        retryBut.addActionListener(new ActionListener(){
+        	
+        	@Override
+        	public void actionPerformed(ActionEvent e) {
+        		PlayerRestartLevelCtrl restart = new PlayerRestartLevelCtrl(app, model);
+        		restart.actionPerformed(e);
+        		dialog.dispose();
+        	}
         });
         
         JPanel panel = new JPanel();
         panel.add(new JLabel(endMsg));
         panel.add(new JLabel("Score: " + model.score));
         panel.add(backBut);
-        JButton[] buttons = { backBut };
+        panel.add(retryBut);
+        JButton[] buttons = { backBut , retryBut };
         JOptionPane optionPane = new JOptionPane(panel,
                                                  JOptionPane.YES_NO_OPTION,
                                                  JOptionPane.PLAIN_MESSAGE,
