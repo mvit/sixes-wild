@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.EventQueue;
+
 import boundary.PlayerApplication;
 import model.PlayerModel;
 import model.Point;
@@ -29,20 +31,40 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
 
     model.counter--;
 
-    // set the cells to marked
-    for (Point point : model.move.points) {
-      model.level.currentBoard.grid[point.x][point.y].marked = true;
+    if(model.move.isValid()) {
+	    // set the cells to marked
+	    for (Point point : model.move.points) {
+	      model.level.currentBoard.grid[point.x][point.y].marked = true;
+	    }
+	
+	    if(model.counter==0) {
+	    	EventQueue.invokeLater(new Runnable() {
+	    		@Override
+	    		public void run() {
+	                PlayerEndLevelCtrl end = new PlayerEndLevelCtrl(app, model);
+	    			end.endLevel();
+	    		}
+	    	});
+	    	return true;
+	    }
+	    
+	    // TODO: if all required cells are marked, endLevel()
+	    for(int i = 0; i<9; i++) {
+	    	for(int j = 0; j<9; j++) {
+	    		if(!model.level.currentBoard.grid[i][j].marked)
+	    			return true;
+	    	}
+	    }
+		EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+	            PlayerEndLevelCtrl end = new PlayerEndLevelCtrl(app, model);
+				end.endLevel();
+			}
+		});
+	    return true;
     }
-
-    // TODO: if all required cells are marked, endLevel()
-    for(int i = 0; i<9; i++) {
-    	for(int j = 0; j<9; j++) {
-    		if(!model.level.currentBoard.grid[i][j].marked)
-    			return true;
-    	}
-    }
-    PlayerEndLevelCtrl end = new PlayerEndLevelCtrl(app, model);
-    end.endLevel();
-    return true;
+    else
+    	return false;
   }
 }

@@ -27,17 +27,13 @@ public class PlayerFinishMoveCtrl {
     model.move.expand(model.level.currentBoard, point);
     PlayerVariationCtrl pVar = model.variation.createCtrl(app, model);
     // TODO: implement variation controllers
-    if (model.move.isValid()) {
-      if (pVar.finishMove()) {
-        updateScore(model.move);
-        for (Point p : model.move.points) {
-          model.level.currentBoard.grid[p.x][p.y].tile = null;
-        }
-        PlayerUpdateBoardCtrl updateBoardCtrl = new PlayerUpdateBoardCtrl(app, model);
-        updateBoardCtrl.processBoardSmooth();
+    if (pVar.finishMove()) {
+      updateScore(model.move);
+      for (Point p : model.move.points) {
+        model.level.currentBoard.grid[p.x][p.y].tile = null;
       }
-    } else {
-      // I don't know what happens here
+      PlayerUpdateBoardCtrl updateBoardCtrl = new PlayerUpdateBoardCtrl(app, model);
+      updateBoardCtrl.processBoardSmooth();
     }
     model.move = new Move();
     // TODO: implement everything else that happens after a move finishes (update score, counter, etc)

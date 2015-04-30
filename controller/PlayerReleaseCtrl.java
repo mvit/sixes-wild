@@ -20,6 +20,15 @@ public class PlayerReleaseCtrl implements PlayerVariationCtrl {
   }
 
   public boolean finishMove() {
-    return true;
+	if(model.counter<= 0)
+		return false;
+	
+	model.counter--;
+	
+	if(model.move.isValid()) {
+		//TODO: Bucket checking 
+		return true;
+	}
+    return false;
   }
 }
