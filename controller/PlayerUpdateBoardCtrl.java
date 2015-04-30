@@ -120,7 +120,7 @@ public class PlayerUpdateBoardCtrl {
 				 }
 				 if (rowChange) {
 					 try {
-					       Thread.sleep(15);
+					       Thread.sleep(10);
 							// app.getView().paintImmediately(0, 0, 500, 500);
 					    } catch (InterruptedException ie) {
 					    }
@@ -128,7 +128,7 @@ public class PlayerUpdateBoardCtrl {
 			 }
 			 if (passChange) {
 				 try {
-				       Thread.sleep(15);
+				       Thread.sleep(0);
 						// app.getView().paintImmediately(0, 0, 500, 500);
 				    } catch (InterruptedException ie) {
 				    }
