@@ -89,6 +89,7 @@ public class PlayerApplication extends JFrame {
     
     loader.addResource("playable.png");
     loader.addResource("selected.png");
+    loader.addResource("marked.png");
 
     // start splash screen
     SplashScreen splash;
