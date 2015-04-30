@@ -27,7 +27,7 @@ public class PlayerUpdateBoardCtrl {
 		  for (int x = Board.width - 1; x >= 0; x--) {
 			 /* try {
 			       Thread.sleep(15);
-					// app.getView().paintImmediately(0, 0, 500, 500);
+					// app.getView().paintImmediately(0, 0, 1500, 1500);
 			    } catch (InterruptedException ie) {
 			    }*/
 			  boolean hasEmpty = false;
@@ -39,7 +39,7 @@ public class PlayerUpdateBoardCtrl {
 					  hasEmpty = true;
 					    try {
 						       Thread.sleep(10);
-								 app.getView().paintImmediately(0, 0, 500, 500);
+								 app.getView().paintImmediately(0, 0, 1500, 1500);
 						    } catch (InterruptedException ie) {
 						    }
 				  }
@@ -50,7 +50,7 @@ public class PlayerUpdateBoardCtrl {
 					  hasEmpty = true;
 					    try {
 						       Thread.sleep(10);
-								 app.getView().paintImmediately(0, 0, 500, 500);
+								 app.getView().paintImmediately(0, 0, 1500, 1500);
 						    } catch (InterruptedException ie) {
 						    }
 				  }
@@ -58,7 +58,7 @@ public class PlayerUpdateBoardCtrl {
 			  if (hasEmpty) {
 				  try {
 				       Thread.sleep(70);
-						// app.getView().paintImmediately(0, 0, 500, 500);
+						// app.getView().paintImmediately(0, 0, 1500, 1500);
 				    } catch (InterruptedException ie) {
 				    }
 			  }
@@ -81,7 +81,7 @@ public class PlayerUpdateBoardCtrl {
 							 rowChange = true;
 							 try {
 							       Thread.sleep(10);
-									 app.getView().paintImmediately(0, 0, 500, 500);
+									 app.getView().paintImmediately(0, 0, 1500, 1500);
 							    } catch (InterruptedException ie) {
 							    }
 						 }
@@ -99,7 +99,7 @@ public class PlayerUpdateBoardCtrl {
 							 rowChange = true;
 							 try {
 							       Thread.sleep(10);
-									 app.getView().paintImmediately(0, 0, 500, 500);
+									 app.getView().paintImmediately(0, 0, 1500, 1500);
 							    } catch (InterruptedException ie) {
 							    }
 						 }
@@ -112,7 +112,7 @@ public class PlayerUpdateBoardCtrl {
 							 rowChange = true;
 							 try {
 							       Thread.sleep(10);
-									 app.getView().paintImmediately(0, 0, 500, 500);
+									 app.getView().paintImmediately(0, 0, 1500, 1500);
 							    } catch (InterruptedException ie) {
 							    }
 						 }
@@ -121,7 +121,7 @@ public class PlayerUpdateBoardCtrl {
 				 if (rowChange) {
 					 try {
 					       Thread.sleep(10);
-							// app.getView().paintImmediately(0, 0, 500, 500);
+							// app.getView().paintImmediately(0, 0, 1500, 1500);
 					    } catch (InterruptedException ie) {
 					    }
 				 }
@@ -129,7 +129,7 @@ public class PlayerUpdateBoardCtrl {
 			 if (passChange) {
 				 try {
 				       Thread.sleep(0);
-						// app.getView().paintImmediately(0, 0, 500, 500);
+						// app.getView().paintImmediately(0, 0, 1500, 1500);
 				    } catch (InterruptedException ie) {
 				    }
 			 }
