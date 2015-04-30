@@ -27,19 +27,19 @@ public class PlayerPuzzleCtrl implements PlayerVariationCtrl {
 
     model.counter--;
     
-    if(model.move.isValid()) {
-	    if(model.counter==0) {
-	    	EventQueue.invokeLater(new Runnable() {
-				@Override
-				public void run() {
-		            PlayerEndLevelCtrl end = new PlayerEndLevelCtrl(app, model);
-					end.endLevel();
-				}
-	    	});
-	        return true;
-	    }
-	    return true;
+    if(model.counter==0) {
+    	EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+	            PlayerEndLevelCtrl end = new PlayerEndLevelCtrl(app, model);
+				end.endLevel();
+			}
+    	});
     }
+    
+    if(model.move.isValid())
+	    return true;
+    
     return false;
   }
 }

@@ -39,6 +39,7 @@ public class PlayerFinishMoveCtrl {
     // TODO: implement everything else that happens after a move finishes (update score, counter, etc)
 
     app.getView().repaint();
+    ((PlayerLevelView) app.getView()).update();
   }
 
   public int updateScore(Move move) {
