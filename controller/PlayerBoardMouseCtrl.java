@@ -86,6 +86,7 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
         model.playerState == PlayerState.NONE &&
         (point = identifyPoint(event)) != null) {
       startMoveCtrl.startMove(point);
+      model.counter--;
       app.getView().repaint();
     }
   }
@@ -106,6 +107,12 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
     point = identifyPoint(event);
     if (model.playerState == PlayerState.SELECT && point != null) {
       expandMoveCtrl.expandMove(point);
+    }
+    else {
+        model.playerState = PlayerState.NONE;
+        model.move = new Move();
+        model.counter--;
+        app.getView().repaint();
     }
   }
 
