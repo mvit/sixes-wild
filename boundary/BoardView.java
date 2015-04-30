@@ -91,9 +91,9 @@ public abstract class BoardView extends JPanel {
       return null;
     }
 
-    // the Math.min handles the edges of the bottom cells
-    return new Point(Math.min((mouseX - xOffset) / cellSize, boardWidth),
-      Math.min((mouseY - yOffset) / cellSize, boardHeight));
+    // the Math.min handles the bottom and right edges of the board
+    return new Point(Math.min((mouseX - xOffset) / cellSize, boardWidth - 1),
+      Math.min((mouseY - yOffset) / cellSize, boardHeight - 1));
   }
 
   /**
