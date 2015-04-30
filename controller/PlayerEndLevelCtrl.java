@@ -12,7 +12,7 @@ import boundary.PlayerEndLevelView;
 
 /**
  * PlayerEndLevelCtrl handles what occurs at the end of a level.
- * @author Kyra
+ * @author Bailey Sheridan
  *
  */
 public class PlayerEndLevelCtrl {
@@ -22,16 +22,25 @@ public class PlayerEndLevelCtrl {
 	public static final File progressfile = new File("resource/progress/progress");
 	public static final File progressdir = new File("resource/progress");
 	
+	/**
+	 * Creates a new PlayerEndLevelCtrl.
+	 * @param app
+	 * @param model
+	 */
 	public PlayerEndLevelCtrl(PlayerApplication app, PlayerModel model) {
 		this.app = app;
 		this.model = model;
 	}
 	
+	/**
+	 * Ends the level via pop-up window.
+	 */
 	public void endLevel() {		
 		PlayerEndLevelView endView = new PlayerEndLevelView(app, model);
 		
 		String endMsg = "You won! Good job! You got ";
 		
+		// Sets end message.
 		if(model.score < model.level.rules.scoreThresholds[0])
 			endMsg = "You didn't pass.";
 		else if(model.score < model.level.rules.scoreThresholds[1]) {
@@ -47,6 +56,7 @@ public class PlayerEndLevelCtrl {
 			model.progress.setAchievedScore(1, model.score);
 		}
 		
+		// Writes progress to file.
 		if (!progressdir.mkdirs() && !progressdir.isDirectory()) {
 		      System.err.println("Unable to create the appropriate directory structure,"
 		        + "your progress will not be saved");

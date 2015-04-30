@@ -15,6 +15,11 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
   PlayerApplication app;
   PlayerModel model;
 
+  /**
+   * Creates a new PlayerEliminationCtrl.
+   * @param app
+   * @param model
+   */
   public PlayerEliminationCtrl(PlayerApplication app, PlayerModel model) {
     this.app = app;
     this.model = model;
