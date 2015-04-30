@@ -3,6 +3,7 @@ package controller;
 import boundary.PlayerApplication;
 import boundary.PlayerLevelView;
 
+import java.awt.EventQueue;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -75,7 +76,18 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
     if (model.playerState == PlayerState.SELECT) {
       model.playerState = PlayerState.NONE;
       model.move = new Move();
-      model.counter--;
+      if(model.counter>0)
+    	  model.counter--;
+      // ends the level from here
+      if(model.counter==0) {
+      	EventQueue.invokeLater(new Runnable() {
+  			@Override
+  			public void run() {
+  	            PlayerEndLevelCtrl end = new PlayerEndLevelCtrl(app, model);
+  				end.endLevel();
+  			}
+      	});
+      }
       ((PlayerLevelView)app.getView()).update();
     }
   }
@@ -112,7 +124,18 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
       else {
           model.playerState = PlayerState.NONE;
           model.move = new Move();
-          model.counter--;
+          if(model.counter>0)
+        	  model.counter--;
+          // ends the level from here
+          if(model.counter==0) {
+          	EventQueue.invokeLater(new Runnable() {
+      			@Override
+      			public void run() {
+      	            PlayerEndLevelCtrl end = new PlayerEndLevelCtrl(app, model);
+      				end.endLevel();
+      			}
+          	});
+          }
           ((PlayerLevelView)app.getView()).update();
       }
     }

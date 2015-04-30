@@ -1,6 +1,12 @@
 package controller;
 
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import model.PlayerModel;
+import model.PlayerProgress;
 import boundary.PlayerApplication;
 import boundary.PlayerEndLevelView;
 
@@ -13,6 +19,8 @@ public class PlayerEndLevelCtrl {
 
 	PlayerApplication app;
 	PlayerModel model;
+	public static final File progressfile = new File("resource/progress/progress");
+	public static final File progressdir = new File("resource/progress");
 	
 	public PlayerEndLevelCtrl(PlayerApplication app, PlayerModel model) {
 		this.app = app;
@@ -38,6 +46,22 @@ public class PlayerEndLevelCtrl {
 			endMsg += "3 Stars!!";
 			model.progress.setAchievedScore(1, model.score);
 		}
+		
+		if (!progressdir.mkdirs() && !progressdir.isDirectory()) {
+		      System.err.println("Unable to create the appropriate directory structure,"
+		        + "your progress will not be saved");
+		      return;
+		    }
+
+		    if (!progressfile.isFile()) {
+		      model.progress = new PlayerProgress();
+		      try {
+		        model.progress.write(new DataOutputStream(new FileOutputStream(
+		          progressfile)));
+		      } catch (IOException err) {
+		        System.err.println("Unable to save progress");
+		      }
+		    }
 		
 		endView.openDialog(endMsg);
 	}
