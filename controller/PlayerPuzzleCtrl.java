@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.EventQueue;
+
 import boundary.PlayerApplication;
 import model.PlayerModel;
 
@@ -26,8 +28,13 @@ public class PlayerPuzzleCtrl implements PlayerVariationCtrl {
     model.counter--;
     
     if(model.counter==0) {
-        PlayerEndLevelCtrl end = new PlayerEndLevelCtrl(app, model);
-        end.endLevel();
+    	EventQueue.invokeLater(new Runnable() {
+			@Override
+			public void run() {
+	            PlayerEndLevelCtrl end = new PlayerEndLevelCtrl(app, model);
+				end.endLevel();
+			}
+    	});
         return true;
     }
     return true;

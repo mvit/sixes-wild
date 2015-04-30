@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.EventQueue;
+
 import boundary.PlayerApplication;
 import model.PlayerModel;
 import model.Point;
@@ -34,6 +36,17 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
       model.level.currentBoard.grid[point.x][point.y].marked = true;
     }
 
+    if(model.counter==0) {
+    	EventQueue.invokeLater(new Runnable() {
+    		@Override
+    		public void run() {
+                PlayerEndLevelCtrl end = new PlayerEndLevelCtrl(app, model);
+    			end.endLevel();
+    		}
+    	});
+    	return true;
+    }
+    
     // TODO: if all required cells are marked, endLevel()
     for(int i = 0; i<9; i++) {
     	for(int j = 0; j<9; j++) {
@@ -41,8 +54,13 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
     			return true;
     	}
     }
-    PlayerEndLevelCtrl end = new PlayerEndLevelCtrl(app, model);
-    end.endLevel();
+	EventQueue.invokeLater(new Runnable() {
+		@Override
+		public void run() {
+            PlayerEndLevelCtrl end = new PlayerEndLevelCtrl(app, model);
+			end.endLevel();
+		}
+	});
     return true;
   }
 }

@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.EventQueue;
 import java.util.TimerTask;
 
 import controller.PlayerEndLevelCtrl;
@@ -31,8 +32,13 @@ public class LightningTimerTask extends TimerTask {
 
     if (model.counter == 0) {
     	cancel();
-        PlayerEndLevelCtrl end = new PlayerEndLevelCtrl(app, model);
-        end.endLevel();
+    	EventQueue.invokeLater(new Runnable() {
+    		@Override
+    		public void run() {
+                PlayerEndLevelCtrl end = new PlayerEndLevelCtrl(app, model);
+    			end.endLevel();
+    		}
+    	});
     }
   }
 }
