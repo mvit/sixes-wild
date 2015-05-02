@@ -18,50 +18,42 @@ public class PlayerPuzzleCtrl implements PlayerVariationCtrl {
   }
 
   public boolean specialMove() {
-	model.counter--;
+    model.counter--;
     return false;
   }
 
   public boolean finishMove() {
-    if(model.counter<=0)
-    	return false;
+    if (model.counter <= 0) {
+      return false;
+    }
 
     model.counter--;
-    
-    if(model.counter==0) {
-    	EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-	            PlayerEndLevelCtrl end = new PlayerEndLevelCtrl(app, model);
-				end.endLevel();
-			}
-    	});
+
+    if (model.counter == 0) {
+      EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model));
     }
-    
-    if(model.move.isValid())
-	    return true;
-    
-    return false;
+
+    return model.move.isValid();
   }
 
   @Override
   public boolean remove() {
-	  // TODO Auto-generated method stub
-	  specialMove();
-	  return false;
+    // TODO: implement
+    specialMove();
+    return false;
   }
 
   @Override
   public boolean scramble() {
-	  // TODO Auto-generated method stub
-	  specialMove();
-	  return false;
+    // TODO: implement
+    specialMove();
+    return false;
   }
 
   @Override
   public boolean swap() {
-	  // TODO Auto-generated method stub
-	  specialMove();
-	  return false;
+    // TODO: implement
+    specialMove();
+    return false;
   }
 }

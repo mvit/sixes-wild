@@ -17,7 +17,7 @@ public class LightningTimerTask extends TimerTask {
   PlayerModel model;
 
   public LightningTimerTask(PlayerApplication app, PlayerModel model){
-	this.app = app;
+    this.app = app;
     this.model = model;
   }
 
@@ -31,15 +31,10 @@ public class LightningTimerTask extends TimerTask {
       ((PlayerLevelView) app.getView()).update();
     }
 
+    // TODO: ensure we don't queue multiple endLevel invocations
     if (model.counter == 0) {
-    	cancel();
-    	EventQueue.invokeLater(new Runnable() {
-    		@Override
-    		public void run() {
-                PlayerEndLevelCtrl end = new PlayerEndLevelCtrl(app, model);
-    			end.endLevel();
-    		}
-    	});
+      cancel();
+      EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model));
     }
   }
 }

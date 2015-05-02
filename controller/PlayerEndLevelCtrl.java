@@ -14,7 +14,7 @@ import boundary.PlayerEndLevelView;
  *
  * @author Bailey Sheridan, and Eli Skeggs
  */
-public class PlayerEndLevelCtrl {
+public class PlayerEndLevelCtrl implements Runnable {
   PlayerApplication app;
   PlayerModel model;
   public static final File progressfile = PlayerLoadProgressCtrl.progressfile;
@@ -76,5 +76,13 @@ public class PlayerEndLevelCtrl {
     model.progress.setAchievedScore(model.levelnum, model.score);
 
     endView.openDialog(endMsg);
+  }
+
+  /**
+   * Allow this to be deferred, calls endLevel.
+   */
+  @Override
+  public void run() {
+    endLevel();
   }
 }

@@ -25,15 +25,6 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
     this.model = model;
   }
 
-  protected Runnable endLevelCtrl() {
-    return new Runnable() {
-      @Override
-      public void run() {
-        (new PlayerEndLevelCtrl(app, model)).endLevel();
-      }
-    };
-  }
-
   public boolean specialMove() {
     model.counter--;
     return false;
@@ -47,7 +38,7 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
     model.counter--;
 
     if (model.counter == 0) {
-      EventQueue.invokeLater(endLevelCtrl());
+      EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model));
     }
 
     if (model.move.isValid()) {
@@ -63,7 +54,7 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
           }
         }
       }
-      EventQueue.invokeLater(endLevelCtrl());
+      EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model));
       return true;
     }
 
