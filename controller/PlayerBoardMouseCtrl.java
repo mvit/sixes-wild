@@ -55,12 +55,14 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
       return;
     }
 
+    System.out.println("BoardCtrl " + model.playerState.toString());
+
     switch (model.playerState) {
     case REMOVE:
       removeCtrl.mouseClicked(point);
       break;
     case SWAP:
-      swapCtrl.mouseClicked(point);
+      swapCtrl.swapInitiated(point);
       break;
     default:
       // do nothing!

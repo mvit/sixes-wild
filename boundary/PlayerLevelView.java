@@ -2,6 +2,7 @@ package boundary;
 
 import controller.PlayerRestartLevelCtrl;
 import controller.PlayerScrambleCtrl;
+import controller.PlayerSwapCtrl;
 
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
@@ -67,6 +68,7 @@ public class PlayerLevelView extends JPanel {
     panelControls.setLayout(new BoxLayout(panelControls, BoxLayout.Y_AXIS));
 
     JButton btnSwap = new JButton("\u2194");
+    btnSwap.addActionListener(new PlayerSwapCtrl(app, model));
     panelControls.add(btnSwap);
 
     JButton btnRemove = new JButton("\u2718");

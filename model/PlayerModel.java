@@ -7,7 +7,7 @@ package model;
  */
 public class PlayerModel {
   public Level level = null;
-  public Move move = null;
+  public Move move = new Move();
   public int counter = 0;
   public int score = 0;
   public int levelnum;
