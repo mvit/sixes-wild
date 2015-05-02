@@ -131,12 +131,12 @@ public class PlayerBoardView extends BoardView {
       }
     }
 
-    if(cell.marked) {
-    	BufferedImage markedImage = app.loader.getResource("marked.png");
-    	markedImage = ScaleImage.scaleImage(markedImage, x2 - x1, y2 - y1);
+    if (cell.marked) {
+      BufferedImage markedImage = app.loader.getResource("marked.png");
+      markedImage = ScaleImage.scaleImage(markedImage, x2 - x1, y2 - y1);
         g.drawImage(markedImage, x1, y1, null);
     }
-    
+
     Point tmp = new Point(x, y);
     if (model.move != null && model.move.points.contains(tmp) && model.playerState != PlayerState.NONE) {
       int width = x2 - x1, height = y2 - y1;
