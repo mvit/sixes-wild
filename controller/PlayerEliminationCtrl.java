@@ -25,8 +25,17 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
     this.model = model;
   }
 
+  protected Runnable endLevelCtrl() {
+    return new Runnable() {
+      @Override
+      public void run() {
+        (new PlayerEndLevelCtrl(app, model)).endLevel();
+      }
+    };
+  }
+
   public boolean specialMove() {
-	  model.counter--;
+    model.counter--;
     return false;
   }
 
@@ -37,59 +46,48 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
 
     model.counter--;
 
-    if(model.counter==0) {
-    	EventQueue.invokeLater(new Runnable() {
-    		@Override
-    		public void run() {
-                PlayerEndLevelCtrl end = new PlayerEndLevelCtrl(app, model);
-    			end.endLevel();
-    		}
-    	});
+    if (model.counter == 0) {
+      EventQueue.invokeLater(endLevelCtrl());
     }
-    
-    if(model.move.isValid()) {
-	    // set the cells to marked
-	    for (Point point : model.move.points) {
-	      model.level.currentBoard.grid[point.x][point.y].marked = true;
-	    }
-	    
-	    for(int i = 0; i<9; i++) {
-	    	for(int j = 0; j<9; j++) {
-	    		if(!model.level.currentBoard.grid[i][j].marked)
-	    			return true;
-	    	}
-	    }
-		EventQueue.invokeLater(new Runnable() {
-			@Override
-			public void run() {
-	            PlayerEndLevelCtrl end = new PlayerEndLevelCtrl(app, model);
-				end.endLevel();
-			}
-		});
-	    return true;
+
+    if (model.move.isValid()) {
+      // set the cells to marked
+      for (Point point : model.move.points) {
+        model.level.currentBoard.grid[point.x][point.y].marked = true;
+      }
+
+      for (int i = 0; i < 9; i++) {
+        for (int j = 0; j < 9; j++) {
+          if (!model.level.currentBoard.grid[i][j].marked) {
+            return true;
+          }
+        }
+      }
+      EventQueue.invokeLater(endLevelCtrl());
+      return true;
     }
-    else
-    	return false;
+
+    return false;
   }
 
   @Override
   public boolean remove() {
-	  // TODO Auto-generated method stub
-	  specialMove();
-	  return false;
+    // TODO: implement
+    specialMove();
+    return false;
   }
 
   @Override
   public boolean scramble() {
-	  // TODO Auto-generated method stub
-	  specialMove();
-	  return false;
+    // TODO: implement
+    specialMove();
+    return false;
   }
 
   @Override
   public boolean swap() {
-	  // TODO Auto-generated method stub
-	  specialMove();
-	  return false;
+    // TODO: implement
+    specialMove();
+    return false;
   }
 }
