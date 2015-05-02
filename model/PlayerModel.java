@@ -10,7 +10,7 @@ public class PlayerModel {
   public Move move = new Move();
   public int counter = 0;
   public int score = 0;
-  public int levelnum;
+  public int levelnum = 0;
 
   public Variation variation = null;
   public PlayerState playerState = PlayerState.NONE;
