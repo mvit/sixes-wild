@@ -23,10 +23,13 @@ public class PlayerLightningCtrl implements PlayerVariationCtrl {
   }
 
   public boolean finishMove() {
-	if(model.move.isValid()) {
-		//TODO: Bucket checking 
-		return true;
+	if (model.counter <= 0) {
+	    return false;
 	}
+	
+	if(model.move.isValid())
+		return true;
+	
     return false;
   }
 

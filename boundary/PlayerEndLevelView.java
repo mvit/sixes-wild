@@ -10,9 +10,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import controller.LightningTimer;
 import controller.PlayerLoadLevelSelectCtrl;
 import controller.PlayerRestartLevelCtrl;
 import model.PlayerModel;
+import model.Variation;
 
 /**
  * PlayerEndLevelView comes up when a level is completed.
@@ -23,6 +25,7 @@ public class PlayerEndLevelView extends JDialog{
 
 	PlayerApplication app;
 	PlayerModel model;
+	LightningTimer timer;
 	
 	public PlayerEndLevelView(PlayerApplication app, PlayerModel model) {
 		this.app = app;
@@ -55,6 +58,8 @@ public class PlayerEndLevelView extends JDialog{
         	public void actionPerformed(ActionEvent e) {
         		PlayerRestartLevelCtrl restart = new PlayerRestartLevelCtrl(app, model);
         		restart.actionPerformed(e);
+        	    if(model.level.rules.variation == Variation.LIGHTNING)
+        	    	timer = new LightningTimer(app, model);
         		dialog.dispose();
         	}
         });

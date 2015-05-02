@@ -17,6 +17,7 @@ public class LightningTimerTask extends TimerTask {
   PlayerModel model;
 
   public LightningTimerTask(PlayerApplication app, PlayerModel model){
+	this.app = app;
     this.model = model;
   }
 

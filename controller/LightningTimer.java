@@ -24,6 +24,6 @@ public class LightningTimer extends Timer {
     this.app = app;
     this.model = model;
     task = new LightningTimerTask(app, model);
-    schedule(task, 1000); // counts down every second
+    schedule(task, 1000, 1000); // counts down every second
   }
 }

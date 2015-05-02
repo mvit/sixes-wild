@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 
 import model.Level;
 import model.PlayerModel;
+import model.Variation;
 
 import java.io.DataInputStream;
 import java.io.FileInputStream;
@@ -45,9 +46,10 @@ public class PlayerLoadLevelCtrl implements ActionListener {
 		  return;
 	  }
     model.realizeLevel();
-    if(model.level.rules.variation.equals("Lightning"))
-    	timer = new LightningTimer(app, model);
     app.setView(new PlayerLevelView(new PlayerMainMenuCtrl(app, model), app, model));
+    if(model.level.rules.variation == Variation.LIGHTNING) {
+    	timer = new LightningTimer(app, model);
+    }
   }
 
   @Override
