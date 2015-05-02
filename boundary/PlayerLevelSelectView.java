@@ -31,12 +31,23 @@ public class PlayerLevelSelectView extends JPanel {
   PlayerApplication app;
   PlayerModel model;
   String currentLevel;
+  
+  int score;
+  String variation = "";
+  
   public PlayerPreviewBoardView boardView;
 
   public PlayerLevelSelectView(PlayerApplication app, PlayerModel model, String currentLevel) {
     this.app = app;
     this.model = model;
     this.currentLevel = currentLevel;
+    
+    if(currentLevel != null) {
+    	variation = model.level.rules.variation.toString();
+        LevelProgress progress = model.progress.getLevelProgress(Integer.parseInt(currentLevel));
+        if (progress!= null) score = progress.getScore();
+        else score = 0;
+    }
 
     setMinimumSize(new Dimension(800,600));
     setPreferredSize(new Dimension(800, 600));
@@ -98,10 +109,10 @@ public class PlayerLevelSelectView extends JPanel {
     panelLevelInfo.add(lblLevel);
     lblLevel.setHorizontalAlignment(SwingConstants.CENTER);
 
-    JLabel lblType = new JLabel("Type: ");
+    JLabel lblType = new JLabel("Type: " + variation);
     panelLevelInfo.add(lblType);
 
-    JLabel lblScore = new JLabel("Score: ");
+    JLabel lblScore = new JLabel("Score: " + score);
     panelLevelInfo.add(lblScore);
 
     panelTopContent.add(panelLevelInfo);
