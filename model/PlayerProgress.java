@@ -103,7 +103,7 @@ public class PlayerProgress implements Iterable<LevelProgress> {
    * @return The LevelProgress instance.
    */
   public LevelProgress getLevelProgress(int level) {
-    return level < levels.size() ? levels.get(level) : null;
+    return level < levels.size() ? levels.get(level-1) : null;
   }
 
   /**
@@ -118,10 +118,10 @@ public class PlayerProgress implements Iterable<LevelProgress> {
    */
   public void setAchievedScore(int level, int score) {
     int completedLevels = levels.size();
-    if (level == completedLevels) {
+    if (level == completedLevels + 1) {
       levels.add(new LevelProgress(level, score));
-    } else if (level < completedLevels) {
-      LevelProgress progress = levels.get(level);
+    } else if (level <= completedLevels) {
+      LevelProgress progress = levels.get(level-1);
       if (progress.bestScore < score) {
         progress.bestScore = score;
       }
