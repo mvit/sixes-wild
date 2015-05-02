@@ -149,7 +149,7 @@ public class PlayerLevelSelectView extends JPanel {
         	selectButton.addActionListener(new PlayerLevelSelectionCtrl(app, model, name));
         	selectButton.setEnabled(true);
             if (model.progress.getLevelProgress(Integer.parseInt(name)) != null) {
-            	selectButton.setText(name + "<br>" + model.progress.getLevelProgress(Integer.parseInt(name)).getScore());
+            	selectButton.setText("<html>" + name + "<br>" + "Score: " + model.progress.getLevelProgress(Integer.parseInt(name)).getScore() + "</html>");
             }
         }
         panelLevel.add(selectButton);
