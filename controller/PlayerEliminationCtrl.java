@@ -9,7 +9,7 @@ import model.Point;
 /**
  * Controller for the Elimination variation.
  *
- * @author Bailey Sheridan
+ * @author Bailey Sheridan, Nick Chaput
  */
 public class PlayerEliminationCtrl implements PlayerVariationCtrl {
   PlayerApplication app;
@@ -26,6 +26,7 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
   }
 
   public boolean specialMove() {
+	  model.counter--;
     return false;
   }
 

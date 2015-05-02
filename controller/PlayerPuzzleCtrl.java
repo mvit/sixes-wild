@@ -18,6 +18,7 @@ public class PlayerPuzzleCtrl implements PlayerVariationCtrl {
   }
 
   public boolean specialMove() {
+	model.counter--;
     return false;
   }
 

@@ -59,6 +59,7 @@ public class PlayerScrambleCtrl implements ActionListener {
 			  }
 		  }
 	  }
+	  model.variation.createCtrl(app, model).specialMove();
 	  app.getView().repaint();
   }
 }

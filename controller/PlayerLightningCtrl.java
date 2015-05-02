@@ -7,7 +7,7 @@ import model.PlayerModel;
 /**
  * Controller for the Lightning variation.
  *
- * @author Bailey Sheridan
+ * @author Bailey Sheridan, Nick Chaput
  */
 public class PlayerLightningCtrl implements PlayerVariationCtrl {
   PlayerApplication app;
@@ -22,6 +22,7 @@ public class PlayerLightningCtrl implements PlayerVariationCtrl {
   }
 
   public boolean specialMove() {
+	  model.counter--;
     return false;
   }
 
