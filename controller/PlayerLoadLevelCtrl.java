@@ -45,6 +45,7 @@ public class PlayerLoadLevelCtrl implements ActionListener {
 	  catch (IOException e) {
 		  return;
 	  }
+	model.levelnum = Integer.parseInt(fname, 10);
     model.realizeLevel();
     app.setView(new PlayerLevelView(new PlayerMainMenuCtrl(app, model), app, model));
     if(model.level.rules.variation == Variation.LIGHTNING) {

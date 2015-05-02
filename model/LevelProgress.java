@@ -15,7 +15,7 @@ public class LevelProgress {
   int level, bestScore;
 
   /**
-   * Create a new LevelProgress for a given level and a given acheived score,
+   * Create a new LevelProgress for a given level and a given achieved score,
    * assumes this progress occurred at the current time.
    *
    * @param level
@@ -47,5 +47,9 @@ public class LevelProgress {
   public void write(DataOutputStream out) throws IOException {
     out.writeLong(lastPlayed.getTime());
     out.writeInt(bestScore);
+  }
+  
+  public int getScore() {
+	  return bestScore;
   }
 }
