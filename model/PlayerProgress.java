@@ -88,15 +88,6 @@ public class PlayerProgress implements Iterable<LevelProgress> {
   }
 
   /**
-   * Get the number of unlocked levels.
-   *
-   * @return The number of unlocked levels.
-   */
-  public int unlockedLevels() {
-    return levels.size() + 1;
-  }
-
-  /**
    * Get the LevelProgress instance corresponding to the given level number.
    *
    * @param level The level to get progress for.

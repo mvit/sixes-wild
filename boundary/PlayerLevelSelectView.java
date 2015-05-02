@@ -155,7 +155,7 @@ public class PlayerLevelSelectView extends JPanel {
         JPanel panelLevel = new JPanel();
         JButton selectButton = new JButton(name);
 
-        if (model.progress.unlockedLevels() > levelNumber) {
+        if (model.progress.completedLevels() >= levelNumber) {
           LevelProgress progress = model.progress.getLevelProgress(levelNumber);
           selectButton.addActionListener(new PlayerLevelSelectionCtrl(app,
             model, name));
