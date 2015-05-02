@@ -1,7 +1,6 @@
 package controller;
 
 import boundary.PlayerApplication;
-import model.LightningTimer;
 import model.PlayerModel;
 
 /**

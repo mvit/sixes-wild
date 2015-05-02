@@ -14,11 +14,12 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 /**
- * @author Eli Skeggs and Maurizio Vitale
+ * @author Eli Skeggs, Maurizio Vitale and Bailey Sheridan
  */
 public class PlayerLoadLevelCtrl implements ActionListener {
   PlayerApplication app;
   PlayerModel model;
+  LightningTimer timer;
   String filename;
 
   /**
@@ -44,6 +45,8 @@ public class PlayerLoadLevelCtrl implements ActionListener {
 		  return;
 	  }
     model.realizeLevel();
+    if(model.level.rules.variation.equals("Lightning"))
+    	timer = new LightningTimer(app, model);
     app.setView(new PlayerLevelView(new PlayerMainMenuCtrl(app, model), app, model));
   }
 

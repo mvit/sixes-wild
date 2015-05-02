@@ -1,7 +1,8 @@
-package model;
+package controller;
 
 import java.util.Timer;
 
+import model.PlayerModel;
 import boundary.PlayerApplication;
 
 /**

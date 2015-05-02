@@ -1,9 +1,9 @@
-package model;
+package controller;
 
 import java.awt.EventQueue;
 import java.util.TimerTask;
 
-import controller.PlayerEndLevelCtrl;
+import model.PlayerModel;
 import boundary.PlayerApplication;
 import boundary.PlayerLevelView;
 
