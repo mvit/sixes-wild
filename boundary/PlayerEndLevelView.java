@@ -18,66 +18,60 @@ import model.Variation;
 
 /**
  * PlayerEndLevelView comes up when a level is completed.
- * @author Bailey Sheridan
  *
+ * @author Bailey Sheridan
  */
 public class PlayerEndLevelView extends JDialog{
+  PlayerApplication app;
+  PlayerModel model;
+  LightningTimer timer;
 
-	PlayerApplication app;
-	PlayerModel model;
-	LightningTimer timer;
-	
-	public PlayerEndLevelView(PlayerApplication app, PlayerModel model) {
-		this.app = app;
-		this.model = model;
-	}
-	
-    public void openDialog(String endMsg)
-    {
-    	JFrame f = new JFrame();
-		
-        final JDialog dialog = new JDialog(app, "Level Finished", true);
-        JButton backBut = new JButton("Level Select");
-        JButton retryBut = new JButton("Replay?");
-        
-        // Ugly, I know. Can be extracted out later if someone really wants to.
-        backBut.addActionListener(new ActionListener(){
+  public PlayerEndLevelView(PlayerApplication app, PlayerModel model) {
+    this.app = app;
+    this.model = model;
+  }
 
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				PlayerLoadLevelSelectCtrl load = new PlayerLoadLevelSelectCtrl(app, model);
-				load.actionPerformed(e);
-				dialog.dispose();
-			}
-        	
-        });
-        
-        retryBut.addActionListener(new ActionListener(){
-        	
-        	@Override
-        	public void actionPerformed(ActionEvent e) {
-        		PlayerRestartLevelCtrl restart = new PlayerRestartLevelCtrl(app, model);
-        		restart.actionPerformed(e);
-        	    if(model.level.rules.variation == Variation.LIGHTNING)
-        	    	timer = new LightningTimer(app, model);
-        		dialog.dispose();
-        	}
-        });
-        
-        JPanel panel = new JPanel();
-        panel.add(new JLabel(endMsg));
-        panel.add(new JLabel("Score: " + model.score));
-        panel.add(backBut);
-        panel.add(retryBut);
-        JButton[] buttons = { backBut , retryBut };
-        JOptionPane optionPane = new JOptionPane(panel,
-                                                 JOptionPane.YES_NO_OPTION,
-                                                 JOptionPane.PLAIN_MESSAGE,
-                                                 null, buttons, backBut);
-        dialog.getContentPane().add(optionPane);
-        dialog.setSize(300,200);
-        dialog.setLocationRelativeTo(f);
-        dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-        dialog.setVisible(true);
-    }
+  public void openDialog(String endMsg) {
+    JFrame f = new JFrame();
+
+    final JDialog dialog = new JDialog(app, "Level Finished", true);
+    JButton backBut = new JButton("Level Select");
+    JButton retryBut = new JButton("Replay?");
+
+    // Ugly, I know. Can be extracted out later if someone really wants to.
+    backBut.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        PlayerLoadLevelSelectCtrl load = new PlayerLoadLevelSelectCtrl(app, model);
+        load.actionPerformed(e);
+        dialog.dispose();
+      }
+    });
+
+    retryBut.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        PlayerRestartLevelCtrl restart = new PlayerRestartLevelCtrl(app, model);
+        restart.actionPerformed(e);
+        if (model.level.rules.variation == Variation.LIGHTNING) {
+          timer = new LightningTimer(app, model);
+        }
+        dialog.dispose();
+      }
+    });
+
+    JPanel panel = new JPanel();
+    panel.add(new JLabel(endMsg));
+    panel.add(new JLabel("Score: " + model.score));
+    panel.add(backBut);
+    panel.add(retryBut);
+    JButton[] buttons = {backBut, retryBut};
+    JOptionPane optionPane = new JOptionPane(panel, JOptionPane.YES_NO_OPTION,
+      JOptionPane.PLAIN_MESSAGE, null, buttons, backBut);
+    dialog.getContentPane().add(optionPane);
+    dialog.setSize(300,200);
+    dialog.setLocationRelativeTo(f);
+    dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+    dialog.setVisible(true);
+  }
 }
