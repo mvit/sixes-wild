@@ -25,7 +25,6 @@ public class PlayerSwapCtrl implements ActionListener{
   }
   
   public void swapInitiated(Point point) {
-	  System.out.println("SwapCtrl sInit" + model.playerState.toString());
 	  if (model.playerState != PlayerState.SWAP) {
 		  System.out.println("You borked it somehow (Triggered swap when player state != swap)");
 		  model.move = new Move();
@@ -73,8 +72,5 @@ public class PlayerSwapCtrl implements ActionListener{
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 	  	model.playerState = PlayerState.SWAP;
-	  	
-
-	    System.out.println("SwapCtrl aPerf " + model.playerState.toString());
 	}
 }
