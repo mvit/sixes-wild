@@ -26,9 +26,7 @@ import boundary.PlayerApplication;
  */
 public class PlayerLoadProgressCtrl {
   public static final File progressdir = new File("resource/progress");
-  public static final String progresspath = progressdir.getAbsolutePath();
   public static final File progressfile = new File("resource/progress/progress");
-  public static final String progressfilepath = progressfile.getAbsolutePath();
 
   PlayerApplication app;
   PlayerModel model;
