@@ -1,35 +1,54 @@
 package controller;
 
 import boundary.BuilderApplication;
+import boundary.BuilderLevelEditorView;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JTextField;
-
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import model.BuilderModel;
 
 /**
  * @author Cem Unsal
  */
-public class BuilderSetScoreCtrl implements ActionListener {
+public class BuilderSetScoreCtrl implements DocumentListener {
   BuilderApplication app;
   BuilderModel model;
   int tier;
+  BuilderLevelEditorView levelView;
+  
 
-  public BuilderSetScoreCtrl(BuilderApplication app, BuilderModel model, int tier) {
+  public BuilderSetScoreCtrl(BuilderApplication app, BuilderModel model, int tier, BuilderLevelEditorView levelView) {
     this.app = app;
     this.model = model;
     this.tier = tier;
+    this.levelView = levelView;
   }
 
-  @Override
-  public void actionPerformed(ActionEvent e) {
-	  String entry = ((JTextField) e.getSource()).getText();
-	  int num = Integer.parseInt(entry);
+@Override
+public void changedUpdate(DocumentEvent e) {
+	  String entry=levelView.tfThreshold[tier].getText();
+	  int num = Integer.parseInt(0 +entry);
 	  
 	  model.level.rules.scoreThresholds[tier]=num;
 	  model.takeSnapshot();
 	  
-  }
+}
+
+@Override
+public void insertUpdate(DocumentEvent e) {
+	  String entry=levelView.tfThreshold[tier].getText();
+	  int num = Integer.parseInt(0 +entry);
+	  
+	  model.level.rules.scoreThresholds[tier]=num;
+	  model.takeSnapshot();
+}
+
+@Override
+public void removeUpdate(DocumentEvent e) {
+	  String entry=levelView.tfThreshold[tier].getText();
+	  int num = Integer.parseInt(0 +entry);
+	  
+	  model.level.rules.scoreThresholds[tier]=num;
+	  model.takeSnapshot();
+}
 }

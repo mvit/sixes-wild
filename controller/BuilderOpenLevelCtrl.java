@@ -56,5 +56,6 @@ public class BuilderOpenLevelCtrl implements ActionListener {
 
       app.setView(new BuilderLevelEditorView(app, model));
     }
+    app.getView().repaint();
   }
 }
