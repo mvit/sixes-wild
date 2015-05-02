@@ -45,15 +45,15 @@ public class PlayerEndLevelCtrl {
 			endMsg = "You didn't pass.";
 		else if(model.score < model.level.rules.scoreThresholds[1]) {
 			endMsg += "1 Star";
-			model.progress.setAchievedScore(1, model.score);
+			model.progress.setAchievedScore(model.levelnum, model.score);
 		}
 		else if(model.score < model.level.rules.scoreThresholds[2]) {
 			endMsg += "2 Stars!";
-			model.progress.setAchievedScore(1, model.score);
+			model.progress.setAchievedScore(model.levelnum, model.score);
 		}
 		else {
 			endMsg += "3 Stars!!";
-			model.progress.setAchievedScore(1, model.score);
+			model.progress.setAchievedScore(model.levelnum, model.score);
 		}
 		
 		// Writes progress to file.
