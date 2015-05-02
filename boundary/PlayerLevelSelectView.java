@@ -7,7 +7,10 @@ import controller.PlayerMainMenuCtrl;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -16,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import model.Level;
+import model.LevelProgress;
 import model.PlayerModel;
 
 /**
@@ -50,9 +54,9 @@ public class PlayerLevelSelectView extends JPanel {
     JPanel panelLevelPreview = new JPanel();
     panelLevel.add(panelLevelPreview, BorderLayout.CENTER);
     if (currentLevel != null) {
-    	boardView = new PlayerPreviewBoardView(app, model);
-    	boardView.setAlignmentY(0);
-    	panelLevel.add(boardView);
+      boardView = new PlayerPreviewBoardView(app, model);
+      boardView.setAlignmentY(0);
+      panelLevel.add(boardView);
     }
 
     //panelLevelOptions - holds play level and reset score
@@ -127,30 +131,41 @@ public class PlayerLevelSelectView extends JPanel {
     int width = 4, height = (int) Math.ceil((double) list.length / width);
     content.setLayout(new GridLayout(height, width, 0, 0));
 
+    // TODO: this will not necessarily iterate in order; put it in a sorted set
+    // of some kind?
     for (File file : list) {
       // ensure the filename is numeric
       String name = file.getName();
       int levelNumber;
       try {
-        levelNumber = Integer.parseInt(name, 10);
+        levelNumber = Integer.parseInt(name, 10) - 1;
       } catch (NumberFormatException err) {
         continue;
       }
 
-      // exclude other files by checking the header
-      if (levelNumber > 0 && Level.checkHeader(file)) {
+      if (levelNumber >= 0) {
+        Level level;
+        try {
+          level = new Level(new DataInputStream(new FileInputStream(file)));
+        } catch (IOException err) {
+          // not a valid level
+          continue;
+        }
+
         JPanel panelLevel = new JPanel();
         // TODO: when we add the action listeners to these buttons, they should
-        // reference (levelNumber - 1)
+        // reference levelNumber
         JButton selectButton = new JButton(name);
         selectButton.setEnabled(false);
-        
-        if (model.progress.unlockedLevels() >= Integer.parseInt(name)) {
-        	selectButton.addActionListener(new PlayerLevelSelectionCtrl(app, model, name));
-        	selectButton.setEnabled(true);
-            if (model.progress.getLevelProgress(Integer.parseInt(name)) != null) {
-            	selectButton.setText("<html>" + name + "<br>" + "Score: " + model.progress.getLevelProgress(Integer.parseInt(name)).getScore() + "</html>");
-            }
+
+        if (model.progress.unlockedLevels() > levelNumber) {
+          LevelProgress progress = model.progress.getLevelProgress(levelNumber);
+          selectButton.addActionListener(new PlayerLevelSelectionCtrl(app,
+            model, name));
+          selectButton.setEnabled(true);
+          selectButton.setText("<html>" + name + "<br>Score: " +
+            (progress == null ? 0 : progress.getScore()) + "<br>Variation: " +
+            level.rules.variation.name + "</html>");
         }
         panelLevel.add(selectButton);
         content.add(panelLevel);
@@ -158,13 +173,12 @@ public class PlayerLevelSelectView extends JPanel {
     }
     return content;
   }
-  
+
   private void updatePlayButton(JButton button) {
-	  if(currentLevel == null) {
-		  button.setEnabled(false);
-	  }
-	  else { 
-		  button.addActionListener(new PlayerLoadLevelCtrl(app, model, currentLevel));
-	  }
+    if (currentLevel == null) {
+      button.setEnabled(false);
+    } else {
+      button.addActionListener(new PlayerLoadLevelCtrl(app, model, currentLevel));
+    }
   }
 }
