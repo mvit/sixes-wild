@@ -32,7 +32,7 @@ public class PlayerLevelSelectView extends JPanel {
   PlayerModel model;
   String currentLevel;
   
-  int score;
+  int score = 0;
   String variation = "";
   
   public PlayerPreviewBoardView boardView;
