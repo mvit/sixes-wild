@@ -37,19 +37,20 @@ public class PlayerLoadLevelCtrl implements ActionListener {
    *
    * @param filename
    */
-  public void loadLevel(String fname) {
-	  model.level = new Level();
-	  try {
-    	model.level = new Level(new DataInputStream(new FileInputStream("resource/levels/" + fname)));
-	  }
-	  catch (IOException e) {
-		  return;
-	  }
-	model.levelnum = Integer.parseInt(fname, 10);
+  public void loadLevel(String filename) {
+    try {
+      model.level = new Level(new DataInputStream(new FileInputStream("resource/levels/" + filename)));
+    } catch (IOException e) {
+      return;
+    }
+    model.levelnum = Integer.parseInt(filename, 10);
     model.realizeLevel();
-    app.setView(new PlayerLevelView(new PlayerMainMenuCtrl(app, model), app, model));
-    if(model.level.rules.variation == Variation.LIGHTNING) {
-    	timer = new LightningTimer(app, model);
+    app.setView(new PlayerLevelView(new PlayerMainMenuCtrl(app, model), app,
+      model));
+    // TODO: instantiate a new variation controller, and let it setup any
+    // necessary long-term controllers, including lightning timer
+    if (model.level.rules.variation == Variation.LIGHTNING) {
+      timer = new LightningTimer(app, model);
     }
   }
 
