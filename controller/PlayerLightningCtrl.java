@@ -18,40 +18,32 @@ public class PlayerLightningCtrl implements PlayerVariationCtrl {
   }
 
   public boolean specialMove() {
-	  model.counter--;
+    model.counter--;
     return false;
   }
 
   public boolean finishMove() {
-	if (model.counter <= 0) {
-	    return false;
-	}
-	
-	if(model.move.isValid())
-		return true;
-	
-    return false;
+    return model.counter > 0 && model.move.isValid();
   }
 
   @Override
   public boolean remove() {
-  	// TODO Auto-generated method stub
-	specialMove();
-	return false;
+    // TODO: implement
+    specialMove();
+    return false;
   }
 
   @Override
   public boolean scramble() {
-	// TODO Auto-generated method stub
-	specialMove();
-	return false;
+    // TODO: implement
+    specialMove();
+    return false;
   }
 
   @Override
   public boolean swap() {
-	// TODO Auto-generated method stub
-	specialMove();
-	return false;
+    // TODO: implement
+    specialMove();
+    return false;
   }
-  
 }
