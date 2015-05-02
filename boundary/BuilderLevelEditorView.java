@@ -51,6 +51,9 @@ public class BuilderLevelEditorView extends JPanel {
   public Map<Variation, JRadioButton> variationButtons =
     new HashMap<Variation, JRadioButton>();
 
+  public JTextField tfThreshold[]=new JTextField[3];
+  public JTextField tfCounter;
+
   public BuilderLevelEditorView(BuilderApplication app, BuilderModel model) {
     this.app = app;
     this.model = model;
@@ -174,10 +177,10 @@ public class BuilderLevelEditorView extends JPanel {
     
     //Counter
     panelSliders.add(new JLabel("Counter"));
-    JTextField tfCounter = new JTextField();
+    tfCounter = new JTextField();
     tfCounter.setMaximumSize( new Dimension(Integer.MAX_VALUE, tfCounter.getPreferredSize().height));
     panelSliders.add(tfCounter);
-    tfCounter.addActionListener(new BuilderSetCounterCtrl (app, model));
+    tfCounter.getDocument().addDocumentListener(new BuilderSetCounterCtrl (app, model, this));
     
     //Thresholds
     panelSliders.add(new JLabel("Thresholds"));
@@ -186,10 +189,10 @@ public class BuilderLevelEditorView extends JPanel {
     panelThresholds.setLayout(new BoxLayout(panelThresholds, BoxLayout.X_AXIS));
     
     for (int i = 0; i < 3; i++) {
-    JTextField tfThreshold = new JTextField();
-    tfThreshold.setMaximumSize( new Dimension(Integer.MAX_VALUE, tfThreshold.getPreferredSize().height));
-    panelThresholds.add(tfThreshold);
-    tfThreshold.addActionListener(new BuilderSetScoreCtrl (app, model, i));
+    tfThreshold[i] = new JTextField();
+    tfThreshold[i].setMaximumSize( new Dimension(Integer.MAX_VALUE, tfThreshold[i].getPreferredSize().height));
+    panelThresholds.add(tfThreshold[i]);
+    tfThreshold[i].getDocument().addDocumentListener(new BuilderSetScoreCtrl (app, model, i, this));
     }
     
     //Tile Probabilities
