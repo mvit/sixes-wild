@@ -4,7 +4,7 @@ import boundary.PlayerApplication;
 import model.PlayerModel;
 
 /**
- * @author Eli Skeggs, Nick Chaput
+ * @author Eli Skeggs, and Nick Chaput
  */
 public class PlayerReleaseCtrl implements PlayerVariationCtrl {
   PlayerApplication app;
@@ -16,41 +16,43 @@ public class PlayerReleaseCtrl implements PlayerVariationCtrl {
   }
 
   public boolean specialMove() {
-	  model.counter--;
+    model.counter--;
     return false;
   }
 
   public boolean finishMove() {
-	if(model.counter<= 0)
-		return false;
-	
-	model.counter--;
-	
-	if(model.move.isValid()) {
-		//TODO: Bucket checking 
-		return true;
-	}
+    if (model.counter <= 0) {
+      return false;
+    }
+
+    model.counter--;
+
+    if (model.move.isValid()) {
+      // TODO: bucket checking
+      return true;
+    }
+
     return false;
   }
 
   @Override
-	public boolean remove() {
-		// TODO Auto-generated method stub
-		specialMove();
-		return false;
-	}
+  public boolean remove() {
+    // TODO: implement
+    specialMove();
+    return false;
+  }
 
-	@Override
-	public boolean scramble() {
-		// TODO Auto-generated method stub
-		specialMove();
-		return false;
-	}
+  @Override
+  public boolean scramble() {
+    // TODO: implement
+    specialMove();
+    return false;
+  }
 
-	@Override
-	public boolean swap() {
-		// TODO Auto-generated method stub
-		specialMove();
-		return false;
-	}
+  @Override
+  public boolean swap() {
+    // TODO: implement
+    specialMove();
+    return false;
+  }
 }
