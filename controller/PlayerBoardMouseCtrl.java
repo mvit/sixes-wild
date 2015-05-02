@@ -47,6 +47,20 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
     return view.boardView.identifyPoint(event.getX(), event.getY());
   }
 
+  protected void fizzleMove() {
+    // make the move fizzle
+    model.playerState = PlayerState.NONE;
+    model.move = new Move();
+    if (model.counter > 0) {
+      model.counter--;
+    }
+
+    // ends the level from here
+    if (model.counter == 0) {
+      EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model));
+    }
+  }
+
   @Override
   public void mouseClicked(MouseEvent event) {
     Point point;
@@ -70,25 +84,11 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
   @Override
   public void mouseEntered(MouseEvent event) {}
 
-
   @Override
   public void mouseExited(MouseEvent event) {
     if (model.playerState == PlayerState.SELECT) {
-      model.playerState = PlayerState.NONE;
-      model.move = new Move();
-      if(model.counter>0)
-    	  model.counter--;
-      // ends the level from here
-      if(model.counter==0) {
-      	EventQueue.invokeLater(new Runnable() {
-  			@Override
-  			public void run() {
-  	            PlayerEndLevelCtrl end = new PlayerEndLevelCtrl(app, model);
-  				end.endLevel();
-  			}
-      	});
-      }
-      ((PlayerLevelView)app.getView()).update();
+      fizzleMove();
+      ((PlayerLevelView) app.getView()).update();
     }
   }
 
@@ -100,7 +100,7 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
         (point = identifyPoint(event)) != null) {
       startMoveCtrl.startMove(point);
     }
-    ((PlayerLevelView)app.getView()).repaint();
+    ((PlayerLevelView) app.getView()).repaint();
   }
 
   @Override
@@ -115,28 +115,13 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
 
   @Override
   public void mouseDragged(MouseEvent event) {
-    Point point;
-    point = identifyPoint(event);
     if (model.playerState == PlayerState.SELECT) {
+      Point point = identifyPoint(event);
       if (point != null) {
-    	expandMoveCtrl.expandMove(point);
-      }
-      else {
-          model.playerState = PlayerState.NONE;
-          model.move = new Move();
-          if(model.counter>0)
-        	  model.counter--;
-          // ends the level from here
-          if(model.counter==0) {
-          	EventQueue.invokeLater(new Runnable() {
-      			@Override
-      			public void run() {
-      	            PlayerEndLevelCtrl end = new PlayerEndLevelCtrl(app, model);
-      				end.endLevel();
-      			}
-          	});
-          }
-          ((PlayerLevelView)app.getView()).update();
+        expandMoveCtrl.expandMove(point);
+      } else {
+        fizzleMove();
+        ((PlayerLevelView)app.getView()).update();
       }
     }
   }
