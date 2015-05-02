@@ -32,10 +32,11 @@ public class PlayerFinishMoveCtrl {
       for (Point p : model.move.points) {
         model.level.currentBoard.grid[p.x][p.y].tile = null;
       }
+      model.move = new Move();
+      app.getView().paintImmediately(0, 0, 1500, 1500);
       PlayerUpdateBoardCtrl updateBoardCtrl = new PlayerUpdateBoardCtrl(app, model);
       updateBoardCtrl.processBoardSmooth();
     }
-    model.move = new Move();
     // TODO: implement everything else that happens after a move finishes (update score, counter, etc)
 
     app.getView().repaint();
