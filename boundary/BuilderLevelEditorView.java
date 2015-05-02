@@ -41,7 +41,7 @@ import model.Variation;
  *
  * TODO: score threshold, multiplier weight sliders, initial timer value
  *
- * @author Cem Unsal, and Eli Skeggs
+ * @author Cem Unsal, and Eli Skeggs and Maurizio Vitale
  */
 public class BuilderLevelEditorView extends JPanel {
   BuilderApplication app;
