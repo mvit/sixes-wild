@@ -1,13 +1,16 @@
 package boundary;
 
 import controller.PlayerBoardMouseCtrl;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.awt.Rectangle;
+
 import model.Board;
 import model.Cell;
 import model.PlayerModel;
+import model.PlayerState;
 import model.Point;
 import model.Rules;
 import utils.ScaleImage;
@@ -15,7 +18,7 @@ import utils.ScaleImage;
 /**
  * Actual view for the playable grid in-game.
  *
- * @author Eli Skeggs, and Maurizio Vitale
+ * @author Eli Skeggs, Nick Chaput, and Maurizio Vitale
  */
 public class PlayerBoardView extends BoardView {
   PlayerApplication app;
@@ -135,7 +138,7 @@ public class PlayerBoardView extends BoardView {
     }
     
     Point tmp = new Point(x, y);
-    if (model.move != null && model.move.points.contains(tmp)) {
+    if (model.move != null && model.move.points.contains(tmp) && model.playerState != PlayerState.NONE) {
       int width = x2 - x1, height = y2 - y1;
       int lw = width / 3, th = height / 3, rw = width - lw, bh = height - th;
 
