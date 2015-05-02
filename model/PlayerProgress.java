@@ -118,9 +118,9 @@ public class PlayerProgress implements Iterable<LevelProgress> {
    */
   public void setAchievedScore(int level, int score) {
     int completedLevels = levels.size();
-    if (level == completedLevels + 1) {
+    if (level == completedLevels) {
       levels.add(new LevelProgress(level, score));
-    } else if (level <= completedLevels) {
+    } else if (level < completedLevels) {
       LevelProgress progress = levels.get(level);
       if (progress.bestScore < score) {
         progress.bestScore = score;
