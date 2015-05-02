@@ -143,7 +143,15 @@ public class PlayerLevelSelectView extends JPanel {
         // TODO: when we add the action listeners to these buttons, they should
         // reference (levelNumber - 1)
         JButton selectButton = new JButton(name);
-        selectButton.addActionListener(new PlayerLevelSelectionCtrl(app, model, name));
+        selectButton.setEnabled(false);
+        
+        if (model.progress.unlockedLevels() >= Integer.parseInt(name)) {
+        	selectButton.addActionListener(new PlayerLevelSelectionCtrl(app, model, name));
+        	selectButton.setEnabled(true);
+            if (model.progress.getLevelProgress(Integer.parseInt(name)) != null) {
+            	selectButton.setText(name + "<br>" + model.progress.getLevelProgress(Integer.parseInt(name)).getScore());
+            }
+        }
         panelLevel.add(selectButton);
         content.add(panelLevel);
       }
