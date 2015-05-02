@@ -41,7 +41,7 @@ import model.Variation;
  *
  * TODO: score threshold, multiplier weight sliders, initial timer value
  *
- * @author Cem Unsal, and Eli Skeggs and Maurizio Vitale
+ * @author Cem Unsal, Eli Skeggs, and Maurizio Vitale
  */
 public class BuilderLevelEditorView extends JPanel {
   BuilderApplication app;
@@ -173,28 +173,28 @@ public class BuilderLevelEditorView extends JPanel {
     panelGame.add(panelSliders);
     panelSliders.setAlignmentY(0);
     panelSliders.setLayout(new BoxLayout(panelSliders, BoxLayout.Y_AXIS));
-    
-    
+
+
     //Counter
     panelSliders.add(new JLabel("Counter"));
     tfCounter = new JTextField();
     tfCounter.setMaximumSize( new Dimension(Integer.MAX_VALUE, tfCounter.getPreferredSize().height));
     panelSliders.add(tfCounter);
     tfCounter.getDocument().addDocumentListener(new BuilderSetCounterCtrl (app, model, this));
-    
+
     //Thresholds
     panelSliders.add(new JLabel("Thresholds"));
     JPanel panelThresholds = new JPanel();
     panelSliders.add(panelThresholds);
     panelThresholds.setLayout(new BoxLayout(panelThresholds, BoxLayout.X_AXIS));
-    
+
     for (int i = 0; i < 3; i++) {
     tfThreshold[i] = new JTextField();
     tfThreshold[i].setMaximumSize( new Dimension(Integer.MAX_VALUE, tfThreshold[i].getPreferredSize().height));
     panelThresholds.add(tfThreshold[i]);
     tfThreshold[i].getDocument().addDocumentListener(new BuilderSetScoreCtrl (app, model, i, this));
     }
-    
+
     //Tile Probabilities
     panelSliders.add(new JLabel("Tile Probabilities"));
     // make the slider panels, styling specific to a given panel can be put in
@@ -219,7 +219,7 @@ public class BuilderLevelEditorView extends JPanel {
     }
     //Multiplier probabilities
     panelSliders.add(new JLabel("Multiplier Probability"));
-    
+
     for (int i = 0; i < Rules.maxMultiplier; i++) {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
