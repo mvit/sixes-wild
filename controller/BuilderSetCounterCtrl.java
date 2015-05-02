@@ -16,38 +16,33 @@ public class BuilderSetCounterCtrl implements DocumentListener {
   BuilderModel model;
   BuilderLevelEditorView levelView;
 
-  public BuilderSetCounterCtrl(BuilderApplication app, BuilderModel model, BuilderLevelEditorView levelView) {
+  public BuilderSetCounterCtrl(BuilderApplication app, BuilderModel model,
+      BuilderLevelEditorView levelView) {
     this.app = app;
     this.model = model;
     this.levelView = levelView;
   }
 
-@Override
-public void changedUpdate(DocumentEvent arg0) {
-	  String entry=levelView.tfCounter.getText();
-	  int num = Integer.parseInt(0 +entry);
-	  
-	  model.level.rules.initialCounter=num;
-	  model.takeSnapshot();
-	  
-}
+  protected void pushUpdate() {
+    String entry = levelView.tfCounter.getText();
+    int num = Integer.parseInt(0 + entry, 10);
 
-@Override
-public void insertUpdate(DocumentEvent arg0) {
-	  String entry=levelView.tfCounter.getText();
-	  int num = Integer.parseInt(0 +entry);
-	  
-	  model.level.rules.initialCounter=num;
-	  model.takeSnapshot();
-	  
-}
+    model.level.rules.initialCounter = num;
+    model.takeSnapshot();
+  }
 
-@Override
-public void removeUpdate(DocumentEvent arg0) {
-	  String entry=levelView.tfCounter.getText();
-	  int num = Integer.parseInt(0 +entry);
-	  
-	  model.level.rules.initialCounter=num;
-	  model.takeSnapshot();
-	  }
+  @Override
+  public void changedUpdate(DocumentEvent event) {
+    pushUpdate();
+  }
+
+  @Override
+  public void insertUpdate(DocumentEvent event) {
+    pushUpdate();
+  }
+
+  @Override
+  public void removeUpdate(DocumentEvent event) {
+    pushUpdate();
+  }
 }

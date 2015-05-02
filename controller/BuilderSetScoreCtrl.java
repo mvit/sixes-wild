@@ -15,40 +15,35 @@ public class BuilderSetScoreCtrl implements DocumentListener {
   BuilderModel model;
   int tier;
   BuilderLevelEditorView levelView;
-  
 
-  public BuilderSetScoreCtrl(BuilderApplication app, BuilderModel model, int tier, BuilderLevelEditorView levelView) {
+  public BuilderSetScoreCtrl(BuilderApplication app, BuilderModel model,
+      int tier, BuilderLevelEditorView levelView) {
     this.app = app;
     this.model = model;
     this.tier = tier;
     this.levelView = levelView;
   }
 
-@Override
-public void changedUpdate(DocumentEvent e) {
-	  String entry=levelView.tfThreshold[tier].getText();
-	  int num = Integer.parseInt(0 +entry);
-	  
-	  model.level.rules.scoreThresholds[tier]=num;
-	  model.takeSnapshot();
-	  
-}
+  protected void pushUpdate() {
+    String entry = levelView.tfThreshold[tier].getText();
+    int num = Integer.parseInt(0 + entry, 10);
 
-@Override
-public void insertUpdate(DocumentEvent e) {
-	  String entry=levelView.tfThreshold[tier].getText();
-	  int num = Integer.parseInt(0 +entry);
-	  
-	  model.level.rules.scoreThresholds[tier]=num;
-	  model.takeSnapshot();
-}
+    model.level.rules.scoreThresholds[tier] = num;
+    model.takeSnapshot();
+  }
 
-@Override
-public void removeUpdate(DocumentEvent e) {
-	  String entry=levelView.tfThreshold[tier].getText();
-	  int num = Integer.parseInt(0 +entry);
-	  
-	  model.level.rules.scoreThresholds[tier]=num;
-	  model.takeSnapshot();
-}
+  @Override
+  public void changedUpdate(DocumentEvent event) {
+    pushUpdate();
+  }
+
+  @Override
+  public void insertUpdate(DocumentEvent event) {
+    pushUpdate();
+  }
+
+  @Override
+  public void removeUpdate(DocumentEvent event) {
+    pushUpdate();
+  }
 }
