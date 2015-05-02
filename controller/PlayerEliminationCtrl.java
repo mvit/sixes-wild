@@ -71,4 +71,22 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
     else
     	return false;
   }
+
+@Override
+public boolean remove() {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+@Override
+public boolean scramble() {
+	// TODO Auto-generated method stub
+	return false;
+}
+
+@Override
+public boolean swap() {
+	// TODO Auto-generated method stub
+	return false;
+}
 }

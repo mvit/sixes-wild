@@ -30,6 +30,6 @@ public class PlayerRemoveCtrl {
       Move reMove = new Move();
       reMove.expand(model.level.currentBoard, point);
     }
-    pVar.specialMove();
+    pVar.remove();
   }
 }
