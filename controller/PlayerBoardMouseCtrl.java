@@ -74,7 +74,7 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
       removeCtrl.mouseClicked(point);
       break;
     case SWAP:
-      swapCtrl.swapInitiated(point);
+      swapCtrl.startSwap(point);
       break;
     default:
       // do nothing!
