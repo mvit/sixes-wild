@@ -4,9 +4,11 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import utils.ScaleImage;
 import model.Board;
 import model.PlayerModel;
 import model.Cell;
+import model.Rules;
 
 /**
  * Preview view for the builder board view.
@@ -17,11 +19,45 @@ public class PlayerPreviewBoardView extends BoardView {
   PlayerApplication app;
   PlayerModel model;
 
+  BufferedImage[] numberCache = new BufferedImage[Rules.maxNumber];
+  BufferedImage playableCache = null, numberFallbackCache = null;
+
   public PlayerPreviewBoardView(PlayerApplication app, PlayerModel model) {
     super(true, Board.width, Board.height);
 
     this.app = app;
     this.model = model;
+  }
+
+  /**
+   * Cache the images.
+   *
+   * @param width The new cell width to cache.
+   * @param height The new cell height to cache.
+   */
+  @Override
+  protected void cellSizeChange(int width, int height) {
+    numberFallbackCache = solidImage(Color.MAGENTA, width, height);
+
+    for (int i = 0; i < numberCache.length; i++) {
+      // scaleImage ensures we aren't resizing unnecessarily
+      BufferedImage image = app.loader.getResource((i + 1) + ".png");
+      if (image == null) {
+        System.err.println("[WARN] Bad number for lookup: " + (i + 1));
+        image = numberFallbackCache;
+      } else {
+        image = ScaleImage.scaleImage(image, width, height);
+      }
+      numberCache[i] = image;
+    }
+
+    BufferedImage playable = app.loader.getResource("playable.png");
+    if (playable == null) {
+      System.err.println("[WARN] Cannot get playable image");
+      playableCache = solidImage(Color.WHITE, width, height);
+    } else {
+      playableCache = ScaleImage.scaleImage(playable, width, height);
+    }
   }
 
   @Override
@@ -32,22 +68,15 @@ public class PlayerPreviewBoardView extends BoardView {
     switch (cell.type) {
     case PLAYABLE:
       // TODO: add multiplier
-      String filename = null;
-      Color fallback = null;
       if (cell.tile == null) {
-        filename = "playable.png";
-        fallback = Color.WHITE;
+        g.drawImage(playableCache, x1, y1, null);
       } else {
-        filename = (cell.tile.number + 1) + ".png";
-        fallback = Color.MAGENTA;
-      }
-      BufferedImage image = app.loader.getResource(filename);
-      if (image == null) {
-        System.err.println("[WARN] Bad filename for image lookup: " + filename);
-        g.setColor(fallback);
-        g.fillRect(x1, y1, x2 - x1, y2 - y1);
-      } else {
-        image = utils.ScaleImage.scaleImage(image, x2 - x1, y2 - y1);
+        int number = cell.tile.number;
+        System.err.println("[WARN] Bad number for cache lookup: " + number);
+        BufferedImage image = numberCache[number];
+        if (image == null) {
+          image = numberFallbackCache;
+        }
         g.drawImage(image, x1, y1, null);
       }
       break;

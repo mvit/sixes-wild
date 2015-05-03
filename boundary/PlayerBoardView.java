@@ -55,10 +55,7 @@ public class PlayerBoardView extends BoardView {
       BufferedImage image = app.loader.getResource((i + 1) + ".png");
       if (image == null) {
         System.err.println("[WARN] Bad number for image lookup: " + (i + 1));
-        image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
-        Graphics graphics = image.createGraphics();
-        graphics.setColor(Color.WHITE);
-        graphics.fillRect(0, 0, width, height);
+        image = solidImage(Color.WHITE, width, height);
       } else {
         image = ScaleImage.scaleImage(image, width, height);
       }
