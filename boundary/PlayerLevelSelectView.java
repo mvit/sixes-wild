@@ -32,94 +32,40 @@ import model.PlayerModel;
 public class PlayerLevelSelectView extends JPanel {
   PlayerApplication app;
   PlayerModel model;
-  String currentLevel;
 
-  int score = 0;
-  String variation = "";
+  JPanel panelTopContent, panelLevel;
+
+  JPanel panelLevelInfo = null;
+  JLabel lblLevel = null, lblType = null, lblScore = null;
 
   public PlayerPreviewBoardView boardView;
 
-  public PlayerLevelSelectView(PlayerApplication app, PlayerModel model,
-      String currentLevel) {
+  public PlayerLevelSelectView(PlayerApplication app, PlayerModel model) {
     this.app = app;
     this.model = model;
-    this.currentLevel = currentLevel;
-
-    if (currentLevel != null) {
-      variation = model.level.rules.variation.name;
-
-      int levelNumber = Integer.parseInt(currentLevel);
-      LevelProgress progress = model.progress.getLevelProgress(levelNumber);
-      score = progress == null ? 0 : progress.getScore();
-    }
 
     setMinimumSize(new Dimension(800, 600));
     setPreferredSize(new Dimension(800, 600));
     setLayout(new GridLayout(0, 2, 0, 0));
 
-    //Two SubPanels
-
-    //panelLevel - contains level preview, name type and previous score, along with options for the level
-
-    JPanel panelLevel = new JPanel();
+    // level preview, name type and previous score, plus level options
+    panelLevel = new JPanel();
     panelLevel.setLayout(new BorderLayout(0, 0));
 
-    //panelLevelPreview - where gameboard will be loaded
-
-    JPanel panelLevelPreview = new JPanel();
-    panelLevel.add(panelLevelPreview, BorderLayout.CENTER);
-    if (currentLevel != null) {
-      boardView = new PlayerPreviewBoardView(app, model);
-      boardView.setAlignmentY(0);
-      panelLevel.add(boardView);
-    }
-
-    //panelLevelOptions - holds play level and reset score
-
-    JPanel panelLevelOptions = new JPanel();
-    panelLevelOptions.setBorder(null);
-    panelLevel.add(panelLevelOptions, BorderLayout.SOUTH);
-
-    //btnPLayLevel, explanatory
-
-    JButton btnPlayLevel = new JButton("Play Level");
-    updatePlayButton(btnPlayLevel);
-    panelLevelOptions.add(btnPlayLevel);
-
-    //debating heavily on this one, holds level info and navigation panel,
-    //considering merging level info and gameboard into a single panel instead
-
-    JPanel panelTopContent = new JPanel();
-    panelTopContent.setLayout(new BoxLayout(panelTopContent,BoxLayout.Y_AXIS));
+    // debating heavily on this one, holds level info and navigation panel,
+    // considering merging level info and gameboard into a single panel instead
+    panelTopContent = new JPanel();
+    panelTopContent.setLayout(new BoxLayout(panelTopContent, BoxLayout.Y_AXIS));
     panelLevel.add(panelTopContent, BorderLayout.NORTH);
 
-    //panelNavigation holds whatever navigation purpose you need
-
+    // holds whatever navigation purpose you need
     JPanel panelNavigation = new JPanel();
     panelTopContent.add(panelNavigation);
-
-    //btnMainMenu
 
     JButton btnMainMenu = new JButton("Main Menu");
     btnMainMenu.setSize(btnMainMenu.getWidth(), 29);
     panelNavigation.add(btnMainMenu);
     btnMainMenu.addActionListener(new PlayerMainMenuCtrl(app, model));
-
-    JPanel panelLevelInfo = new JPanel();
-
-    panelLevelInfo.setLayout(new GridLayout(0, 1, 0, 0));
-
-    JLabel lblLevel = new JLabel("Level ");
-    panelLevelInfo.add(lblLevel);
-    lblLevel.setHorizontalAlignment(SwingConstants.CENTER);
-
-    JLabel lblType = new JLabel("Type: " + variation);
-    panelLevelInfo.add(lblType);
-
-    JLabel lblScore = new JLabel("Score: " + score);
-    panelLevelInfo.add(lblScore);
-
-    panelTopContent.add(panelLevelInfo);
 
     add(panelLevel);
 
@@ -225,11 +171,62 @@ public class PlayerLevelSelectView extends JPanel {
     return content;
   }
 
-  protected void updatePlayButton(JButton button) {
-    if (currentLevel == null) {
-      button.setEnabled(false);
+  // switch the left display pane to the correct active view
+  public void switchActive() {
+    String variation = model.level.rules.variation.name;
+    int levelNumber = model.levelnum;
+
+    LevelProgress progress = model.progress.getLevelProgress(levelNumber);
+    int score = progress == null ? 0 : progress.getScore();
+
+    if (panelLevelInfo == null) {
+      panelLevelInfo = new JPanel();
+
+      panelLevelInfo.setLayout(new GridLayout(0, 1, 0, 0));
+
+      lblLevel = new JLabel("Level " + (levelNumber + 1));
+      panelLevelInfo.add(lblLevel);
+      lblLevel.setHorizontalAlignment(SwingConstants.CENTER);
+
+      lblType = new JLabel("Type: " + variation);
+      panelLevelInfo.add(lblType);
+
+      lblScore = new JLabel("Score: " + score);
+      panelLevelInfo.add(lblScore);
+
+      panelTopContent.add(panelLevelInfo);
+
+      // a preview of the game board
+      JPanel panelLevelPreview = new JPanel();
+      panelLevel.add(panelLevelPreview, BorderLayout.CENTER);
+
+      // play level and reset score
+      JPanel panelLevelOptions = new JPanel();
+      panelLevelOptions.setBorder(null);
+      panelLevel.add(panelLevelOptions, BorderLayout.SOUTH);
+
+      JButton btnPlayLevel = new JButton("Play Level");
+      btnPlayLevel.addActionListener(new PlayerLoadLevelCtrl(app, model,
+        (levelNumber + 1) + ""));
+      panelLevelOptions.add(btnPlayLevel);
+
+      JButton btnResetScore = new JButton("Reset Score");
+      btnResetScore.setEnabled(false);
+      panelLevelOptions.add(btnResetScore);
+      
+      panelLevel.revalidate();
     } else {
-      button.addActionListener(new PlayerLoadLevelCtrl(app, model, currentLevel));
+      lblLevel.setText("Level " + (levelNumber + 1));
+      lblType.setText("Type: " + variation);
+      lblScore.setText("Score: " + score);
+
+      if (boardView != null) {
+        panelLevel.remove(boardView);
+      }
     }
+
+    boardView = new PlayerPreviewBoardView(app, model);
+    boardView.setAlignmentY(0);
+    panelLevel.add(boardView);
   }
 }

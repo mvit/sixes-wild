@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
-import javax.swing.JPanel;
 import model.Level;
 import model.PlayerModel;
 
@@ -34,15 +33,12 @@ public class PlayerLevelSelectionCtrl implements ActionListener {
     } catch (IOException e) {
       return;
     }
-    model.realizeLevel();
+    model.levelnum = Integer.parseInt(filename, 10) - 1;
   }
 
   @Override
   public void actionPerformed(ActionEvent event) {
     loadLevel(filename);
-    app.setView(new PlayerLevelSelectView(app, model, filename));
-    JPanel view = app.getView();
-    view.revalidate();
-    view.repaint();
+    ((PlayerLevelSelectView) app.getView()).switchActive();
   }
 }
