@@ -43,7 +43,7 @@ public class PlayerLoadLevelCtrl implements ActionListener {
     } catch (IOException e) {
       return;
     }
-    model.levelnum = Integer.parseInt(filename, 10);
+    model.levelnum = Integer.parseInt(filename, 10) - 1;
     model.realizeLevel();
     app.setView(new PlayerLevelView(new PlayerMainMenuCtrl(app, model), app,
       model));
