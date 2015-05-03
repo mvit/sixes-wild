@@ -1,7 +1,9 @@
 package boundary;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 import model.Point;
 
@@ -162,6 +164,20 @@ public abstract class BoardView extends JPanel {
         g.drawLine(box.x1, box.y1, right, box.y1);
       }
     }
+  }
+
+  /**
+   * Create a solid-color image.
+   *
+   * @return The created image.
+   */
+  protected BufferedImage solidImage(Color color, int width, int height) {
+    BufferedImage image = new BufferedImage(width, height,
+      BufferedImage.TYPE_INT_ARGB);
+    Graphics graphics = image.createGraphics();
+    graphics.setColor(color);
+    graphics.fillRect(0, 0, width, height);
+    return image;
   }
 
   /**
