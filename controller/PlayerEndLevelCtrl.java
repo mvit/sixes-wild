@@ -42,7 +42,7 @@ public class PlayerEndLevelCtrl implements Runnable {
     if (thresholds.length > 0) {
       for (int i = thresholds.length - 1; i > 0; i++) {
         if (model.score > thresholds[i]) {
-          return " You got " + (i + 1) + (i == 0 ? "star!" : "stars!");
+          return " You got " + (i + 1) + (i == 0 ? " star!" : " stars!");
         }
       }
 
