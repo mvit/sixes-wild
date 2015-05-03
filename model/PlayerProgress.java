@@ -50,6 +50,13 @@ public class PlayerProgress implements Iterable<LevelProgress> {
         "provided data stream is not stored user progress");
     }
 
+    // not a stellar system, but good enough given that we'll likely only have
+    // one or two versions in use
+    int version = in.readInt();
+    if (version != PlayerProgress.version) {
+      throw new RuntimeException("progress file has incompatible version");
+    }
+
     int completedLevels = in.readInt();
     if (completedLevels < 0) {
       throw new RuntimeException(

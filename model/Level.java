@@ -88,14 +88,14 @@ public class Level {
    */
   public Level(DataInputStream in) throws IOException {
     if (!Level.checkHeader(in)) {
-      throw new RuntimeException("provided data stream is not a stored level");
+      throw new RuntimeException("level file is not a stored level");
     }
 
     // not a stellar system, but good enough given that we'll likely only have
     // one or two versions in use
     int version = in.readInt();
     if (version != Level.version) {
-      throw new RuntimeException("provided data stream has incompatible version");
+      throw new RuntimeException("level file has incompatible version");
     }
 
     rules = new Rules(in);
@@ -136,5 +136,5 @@ public class Level {
     currentBoard = null;
     currentScore = 0;
   }
-  
+
 }
