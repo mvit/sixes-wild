@@ -59,6 +59,7 @@ public class PlayerLoadProgressCtrl {
       return;
     }
 
+    // no progress file, write a new one
     if (!progressfile.isFile()) {
       model.progress = new PlayerProgress();
       try {
@@ -70,6 +71,7 @@ public class PlayerLoadProgressCtrl {
       return;
     }
 
+    // read the existing file
     try {
       model.progress = new PlayerProgress(new DataInputStream(
         new FileInputStream(progressfile)));
