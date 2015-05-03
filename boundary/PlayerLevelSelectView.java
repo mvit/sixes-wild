@@ -173,9 +173,9 @@ public class PlayerLevelSelectView extends JPanel {
           selectButton.addActionListener(new PlayerLevelSelectionCtrl(app,
             model, name));
           selectButton.setEnabled(true);
-          selectButton.setText("<html>" + name + "<br>Score: " +
-            (progress == null ? 0 : progress.getScore()) + "<br>Variation: " +
-            level.rules.variation.name + "</html>");
+          selectButton.setText("<html>Level " + name + "<br>" + (progress ==
+            null ? "Not attempted" : "Score: " + progress.getScore()) +
+            "<br>Variation: " + level.rules.variation.name + "</html>");
         } else {
           selectButton.setEnabled(false);
         }
