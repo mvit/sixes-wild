@@ -35,8 +35,7 @@ public class LevelProgress {
   public LevelProgress(int level, DataInputStream in) throws IOException {
     this.level = level;
     lastPlayed = new Date(in.readLong());
-    // TODO: what if <= 0?
-    bestScore = in.readInt();
+    bestScore = Math.max(0, in.readInt());
   }
 
   /**
@@ -48,8 +47,8 @@ public class LevelProgress {
     out.writeLong(lastPlayed.getTime());
     out.writeInt(bestScore);
   }
-  
+
   public int getScore() {
-	  return bestScore;
+    return bestScore;
   }
 }

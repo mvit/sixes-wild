@@ -31,14 +31,25 @@ public class BuilderSaveLevelCtrl implements ActionListener {
     dialog.setVisible(true);
     String filename = dialog.getFile();
     if (filename != null) {
+      DataOutputStream out = null;
       try {
-        model.level.write(new DataOutputStream(new FileOutputStream(dialog
-          .getDirectory() + filename)));
+        out = new DataOutputStream(new FileOutputStream(dialog.getDirectory() +
+          filename));
+        model.level.write(out);
       } catch (IOException err) {
         // TODO: dialog?
         System.err.println(err.getMessage());
         err.printStackTrace();
         return;
+      } finally {
+        if (out != null) {
+          try {
+            out.close();
+          } catch (IOException err) {
+            System.err.println(err.getMessage());
+            err.printStackTrace();
+          }
+        }
       }
     }
   }

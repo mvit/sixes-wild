@@ -62,11 +62,23 @@ public class PlayerLoadProgressCtrl {
     // no progress file, write a new one
     if (!progressfile.isFile()) {
       model.progress = new PlayerProgress();
+      DataOutputStream out = null;
       try {
-        model.progress.write(new DataOutputStream(new FileOutputStream(
-          progressfile)));
+        out = new DataOutputStream(new FileOutputStream(progressfile));
+        model.progress.write(out);
       } catch (IOException err) {
         System.err.println("Unable to save progress");
+        System.err.println(err.getMessage());
+        err.printStackTrace();
+      } finally {
+        try {
+          if (out != null) {
+            out.close();
+          }
+        } catch (IOException err) {
+          System.err.println(err.getMessage());
+          err.printStackTrace();
+        }
       }
       return;
     }

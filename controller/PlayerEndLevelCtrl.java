@@ -56,13 +56,28 @@ public class PlayerEndLevelCtrl implements Runnable {
    * Ends the level via pop-up window.
    */
   public void endLevel() {
+    // always set the achieved score, even if we haven't crossed a threshold
+    model.progress.setAchievedScore(model.levelnum, model.score);
+
     // writes progress to file
     if (progressdir.mkdirs() || progressdir.isDirectory()) {
+      DataOutputStream out = null;
       try {
-        model.progress.write(new DataOutputStream(new FileOutputStream(
-          progressfile)));
+        out = new DataOutputStream(new FileOutputStream(progressfile));
+        model.progress.write(out);
       } catch (IOException err) {
         System.err.println("Unable to save progress");
+        System.err.println(err.getMessage());
+        err.printStackTrace();
+      } finally {
+        try {
+          if (out != null) {
+            out.close();
+          }
+        } catch (IOException err) {
+          System.err.println(err.getMessage());
+          err.printStackTrace();
+        }
       }
     } else {
       System.err.println("Unable to create the appropriate directory structure,"
@@ -71,11 +86,7 @@ public class PlayerEndLevelCtrl implements Runnable {
 
     PlayerEndLevelView endView = new PlayerEndLevelView(app, model);
 
-    String endMsg = "You won! Good job!" + getWonMessage();
-    // always set the achieved score, even if we haven't crossed a threshold
-    model.progress.setAchievedScore(model.levelnum, model.score);
-
-    endView.openDialog(endMsg);
+    endView.openDialog("You won! Good job!" + getWonMessage());
   }
 
   /**
