@@ -6,8 +6,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 
 import model.Board;
+import model.Cell;
 import model.CellType;
 import model.PlayerModel;
 import model.Tile;
