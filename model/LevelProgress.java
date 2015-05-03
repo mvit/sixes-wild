@@ -12,7 +12,8 @@ import java.util.Date;
  */
 public class LevelProgress {
   Date lastPlayed;
-  int level, bestScore;
+  int level;
+  public int bestScore;
 
   /**
    * Create a new LevelProgress for a given level and a given achieved score,

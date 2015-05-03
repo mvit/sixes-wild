@@ -11,6 +11,8 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.ListIterator;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -141,13 +143,8 @@ public class PlayerLevelSelectView extends JPanel {
       return content;
     }
 
-    int width = 4, height = (int) Math.ceil((double) list.length / width);
-    content.setLayout(new GridLayout(height, width, 0, 0));
-
-    // TODO: this will not necessarily iterate in order; put it in a sorted set
-    // of some kind?
+    ArrayList<File> files = new ArrayList<File>();
     for (File file : list) {
-      // ensure the filename is numeric
       String name = file.getName();
       int levelNumber;
       try {
@@ -157,32 +154,73 @@ public class PlayerLevelSelectView extends JPanel {
       }
 
       if (levelNumber >= 0) {
-        Level level;
+        int count = files.size();
+        if (levelNumber == count) {
+          files.add(file);
+        } else if (levelNumber < count) {
+          files.set(levelNumber, file);
+        } else {
+          int additional = levelNumber - count + 1;
+          while (--additional > 0) {
+            files.add(null);
+          }
+          files.add(file);
+        }
+      }
+    }
+
+    int width = 4, height = (int) Math.ceil((double) files.size() / width);
+    content.setLayout(new GridLayout(height, width, 0, 0));
+
+    boolean cutOff = false;
+
+    ListIterator<File> iterator = files.listIterator();
+    while (iterator.hasNext()) {
+      int levelNumber = iterator.nextIndex();
+      File file = iterator.next();
+      String name = file.getName();
+
+      JPanel panelLevel = new JPanel();
+      JButton selectButton = new JButton(name);
+
+      // try to load the level, nulling the file if not available
+      Level level = null;
+      if (file != null) {
         try {
           level = new Level(new DataInputStream(new FileInputStream(file)));
         } catch (IOException err) {
           // not a valid level
-          continue;
+          file = null;
         }
-
-        JPanel panelLevel = new JPanel();
-        JButton selectButton = new JButton(name);
-
-        if (model.progress.completedLevels() >= levelNumber) {
-          LevelProgress progress = model.progress.getLevelProgress(levelNumber);
-          selectButton.addActionListener(new PlayerLevelSelectionCtrl(app,
-            model, name));
-          selectButton.setEnabled(true);
-          selectButton.setText("<html>Level " + name + "<br>" + (progress ==
-            null ? "Not attempted" : "Score: " + progress.getScore()) +
-            "<br>Variation: " + level.rules.variation.name + "</html>");
-        } else {
-          selectButton.setEnabled(false);
-        }
-
-        panelLevel.add(selectButton);
-        content.add(panelLevel);
       }
+
+      if (file == null) {
+        selectButton.setText("<html>Level " + name +
+          "<br>Not available</html>");
+      } else {
+        // get the level's progress object
+        LevelProgress progress = model.progress.getLevelProgress(levelNumber);
+
+        // if one of the previous levels was not completed, disable the button
+        selectButton.setEnabled(!cutOff);
+
+        // if we have beaten all previous levels, and we haven't beaten this one
+        if (!cutOff && (progress == null ||
+            (level.rules.scoreThresholds.length > 0 &&
+            progress.bestScore < level.rules.scoreThresholds[0]))) {
+          // no further levels can be attempted
+          cutOff = true;
+        }
+
+        selectButton.addActionListener(new PlayerLevelSelectionCtrl(app, model,
+          name));
+        selectButton.setText("<html>Level " + name + "<br>" + (progress == null
+          ? "Not attempted" : "Score: " + progress.getScore()) +
+          "<br>Variation: " + level.rules.variation.name + "</html>");
+      }
+
+      panelLevel.add(selectButton);
+      content.add(panelLevel);
     }
     return content;
   }
