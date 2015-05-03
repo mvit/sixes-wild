@@ -86,7 +86,7 @@ public class PlayerApplication extends JFrame {
     for (int i = 2; i <= 3; i++) {
       loader.addResource("x" + i + ".png");
     }
-    
+
     loader.addResource("playable.png");
     loader.addResource("selected.png");
     loader.addResource("marked.png");
@@ -94,7 +94,7 @@ public class PlayerApplication extends JFrame {
     // start splash screen
     SplashScreen splash;
     try {
-      splash = new SplashScreen("splash1.png");
+      splash = new SplashScreen("splash2.png");
     } catch (IOException err) {
       System.err.println(err.getMessage());
       err.printStackTrace();
