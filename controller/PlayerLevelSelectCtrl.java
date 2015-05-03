@@ -14,12 +14,12 @@ import model.PlayerModel;
  *
  * @author Nicholas Chaput, and Maurizio Vitale
  */
-public class PlayerLevelSelectionCtrl implements ActionListener {
+public class PlayerLevelSelectCtrl implements ActionListener {
   PlayerApplication app;
   PlayerModel model;
   String filename;
 
-  public PlayerLevelSelectionCtrl(PlayerApplication app, PlayerModel model,
+  public PlayerLevelSelectCtrl(PlayerApplication app, PlayerModel model,
       String filename) {
     this.app = app;
     this.model = model;

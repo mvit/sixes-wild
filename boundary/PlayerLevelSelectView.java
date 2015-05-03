@@ -1,6 +1,6 @@
 package boundary;
 
-import controller.PlayerLevelSelectionCtrl;
+import controller.PlayerLevelSelectCtrl;
 import controller.PlayerLoadLevelCtrl;
 import controller.PlayerMainMenuCtrl;
 
@@ -158,7 +158,7 @@ public class PlayerLevelSelectView extends JPanel {
           cutOff = true;
         }
 
-        selectButton.addActionListener(new PlayerLevelSelectionCtrl(app, model,
+        selectButton.addActionListener(new PlayerLevelSelectCtrl(app, model,
           name));
         selectButton.setText("<html>Level " + name + "<br>" + (progress == null
           ? "Not attempted" : "Score: " + progress.getScore()) +
