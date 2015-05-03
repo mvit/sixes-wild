@@ -94,7 +94,7 @@ public class PlayerProgress implements Iterable<LevelProgress> {
    * @return The LevelProgress instance.
    */
   public LevelProgress getLevelProgress(int level) {
-    return level < levels.size() ? levels.get(level-1) : null;
+    return level < levels.size() ? levels.get(level) : null;
   }
 
   /**
