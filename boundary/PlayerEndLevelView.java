@@ -69,7 +69,7 @@ public class PlayerEndLevelView extends JDialog{
     JOptionPane optionPane = new JOptionPane(panel, JOptionPane.YES_NO_OPTION,
       JOptionPane.PLAIN_MESSAGE, null, buttons, backBut);
     dialog.getContentPane().add(optionPane);
-    dialog.setSize(300,200);
+    dialog.setSize(400,200);
     dialog.setLocationRelativeTo(f);
     dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
     dialog.setVisible(true);
