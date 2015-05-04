@@ -64,12 +64,8 @@ public class BuilderApplication extends JFrame {
    * @param args The command-line parameters for the application.
    */
   public static void main(String[] args) {
-    ResourceLoader loader = new ResourceLoader();
-
-    loader.addResource("playable.png");
-    for (int i = 1; i <= 6; i++) {
-      loader.addResource(i + ".png");
-    }
+    ResourceLoader loader = new ResourceLoader();;
+        
 
     // start splash screen
     SplashScreen splash;
@@ -80,18 +76,14 @@ public class BuilderApplication extends JFrame {
       err.printStackTrace();
       return;
     }
+    
 
-    // load resources
     long loadStart = System.currentTimeMillis();
     BuilderModel model = new BuilderModel();
-    try {
-      loader.loadResources();
-    } catch (IOException err) {
-      System.err.println(err.getMessage());
-      err.printStackTrace();
-      return;
-    }
 
+
+    load (loader);
+    
     // initialize main app
     BuilderApplication app = new BuilderApplication(model, loader);
     JPanel initialView = new BuilderMainMenuView(app, model);
@@ -112,4 +104,23 @@ public class BuilderApplication extends JFrame {
     // start main app
     app.setView(initialView);
   }
+  
+  public static void load (ResourceLoader loader){
+
+	    loader.addResource("playable.png");
+	    for (int i = 1; i <= 6; i++) {
+	      loader.addResource(i + ".png");
+	    }
+
+	    // load resources
+	    try {
+	      loader.loadResources();
+	    } catch (IOException err) {
+	      System.err.println(err.getMessage());
+	      err.printStackTrace();
+	      return;
+	    }
+
+  }
+  
 }
