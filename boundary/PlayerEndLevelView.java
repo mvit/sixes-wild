@@ -35,6 +35,7 @@ public class PlayerEndLevelView extends JDialog{
     JFrame f = new JFrame();
 
     final JDialog dialog = new JDialog(app, "Level Finished", true);
+    
     JButton backBut = new JButton("Level Select");
     JButton retryBut = new JButton("Replay?");
 
@@ -66,9 +67,9 @@ public class PlayerEndLevelView extends JDialog{
     panel.add(backBut);
     panel.add(retryBut);
     JButton[] buttons = {backBut, retryBut};
-    JOptionPane optionPane = new JOptionPane(panel, JOptionPane.YES_NO_OPTION,
-      JOptionPane.PLAIN_MESSAGE, null, buttons, backBut);
-    dialog.getContentPane().add(optionPane);
+    //JOptionPane optionPane = new JOptionPane(panel, JOptionPane.YES_NO_OPTION,
+      //JOptionPane.PLAIN_MESSAGE, null, buttons, backBut);
+    dialog.setContentPane(panel);
     dialog.setSize(400,200);
     dialog.setLocationRelativeTo(f);
     dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
