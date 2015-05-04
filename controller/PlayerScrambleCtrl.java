@@ -1,6 +1,7 @@
 package controller;
 
 import boundary.PlayerApplication;
+import boundary.PlayerLevelView;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,5 +52,6 @@ public class PlayerScrambleCtrl implements ActionListener {
     }
     model.variation.createCtrl(app, model).scramble();
     app.getView().repaint();
+    ((PlayerLevelView) app.getView()).update();
   }
 }
