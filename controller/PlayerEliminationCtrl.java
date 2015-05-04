@@ -14,6 +14,7 @@ import model.Point;
 public class PlayerEliminationCtrl implements PlayerVariationCtrl {
   PlayerApplication app;
   PlayerModel model;
+  boolean fullyMarked;
 
   /**
    * Creates a new PlayerEliminationCtrl.
@@ -23,6 +24,7 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
   public PlayerEliminationCtrl(PlayerApplication app, PlayerModel model) {
     this.app = app;
     this.model = model;
+    fullyMarked = false;
   }
 
   public boolean specialMove() {
@@ -38,7 +40,7 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
     model.counter--;
 
     if (model.counter == 0) {
-      EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model));
+      EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model, fullyMarked));
     }
 
     if (model.move.isValid()) {
@@ -54,7 +56,7 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
           }
         }
       }
-      EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model));
+      fullyMarked = true;
       return true;
     }
 

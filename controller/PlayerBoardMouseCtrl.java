@@ -57,7 +57,7 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
 
     // ends the level from here
     if (model.counter == 0) {
-      EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model));
+      EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model, true));
     }
   }
 

@@ -30,7 +30,7 @@ public class PlayerPuzzleCtrl implements PlayerVariationCtrl {
     model.counter--;
 
     if (model.counter == 0) {
-      EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model));
+      EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model, true));
     }
 
     return model.move.isValid();

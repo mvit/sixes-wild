@@ -34,7 +34,7 @@ public class LightningTimerTask extends TimerTask {
     // TODO: ensure we don't queue multiple endLevel invocations
     if (model.counter == 0) {
       cancel();
-      EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model));
+      EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model, true));
     }
   }
 }

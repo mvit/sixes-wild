@@ -17,6 +17,7 @@ import boundary.PlayerEndLevelView;
 public class PlayerEndLevelCtrl implements Runnable {
   PlayerApplication app;
   PlayerModel model;
+  boolean isComplete;
   public static final File progressfile = PlayerLoadProgressCtrl.progressfile;
   public static final File progressdir = PlayerLoadProgressCtrl.progressdir;
 
@@ -26,9 +27,10 @@ public class PlayerEndLevelCtrl implements Runnable {
    * @param app
    * @param model
    */
-  public PlayerEndLevelCtrl(PlayerApplication app, PlayerModel model) {
+  public PlayerEndLevelCtrl(PlayerApplication app, PlayerModel model, boolean isComplete) {
     this.app = app;
     this.model = model;
+    this.isComplete = isComplete;
   }
 
   /**
@@ -41,12 +43,14 @@ public class PlayerEndLevelCtrl implements Runnable {
 
     if (thresholds.length > 0) {
       for (int i = thresholds.length - 1; i > 0; i--) {
-        if (model.score > thresholds[i]) {
+        if (model.score > thresholds[i] && isComplete) {
           return " You got " + (i + 1) + (i == 0 ? " star!" : " stars!");
         }
       }
 
-      return " You didn't pass.";
+      if(!isComplete)
+    	  return " Didn't complete level objective. :(";
+      return " You didn't pass the score thresholds.";
     }
 
     return "";
