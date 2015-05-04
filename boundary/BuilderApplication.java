@@ -67,7 +67,7 @@ public class BuilderApplication extends JFrame {
     // start splash screen
     SplashScreen splash;
     try {
-      splash = new SplashScreen("splash2levelbuilder.png");
+      splash = new SplashScreen("splash1levelbuilder.png");
     } catch (IOException err) {
       System.err.println(err.getMessage());
       err.printStackTrace();
@@ -91,8 +91,8 @@ public class BuilderApplication extends JFrame {
     long loadElapsed = System.currentTimeMillis() - loadStart;
     if (loadElapsed < 2000) {
       try {
-      //   Thread.sleep(2000 - loadElapsed);
-      // } catch (InterruptedException err) {
+        Thread.sleep(2000 - loadElapsed);
+      } catch (InterruptedException err) {
         // if we've been interrupted, just close the splash screen
       } finally {
         // close splash screen
