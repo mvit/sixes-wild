@@ -8,6 +8,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
+import model.CellType;
 import model.Move;
 import model.PlayerModel;
 import model.PlayerState;
@@ -65,7 +66,8 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
   public void mouseClicked(MouseEvent event) {
     Point point;
     if (event.getButton() != MouseEvent.BUTTON1 ||
-        (point = identifyPoint(event)) == null) {
+        (point = identifyPoint(event)) == null
+    		|| isNullTile(point)){
       return;
     }
 
@@ -128,4 +130,12 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
 
   @Override
   public void mouseMoved(MouseEvent event) {}
+
+
+  public boolean isNullTile (Point point) {
+	  return (model.level.currentBoard.grid[point.x][point.y].tile == null
+			  	|| model.level.currentBoard.grid[point.x][point.y].type == CellType.BUCKET
+			  	|| model.level.currentBoard.grid[point.x][point.y].type == CellType.INERT);
+  }
+  
 }
