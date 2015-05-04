@@ -49,8 +49,8 @@ public class PlayerEndLevelCtrl implements Runnable {
       }
 
       if(!isComplete)
-    	  return " Didn't complete level objective. :(";
-      return " You didn't pass the score thresholds.";
+    	  return "Didn't complete level objective. :(";
+      return "You didn't pass the score thresholds.";
     }
 
     return "";
@@ -90,7 +90,7 @@ public class PlayerEndLevelCtrl implements Runnable {
 
     PlayerEndLevelView endView = new PlayerEndLevelView(app, model);
 
-    endView.openDialog("You won! Good job!" + getWonMessage());
+    endView.openDialog(getWonMessage());
   }
 
   /**
