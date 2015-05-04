@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import boundary.PlayerApplication;
+import boundary.PlayerLevelView;
 import model.Move;
 import model.PlayerModel;
 import model.PlayerState;
@@ -34,11 +35,29 @@ public class PlayerRemoveCtrl implements ActionListener{
       Move reMove = new Move();
       reMove.expand(model.level.currentBoard, point);
     }
-    pVar.remove();
+    //pVar.remove();
+    remove();
   }
 
   @Override
   public void actionPerformed(ActionEvent arg0) {
 	model.playerState = PlayerState.REMOVE;
+  }
+  
+  public void remove() {
+	  if (model.playerState != PlayerState.REMOVE 
+	  		|| model.move.points.size() != 1){
+		  System.out.println("Remove called when not valid");
+		  model.move = new Move();
+	  }
+	  else {
+		  for (Point p : model.move.points) {
+			  model.level.currentBoard.grid[p.x][p.y].tile = null;
+		  }
+	      PlayerUpdateBoardCtrl updateBoardCtrl = new PlayerUpdateBoardCtrl(app, model);
+	      updateBoardCtrl.processBoardSmooth();
+	  }
+	  model.counter--;
+	  ((PlayerLevelView)app.getView()).update();
   }
 }
