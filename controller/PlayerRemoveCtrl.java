@@ -1,15 +1,19 @@
 package controller;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import boundary.PlayerApplication;
 import model.Move;
 import model.PlayerModel;
+import model.PlayerState;
 import model.Point;
 import model.Variation;
 
 /**
  * @author Nick Chaput
  */
-public class PlayerRemoveCtrl {
+public class PlayerRemoveCtrl implements ActionListener{
   PlayerApplication app;
   PlayerModel model;
 
@@ -18,7 +22,7 @@ public class PlayerRemoveCtrl {
     this.model = model;
   }
 
-  public void mouseClicked(Point point) {
+  public void startRemove(Point point) {
     // TODO: generic implementation
     PlayerVariationCtrl pVar = model.variation.createCtrl(app, model);
     if (model.variation != Variation.RELEASE &&
@@ -31,5 +35,10 @@ public class PlayerRemoveCtrl {
       reMove.expand(model.level.currentBoard, point);
     }
     pVar.remove();
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent arg0) {
+	model.playerState = PlayerState.REMOVE;
   }
 }
