@@ -12,6 +12,7 @@ import model.PlayerModel;
 import model.PlayerState;
 import model.Point;
 import model.Tile;
+import model.Variation;
 
 /**
  * @author Eli Skeggs, Nick Chaput
@@ -30,6 +31,10 @@ public class PlayerSwapCtrl implements ActionListener {
       System.out.println("You borked it somehow (Triggered swap when player state != swap)");
       model.move = new Move();
       model.counter--;
+    } else if (model.variation == Variation.RELEASE
+    			&& model.level.currentBoard.grid[point.x][point.y].tile.number == 5) {
+        model.move = new Move();
+        model.counter--;
     } else if (model.move.points.size() == 0) {
       model.move.expand(model.level.currentBoard, point);
     } else if (model.move.points.size() == 1) {
