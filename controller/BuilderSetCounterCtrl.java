@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.Color;
+
 import boundary.BuilderApplication;
 import boundary.BuilderLevelEditorView;
 
@@ -9,7 +11,7 @@ import javax.swing.event.DocumentListener;
 import model.BuilderModel;
 
 /**
- * @author Cem Unsal
+ * @author Cem Unsal and Maurizio Vitale
  */
 public class BuilderSetCounterCtrl implements DocumentListener {
   BuilderApplication app;
@@ -24,21 +26,31 @@ public class BuilderSetCounterCtrl implements DocumentListener {
   }
 
   protected void pushUpdate() {
+	int num = 0;
     String entry = levelView.tfCounter.getText();
-    int num = Integer.parseInt(0 + entry, 10);
-
+    try {
+    	num = Integer.parseInt(0 + entry, 10);
+    }
+    catch(NumberFormatException e) {
+    	System.out.println("Not a number");
+    	levelView.tfCounter.setBackground(Color.red);
+    	levelView.repaint();
+    	return;
+    }
+	levelView.tfCounter.setBackground(Color.white);
     model.level.rules.initialCounter = num;
+	levelView.repaint();
     model.takeSnapshot();
   }
 
   @Override
   public void changedUpdate(DocumentEvent event) {
-    pushUpdate();
+	pushUpdate();
   }
 
   @Override
   public void insertUpdate(DocumentEvent event) {
-    pushUpdate();
+	pushUpdate();
   }
 
   @Override

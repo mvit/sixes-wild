@@ -1,14 +1,17 @@
 package controller;
 
+import java.awt.Color;
+
 import boundary.BuilderApplication;
 import boundary.BuilderLevelEditorView;
 
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+
 import model.BuilderModel;
 
 /**
- * @author Cem Unsal
+ * @author Cem Unsal and Maurizio Vitale
  */
 public class BuilderSetScoreCtrl implements DocumentListener {
   BuilderApplication app;
@@ -26,9 +29,20 @@ public class BuilderSetScoreCtrl implements DocumentListener {
 
   protected void pushUpdate() {
     String entry = levelView.tfThreshold[tier].getText();
-    int num = Integer.parseInt(0 + entry, 10);
+	int num = 0;
 
+    try {
+    	num = Integer.parseInt(0 + entry, 10);
+    }
+    catch(NumberFormatException e) {
+    	System.out.println("Not a number");
+    	levelView.tfThreshold[tier].setBackground(Color.red);
+    	levelView.repaint();
+    	return;
+    }
+	levelView.tfThreshold[tier].setBackground(Color.white);
     model.level.rules.scoreThresholds[tier] = num;
+	levelView.repaint();
     model.takeSnapshot();
   }
 
