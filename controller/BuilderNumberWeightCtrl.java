@@ -54,7 +54,6 @@ public class BuilderNumberWeightCtrl implements ChangeListener {
    */
   @Override
   public void stateChanged(ChangeEvent event) {
-    System.out.println("BUILDER NUMBER WEIGHT CTRL");
     JSlider source = (JSlider) event.getSource();
     double val = (double) source.getValue() / source.getMaximum();
 

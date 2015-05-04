@@ -30,9 +30,6 @@ public class WeightedRandom {
    * @return The index into the weights array that has been selected.
    */
   public int weightedRandom(double[] weights) {
-    for (int i = 0; i < weights.length; i++) {
-      System.out.println(i + ": " + weights[i]);
-    }
     double sum = 0.0d, compare = random.nextDouble();
     for (int i = 0; i < weights.length; i++) {
       sum += weights[i];
