@@ -1,11 +1,13 @@
 package controller;
 
 import boundary.BuilderApplication;
+
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import model.BuilderModel;
+import model.Rules;
 
 /**
  * The controller to handle altered multiplier weights.
@@ -40,8 +42,17 @@ public class BuilderMultiplierWeightCtrl implements ChangeListener {
   @Override
   public void stateChanged(ChangeEvent event) {
     JSlider source = (JSlider) event.getSource();
-    int val = source.getValue();
-    model.level.rules.multiplierWeights[multiplier] = val;
+    double val = (double) source.getValue() / source.getMaximum();
+
+    Rules rules = model.level.rules;
+    double weightDiff = val - rules.getMultiplierWeight(multiplier);
+    double ratio = 1.0d / (1.0d + weightDiff);
+    if (multiplier < rules.multiplierWeights.length) {
+      rules.multiplierWeights[multiplier] = val;
+    }
+    for (int i = 0; i < rules.multiplierWeights.length; i++) {
+      rules.multiplierWeights[i] *= ratio;
+    }
     model.takeSnapshot();
   }
 }

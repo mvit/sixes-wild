@@ -197,6 +197,7 @@ public class BuilderLevelEditorView extends JPanel {
 
     //Tile Probabilities
     panelSliders.add(new JLabel("Tile Probabilities"));
+
     // make the slider panels, styling specific to a given panel can be put in
     // an array, which would then be used in the loop
     for (int i = 0; i < Rules.maxNumber; i++) {
@@ -206,38 +207,45 @@ public class BuilderLevelEditorView extends JPanel {
       JLabel label = new JLabel("" + (i + 1));
       panel.add(label);
 
+      int total = 100 * Rules.maxNumber;
+
       JSlider slider = new JSlider();
-      slider.addChangeListener(new BuilderNumberWeightCtrl(app, model, i));
-      slider.setPaintLabels(true);
-      slider.setMajorTickSpacing(20);
-      slider.setMinorTickSpacing(10);
-      slider.setSnapToTicks(true);
+      slider.setMaximum(total);
+      slider.setMajorTickSpacing(100);
+      slider.setMinorTickSpacing(50);
+      // slider.setSnapToTicks(true);
       slider.setPaintTicks(true);
+      slider.setValue((int) (model.level.rules.getNumberWeight(i) * total));
+      slider.addChangeListener(new BuilderNumberWeightCtrl(app, model, i));
       panel.add(slider);
 
       panelSliders.add(panel);
     }
+
     //Multiplier probabilities
     panelSliders.add(new JLabel("Multiplier Probability"));
 
     for (int i = 0; i < Rules.maxMultiplier; i++) {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+      JPanel panel = new JPanel();
+      panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 
-        JLabel label = new JLabel("" + (i + 1));
-        panel.add(label);
+      JLabel label = new JLabel("" + (i + 1));
+      panel.add(label);
 
-        JSlider slider = new JSlider();
-        slider.addChangeListener(new BuilderMultiplierWeightCtrl(app, model, i));
-        slider.setPaintLabels(true);
-        slider.setMajorTickSpacing(20);
-        slider.setMinorTickSpacing(10);
-        slider.setSnapToTicks(true);
-        slider.setPaintTicks(true);
-        panel.add(slider);
+      int total = 100 * Rules.maxMultiplier;
 
-        panelSliders.add(panel);
-      }
+      JSlider slider = new JSlider();
+      slider.setMaximum(total);
+      slider.setMajorTickSpacing(100);
+      slider.setMinorTickSpacing(50);
+      // slider.setSnapToTicks(true);
+      slider.setPaintTicks(true);
+      slider.setValue((int) (model.level.rules.getMultiplierWeight(i) * total));
+      slider.addChangeListener(new BuilderMultiplierWeightCtrl(app, model, i));
+      panel.add(slider);
+
+      panelSliders.add(panel);
+    }
 
     updateView();
   }

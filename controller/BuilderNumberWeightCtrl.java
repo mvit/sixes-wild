@@ -1,11 +1,13 @@
 package controller;
 
 import boundary.BuilderApplication;
+
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 import model.BuilderModel;
+import model.Rules;
 
 /**
  * The controller to handle altered number weights.
@@ -52,9 +54,19 @@ public class BuilderNumberWeightCtrl implements ChangeListener {
    */
   @Override
   public void stateChanged(ChangeEvent event) {
+    System.out.println("BUILDER NUMBER WEIGHT CTRL");
     JSlider source = (JSlider) event.getSource();
-    int val = source.getValue();
-    model.level.rules.numberWeights[number] = val;
+    double val = (double) source.getValue() / source.getMaximum();
+
+    Rules rules = model.level.rules;
+    double weightDiff = val - rules.getNumberWeight(number);
+    double ratio = 1.0d / (1.0d + weightDiff);
+    if (number < rules.numberWeights.length) {
+      rules.numberWeights[number] = val;
+    }
+    for (int i = 0; i < rules.numberWeights.length; i++) {
+      rules.numberWeights[i] *= ratio;
+    }
     model.takeSnapshot();
   }
 }
