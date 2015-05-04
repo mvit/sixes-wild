@@ -64,26 +64,25 @@ public class BuilderApplication extends JFrame {
    * @param args The command-line parameters for the application.
    */
   public static void main(String[] args) {
-    ResourceLoader loader = new ResourceLoader();;
-        
-
     // start splash screen
     SplashScreen splash;
     try {
-      splash = new SplashScreen("splash1levelbuilder.png");
+      splash = new SplashScreen("splash2levelbuilder.png");
     } catch (IOException err) {
       System.err.println(err.getMessage());
       err.printStackTrace();
       return;
     }
-    
 
     long loadStart = System.currentTimeMillis();
     BuilderModel model = new BuilderModel();
 
+    ResourceLoader loader = load();
 
-    load (loader);
-    
+    if (loader == null) {
+      return;
+    }
+
     // initialize main app
     BuilderApplication app = new BuilderApplication(model, loader);
     JPanel initialView = new BuilderMainMenuView(app, model);
@@ -92,8 +91,8 @@ public class BuilderApplication extends JFrame {
     long loadElapsed = System.currentTimeMillis() - loadStart;
     if (loadElapsed < 2000) {
       try {
-        Thread.sleep(2000 - loadElapsed);
-      } catch (InterruptedException err) {
+      //   Thread.sleep(2000 - loadElapsed);
+      // } catch (InterruptedException err) {
         // if we've been interrupted, just close the splash screen
       } finally {
         // close splash screen
@@ -104,23 +103,30 @@ public class BuilderApplication extends JFrame {
     // start main app
     app.setView(initialView);
   }
-  
-  public static void load (ResourceLoader loader){
 
-	    loader.addResource("playable.png");
-	    for (int i = 1; i <= 6; i++) {
-	      loader.addResource(i + ".png");
-	    }
+  public static ResourceLoader load() {
+    ResourceLoader loader = new ResourceLoader();
 
-	    // load resources
-	    try {
-	      loader.loadResources();
-	    } catch (IOException err) {
-	      System.err.println(err.getMessage());
-	      err.printStackTrace();
-	      return;
-	    }
+    for (int i = 1; i <= 6; i++) {
+      loader.addResource(i + ".png");
+    }
+    for (int i = 2; i <= 3; i++) {
+      loader.addResource("x" + i + ".png");
+    }
 
+    loader.addResource("playable.png");
+    loader.addResource("selected.png");
+    loader.addResource("marked.png");
+
+    // load resources
+    try {
+      loader.loadResources();
+    } catch (IOException err) {
+      System.err.println(err.getMessage());
+      err.printStackTrace();
+      return null;
+    }
+
+    return loader;
   }
-  
 }
