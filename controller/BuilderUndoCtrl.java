@@ -21,7 +21,8 @@ public class BuilderUndoCtrl implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent event) {
     if (model.redoIndex > 0) {
-      model.level = model.history.get(--model.redoIndex).snapshot;
+    	model.redoIndex--;
+      model.level = model.history.get(model.redoIndex).snapshot;
       model.clearTempState();
 
       BuilderLevelEditorView view = (BuilderLevelEditorView) app.getView();

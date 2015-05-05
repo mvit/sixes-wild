@@ -21,7 +21,8 @@ public class BuilderRedoCtrl implements ActionListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     if (model.redoIndex < model.history.size() - 1) {
-      model.level = model.history.get(++model.redoIndex).snapshot;
+    	model.redoIndex++;
+      model.level = model.history.get(model.redoIndex).snapshot;
       model.clearTempState();
 
       BuilderLevelEditorView view = (BuilderLevelEditorView) app.getView();
