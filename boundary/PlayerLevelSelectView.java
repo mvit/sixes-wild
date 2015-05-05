@@ -137,8 +137,7 @@ public class PlayerLevelSelectView extends JPanel {
       }
 
       if (file == null) {
-        selectButton.setText("<html>Level " + name +
-          "<br>Not available</html>");
+        selectButton.setText("Level " + name + "\nNot available");
       } else {
         // get the level's progress object
         LevelProgress progress = model.progress.getLevelProgress(levelNumber);
@@ -156,9 +155,9 @@ public class PlayerLevelSelectView extends JPanel {
 
         selectButton.addActionListener(new PlayerLevelSelectCtrl(app, model,
           name));
-        selectButton.setText("<html>Level " + name + "<br>" + (progress == null
-          ? "Not attempted" : "Score: " + progress.getScore()) +
-          "<br>Variation: " + level.rules.variation.name + "</html>");
+        selectButton.setText("Level " + name + "\n" + (progress == null ?
+          "Not attempted" : "Score: " + progress.getScore()) + "\nVariation: " +
+          level.rules.variation.name);
       }
 
       panelLevel.add(selectButton);
