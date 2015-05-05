@@ -122,6 +122,28 @@ public class PlayerBoardView extends BoardView {
     if (cell.marked) {
       g.drawImage(getCache("marked.png"), x1, y1, null);
     }
+    
+    if (cell.type != null) {
+        switch (cell.type) {
+        case PLAYABLE:
+          g.drawImage(getCache(cell.tile == null ? "playable.png" :
+            (cell.tile.number + 1) + ".png"), x1, y1, null);
+
+          if (cell.tile != null && cell.tile.multiplier > 1) {
+            g.drawImage(getCache("x" + cell.tile.multiplier + ".png"), x1, y1, null);
+          }
+          break;
+
+        case BUCKET:
+          g.drawImage(getCache("bucket.png"), x1, y1, null);
+          break;
+
+        // TODO: should probably warn in case of default
+        case INERT:
+        default:
+          g.drawImage(getCache("inert.png"), x1, y1, null);
+        }
+    }
 
     Point tmp = new Point(x, y);
     if (model.move != null && model.move.points.contains(tmp) && model.playerState != PlayerState.NONE) {
