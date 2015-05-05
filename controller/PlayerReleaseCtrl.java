@@ -1,6 +1,8 @@
 package controller;
 
 import boundary.PlayerApplication;
+import model.Board;
+import model.CellType;
 import model.PlayerModel;
 
 /**
@@ -28,14 +30,30 @@ public class PlayerReleaseCtrl implements PlayerVariationCtrl {
     model.counter--;
 
     if (model.move.isValid()) {
-      // TODO: bucket checking
-      return true;
+      return allBucketsFull();
     }
 
     return false;
   }
 
-  @Override
+  private boolean allBucketsFull() {
+	for (int x = 0; x < Board.width; x++) {
+		for (int y = 0; y < Board.height; y++) {
+			  if (model.level.currentBoard.grid[x][y].type == CellType.BUCKET
+					 && model.level.currentBoard.grid[x][y].tile != null) {
+				  if (model.level.currentBoard.grid[x][y].tile.number != 5) {
+					  System.out.println("Something messed up and a non-Six is in your bucket: " + x + " " + y);
+				  }
+			  }
+			  else {
+				  return false;
+			  }
+		  }
+	}
+	return true;
+}
+
+@Override
   public boolean remove() {
     // TODO: implement
     specialMove();
