@@ -12,7 +12,7 @@ import boundary.PlayerApplication;
 import boundary.PlayerMainMenuView;
 import boundary.ResourceLoader;
 
-public class TestMainMenuView {
+public class TestPlayerMainMenuView {
 
 	PlayerApplication app;
 	PlayerModel model;
