@@ -29,20 +29,19 @@ public class BuilderSetScoreCtrl implements DocumentListener {
 
   protected void pushUpdate() {
     String entry = levelView.tfThreshold[tier].getText();
-	int num = 0;
+    int num = 0;
 
     try {
-    	num = Integer.parseInt(0 + entry, 10);
+      num = Integer.parseInt(0 + entry, 10);
+    } catch (NumberFormatException e) {
+      System.out.println("Not a number");
+      levelView.tfThreshold[tier].setBackground(Color.red);
+      levelView.repaint();
+      return;
     }
-    catch(NumberFormatException e) {
-    	System.out.println("Not a number");
-    	levelView.tfThreshold[tier].setBackground(Color.red);
-    	levelView.repaint();
-    	return;
-    }
-	levelView.tfThreshold[tier].setBackground(Color.white);
+    levelView.tfThreshold[tier].setBackground(Color.white);
     model.level.rules.scoreThresholds[tier] = num;
-	levelView.repaint();
+    levelView.repaint();
     model.takeSnapshot();
   }
 

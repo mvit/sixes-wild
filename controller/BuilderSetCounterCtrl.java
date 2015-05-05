@@ -26,31 +26,30 @@ public class BuilderSetCounterCtrl implements DocumentListener {
   }
 
   protected void pushUpdate() {
-	int num = 0;
+    int num = 0;
     String entry = levelView.tfCounter.getText();
     try {
-    	num = Integer.parseInt(0 + entry, 10);
+      num = Integer.parseInt(0 + entry, 10);
+    } catch (NumberFormatException err) {
+      System.out.println("Not a number");
+      levelView.tfCounter.setBackground(Color.red);
+      levelView.repaint();
+      return;
     }
-    catch(NumberFormatException e) {
-    	System.out.println("Not a number");
-    	levelView.tfCounter.setBackground(Color.red);
-    	levelView.repaint();
-    	return;
-    }
-	levelView.tfCounter.setBackground(Color.white);
+    levelView.tfCounter.setBackground(Color.white);
     model.level.rules.initialCounter = num;
-	levelView.repaint();
+    levelView.repaint();
     model.takeSnapshot();
   }
 
   @Override
   public void changedUpdate(DocumentEvent event) {
-	pushUpdate();
+   pushUpdate();
   }
 
   @Override
   public void insertUpdate(DocumentEvent event) {
-	pushUpdate();
+   pushUpdate();
   }
 
   @Override
