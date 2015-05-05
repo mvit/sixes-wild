@@ -30,13 +30,12 @@ public class PlayerApplication extends JFrame {
 
     this.model = model;
     this.loader = loader;
-    
-    showSplash("splash2.png");
+    SplashScreen splash = showSplash("splash2.png");
     initializeResources();
-    initializeView();
+    initializeView(splash);
   }
   
-  private void initializeView() {
+  private void initializeView(SplashScreen splash) {
 	    JPanel initialView = new PlayerMainMenuView(this, model);
 	    long loadStart = System.currentTimeMillis();
 	    this.addQuitListener(null);
@@ -50,8 +49,7 @@ public class PlayerApplication extends JFrame {
 	      } catch (InterruptedException err) {
 	        // if we've been interrupted, just close the splash screen
 	      } finally {
-	        // close splash screen
-	        
+	        splash.close();
 	      }
 	    }
 
@@ -59,8 +57,8 @@ public class PlayerApplication extends JFrame {
 	    this.setView(initialView);
   }
   
-  private void showSplash(String name) {
-	    SplashScreen splash;
+  private SplashScreen showSplash(String name) {
+	    SplashScreen splash = null;
 	    
 	    try {
 	      splash = new SplashScreen(name);
@@ -68,6 +66,8 @@ public class PlayerApplication extends JFrame {
 	      System.err.println(err.getMessage());
 	      err.printStackTrace();
 	    }
+	    
+	    return splash;
 	    
   }
   private void initializeResources() {
