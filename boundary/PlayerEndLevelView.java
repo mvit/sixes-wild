@@ -7,7 +7,6 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import controller.LightningTimer;
@@ -66,9 +65,6 @@ public class PlayerEndLevelView extends JDialog{
     panel.add(new JLabel("Score: " + model.score));
     panel.add(backBut);
     panel.add(retryBut);
-    JButton[] buttons = {backBut, retryBut};
-    //JOptionPane optionPane = new JOptionPane(panel, JOptionPane.YES_NO_OPTION,
-      //JOptionPane.PLAIN_MESSAGE, null, buttons, backBut);
     dialog.setContentPane(panel);
     dialog.setSize(400,200);
     dialog.setLocationRelativeTo(f);
