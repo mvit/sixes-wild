@@ -26,7 +26,7 @@ public class PlayerFinishMoveCtrl {
     model.playerState = PlayerState.NONE;
     model.move.expand(model.level.currentBoard, point);
     PlayerVariationCtrl pVar = model.variation.createCtrl(app, model);
-    // TODO: implement variation controllers
+
     if (pVar.finishMove()) {
       updateScore(model.move);
       for (Point p : model.move.points) {
@@ -37,7 +37,6 @@ public class PlayerFinishMoveCtrl {
       PlayerUpdateBoardCtrl updateBoardCtrl = new PlayerUpdateBoardCtrl(app, model);
       updateBoardCtrl.processBoardSmooth();
     }
-    // TODO: implement everything else that happens after a move finishes (update score, counter, etc)
 
     app.getView().repaint();
     ((PlayerLevelView) app.getView()).update();
