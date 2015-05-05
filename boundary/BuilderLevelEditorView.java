@@ -51,8 +51,10 @@ public class BuilderLevelEditorView extends JPanel {
   public Map<Variation, JRadioButton> variationButtons =
     new HashMap<Variation, JRadioButton>();
 
-  public JTextField tfThreshold[]=new JTextField[3];
+  public JTextField tfThreshold[] = new JTextField[3];
   public JTextField tfCounter;
+
+  public JSlider[] numberSliders, multiplierSliders;
 
   public BuilderLevelEditorView(BuilderApplication app, BuilderModel model) {
     this.app = app;
@@ -180,7 +182,7 @@ public class BuilderLevelEditorView extends JPanel {
     tfCounter = new JTextField();
     tfCounter.setMaximumSize( new Dimension(Integer.MAX_VALUE, tfCounter.getPreferredSize().height));
     panelSliders.add(tfCounter);
-    tfCounter.getDocument().addDocumentListener(new BuilderSetCounterCtrl (app, model, this));
+    tfCounter.getDocument().addDocumentListener(new BuilderSetCounterCtrl(app, model, this));
 
     //Thresholds
     panelSliders.add(new JLabel("Thresholds"));
@@ -189,14 +191,21 @@ public class BuilderLevelEditorView extends JPanel {
     panelThresholds.setLayout(new BoxLayout(panelThresholds, BoxLayout.X_AXIS));
 
     for (int i = 0; i < 3; i++) {
-    tfThreshold[i] = new JTextField();
-    tfThreshold[i].setMaximumSize( new Dimension(Integer.MAX_VALUE, tfThreshold[i].getPreferredSize().height));
-    panelThresholds.add(tfThreshold[i]);
-    tfThreshold[i].getDocument().addDocumentListener(new BuilderSetScoreCtrl (app, model, i, this));
+      JTextField field = new JTextField();
+      field.setMaximumSize(new Dimension(Integer.MAX_VALUE,
+        field.getPreferredSize().height));
+      panelThresholds.add(field);
+      field.getDocument()
+        .addDocumentListener(new BuilderSetScoreCtrl(app, model, i, this));
+      tfThreshold[i] = field;
     }
 
     //Tile Probabilities
     panelSliders.add(new JLabel("Tile Probabilities"));
+    numberSliders = new JSlider[Rules.maxNumber];
+
+    int maxValue = 100 * Rules.maxNumber;
+    boolean noBlocks = model.level.rules.variation == Variation.RELEASE;
 
     // make the slider panels, styling specific to a given panel can be put in
     // an array, which would then be used in the loop
@@ -207,16 +216,13 @@ public class BuilderLevelEditorView extends JPanel {
       JLabel label = new JLabel("" + (i + 1));
       panel.add(label);
 
-      int total = 100 * Rules.maxNumber;
-
       JSlider slider = new JSlider();
-      slider.setMaximum(total);
+      slider.setMaximum(maxValue);
       slider.setMajorTickSpacing(100);
       slider.setMinorTickSpacing(50);
-      // slider.setSnapToTicks(true);
       slider.setPaintTicks(true);
-      slider.setValue((int) (model.level.rules.getNumberWeight(i) * total));
-      slider.addChangeListener(new BuilderNumberWeightCtrl(app, model, i));
+
+      numberSliders[i] = slider;
       panel.add(slider);
 
       panelSliders.add(panel);
@@ -224,6 +230,9 @@ public class BuilderLevelEditorView extends JPanel {
 
     //Multiplier probabilities
     panelSliders.add(new JLabel("Multiplier Probability"));
+    multiplierSliders = new JSlider[Rules.maxMultiplier];
+
+    maxValue = 100 * Rules.maxMultiplier;
 
     for (int i = 0; i < Rules.maxMultiplier; i++) {
       JPanel panel = new JPanel();
@@ -232,27 +241,57 @@ public class BuilderLevelEditorView extends JPanel {
       JLabel label = new JLabel("" + (i + 1));
       panel.add(label);
 
-      int total = 100 * Rules.maxMultiplier;
-
       JSlider slider = new JSlider();
-      slider.setMaximum(total);
+      slider.setMaximum(maxValue);
       slider.setMajorTickSpacing(100);
       slider.setMinorTickSpacing(50);
       // slider.setSnapToTicks(true);
       slider.setPaintTicks(true);
-      slider.setValue((int) (model.level.rules.getMultiplierWeight(i) * total));
-      slider.addChangeListener(new BuilderMultiplierWeightCtrl(app, model, i));
+      multiplierSliders[i] = slider;
       panel.add(slider);
 
       panelSliders.add(panel);
     }
 
     updateView();
+
+    for (int i = 0; i < Rules.maxNumber; i++) {
+      numberSliders[i].addChangeListener(new BuilderNumberWeightCtrl(app, model,
+        i));
+    }
+
+    for (int i = 0; i < Rules.maxMultiplier; i++) {
+      multiplierSliders[i].addChangeListener(new BuilderMultiplierWeightCtrl(
+        app, model, i));
+    }
   }
 
   public void updateView() {
-    // TODO: implement me!
-    // TODO: level diffs
-    variationButtons.get(model.level.rules.variation).setSelected(true);
+    Rules rules = model.level.rules;
+
+    tfCounter.setText(rules.initialCounter + "");
+
+    for (int i = 0; i < tfThreshold.length; i++) {
+      tfThreshold[i].setText(rules.scoreThresholds[i] + "");
+    }
+
+    variationButtons.get(rules.variation).setSelected(true);
+
+    int maxValue = 100 * Rules.maxNumber;
+    boolean noBlocks = model.level.rules.variation == Variation.RELEASE;
+
+    JSlider lastSlider = numberSliders[Rules.maxNumber - 1];
+    lastSlider.setEnabled(!noBlocks);
+
+    for (int i = 0; i < Rules.maxNumber; i++) {
+      numberSliders[i].setValue((int) (rules.getNumberWeight(i) * maxValue));
+    }
+
+    maxValue = 100 * Rules.maxMultiplier;
+
+    for (int i = 0; i < Rules.maxMultiplier; i++) {
+      multiplierSliders[i].setValue((int) (rules.getMultiplierWeight(i) *
+        maxValue));
+    }
   }
 }
