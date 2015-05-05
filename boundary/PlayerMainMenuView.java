@@ -10,6 +10,7 @@ import java.awt.Font;
 import java.awt.GridBagLayout;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -55,9 +56,8 @@ public class PlayerMainMenuView extends JPanel {
 
     //add labels and buttons to menu content
 
-    JLabel lblSixesWild = new JLabel("\u262D");
+    JLabel lblSixesWild = new JLabel(new ImageIcon(app.loader.getResource("logo.png").getScaledInstance(184, 120, 0)));
     panelContent.add(lblSixesWild);
-    lblSixesWild.setFont(new Font("Matura MT Script Capitals", Font.PLAIN, 26));
     lblSixesWild.setAlignmentX(Component.CENTER_ALIGNMENT);
     lblSixesWild.setAlignmentY(Component.CENTER_ALIGNMENT);
 

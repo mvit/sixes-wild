@@ -77,10 +77,19 @@ public class PlayerApplication extends JFrame {
 	      for (int i = 2; i <= 3; i++) {
 	        loader.addResource("x" + i + ".png");
 	      }
-
+	      
 	      loader.addResource("playable.png");
 	      loader.addResource("selected.png");
 	      loader.addResource("marked.png");
+	      loader.addResource("bucket.png");
+	      loader.addResource("inert.png");
+	      
+	      loader.addResource("logo.png");
+	      
+	      loader.addResource("swap.png");
+	      loader.addResource("scramble.png");
+	      loader.addResource("remove.png");
+
 	      
 	      try {
 	          loader.loadResources();

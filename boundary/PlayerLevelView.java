@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -68,15 +69,15 @@ public class PlayerLevelView extends JPanel {
     panelLeft.add(panelControls);
     panelControls.setLayout(new BoxLayout(panelControls, BoxLayout.Y_AXIS));
 
-    JButton btnSwap = new JButton("\u2194");
+    JButton btnSwap = new JButton(new ImageIcon(app.loader.getResource("swap.png").getScaledInstance(64, 64, 0)));
     btnSwap.addActionListener(new PlayerSwapCtrl(app, model));
     panelControls.add(btnSwap);
 
-    JButton btnRemove = new JButton("\u2718");
+    JButton btnRemove = new JButton(new ImageIcon(app.loader.getResource("remove.png").getScaledInstance(64, 64, 0)));
     btnRemove.addActionListener(new PlayerRemoveCtrl(app, model));
     panelControls.add(btnRemove);
 
-    JButton btnScramble = new JButton("\u27F2");
+    JButton btnScramble = new JButton(new ImageIcon(app.loader.getResource("scramble.png").getScaledInstance(64, 64, 0)));
     btnScramble.addActionListener(new PlayerScrambleCtrl(app, model));
     panelControls.add(btnScramble);
 
