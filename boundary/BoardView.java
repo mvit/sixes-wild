@@ -137,11 +137,17 @@ public abstract class BoardView extends JPanel {
 
     // cache resized images
     Box preBox = identifyCell(0, 0);
-    if (preBox.x2 - preBox.x1 != prevWidth ||
-        preBox.y2 - preBox.y1 != prevHeight) {
-      prevWidth = preBox.x2 - preBox.x1;
-      prevHeight = preBox.y2 - preBox.y1;
-      cellSizeChange(prevWidth, prevHeight);
+    int width = preBox.x2 - preBox.x1, height = preBox.y2 - preBox.y1;
+    if (width != prevWidth || height != prevHeight) {
+      if (width <= 0 || height <= 0) {
+        // don't paint or cache anything if we don't actually have enough room
+        return;
+      }
+
+      cellSizeChange(width, height);
+
+      prevWidth = width;
+      prevHeight = height;
     }
 
     for (int x = 0; x < boardWidth; x++) {
