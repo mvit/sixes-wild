@@ -1,15 +1,11 @@
 package controller;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
+import boundary.PlayerApplication;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import model.PlayerModel;
 import model.PlayerProgress;
-import boundary.PlayerApplication;
+import utils.ReadStream;
+import utils.StreamFileUtils;
 
 /**
  * Loads the player's progress from the progress file.
@@ -48,51 +44,39 @@ public class PlayerLoadProgressCtrl {
    * corrupted, it creates a backup, and then overwrites the original file with
    * an empty user progress file.
    *
-   * TODO: clean up control flow.
+   * TODO: should we have alert dialogs?
    */
   public void loadProgress() {
-    if (!progressdir.mkdirs() && !progressdir.isDirectory()) {
-      // TODO: dialog?
-      System.err.println("Unable to create the appropriate directory structure,"
-        + "your progress will not be saved");
-      model.progress = new PlayerProgress();
-      return;
-    }
+    if (StreamFileUtils.ensureParent(progressfile)) {
+      if (progressfile.isFile()) {
+        ReadStream readStream = PlayerProgress.getReadable();
+        Object result = StreamFileUtils.readStream(progressfile, readStream);
 
-    // no progress file, write a new one
-    if (!progressfile.isFile()) {
-      model.progress = new PlayerProgress();
-      DataOutputStream out = null;
-      try {
-        out = new DataOutputStream(new FileOutputStream(progressfile));
-        model.progress.write(out);
-      } catch (IOException err) {
-        System.err.println("Unable to save progress");
-        System.err.println(err.getMessage());
-        err.printStackTrace();
-      } finally {
-        try {
-          if (out != null) {
-            out.close();
+        if (result == null) {
+          model.progress = new PlayerProgress();
+
+          File backup = new File("resource/progress/progress-" +
+            System.currentTimeMillis() + ".bak");
+          if (StreamFileUtils.backup(progressfile, backup)) {
+            StreamFileUtils.writeStream(progressfile, model.progress);
+            System.err.println("Unable to load progress, your existing progress"
+              + " file has been backed up and overwritten");
+          } else {
+            System.err.println("Unable to load progress, your progress will " +
+              "not be saved");
+            model.disableProgress = true;
           }
-        } catch (IOException err) {
-          System.err.println(err.getMessage());
-          err.printStackTrace();
+        } else {
+          model.progress = (PlayerProgress) result;
         }
+      } else {
+        model.progress = new PlayerProgress();
+        StreamFileUtils.writeStream(progressfile, model.progress);
       }
-      return;
-    }
-
-    // read the existing file
-    try {
-      model.progress = new PlayerProgress(new DataInputStream(
-        new FileInputStream(progressfile)));
-    } catch (IOException err) {
-      // TODO: dialog?
-      System.err.println("Unable to load progress, your progress will not be" +
-        "saved");
+    } else {
+      System.err.println("Unable to create the appropriate directory structure,"
+        + " your progress will not be saved");
       model.progress = new PlayerProgress();
-      return;
     }
   }
 }
