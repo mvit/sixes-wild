@@ -20,8 +20,7 @@ public class BuilderRedoCtrl implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    if (model.redoIndex < model.history.size() - 1) {
-      model.redo();
+    if (model.redo()) {
       model.clearTempState();
 
       BuilderLevelEditorView view = (BuilderLevelEditorView) app.getView();

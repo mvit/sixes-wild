@@ -45,18 +45,26 @@ public class BuilderModel {
     currentMultiplier = 1;
   }
 
-  public void undo() {
-    holdHistory = true;
-    level = history.get(--redoIndex).snapshot;
+  public boolean undo() {
+    if (redoIndex > 0) {
+      holdHistory = true;
+      level = history.get(--redoIndex).snapshot;
+      return true;
+    }
+    return false;
   }
 
   public void finishHistoryChange() {
     holdHistory = false;
   }
 
-  public void redo() {
-    holdHistory = true;
-    level = history.get(++redoIndex).snapshot;
+  public boolean redo() {
+    if (redoIndex < history.size() - 1) {
+      holdHistory = true;
+      level = history.get(++redoIndex).snapshot;
+      return true;
+    }
+    return false;
   }
 
   public void clearHistory() {
@@ -68,17 +76,20 @@ public class BuilderModel {
    * Adds a snapshot of the current state to the history.
    */
   public void takeSnapshot() {
-    if (!holdHistory) {
-      if (redoIndex < history.size() - 1) {
-        history.subList(redoIndex + 1, history.size()).clear();
-        history.trimToSize();
-      }
-
-      if (history.size() > 0) {
-        redoIndex++;
-      }
-
-      history.add(new Change(new Level(level)));
+    if (holdHistory || (history.size() > 0 &&
+        level.equals(history.get(redoIndex)))) {
+      return;
     }
+
+    if (redoIndex < history.size() - 1) {
+      history.subList(redoIndex + 1, history.size()).clear();
+      history.trimToSize();
+    }
+
+    if (history.size() > 0) {
+      redoIndex++;
+    }
+
+    history.add(new Change(new Level(level)));
   }
 }
