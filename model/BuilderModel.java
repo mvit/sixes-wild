@@ -17,6 +17,8 @@ public class BuilderModel {
   public boolean currentUseNumber = false;
   public int currentNumber = 0, currentMultiplier = 1;
 
+  protected boolean holdHistory = false;
+
   /**
    * Create a new builder model.
    */
@@ -43,6 +45,20 @@ public class BuilderModel {
     currentMultiplier = 1;
   }
 
+  public void undo() {
+    holdHistory = true;
+    level = history.get(--redoIndex).snapshot;
+  }
+
+  public void finishHistoryChange() {
+    holdHistory = false;
+  }
+
+  public void redo() {
+    holdHistory = true;
+    level = history.get(++redoIndex).snapshot;
+  }
+
   public void clearHistory() {
     history.clear();
     history.trimToSize();
@@ -52,15 +68,17 @@ public class BuilderModel {
    * Adds a snapshot of the current state to the history.
    */
   public void takeSnapshot() {
-    if (redoIndex < history.size() - 1) {
-      history.subList(redoIndex + 1, history.size()).clear();
-      history.trimToSize();
-    }
+    if (!holdHistory) {
+      if (redoIndex < history.size() - 1) {
+        history.subList(redoIndex + 1, history.size()).clear();
+        history.trimToSize();
+      }
 
-    if (history.size() > 0) {
-      redoIndex++;
-    }
+      if (history.size() > 0) {
+        redoIndex++;
+      }
 
-    history.add(new Change(new Level(level)));
+      history.add(new Change(new Level(level)));
+    }
   }
 }
