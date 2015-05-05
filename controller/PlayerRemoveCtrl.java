@@ -32,8 +32,8 @@ public class PlayerRemoveCtrl implements ActionListener{
       // TODO: This is suboptimal, decide whether to change PlayerVariationCtrl.
       // specialMove() to individual methods for each special move
       // TODO: resolve the move
-      Move reMove = new Move();
-      reMove.expand(model.level.currentBoard, point);
+      Move remove = new Move();
+      remove.expand(model.level.currentBoard, point);
     }
     //pVar.remove();
     remove();
