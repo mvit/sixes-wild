@@ -3,6 +3,7 @@ package boundary;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -61,12 +62,16 @@ public class PlayerEndLevelView extends JDialog{
     });
 
     JPanel panel = new JPanel();
+    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
     panel.add(new JLabel(endMsg));
     panel.add(new JLabel("Score: " + model.score));
+    backBut.setAlignmentX(CENTER_ALIGNMENT);
+    retryBut.setAlignmentX(CENTER_ALIGNMENT);
     panel.add(backBut);
     panel.add(retryBut);
     dialog.setContentPane(panel);
-    dialog.setSize(400,200);
+    dialog.setSize(300,200);
+    panel.setSize(300, 200);
     dialog.setLocationRelativeTo(f);
     dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
     dialog.setVisible(true);
