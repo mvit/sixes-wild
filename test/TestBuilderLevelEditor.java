@@ -29,7 +29,6 @@ public class TestBuilderLevelEditor {
 	    loader = new ResourceLoader();
 	    model = new BuilderModel();
 	    app = new BuilderApplication(model, loader);
-	    levelEditorView = new BuilderLevelEditorView(app, model);
 	}
 	
 	private void tearDown() {
@@ -40,8 +39,10 @@ public class TestBuilderLevelEditor {
 	@Test
 	public void test() {
 		setUp();
+		//Test that MainMenuView has been initial
 		app.setView(new BuilderMainMenuView(app, model));
 		assertTrue(app.getView() instanceof BuilderMainMenuView);
+	    levelEditorView = new BuilderLevelEditorView(app, model);
 		tearDown();	
 	}
 
