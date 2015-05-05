@@ -25,8 +25,6 @@ public class PlayerBoardView extends BoardView {
   PlayerModel model;
 
   BufferedImage[][] selectedCache = new BufferedImage[3][3];
-  BufferedImage[] multiplierCache = new BufferedImage[Rules.maxMultiplier];
-  BufferedImage[] numberCache = new BufferedImage[Rules.maxNumber];
 
   /**
    * Create a PlayerBoardView.
@@ -40,6 +38,18 @@ public class PlayerBoardView extends BoardView {
     PlayerBoardMouseCtrl ctrl = new PlayerBoardMouseCtrl(app, model);
     addMouseListener(ctrl);
     addMouseMotionListener(ctrl);
+
+    setCacheSource(app.loader);
+
+    Color[] fallbackColors = new Color[] {Color.GREEN, Color.MAGENTA,
+      Color.YELLOW, Color.RED, Color.BLUE, Color.GRAY};
+    for (int i = 0; i < fallbackColors.length; i++) {
+      addCache((i + 1) + ".png", fallbackColors[i]);
+    }
+
+    addCache("marked.png", null);
+    addCache("x2.png", null);
+    addCache("x3.png", null);
   }
 
   /**
@@ -50,18 +60,6 @@ public class PlayerBoardView extends BoardView {
    */
   @Override
   protected void cellSizeChange(int width, int height) {
-    for (int i = 0; i < numberCache.length; i++) {
-      // scaleImage ensures we aren't resizing unnecessarily
-      BufferedImage image = app.loader.getResource((i + 1) + ".png");
-      if (image == null) {
-        System.err.println("[WARN] Bad number for image lookup: " + (i + 1));
-        image = solidImage(Color.WHITE, width, height);
-      } else {
-        image = ScaleImage.scaleImage(image, width, height);
-      }
-      numberCache[i] = image;
-    }
-
     BufferedImage selectedSource = app.loader.getResource("selected.png");
     if (selectedSource == null) {
       // crap
@@ -114,24 +112,14 @@ public class PlayerBoardView extends BoardView {
 
     int number = cell.tile.number;
     int multiplier = cell.tile.multiplier;
-    g.drawImage(numberCache[number], x1, y1, null);
+    g.drawImage(getCache((number + 1) + ".png"), x1, y1, null);
 
     if (multiplier > 1) {
-      BufferedImage multImage = app.loader.getResource("x" + multiplier +
-        ".png");
-      if (multImage == null) {
-        System.err.println("[WARN] Bad multiplier for image lookup: " +
-          multiplier);
-      } else {
-        multImage = ScaleImage.scaleImage(multImage, x2 - x1, y2 - y1);
-        g.drawImage(multImage, x1, y1, null);
-      }
+      g.drawImage(getCache("x" + multiplier), x1, y1, null);
     }
 
     if (cell.marked) {
-      BufferedImage markedImage = app.loader.getResource("marked.png");
-      markedImage = ScaleImage.scaleImage(markedImage, x2 - x1, y2 - y1);
-        g.drawImage(markedImage, x1, y1, null);
+      g.drawImage(getCache("marked.png"), x1, y1, null);
     }
 
     Point tmp = new Point(x, y);

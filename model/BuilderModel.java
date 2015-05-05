@@ -22,6 +22,17 @@ public class BuilderModel {
    */
   public BuilderModel() {}
 
+  public void discardLevel() {
+    // discard the board
+    if (level != null) {
+      level.discardBoard();
+    }
+  }
+
+  public void realizeLevel() {
+    level.realizeBoard();
+  }
+
   /**
    * Clear the temporary state.
    */

@@ -4,8 +4,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JPanel;
 import model.Point;
+import utils.ScaleImage;
 
 /**
  * An abstract board view to be shared between PlayerLevelView,
@@ -21,6 +24,10 @@ public abstract class BoardView extends JPanel {
 
   protected int prevWidth, prevHeight;
 
+  protected ResourceLoader loader = null;
+  protected Map<String, CacheEntry> cacheMap =
+    new HashMap<String, CacheEntry>();
+
   /**
    * Create a board view with the given grid dimensions. The paintBorders flag
    * specifies whether to paint borders between cells.
@@ -33,6 +40,75 @@ public abstract class BoardView extends JPanel {
     this.paintBorders = paintBorders;
     boardWidth = width;
     boardHeight = height;
+  }
+
+  /**
+   * Set the source for the cache.
+   *
+   * @param loader The resource loader to pull images from.
+   */
+  protected void setCacheSource(ResourceLoader loader) {
+    this.loader = loader;
+  }
+
+  /**
+   * Set the objects to cache.
+   *
+   * @param resource The resource to add to the cache.
+   * @param fallback The fallback color.
+   */
+  protected void addCache(String resource, Color fallback) {
+    cacheMap.put(resource, new CacheEntry(resource, fallback));
+  }
+
+  /**
+   * Get the cached, resized version of the provided image.
+   *
+   * @param image The image to look up the cache for.
+   * @return The cached image.
+   */
+  protected BufferedImage getCache(String resource) {
+    CacheEntry entry = cacheMap.get(resource);
+    return entry == null ? null : entry.dest;
+  }
+
+  /**
+   * Fetches the specified resource from the resource loader, and resizes it. If
+   * the resource loader or the resource are missing, then it uses the fallback
+   * color to make a solid-color image.
+   *
+   * @param resource The resource to fetch.
+   * @param color The color to fall back to.
+   * @param width The desired width of the image.
+   * @param height The desired height of the image.
+   * @return The result image for the operation.
+   */
+  protected BufferedImage getImage(String resource, Color color, int width,
+      int height) {
+    BufferedImage image = loader == null ? null : loader.getResource(resource);
+
+    if (image == null) {
+      System.err.println("Bad image for resource lookup: " + resource);
+      return solidImage(color, width, height);
+    }
+
+    return ScaleImage.scaleImage(image, width, height);
+  }
+
+  /**
+   * Create a solid-color image.
+   *
+   * @return The created image.
+   */
+  protected BufferedImage solidImage(Color color, int width, int height) {
+    BufferedImage image = new BufferedImage(width, height,
+      BufferedImage.TYPE_INT_ARGB);
+    if (color != null) {
+      Graphics graphics = image.createGraphics();
+      graphics.setColor(color);
+      graphics.fillRect(0, 0, width, height);
+    }
+    return image;
   }
 
   /**
@@ -54,7 +130,11 @@ public abstract class BoardView extends JPanel {
    * @param width The new cell width to cache.
    * @param height The new cell height to cache.
    */
-  protected void cellSizeChange(int width, int height) {}
+  protected void cellSizeChange(int width, int height) {
+    for (CacheEntry entry : cacheMap.values()) {
+      entry.dest = getImage(entry.resource, entry.fallback, width, height);
+    }
+  }
 
   /**
    * Abstract paint cell method, paints the cell with the implementation-
@@ -173,20 +253,6 @@ public abstract class BoardView extends JPanel {
   }
 
   /**
-   * Create a solid-color image.
-   *
-   * @return The created image.
-   */
-  protected BufferedImage solidImage(Color color, int width, int height) {
-    BufferedImage image = new BufferedImage(width, height,
-      BufferedImage.TYPE_INT_ARGB);
-    Graphics graphics = image.createGraphics();
-    graphics.setColor(color);
-    graphics.fillRect(0, 0, width, height);
-    return image;
-  }
-
-  /**
    * Represents a bounding-box around a given cell.
    *
    * @author Eli Skeggs
@@ -204,6 +270,17 @@ public abstract class BoardView extends JPanel {
       this.y1 = y1;
       this.x2 = x2;
       this.y2 = y2;
+    }
+  }
+
+  protected class CacheEntry {
+    protected String resource;
+    protected BufferedImage dest = null;
+    protected Color fallback;
+
+    protected CacheEntry(String resource, Color fallback) {
+      this.resource = resource;
+      this.fallback = fallback;
     }
   }
 }

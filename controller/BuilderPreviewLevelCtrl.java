@@ -28,15 +28,11 @@ public class BuilderPreviewLevelCtrl implements ActionListener {
   }
 
   public void actionPerformed(ActionEvent event) {
-    PlayerModel playerModel = new PlayerModel(model);
-    playerModel.realizeLevel();
-    app.setVisible(false);
-    PlayerApplication playerApp = new PlayerApplication(playerModel,
-      app.loader);
-    QuitListener onQuit = new BuilderQuitPreviewCtrl(app, playerApp,
-      playerModel);
-    JPanel initialView = new PlayerLevelView(onQuit, playerApp, playerModel);
-    playerApp.addQuitListener(onQuit);
-    playerApp.setView(initialView);
+    if (model.level.currentBoard == null) {
+      model.realizeLevel();
+    } else {
+      model.discardLevel();
+    }
+    app.getView().repaint();
   }
 }

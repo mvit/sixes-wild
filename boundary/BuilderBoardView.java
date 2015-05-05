@@ -27,46 +27,49 @@ public class BuilderBoardView extends BoardView {
     BuilderBoardMouseCtrl ctrl = new BuilderBoardMouseCtrl(app, model);
     addMouseListener(ctrl);
     addMouseMotionListener(ctrl);
+
+    setCacheSource(app.loader);
+
+    Color[] fallbackColors = new Color[] {Color.GREEN, Color.MAGENTA,
+      Color.YELLOW, Color.RED, Color.BLUE, Color.GRAY};
+    for (int i = 0; i < fallbackColors.length; i++) {
+      addCache((i + 1) + ".png", fallbackColors[i]);
+    }
+
+    addCache("playable.png", Color.WHITE);
+    addCache("bucket.png", Color.GRAY);
+    addCache("inert.png", Color.BLACK);
+    addCache("x2.png", null);
+    addCache("x3.png", null);
   }
 
   @Override
   protected void paintCell(Graphics g, int x, int y,
       int x1, int y1, int x2, int y2) {
-    Cell cell = model.level.initialBoard.grid[x][y];
+    Board board = model.level.currentBoard;
+    boolean isPreview = board != null;
+    if (board == null) {
+      board = model.level.initialBoard;
+    }
 
+    Cell cell = board.grid[x][y];
+    String resource;
     switch (cell.type) {
     case PLAYABLE:
-      // TODO: add multiplier
-      String filename = null;
-      Color fallback = null;
-      if (cell.tile == null) {
-        filename = "playable.png";
-        fallback = Color.WHITE;
-      } else {
-        filename = (cell.tile.number + 1) + ".png";
-        fallback = Color.MAGENTA;
-      }
-      BufferedImage image = app.loader.getResource(filename);
-      if (image == null) {
-        System.err.println("[WARN] Bad filename for image lookup: " + filename);
-        g.setColor(fallback);
-        g.fillRect(x1, y1, x2 - x1, y2 - y1);
-      } else {
-        image = utils.ScaleImage.scaleImage(image, x2 - x1, y2 - y1);
-        g.drawImage(image, x1, y1, null);
-      }
+      resource = cell.tile == null ? "playable.png" : (cell.tile.number + 1) +
+        ".png";
       break;
 
     case BUCKET:
-      g.setColor(Color.GRAY);
-      g.fillRect(x1, y1, x2 - x1, y2 - y1);
+      resource = "bucket.png";
       break;
 
     // TODO: should probably warn in case of default
     case INERT:
     default:
-      g.setColor(Color.BLACK);
-      g.fillRect(x1, y1, x2 - x1, y2 - y1);
+      resource = "inert.png";
     }
+
+    g.drawImage(getCache(resource), x1, y1, null);
   }
 }
