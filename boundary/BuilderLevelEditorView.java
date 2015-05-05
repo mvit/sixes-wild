@@ -205,7 +205,6 @@ public class BuilderLevelEditorView extends JPanel {
     numberSliders = new JSlider[Rules.maxNumber];
 
     int maxValue = 100 * Rules.maxNumber;
-    boolean noBlocks = model.level.rules.variation == Variation.RELEASE;
 
     // make the slider panels, styling specific to a given panel can be put in
     // an array, which would then be used in the loop
