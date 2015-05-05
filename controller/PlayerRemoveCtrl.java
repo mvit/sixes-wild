@@ -58,7 +58,9 @@ public class PlayerRemoveCtrl implements ActionListener{
 	      PlayerUpdateBoardCtrl updateBoardCtrl = new PlayerUpdateBoardCtrl(app, model);
 	      updateBoardCtrl.processBoardSmooth();
 	  }
-	  model.counter--;
+	  if(model.counter>0)
+		  model.counter--;
+	  app.getView().repaint();
 	  ((PlayerLevelView)app.getView()).update();
   }
 }

@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.Iterator;
 
 import boundary.PlayerApplication;
+import boundary.PlayerLevelView;
 import model.Board;
 import model.Cell;
 import model.Move;
@@ -30,11 +31,13 @@ public class PlayerSwapCtrl implements ActionListener {
     if (model.playerState != PlayerState.SWAP) {
       System.out.println("You borked it somehow (Triggered swap when player state != swap)");
       model.move = new Move();
-      model.counter--;
+      if(model.counter>0)
+    	  model.counter--;
     } else if (model.variation == Variation.RELEASE
     			&& model.level.currentBoard.grid[point.x][point.y].tile.number == 5) {
         model.move = new Move();
-        model.counter--;
+        if(model.counter>0)
+        	model.counter--;
     } else if (model.move.points.size() == 0) {
       model.move.expand(model.level.currentBoard, point);
     } else if (model.move.points.size() == 1) {
@@ -43,7 +46,8 @@ public class PlayerSwapCtrl implements ActionListener {
         swap();
         model.move = new Move();
         model.playerState = PlayerState.NONE;
-        model.counter--;
+        if(model.counter>0)
+        	model.counter--;
       } else {
         // TODO: what should happen here? anything?
       }
@@ -51,9 +55,11 @@ public class PlayerSwapCtrl implements ActionListener {
       System.out.println("You borked it somehow (Too many tiles in swap)");
       model.move = new Move();
       model.playerState = PlayerState.NONE;
-      model.counter--;
+      if(model.counter>0)
+    	  model.counter--;
     }
     app.getView().repaint();
+    ((PlayerLevelView) app.getView()).update();
   }
 
   protected void swap() {
