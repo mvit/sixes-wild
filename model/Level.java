@@ -10,7 +10,6 @@ import java.nio.charset.StandardCharsets;
 import utils.ReadStream;
 import utils.WriteStream;
 
-
 /**
  * The Level class.
  *
