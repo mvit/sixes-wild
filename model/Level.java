@@ -7,6 +7,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import utils.ReadStream;
+import utils.WriteStream;
 
 
 /**
@@ -14,7 +16,7 @@ import java.nio.charset.StandardCharsets;
  *
  * @author Eli Skeggs
  */
-public class Level {
+public class Level implements WriteStream {
   // TODO: where should these be stored?
   public static String header = "SWLV";
   public static int version = 1;
@@ -57,6 +59,20 @@ public class Level {
     } catch (IOException err) {
       return false;
     }
+  }
+
+  /**
+   * Gets an abstract Level constructor which reads from a DataInputStream.
+   *
+   * @return The readable object.
+   */
+  public static ReadStream getReadable() {
+    return new ReadStream() {
+      @Override
+      public Object read(DataInputStream in) throws IOException {
+        return new Level(in);
+      }
+    };
   }
 
   /**
@@ -109,6 +125,7 @@ public class Level {
    *
    * @param out
    */
+  @Override
   public void write(DataOutputStream out) throws IOException {
     out.write(header.getBytes(StandardCharsets.US_ASCII));
     out.writeInt(version);

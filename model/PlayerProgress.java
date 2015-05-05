@@ -7,6 +7,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import utils.ReadStream;
+import utils.WriteStream;
 
 /**
  * The progress the user has made in unlocking levels and the achieved scores.
@@ -15,12 +17,27 @@ import java.util.Iterator;
  *
  * @author Eli Skeggs
  */
-public class PlayerProgress implements Iterable<LevelProgress> {
+public class PlayerProgress implements Iterable<LevelProgress>, WriteStream {
   // TODO: where should these be stored?
   public static String header = "SWUP";
-  public static int version = 0;
+  public static int version = 1;
 
   ArrayList<LevelProgress> levels = new ArrayList<LevelProgress>();
+
+  /**
+   * Gets an abstract PlayerProgress constructor which reads from a
+   * DataInputStream.
+   *
+   * @return The readable object.
+   */
+  public static ReadStream getReadable() {
+    return new ReadStream() {
+      @Override
+      public Object read(DataInputStream in) throws IOException {
+        return new PlayerProgress(in);
+      }
+    };
+  }
 
   /**
    * Creates an empty PlayerProgress.
@@ -76,6 +93,7 @@ public class PlayerProgress implements Iterable<LevelProgress> {
    *
    * @param out
    */
+  @Override
   public void write(DataOutputStream out) throws IOException {
     out.write(header.getBytes(StandardCharsets.US_ASCII));
     out.writeInt(version);
@@ -114,10 +132,10 @@ public class PlayerProgress implements Iterable<LevelProgress> {
    * @param level
    * @param score
    */
-  public void setAchievedScore(int level, int score) {
+  public void setAchievedScore(int level, int score, boolean passedLevel) {
     int completedLevels = levels.size();
     if (level == completedLevels) {
-      levels.add(new LevelProgress(level, score));
+      levels.add(new LevelProgress(level, score, passedLevel));
     } else if (level < completedLevels) {
       LevelProgress progress = levels.get(level);
       if (progress.bestScore < score) {

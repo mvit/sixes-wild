@@ -3,26 +3,21 @@ package boundary;
 import controller.PlayerLevelSelectCtrl;
 import controller.PlayerLoadLevelCtrl;
 import controller.PlayerMainMenuCtrl;
-
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.io.DataInputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.ListIterator;
-
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-
 import model.Level;
 import model.LevelProgress;
 import model.PlayerModel;
+import utils.StreamFileUtils;
 
 /**
  * The View for Selecting a Level.
@@ -132,11 +127,12 @@ public class PlayerLevelSelectView extends JPanel {
       // try to load the level, nulling the file if not available
       Level level = null;
       if (file != null) {
-        try {
-          level = new Level(new DataInputStream(new FileInputStream(file)));
-        } catch (IOException err) {
-          // not a valid level
+        Object result = StreamFileUtils.readStream(file, Level.getReadable());
+
+        if (result == null) {
           file = null;
+        } else {
+          level = (Level) result;
         }
       }
 
@@ -151,7 +147,7 @@ public class PlayerLevelSelectView extends JPanel {
         selectButton.setEnabled(!cutOff);
 
         // if we have beaten all previous levels, and we haven't beaten this one
-        if (!cutOff && (progress == null ||
+        if (!cutOff && (progress == null || !progress.passedLevel ||
             (level.rules.scoreThresholds.length > 0 &&
             progress.bestScore < level.rules.scoreThresholds[0]))) {
           // no further levels can be attempted
@@ -213,7 +209,7 @@ public class PlayerLevelSelectView extends JPanel {
       JButton btnResetScore = new JButton("Reset Score");
       btnResetScore.setEnabled(false);
       panelLevelOptions.add(btnResetScore);
-      
+
       panelLevel.revalidate();
     } else {
       lblLevel.setText("Level " + (levelNumber + 1));

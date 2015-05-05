@@ -1,13 +1,11 @@
 package controller;
 
 import boundary.BuilderApplication;
+import java.awt.FileDialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.FileDialog;
-import java.io.DataOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import model.BuilderModel;
+import utils.StreamFileUtils;
 
 /**
  * @author Cem Unsal, and Eli Skeggs
@@ -31,26 +29,8 @@ public class BuilderSaveLevelCtrl implements ActionListener {
     dialog.setVisible(true);
     String filename = dialog.getFile();
     if (filename != null) {
-      DataOutputStream out = null;
-      try {
-        out = new DataOutputStream(new FileOutputStream(dialog.getDirectory() +
-          filename));
-        model.level.write(out);
-      } catch (IOException err) {
-        // TODO: dialog?
-        System.err.println(err.getMessage());
-        err.printStackTrace();
-        return;
-      } finally {
-        if (out != null) {
-          try {
-            out.close();
-          } catch (IOException err) {
-            System.err.println(err.getMessage());
-            err.printStackTrace();
-          }
-        }
-      }
+      String path = dialog.getDirectory() + filename;
+      StreamFileUtils.writeStream(path, model.level);
     }
   }
 }

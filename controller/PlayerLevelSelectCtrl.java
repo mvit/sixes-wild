@@ -4,11 +4,9 @@ import boundary.PlayerApplication;
 import boundary.PlayerLevelSelectView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.DataInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
 import model.Level;
 import model.PlayerModel;
+import utils.StreamFileUtils;
 
 /**
  *
@@ -26,19 +24,16 @@ public class PlayerLevelSelectCtrl implements ActionListener {
     this.filename = filename;
   }
 
-  public void loadLevel(String filename) {
-    try {
-      model.level = new Level(new DataInputStream(new FileInputStream(
-        "resource/levels/" + filename)));
-    } catch (IOException e) {
-      return;
-    }
-    model.levelnum = Integer.parseInt(filename, 10) - 1;
-  }
-
   @Override
   public void actionPerformed(ActionEvent event) {
-    loadLevel(filename);
-    ((PlayerLevelSelectView) app.getView()).switchActive();
+    String path = "resource/levels/" + filename;
+    Object result = StreamFileUtils.readStream(path, Level.getReadable());
+
+    if (result != null) {
+      model.level = (Level) result;
+      model.levelnum = Integer.parseInt(filename, 10) - 1;
+
+      ((PlayerLevelSelectView) app.getView()).switchActive();
+    }
   }
 }

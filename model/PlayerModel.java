@@ -16,6 +16,7 @@ public class PlayerModel {
   public PlayerState playerState = PlayerState.NONE;
 
   public PlayerProgress progress = null;
+  public boolean disableProgress = false;
 
   /**
    * Create a new player model.

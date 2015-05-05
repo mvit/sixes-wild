@@ -1,10 +1,8 @@
 package controller;
 
-import java.io.DataOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
+import utils.StreamFileUtils;
 import model.PlayerModel;
 import boundary.PlayerApplication;
 import boundary.PlayerEndLevelView;
@@ -61,31 +59,18 @@ public class PlayerEndLevelCtrl implements Runnable {
    */
   public void endLevel() {
     // always set the achieved score, even if we haven't crossed a threshold
-    model.progress.setAchievedScore(model.levelnum, model.score);
+    // TODO: set the passedlevel flag appropriately
+    model.progress.setAchievedScore(model.levelnum, model.score, true);
 
     // writes progress to file
-    if (progressdir.mkdirs() || progressdir.isDirectory()) {
-      DataOutputStream out = null;
-      try {
-        out = new DataOutputStream(new FileOutputStream(progressfile));
-        model.progress.write(out);
-      } catch (IOException err) {
-        System.err.println("Unable to save progress");
-        System.err.println(err.getMessage());
-        err.printStackTrace();
-      } finally {
-        try {
-          if (out != null) {
-            out.close();
-          }
-        } catch (IOException err) {
-          System.err.println(err.getMessage());
-          err.printStackTrace();
+    if (!model.disableProgress) {
+      if (StreamFileUtils.ensureParent(progressfile)) {
+        if (!StreamFileUtils.writeStream(progressfile, model.progress)) {
+          System.err.println("Unable to save progress");
         }
+      } else {
+        System.err.println("Your progress will not be saved");
       }
-    } else {
-      System.err.println("Unable to create the appropriate directory structure,"
-        + "your progress will not be saved");
     }
 
     PlayerEndLevelView endView = new PlayerEndLevelView(app, model);

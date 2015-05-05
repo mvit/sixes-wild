@@ -14,6 +14,7 @@ public class LevelProgress {
   Date lastPlayed;
   int level;
   public int bestScore;
+  public boolean passedLevel;
 
   /**
    * Create a new LevelProgress for a given level and a given achieved score,
@@ -22,10 +23,11 @@ public class LevelProgress {
    * @param level
    * @param score
    */
-  public LevelProgress(int level, int score) {
+  public LevelProgress(int level, int score, boolean passedLevel) {
     this.level = level;
     lastPlayed = new Date();
     bestScore = score;
+    this.passedLevel = passedLevel;
   }
 
   /**
@@ -37,6 +39,7 @@ public class LevelProgress {
     this.level = level;
     lastPlayed = new Date(in.readLong());
     bestScore = Math.max(0, in.readInt());
+    passedLevel = in.readByte() != 0;
   }
 
   /**
@@ -47,6 +50,7 @@ public class LevelProgress {
   public void write(DataOutputStream out) throws IOException {
     out.writeLong(lastPlayed.getTime());
     out.writeInt(bestScore);
+    out.writeByte(passedLevel ? 1 : 0);
   }
 
   public int getScore() {
