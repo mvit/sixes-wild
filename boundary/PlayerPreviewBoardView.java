@@ -27,37 +27,20 @@ public class PlayerPreviewBoardView extends BoardView {
 
     this.app = app;
     this.model = model;
-  }
 
-  /**
-   * Cache the images.
-   *
-   * @param width The new cell width to cache.
-   * @param height The new cell height to cache.
-   */
-  @Override
-  protected void cellSizeChange(int width, int height) {
-    numberFallbackCache = solidImage(Color.MAGENTA, width, height);
+    setCacheSource(app.loader);
 
-    for (int i = 0; i < numberCache.length; i++) {
-      // scaleImage ensures we aren't resizing unnecessarily
-      BufferedImage image = app.loader.getResource((i + 1) + ".png");
-      if (image == null) {
-        System.err.println("[WARN] Bad number for lookup: " + (i + 1));
-        image = numberFallbackCache;
-      } else {
-        image = ScaleImage.scaleImage(image, width, height);
-      }
-      numberCache[i] = image;
+    Color[] fallbackColors = new Color[] {Color.GREEN, Color.MAGENTA,
+      Color.YELLOW, Color.RED, Color.BLUE, Color.GRAY};
+    for (int i = 0; i < fallbackColors.length; i++) {
+      addCache((i + 1) + ".png", fallbackColors[i]);
     }
 
-    BufferedImage playable = app.loader.getResource("playable.png");
-    if (playable == null) {
-      System.err.println("[WARN] Cannot get playable image");
-      playableCache = solidImage(Color.WHITE, width, height);
-    } else {
-      playableCache = ScaleImage.scaleImage(playable, width, height);
-    }
+    addCache("playable.png", Color.WHITE);
+    addCache("bucket.png", Color.GRAY);
+    addCache("inert.png", Color.BLACK);
+    addCache("x2.png", null);
+    addCache("x3.png", null);
   }
 
   @Override
@@ -67,30 +50,22 @@ public class PlayerPreviewBoardView extends BoardView {
 
     switch (cell.type) {
     case PLAYABLE:
-      // TODO: add multiplier
-      if (cell.tile == null) {
-        g.drawImage(playableCache, x1, y1, null);
-      } else {
-        int number = cell.tile.number;
-        System.err.println("[WARN] Bad number for cache lookup: " + number);
-        BufferedImage image = numberCache[number];
-        if (image == null) {
-          image = numberFallbackCache;
-        }
-        g.drawImage(image, x1, y1, null);
+      g.drawImage(getCache(cell.tile == null ? "playable.png" :
+        (cell.tile.number + 1) + ".png"), x1, y1, null);
+
+      if (cell.tile != null && cell.tile.multiplier > 1) {
+        g.drawImage(getCache("x" + cell.tile.multiplier + ".png"), x1, y1, null);
       }
       break;
 
     case BUCKET:
-      g.setColor(Color.GRAY);
-      g.fillRect(x1, y1, x2 - x1, y2 - y1);
+      g.drawImage(getCache("bucket.png"), x1, y1, null);
       break;
 
     // TODO: should probably warn in case of default
     case INERT:
     default:
-      g.setColor(Color.BLACK);
-      g.fillRect(x1, y1, x2 - x1, y2 - y1);
+      g.drawImage(getCache("inert.png"), x1, y1, null);
     }
   }
 }
