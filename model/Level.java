@@ -13,7 +13,7 @@ import utils.WriteStream;
 /**
  * The Level class.
  *
- * @author Eli Skeggs
+ * @author Eli Skeggs and Bailey Sheridan
  */
 public class Level implements WriteStream {
   // TODO: where should these be stored?
@@ -151,6 +151,15 @@ public class Level implements WriteStream {
   public void discardBoard() {
     currentBoard = null;
     currentScore = 0;
+  }
+  
+  /**
+   * Returns true if this Level object is equivalent to the argument.
+   * @param lev
+   * @return
+   */
+  public boolean equals(Level lev) {
+	  return (rules.equals(lev.rules) && initialBoard.equals(lev.initialBoard));
   }
 
 }

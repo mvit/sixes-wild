@@ -7,7 +7,7 @@ import java.io.IOException;
 /**
  * The Board class.
  *
- * @author Eli Skeggs, Nick Chaput
+ * @author Eli Skeggs, Nick Chaput and Bailey Sheridan
  */
 public class Board {
   public static final int width = 9, height = 9;
@@ -167,5 +167,9 @@ public class Board {
         }
       }
     }
+  }
+  
+  public boolean equals(Board bor) {
+	  return (rules.equals(bor.rules));
   }
 }

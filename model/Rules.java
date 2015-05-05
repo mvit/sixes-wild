@@ -8,7 +8,7 @@ import utils.WeightedRandom;
 /**
  * A container for a Level's Rules.
  *
- * @author Eli Skeggs, and Cem Unsal
+ * @author Eli Skeggs, Cem Unsal and Bailey Sheridan
  */
 public class Rules {
   public static final int maxNumber = 6, maxMultiplier = 3;
@@ -241,5 +241,16 @@ public class Rules {
     for (int i = 0; i < multiplierCount; i++) {
       out.writeDouble(multiplierWeights[i]);
     }
+  }
+  
+  /**
+   * Returns true if this Rules object is equivalent to the argument.
+   * @param rul
+   * @return
+   */
+  public boolean equals(Rules rul) {
+	  return ((variation == rul.variation) && (initialCounter == rul.initialCounter) 
+			  && (scoreThresholds.equals(rul.scoreThresholds)) && (numberWeights.equals(rul.numberWeights))
+			  && (multiplierWeights.equals(rul.multiplierWeights)));
   }
 }
