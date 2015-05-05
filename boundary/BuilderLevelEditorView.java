@@ -180,7 +180,7 @@ public class BuilderLevelEditorView extends JPanel {
     //Counter
     panelSliders.add(new JLabel("Counter"));
     tfCounter = new JTextField();
-    tfCounter.setMaximumSize( new Dimension(Integer.MAX_VALUE, tfCounter.getPreferredSize().height));
+    tfCounter.setMaximumSize(new Dimension(Integer.MAX_VALUE, tfCounter.getPreferredSize().height));
     panelSliders.add(tfCounter);
     tfCounter.getDocument().addDocumentListener(new BuilderSetCounterCtrl(app, model, this));
 
