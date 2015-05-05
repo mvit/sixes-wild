@@ -30,8 +30,66 @@ public class PlayerApplication extends JFrame {
 
     this.model = model;
     this.loader = loader;
+    
+    showSplash("splash2.png");
+    initializeResources();
+    initializeView();
   }
+  
+  private void initializeView() {
+	    JPanel initialView = new PlayerMainMenuView(this, model);
+	    long loadStart = System.currentTimeMillis();
+	    this.addQuitListener(null);
 
+	    (new PlayerLoadProgressCtrl(this, model)).loadProgress();
+
+	    long loadElapsed = System.currentTimeMillis() - loadStart;
+	    if (loadElapsed < 2000) {
+	      try {
+	        Thread.sleep(2000 - loadElapsed);
+	      } catch (InterruptedException err) {
+	        // if we've been interrupted, just close the splash screen
+	      } finally {
+	        // close splash screen
+	        
+	      }
+	    }
+
+	    // start main app
+	    this.setView(initialView);
+  }
+  
+  private void showSplash(String name) {
+	    SplashScreen splash;
+	    
+	    try {
+	      splash = new SplashScreen(name);
+	    } catch (IOException err) {
+	      System.err.println(err.getMessage());
+	      err.printStackTrace();
+	    }
+	    
+  }
+  private void initializeResources() {
+	    for (int i = 1; i <= 6; i++) {
+	        loader.addResource(i + ".png");
+	      }
+	      for (int i = 2; i <= 3; i++) {
+	        loader.addResource("x" + i + ".png");
+	      }
+
+	      loader.addResource("playable.png");
+	      loader.addResource("selected.png");
+	      loader.addResource("marked.png");
+	      
+	      try {
+	          loader.loadResources();
+	        } catch (IOException err) {
+	          System.err.println(err.getMessage());
+	          err.printStackTrace();
+	          return;
+	        }
+  }
   /**
    * Add a quit listener for when the user clicks the close button on the
    * window.
@@ -79,61 +137,9 @@ public class PlayerApplication extends JFrame {
    */
   public static void main(String[] args) {
     ResourceLoader loader = new ResourceLoader();
-
-    for (int i = 1; i <= 6; i++) {
-      loader.addResource(i + ".png");
-    }
-    for (int i = 2; i <= 3; i++) {
-      loader.addResource("x" + i + ".png");
-    }
-
-    loader.addResource("playable.png");
-    loader.addResource("selected.png");
-    loader.addResource("marked.png");
-
-    // start splash screen
-    SplashScreen splash;
-    try {
-      splash = new SplashScreen("splash2.png");
-    } catch (IOException err) {
-      System.err.println(err.getMessage());
-      err.printStackTrace();
-      return;
-    }
-
-    // load resources
-    long loadStart = System.currentTimeMillis();
     PlayerModel model = new PlayerModel();
-    try {
-      loader.loadResources();
-    } catch (IOException err) {
-      System.err.println(err.getMessage());
-      err.printStackTrace();
-      return;
-    }
-
     // initialize main app
     PlayerApplication app = new PlayerApplication(model, loader);
-    JPanel initialView = new PlayerMainMenuView(app, model);
 
-    app.addQuitListener(null);
-
-    (new PlayerLoadProgressCtrl(app, model)).loadProgress();
-
-    // extend time if necessary
-    long loadElapsed = System.currentTimeMillis() - loadStart;
-    if (loadElapsed < 2000) {
-      try {
-        Thread.sleep(2000 - loadElapsed);
-      } catch (InterruptedException err) {
-        // if we've been interrupted, just close the splash screen
-      } finally {
-        // close splash screen
-        splash.close();
-      }
-    }
-
-    // start main app
-    app.setView(initialView);
   }
 }
