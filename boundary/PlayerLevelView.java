@@ -1,5 +1,6 @@
 package boundary;
 
+import controller.PlayerRemoveCtrl;
 import controller.PlayerRestartLevelCtrl;
 import controller.PlayerScrambleCtrl;
 import controller.PlayerSwapCtrl;
@@ -72,6 +73,7 @@ public class PlayerLevelView extends JPanel {
     panelControls.add(btnSwap);
 
     JButton btnRemove = new JButton("\u2718");
+    btnRemove.addActionListener(new PlayerRemoveCtrl(app, model));
     panelControls.add(btnRemove);
 
     JButton btnScramble = new JButton("\u27F2");
