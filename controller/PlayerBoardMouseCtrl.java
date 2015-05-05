@@ -79,7 +79,7 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
       swapCtrl.startSwap(point);
       break;
     default:
-      // do nothing!
+      fizzleMove();
     }
   }
 
