@@ -23,7 +23,7 @@ public class PlayerPreviewBoardView extends BoardView {
   BufferedImage playableCache = null, numberFallbackCache = null;
 
   public PlayerPreviewBoardView(PlayerApplication app, PlayerModel model) {
-    super(true, Board.width, Board.height);
+    super(false, Board.width, Board.height);
 
     this.app = app;
     this.model = model;
