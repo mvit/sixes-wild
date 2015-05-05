@@ -39,10 +39,10 @@ public class PlayerFinishMoveCtrl {
     }
     // TODO: implement everything else that happens after a move finishes (update score, counter, etc)
 
+    model.move = new Move();
     app.getView().repaint();
     ((PlayerLevelView) app.getView()).update();
   }
-
   public int updateScore(Move move) {
     int newScore = 10;
     newScore = newScore * move.points.size();

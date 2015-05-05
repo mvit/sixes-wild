@@ -64,6 +64,7 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
 
   @Override
   public void mouseClicked(MouseEvent event) {
+	  System.out.println("Clicked");
     Point point;
     if (event.getButton() != MouseEvent.BUTTON1 ||
         (point = identifyPoint(event)) == null
@@ -96,6 +97,7 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
 
   @Override
   public void mousePressed(MouseEvent event) {
+	  System.out.println("Pressed");
     Point point;
     if (event.getButton() == MouseEvent.BUTTON1 &&
         model.playerState == PlayerState.NONE &&
@@ -107,6 +109,7 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
 
   @Override
   public void mouseReleased(MouseEvent event) {
+	  System.out.println("Released");
     Point point;
     if (event.getButton() == MouseEvent.BUTTON1 &&
         model.playerState == PlayerState.SELECT &&
