@@ -46,7 +46,9 @@ public class PlayerBoardView extends BoardView {
     for (int i = 0; i < fallbackColors.length; i++) {
       addCache((i + 1) + ".png", fallbackColors[i]);
     }
-
+    addCache("bucket.png", null);
+    addCache("inert.png", null);
+    
     addCache("marked.png", null);
     addCache("x2.png", null);
     addCache("x3.png", null);
