@@ -79,7 +79,7 @@ public class StreamFileUtils {
       in = null;
     }
 
-    return false;
+    return null;
   }
 
   public static DataOutputStream outStream(String file) {
