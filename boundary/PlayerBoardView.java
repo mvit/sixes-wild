@@ -60,6 +60,8 @@ public class PlayerBoardView extends BoardView {
    */
   @Override
   protected void cellSizeChange(int width, int height) {
+    super.cellSizeChange(width, height);
+
     BufferedImage selectedSource = app.loader.getResource("selected.png");
     if (selectedSource == null) {
       // crap
@@ -110,10 +112,9 @@ public class PlayerBoardView extends BoardView {
       return;
     }
 
-    int number = cell.tile.number;
-    int multiplier = cell.tile.multiplier;
-    g.drawImage(getCache((number + 1) + ".png"), x1, y1, null);
+    g.drawImage(getCache((cell.tile.number + 1) + ".png"), x1, y1, null);
 
+    int multiplier = cell.tile.multiplier;
     if (multiplier > 1) {
       g.drawImage(getCache("x" + multiplier), x1, y1, null);
     }
