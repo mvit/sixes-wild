@@ -170,6 +170,6 @@ public class Board {
   }
   
   public boolean equals(Board bor) {
-	  return (rules.equals(bor.rules));
+	  return (grid.equals(bor.grid));
   }
 }

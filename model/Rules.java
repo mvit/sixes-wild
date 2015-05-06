@@ -249,7 +249,7 @@ public class Rules {
    * @return
    */
   public boolean equals(Rules rul) {
-	  return ((variation == rul.variation) && (initialCounter == rul.initialCounter) 
+	  return ((variation.equals(rul.variation)) && (initialCounter == rul.initialCounter) 
 			  && (scoreThresholds.equals(rul.scoreThresholds)) && (numberWeights.equals(rul.numberWeights))
 			  && (multiplierWeights.equals(rul.multiplierWeights)));
   }
