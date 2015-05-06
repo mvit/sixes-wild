@@ -116,7 +116,8 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
   public void mouseDragged(MouseEvent event) {
     if (model.playerState == PlayerState.SELECT) {
       Point point = identifyPoint(event);
-      if (point != null) {
+      if (point != null
+    		  && model.level.currentBoard.grid[point.x][point.y].type == CellType.PLAYABLE) {
         expandMoveCtrl.expandMove(point);
       } else {
         fizzleMove();
