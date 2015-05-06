@@ -31,7 +31,7 @@ import boundary.ResourceLoader;
  * @author Eli Skeggs and Maurizio Vitale
  *
  */
-public class TestPuzzlePlayerLevelView {
+public class TestLightningPlayerLevelView {
   PlayerApplication app;
   PlayerModel model;
   ResourceLoader loader;
@@ -57,13 +57,13 @@ public class TestPuzzlePlayerLevelView {
     ActionEvent event1 = new ActionEvent(((PlayerLevelSelectView) app.getView()).selectButtons[0], 0, "yes");
     new PlayerLevelSelectCtrl(app, model,"1").actionPerformed(event1);
     ActionEvent event2 = new ActionEvent(((PlayerLevelSelectView) app.getView()).btnPlayLevel, 0, "yes");
-    new PlayerLoadLevelCtrl(app, model,"1").actionPerformed(event2);
+    new PlayerLoadLevelCtrl(app, model,"2").actionPerformed(event2);
     assertTrue(app.getView() instanceof PlayerLevelView);
 
     //Variation tests
-    assertEquals(Variation.PUZZLE, model.variation);
+    assertEquals(Variation.LIGHTNING, model.variation);
     assertEquals(0, model.score);
-    int moves = model.counter;
+    //int moves = model.counter;
     Tile[] tiles = new Tile[6];
 
     //Make the first 6 tiles in the first row 1's with x1 multipliers
@@ -90,10 +90,10 @@ public class TestPuzzlePlayerLevelView {
     mouseCtrl.mouseReleased(mouseEvent);
 
     assertEquals(60, model.score);
-    assertEquals(moves - 1, model.counter);
+    //assertEquals(moves - 1, model.counter);
 
     //Test Remove on the first (0,0) tile
-    moves = model.counter;
+    //moves = model.counter;
     //Select the remove move
     ActionEvent event3 = new ActionEvent(((PlayerLevelView) app.getView()).btnRemove, 0, "yes");
     new PlayerRemoveCtrl(app, model).actionPerformed(event3);
@@ -106,20 +106,20 @@ public class TestPuzzlePlayerLevelView {
     mouseEvent = new MouseEvent(boardView, MouseEvent.MOUSE_RELEASED, 0, 0, start.x1 + 1, start.y1 + 1, 1, false, MouseEvent.BUTTON1);
     mouseCtrl.mouseReleased(mouseEvent);
 
-    assertEquals(moves - 1, model.counter);
+   // assertEquals(moves - 1, model.counter);
     
     //Test Scramble on Board
-    moves = model.counter;
+   // moves = model.counter;
     //Select the remove move
     ActionEvent event4 = new ActionEvent(((PlayerLevelView) app.getView()).btnScramble, 0, "yes");
     new PlayerScrambleCtrl(app, model).actionPerformed(event4);
 
     assertEquals(PlayerState.NONE, model.playerState);
     
-    assertEquals(moves - 1, model.counter);
+    //assertEquals(moves - 1, model.counter);
     
     //Test Swap on the first (0,0) tile and second (1,0) tiles
-    moves = model.counter;
+    //moves = model.counter;
     start = boardView.identifyCell(0, 0);
     end = boardView.identifyCell(1, 0);
     model.level.currentBoard.grid[0][0].tile = new Tile(3);
@@ -138,28 +138,17 @@ public class TestPuzzlePlayerLevelView {
     mouseEvent = new MouseEvent(boardView, MouseEvent.MOUSE_RELEASED, 0, 0, end.x1 + 1, end.y1 + 1, 1, false, MouseEvent.BUTTON1);
     mouseCtrl.mouseReleased(mouseEvent);
 
-    assertEquals(moves - 1, model.counter);
+   // assertEquals(moves - 1, model.counter);
 
     assertTrue(model.level.currentBoard.grid[0][0].tile.equals(tile2));
     assertTrue(model.level.currentBoard.grid[1][0].tile.equals(tile1));
     
     //Test Restart Controls
-    moves = model.counter;
+    //moves = model.counter;
     ActionEvent event6 = new ActionEvent(((PlayerLevelView) app.getView()).btnRestart, 0, "yes");
     new PlayerRestartLevelCtrl(app, model).actionPerformed(event6);
-    assertNotEquals(moves,model.counter);
+    //assertNotEquals(moves,model.counter);
     assertEquals(0,model.score);
-    
-    //Test End Level
-    model.counter = 1;
-    
-    mouseEvent = new MouseEvent(boardView, MouseEvent.MOUSE_PRESSED, 0, 0, start.x1 + 1, start.y1 + 1, 1, false, MouseEvent.BUTTON1);
-    mouseCtrl.mousePressed(mouseEvent);
-
-    mouseEvent = new MouseEvent(boardView, MouseEvent.MOUSE_RELEASED, 0, 0, start.x1 + 1, start.y1 + 1, 1, false, MouseEvent.BUTTON1);
-    mouseCtrl.mouseReleased(mouseEvent);
-    
-    
     
   }
 }

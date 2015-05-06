@@ -31,7 +31,7 @@ import boundary.ResourceLoader;
  * @author Eli Skeggs and Maurizio Vitale
  *
  */
-public class TestPuzzlePlayerLevelView {
+public class TestReleasePlayerLevelView {
   PlayerApplication app;
   PlayerModel model;
   ResourceLoader loader;
@@ -57,11 +57,11 @@ public class TestPuzzlePlayerLevelView {
     ActionEvent event1 = new ActionEvent(((PlayerLevelSelectView) app.getView()).selectButtons[0], 0, "yes");
     new PlayerLevelSelectCtrl(app, model,"1").actionPerformed(event1);
     ActionEvent event2 = new ActionEvent(((PlayerLevelSelectView) app.getView()).btnPlayLevel, 0, "yes");
-    new PlayerLoadLevelCtrl(app, model,"1").actionPerformed(event2);
+    new PlayerLoadLevelCtrl(app, model,"4").actionPerformed(event2);
     assertTrue(app.getView() instanceof PlayerLevelView);
 
     //Variation tests
-    assertEquals(Variation.PUZZLE, model.variation);
+    assertEquals(Variation.RELEASE, model.variation);
     assertEquals(0, model.score);
     int moves = model.counter;
     Tile[] tiles = new Tile[6];

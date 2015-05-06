@@ -35,6 +35,9 @@ public class PlayerLevelView extends JPanel {
   public JButton btnSwap;
   public JButton btnScramble;
   
+  public JButton btnRestart;
+  public JButton btnMainMenu;
+  
 
   /**
    * Create a level view for the player application.
@@ -102,11 +105,11 @@ public class PlayerLevelView extends JPanel {
     panelRight.add(panelNavigation);
     panelNavigation.setLayout(new BoxLayout(panelNavigation, BoxLayout.X_AXIS));
 
-    JButton btnRestart = new JButton("Restart");
+    btnRestart = new JButton("Restart");
     btnRestart.addActionListener(new PlayerRestartLevelCtrl(app, model));
     panelNavigation.add(btnRestart);
 
-    JButton btnMainMenu = new JButton("Quit");
+    btnMainMenu = new JButton("Quit");
     btnMainMenu.addActionListener(onQuit);
     panelNavigation.add(btnMainMenu);
 
