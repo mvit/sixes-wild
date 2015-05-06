@@ -41,22 +41,19 @@ public class TestPlayerMainMenuView {
 	
 	@Test
 	public void test() {
+		//Set the context window
 		app.setView(new PlayerMainMenuView(app, model));
 		assertTrue(app.getView() instanceof PlayerMainMenuView);
-		
+		//Test the btnLevelSelect and its controllers
 		ActionEvent event1 = new ActionEvent(((PlayerMainMenuView) app.getView()).btnLevelSelect, 0, "yes" );
 		new PlayerLoadLevelSelectCtrl(app, model).actionPerformed(event1);
 		assertTrue(app.getView() instanceof PlayerLevelSelectView);
-		
+		//Set the context window
 		app.setView(new PlayerMainMenuView(app, model));
 		assertTrue(app.getView() instanceof PlayerMainMenuView);
-		
+		//Test the btnInstructions and its controllers
 		ActionEvent event2 = new ActionEvent(((PlayerMainMenuView) app.getView()).btnInstructions, 0, "yes" );
 		new PlayerInstructionsCtrl(app, model).actionPerformed(event2);
 		assertTrue(app.getView() instanceof PlayerInstructionsView);
-		
-		app.setView(new PlayerMainMenuView(app, model));
-		assertTrue(app.getView() instanceof PlayerMainMenuView);
 	}
-
 }
