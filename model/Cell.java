@@ -89,6 +89,9 @@ public class Cell {
     }
   }
   
+  /**
+   * Equals.
+   */
   @Override
   public boolean equals(Object obj) {
 	  if(obj instanceof Cell) {

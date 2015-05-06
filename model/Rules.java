@@ -248,6 +248,7 @@ public class Rules {
    * @param rul
    * @return
    */
+  @Override
   public boolean equals(Object obj) {
 	  if(obj instanceof Rules) {
 		  Rules rul = (Rules) obj;

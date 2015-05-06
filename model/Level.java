@@ -158,6 +158,7 @@ public class Level implements WriteStream {
    * @param lev
    * @return
    */
+  @Override
   public boolean equals(Object obj) {
 	  if(obj instanceof Level) {
 		  Level lev = (Level) obj;
