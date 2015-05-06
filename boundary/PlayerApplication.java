@@ -83,6 +83,8 @@ public class PlayerApplication extends JFrame {
 	      loader.addResource("marked.png");
 	      loader.addResource("bucket.png");
 	      loader.addResource("inert.png");
+	      loader.addResource("stargame.png");
+	      loader.addResource("stargameempty.png");
 	      
 	      loader.addResource("logo.png");
 	      loader.addResource("star.png");

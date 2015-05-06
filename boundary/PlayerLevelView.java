@@ -6,6 +6,7 @@ import controller.PlayerScrambleCtrl;
 import controller.PlayerSwapCtrl;
 
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
@@ -28,6 +29,7 @@ public class PlayerLevelView extends JPanel {
 
   JLabel lblScoreNum;
   JLabel lblCounterNum;
+  JLabel lblStar[] = new JLabel[3];
 
   /**
    * Create a level view for the player application.
@@ -109,7 +111,7 @@ public class PlayerLevelView extends JPanel {
     panelInfo.setAlignmentX(0);
 
     panelRight.add(panelInfo);
-    panelInfo.setLayout(new BoxLayout(panelInfo, BoxLayout.Y_AXIS));
+    panelInfo.setLayout(new BoxLayout(panelInfo,BoxLayout.Y_AXIS));
 
     JLabel lblScore = new JLabel("Score");
     panelInfo.add(lblScore);
@@ -122,7 +124,20 @@ public class PlayerLevelView extends JPanel {
 
     lblCounterNum = new JLabel("20");
     panelInfo.add(lblCounterNum);
-
+    
+    JPanel panelStars = new JPanel();
+    
+    panelStars.setLayout(new GridLayout(0,3,0,0));
+	
+    for (int i = 0; i < 3; i++) {
+  	  lblStar[i] = new JLabel(new ImageIcon(app.loader.getResource("stargameempty.png")));
+  	  panelStars.add(lblStar[i]);
+    }
+    
+    panelStars.setMaximumSize(new Dimension(100,32));
+    panelStars.setAlignmentX(0);
+    panelInfo.add(panelStars);
+    
     update();
     repaint();
   }
@@ -155,6 +170,12 @@ public class PlayerLevelView extends JPanel {
   public void update() {
     lblScoreNum.setText(Integer.toString(model.score));
     lblCounterNum.setText(Integer.toString(model.counter));
+    for (int i = 0; i < 3; i++) {
+    	if (model.score > model.level.rules.scoreThresholds[i]) {
+    	  System.out.println(model.level.rules.scoreThresholds[i]);
+    	  lblStar[i].setIcon(new ImageIcon(app.loader.getResource("stargame.png")));;
+    	}
+      }
     this.validate();
     this.repaint();
   }
