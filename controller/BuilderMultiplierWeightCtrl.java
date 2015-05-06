@@ -42,17 +42,9 @@ public class BuilderMultiplierWeightCtrl implements ChangeListener {
   @Override
   public void stateChanged(ChangeEvent event) {
     JSlider source = (JSlider) event.getSource();
-    double val = (double) source.getValue() / source.getMaximum();
-
     Rules rules = model.level.rules;
-    double weightDiff = val - rules.getMultiplierWeight(multiplier);
-    double ratio = 1.0d / (1.0d + weightDiff);
-    if (multiplier < rules.multiplierWeights.length) {
-      rules.multiplierWeights[multiplier] = val;
-    }
-    for (int i = 0; i < rules.multiplierWeights.length; i++) {
-      rules.multiplierWeights[i] *= ratio;
-    }
+    rules.multiplierWeights[multiplier] = source.getValue();
+
     model.takeSnapshot();
   }
 }

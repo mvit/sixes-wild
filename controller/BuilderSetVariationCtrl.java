@@ -34,16 +34,7 @@ public class BuilderSetVariationCtrl implements ActionListener {
       BuilderLevelEditorView view = (BuilderLevelEditorView) app.getView();
 
       if (variation == Variation.RELEASE) {
-        int total = 0;
-        for (int i = 0; i < Rules.maxNumber - 1; i++) {
-          total += view.numberSliders[i].getValue();
-        }
-
-        double doubleTotal = (double) total;
-        for (int i = 0; i < Rules.maxNumber - 1; i++) {
-          JSlider slider = view.numberSliders[i];
-          model.level.rules.numberWeights[i] = slider.getValue() / doubleTotal;
-        }
+        model.level.rules.numberWeights[Rules.maxNumber - 1] = 0;
       }
 
       model.level.rules.variation = variation;

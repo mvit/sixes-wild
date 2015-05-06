@@ -29,15 +29,30 @@ public class WeightedRandom {
    * @param weights The weights to select from.
    * @return The index into the weights array that has been selected.
    */
-  public int weightedRandom(double[] weights) {
-    double sum = 0.0d, compare = random.nextDouble();
+  public int weightedRandom(int[] weights) {
+    int sum = 0, onlyValid = 0;
     for (int i = 0; i < weights.length; i++) {
       sum += weights[i];
-      if (compare < sum) {
+      if (weights[i] > 0) {
+        onlyValid = i;
+      }
+    }
+
+    // shortcut if there's only one valid weight
+    if (sum == 1) {
+      return onlyValid;
+    }
+
+    int compare = 0, value = random.nextInt(sum);
+    for (int i = 0; i < weights.length; i++) {
+      compare += weights[i];
+
+      if (value < compare) {
         return i;
       }
     }
 
-    return weights.length;
+    throw new RuntimeException("logical error, weightedRandom was unable to " +
+      "generate a random value from the provided weights");
   }
 }

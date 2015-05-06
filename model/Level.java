@@ -18,7 +18,7 @@ import utils.WriteStream;
 public class Level implements WriteStream {
   // TODO: where should these be stored?
   public static String header = "SWLV";
-  public static int version = 1;
+  public static int version = 0;
 
   public Rules rules;
   public Board initialBoard;
@@ -109,11 +109,11 @@ public class Level implements WriteStream {
     // not a stellar system, but good enough given that we'll likely only have
     // one or two versions in use
     int version = in.readInt();
-    if (version != Level.version && version != 0) {
+    if (version != Level.version) {
       throw new RuntimeException("level file has incompatible version");
     }
 
-    rules = new Rules(in, version);
+    rules = new Rules(in);
     initialBoard = new Board(rules, in);
     currentBoard = null;
     currentScore = 0;
@@ -152,7 +152,7 @@ public class Level implements WriteStream {
     currentBoard = null;
     currentScore = 0;
   }
-  
+
   /**
    * Returns true if this Level object is equivalent to the argument.
    * @param lev

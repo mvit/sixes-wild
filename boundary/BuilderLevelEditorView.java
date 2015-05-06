@@ -202,7 +202,7 @@ public class BuilderLevelEditorView extends JPanel {
     panelSliders.add(new JLabel("Tile Probabilities"));
     numberSliders = new JSlider[Rules.maxNumber];
 
-    int maxValue = 100 * Rules.maxNumber;
+    int maxValue = 100;
 
     // make the slider panels, styling specific to a given panel can be put in
     // an array, which would then be used in the loop
@@ -229,7 +229,7 @@ public class BuilderLevelEditorView extends JPanel {
     panelSliders.add(new JLabel("Multiplier Probability"));
     multiplierSliders = new JSlider[Rules.maxMultiplier];
 
-    maxValue = 100 * Rules.maxMultiplier;
+    maxValue = 100;
 
     for (int i = 0; i < Rules.maxMultiplier; i++) {
       JPanel panel = new JPanel();
@@ -281,14 +281,13 @@ public class BuilderLevelEditorView extends JPanel {
     lastSlider.setEnabled(!noBlocks);
 
     for (int i = 0; i < Rules.maxNumber; i++) {
-      numberSliders[i].setValue((int) (rules.getNumberWeight(i) * maxValue));
+      numberSliders[i].setValue(rules.numberWeights[i]);
     }
 
     maxValue = 100 * Rules.maxMultiplier;
 
     for (int i = 0; i < Rules.maxMultiplier; i++) {
-      multiplierSliders[i].setValue((int) (rules.getMultiplierWeight(i) *
-        maxValue));
+      multiplierSliders[i].setValue(rules.multiplierWeights[i]);
     }
   }
 }

@@ -55,17 +55,9 @@ public class BuilderNumberWeightCtrl implements ChangeListener {
   @Override
   public void stateChanged(ChangeEvent event) {
     JSlider source = (JSlider) event.getSource();
-    double val = (double) source.getValue() / source.getMaximum();
-
     Rules rules = model.level.rules;
-    double weightDiff = val - rules.getNumberWeight(number);
-    double ratio = 1.0d / (1.0d + weightDiff);
-    if (number < rules.numberWeights.length) {
-      rules.numberWeights[number] = val;
-    }
-    for (int i = 0; i < rules.numberWeights.length; i++) {
-      rules.numberWeights[i] *= ratio;
-    }
+    rules.numberWeights[number] = source.getValue();
+
     model.takeSnapshot();
   }
 }
