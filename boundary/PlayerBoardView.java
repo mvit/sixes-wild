@@ -47,7 +47,7 @@ public class PlayerBoardView extends BoardView {
     }
     addCache("bucket.png", null);
     addCache("inert.png", null);
-    
+
     addCache("marked.png", null);
     addCache("x2.png", null);
     addCache("x3.png", null);
@@ -109,41 +109,32 @@ public class PlayerBoardView extends BoardView {
   protected void paintCell(Graphics g, int x, int y,
       int x1, int y1, int x2, int y2) {
     Cell cell = model.level.currentBoard.grid[x][y];
-    if (cell.tile == null) {
-      return;
-    }
 
-    g.drawImage(getCache((cell.tile.number + 1) + ".png"), x1, y1, null);
-
-    int multiplier = cell.tile.multiplier;
-    if (multiplier > 1) {
-      g.drawImage(getCache("x" + multiplier), x1, y1, null);
-    }
-    
     if (cell.type != null) {
-        switch (cell.type) {
-        case PLAYABLE:
-          g.drawImage(getCache(cell.tile == null ? "playable.png" :
-            (cell.tile.number + 1) + ".png"), x1, y1, null);
+      switch (cell.type) {
+      case PLAYABLE:
+        g.drawImage(getCache(cell.tile == null ? "playable.png" :
+          (cell.tile.number + 1) + ".png"), x1, y1, null);
 
-          if (cell.tile != null && cell.tile.multiplier > 1) {
-            g.drawImage(getCache("x" + cell.tile.multiplier + ".png"), x1, y1, null);
-          }
-          break;
-
-        case BUCKET:
-          g.drawImage(getCache("bucket.png"), x1, y1, null);
-          break;
-
-        // TODO: should probably warn in case of default
-        case INERT:
-        default:
-          g.drawImage(getCache("inert.png"), x1, y1, null);
+        if (cell.tile != null && cell.tile.multiplier > 1) {
+          g.drawImage(getCache("x" + cell.tile.multiplier + ".png"), x1, y1, null);
         }
-    }
-    if (cell.marked) {
-        g.drawImage(getCache("marked.png"), x1, y1, null);
+        break;
+
+      case BUCKET:
+        g.drawImage(getCache("bucket.png"), x1, y1, null);
+        break;
+
+      // TODO: should probably warn in case of default
+      case INERT:
+      default:
+        g.drawImage(getCache("inert.png"), x1, y1, null);
       }
+    }
+
+    if (cell.marked) {
+      g.drawImage(getCache("marked.png"), x1, y1, null);
+    }
 
     Point tmp = new Point(x, y);
     if (model.move != null && model.move.points.contains(tmp) && model.playerState != PlayerState.NONE) {
