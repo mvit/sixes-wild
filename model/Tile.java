@@ -77,4 +77,13 @@ public class Tile {
     out.writeInt(number);
     out.writeInt(multiplier);
   }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj != null && (obj instanceof Tile)) {
+      Tile tile = (Tile) obj;
+      return number == tile.number && multiplier == tile.multiplier;
+    }
+    return false;
+  }
 }

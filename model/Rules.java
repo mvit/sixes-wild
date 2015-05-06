@@ -173,12 +173,31 @@ public class Rules {
    */
   @Override
   public boolean equals(Object obj) {
-	  if (obj instanceof Rules) {
-		  Rules rul = (Rules) obj;
-		  return ((variation.equals(rul.variation)) && (initialCounter == rul.initialCounter)
-			  && (scoreThresholds.equals(rul.scoreThresholds)) && (numberWeights.equals(rul.numberWeights))
-			  && (multiplierWeights.equals(rul.multiplierWeights)));
-	  }
-	  return false;
+    if (obj != null && (obj instanceof Rules)) {
+      Rules rul = (Rules) obj;
+      if (variation != rul.variation || initialCounter != rul.initialCounter ||
+          scoreThresholds.length != rul.scoreThresholds.length ||
+          numberWeights.length != rul.numberWeights.length ||
+          multiplierWeights.length != rul.multiplierWeights.length) {
+        return false;
+      }
+      for (int i = 0; i < scoreThresholds.length; i++) {
+        if (scoreThresholds[i] != rul.scoreThresholds[i]) {
+          return false;
+        }
+      }
+      for (int i = 0; i < numberWeights.length; i++) {
+        if (numberWeights[i] != rul.numberWeights[i]) {
+          return false;
+        }
+      }
+      for (int i = 0; i < multiplierWeights.length; i++) {
+        if (multiplierWeights[i] != rul.multiplierWeights[i]) {
+          return false;
+        }
+      }
+      return true;
+    }
+    return false;
   }
 }

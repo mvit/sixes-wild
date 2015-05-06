@@ -88,16 +88,17 @@ public class Cell {
       }
     }
   }
-  
+
   /**
    * Equals.
    */
   @Override
   public boolean equals(Object obj) {
-	  if(obj instanceof Cell) {
-		  Cell cell = (Cell) obj;
-		  return ((type.equals(cell.type)) && (tile.equals(cell.tile)) && (marked == cell.marked));
-	  }
-	  return false;
+    if (obj != null && (obj instanceof Cell)) {
+      Cell cell = (Cell) obj;
+      return type == cell.type && ((tile == null && cell.tile == null) ||
+        (tile != null && tile.equals(cell.tile))) && marked == cell.marked;
+    }
+    return false;
   }
 }

@@ -79,7 +79,7 @@ public class BuilderModel {
    */
   public void takeSnapshot() {
     if (holdHistory || (history.size() > 0 &&
-        level.equals(history.get(redoIndex)))) {
+        level.equals(history.get(redoIndex).snapshot))) {
       return;
     }
 

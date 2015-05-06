@@ -168,13 +168,28 @@ public class Board {
       }
     }
   }
-  
+
   @Override
   public boolean equals(Object obj) {
-	  if(obj instanceof Board) {
-		  Board bor = (Board) obj;
-		  return (grid.equals(bor.grid));
-	  }
-	  return false;
+    if (obj != null && (obj instanceof Board)) {
+      Board bor = (Board) obj;
+      if (grid.length != bor.grid.length) {
+        return false;
+      }
+      for (int i = 0; i < grid.length; i++) {
+        int count = grid[i].length;
+        if (count != bor.grid[i].length) {
+          return false;
+        }
+        for (int j = 0; j < count; j++) {
+          if (((grid[i][j] == null) != (bor.grid[i][j] == null)) ||
+              !grid[i][j].equals(bor.grid[i][j])) {
+            return false;
+          }
+        }
+      }
+      return true;
+    }
+    return false;
   }
 }
