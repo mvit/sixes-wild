@@ -67,15 +67,15 @@ public class TestEliminationPlayerLevelView {
     Tile[] tiles = new Tile[6];
 
     //Make the first 6 tiles in the first row 1's with x1 multipliers
-    for(int i = 0; i < 6; i++) {
-      tiles[i] = new Tile(0);
-      model.level.currentBoard.grid[i][0].tile = tiles[i];
+    for(int i = 1; i < 7; i++) {
+      tiles[i - 1] = new Tile(0);
+      model.level.currentBoard.grid[i][0].tile = tiles[i - 1];
       model.level.currentBoard.grid[i][0].tile.multiplier = 1;
     }
 
     //Make a mouse event that drags across the first 6 tiles in the first row
     PlayerBoardView boardView = ((PlayerLevelView) app.getView()).boardView;
-    PlayerBoardView.Box start = boardView.identifyCell(0, 0), end = boardView.identifyCell(5, 0);
+    PlayerBoardView.Box start = boardView.identifyCell(1, 0), end = boardView.identifyCell(6, 0);
     PlayerBoardMouseCtrl mouseCtrl = new PlayerBoardMouseCtrl(app, model);
 
     MouseEvent mouseEvent = new MouseEvent(boardView, MouseEvent.MOUSE_PRESSED, 0, 0, start.x1 + 1, start.y1 + 1, 1, false, MouseEvent.BUTTON1);
