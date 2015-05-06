@@ -32,12 +32,12 @@ public class PlayerReleaseCtrl implements PlayerVariationCtrl {
 	    model.counter--;
 
 	    if (model.counter == 0) {
-	      EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model, allBucketsFull()));
+	    //  EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model, allBucketsFull()));
 	    }
 	    
 	    if(model.move.isValid()) {
 		    if(allBucketsFull()) {
-			      EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model, allBucketsFull()));
+		//	      EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model, allBucketsFull()));
 			    }
 		    return true;
 	    }
@@ -83,4 +83,14 @@ public class PlayerReleaseCtrl implements PlayerVariationCtrl {
     specialMove();
     return false;
   }
+
+  public void redundantFinish() {
+	    if (model.counter == 0) {
+	      EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model, allBucketsFull()));
+	    }
+		if(allBucketsFull()) {
+		   EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model, true));
+		}
+  }
+  
 }

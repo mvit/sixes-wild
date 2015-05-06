@@ -6,6 +6,7 @@ import model.Move;
 import model.PlayerModel;
 import model.PlayerState;
 import model.Point;
+import model.Variation;
 
 /**
  * @author Eli Skeggs, Nick Chaput
@@ -36,6 +37,9 @@ public class PlayerFinishMoveCtrl {
       app.getView().paintImmediately(0, 0, 1500, 1500);
       PlayerUpdateBoardCtrl updateBoardCtrl = new PlayerUpdateBoardCtrl(app, model);
       updateBoardCtrl.processBoardSmooth();
+      if (model.level.rules.variation == Variation.RELEASE) {
+        	((PlayerReleaseCtrl)pVar).redundantFinish();
+        }
     }
     // TODO: implement everything else that happens after a move finishes (update score, counter, etc)
     model.move = new Move();
