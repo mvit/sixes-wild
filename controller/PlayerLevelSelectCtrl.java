@@ -33,7 +33,6 @@ public class PlayerLevelSelectCtrl implements ActionListener {
       model.level = (Level) result;
       model.levelnum = Integer.parseInt(filename, 10) - 1;
 
-      System.out.println("Level: " + model.level + " Level Num: " + model.levelnum);
       ((PlayerLevelSelectView) app.getView()).switchActive();
     }
   }

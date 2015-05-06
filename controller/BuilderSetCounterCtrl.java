@@ -31,7 +31,6 @@ public class BuilderSetCounterCtrl implements DocumentListener {
     try {
       num = Integer.parseInt(0 + entry, 10);
     } catch (NumberFormatException err) {
-      System.out.println("Not a number");
       levelView.tfCounter.setBackground(Color.red);
       levelView.repaint();
       return;

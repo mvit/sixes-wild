@@ -26,7 +26,7 @@ public class PlayerRemoveCtrl implements ActionListener{
   public void startRemove(Point point) {
     // TODO: generic implementation
     PlayerVariationCtrl pVar = model.variation.createCtrl(app, model);
-    if (model.variation != Variation.RELEASE 
+    if (model.variation != Variation.RELEASE
     		|| model.level.currentBoard.grid[point.x][point.y].tile.number != 5) {
       model.move.expand(model.level.currentBoard, point);
     }
@@ -42,14 +42,12 @@ public class PlayerRemoveCtrl implements ActionListener{
   public void actionPerformed(ActionEvent arg0) {
 	model.playerState = PlayerState.REMOVE;
   }
-  
+
   public void remove() {
-	  if (model.playerState != PlayerState.REMOVE 
+	  if (model.playerState != PlayerState.REMOVE
 	  		|| model.move.points.size() != 1){
-		  System.out.println("Remove called when not valid");
 		  model.move = new Move();
-	  }
-	  else {
+	  } else {
 		  for (Point p : model.move.points) {
 			  model.level.currentBoard.grid[p.x][p.y].tile = null;
 		  }

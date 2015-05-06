@@ -34,7 +34,6 @@ public class BuilderSetScoreCtrl implements DocumentListener {
     try {
       num = Integer.parseInt(0 + entry, 10);
     } catch (NumberFormatException e) {
-      System.out.println("Not a number");
       levelView.tfThreshold[tier].setBackground(Color.red);
       levelView.repaint();
       return;
