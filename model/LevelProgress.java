@@ -11,8 +11,8 @@ import java.util.Date;
  * @author Eli Skeggs
  */
 public class LevelProgress {
-  Date lastPlayed;
-  int level;
+  public Date lastPlayed;
+  public int level;
   public int bestScore;
   public boolean passedLevel;
 
