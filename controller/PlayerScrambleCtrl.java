@@ -38,7 +38,7 @@ public class PlayerScrambleCtrl implements ActionListener {
             && cell.type != CellType.BUCKET
             && cell.tile != null
             && (cell.tile.number != 5
-            && model.level.rules.variation != Variation.RELEASE)) {
+            	|| model.level.rules.variation != Variation.RELEASE)) {
           cells.add(cell);
           tiles.add(cell.tile);
         }
