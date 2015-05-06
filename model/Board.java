@@ -169,7 +169,12 @@ public class Board {
     }
   }
   
-  public boolean equals(Board bor) {
-	  return (grid.equals(bor.grid));
+  @Override
+  public boolean equals(Object obj) {
+	  if(obj instanceof Board) {
+		  Board bor = (Board) obj;
+		  return (grid.equals(bor.grid));
+	  }
+	  return false;
   }
 }
