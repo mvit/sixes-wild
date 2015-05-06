@@ -28,15 +28,12 @@ public class PlayerRemoveCtrl implements ActionListener{
     PlayerVariationCtrl pVar = model.variation.createCtrl(app, model);
     if (model.variation != Variation.RELEASE 
     		|| model.level.currentBoard.grid[point.x][point.y].tile.number != 5) {
-      // GO INTO PLAYERMODEL AND REPLACE PLAYERVARIATIONCTRL WITH VARIATION
-      // TODO: This is suboptimal, decide whether to change PlayerVariationCtrl.
-      // specialMove() to individual methods for each special move
-      // TODO: resolve the move
       model.move.expand(model.level.currentBoard, point);
     }
-    //pVar.remove();
     remove();
     pVar.finishMove();
+	app.getView().repaint();
+	((PlayerLevelView)app.getView()).update();
     model.playerState = PlayerState.NONE;
     model.move = new Move();
   }
@@ -59,9 +56,5 @@ public class PlayerRemoveCtrl implements ActionListener{
 	      PlayerUpdateBoardCtrl updateBoardCtrl = new PlayerUpdateBoardCtrl(app, model);
 	      updateBoardCtrl.processBoardSmooth();
 	  }
-	  if(model.counter>0)
-		  model.counter--;
-	  app.getView().repaint();
-	  ((PlayerLevelView)app.getView()).update();
   }
 }
