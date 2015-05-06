@@ -8,7 +8,7 @@ import model.CellType;
 import model.PlayerModel;
 
 /**
- * @author Eli Skeggs, and Nick Chaput
+ * @author Eli Skeggs, Nick Chaput and Bailey Sheridan
  */
 public class PlayerReleaseCtrl implements PlayerVariationCtrl {
   PlayerApplication app;
@@ -34,8 +34,15 @@ public class PlayerReleaseCtrl implements PlayerVariationCtrl {
 	    if (model.counter == 0) {
 	      EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model, allBucketsFull()));
 	    }
-
-	    return model.move.isValid();
+	    
+	    if(model.move.isValid()) {
+		    if(allBucketsFull()) {
+			      EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model, allBucketsFull()));
+			    }
+		    return true;
+	    }
+	    
+	    return false;
 	  }
 
   private boolean allBucketsFull() {
