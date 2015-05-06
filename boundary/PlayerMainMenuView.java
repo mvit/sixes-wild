@@ -33,6 +33,11 @@ public class PlayerMainMenuView extends JPanel {
   PlayerModel model;
   PlayerApplication app;
 
+  public JButton btnLevelSelect;
+  public JButton btnInstructions;
+  public JButton btnResetProgress;
+  public JButton btnExit;
+
   /**
    * Create a new main menu view.
    *
@@ -68,25 +73,25 @@ public class PlayerMainMenuView extends JPanel {
     lblSixesWild.setAlignmentX(Component.CENTER_ALIGNMENT);
     lblSixesWild.setAlignmentY(Component.CENTER_ALIGNMENT);
 
-    JButton btnLevelSelect = new JButton("Level Select");
+    btnLevelSelect = new JButton("Level Select");
     panelContent.add(btnLevelSelect);
     btnLevelSelect.addActionListener(new PlayerLoadLevelSelectCtrl(app, model));
     btnLevelSelect.setAlignmentX(Component.CENTER_ALIGNMENT);
     btnLevelSelect.setAlignmentY(Component.CENTER_ALIGNMENT);
 
-    JButton btnInstructions = new JButton("Instructions");
+    btnInstructions = new JButton("Instructions");
     btnInstructions.addActionListener(new PlayerInstructionsCtrl(app, model));
     panelContent.add(btnInstructions);
     btnInstructions.setAlignmentX(Component.CENTER_ALIGNMENT);
     btnInstructions.setAlignmentY(Component.CENTER_ALIGNMENT);
 
-    JButton btnResetProgress = new JButton("Reset Progress");
+    btnResetProgress = new JButton("Reset Progress");
     btnResetProgress.addActionListener(new ResetProgressCtrl(app, model));
     btnResetProgress.setAlignmentX(Component.CENTER_ALIGNMENT);
     btnResetProgress.setAlignmentY(Component.CENTER_ALIGNMENT);
     panelContent.add(btnResetProgress);
     
-    JButton btnExit = new JButton("Exit");
+    btnExit = new JButton("Exit");
     panelContent.add(btnExit);
     btnExit.addActionListener(new ExitCtrl());
     btnExit.setAlignmentX(Component.CENTER_ALIGNMENT);
