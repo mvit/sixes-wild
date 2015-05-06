@@ -3,6 +3,7 @@ package controller;
 import java.awt.EventQueue;
 
 import boundary.PlayerApplication;
+import model.CellType;
 import model.PlayerModel;
 import model.Point;
 
@@ -51,7 +52,7 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
 
       for (int i = 0; i < 9; i++) {
         for (int j = 0; j < 9; j++) {
-          if (!model.level.currentBoard.grid[i][j].marked) {
+          if (!model.level.currentBoard.grid[i][j].marked && model.level.currentBoard.grid[i][j].type!=CellType.INERT) {
             return true;
           }
         }
