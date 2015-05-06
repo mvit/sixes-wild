@@ -22,7 +22,6 @@ public class TestBuilderLevelEditor {
 	BuilderApplication app;
 	BuilderModel model;
 	ResourceLoader loader;
-	BuilderLevelEditorView levelEditorView;
 	
 	
 	private void setUp() {
@@ -42,7 +41,7 @@ public class TestBuilderLevelEditor {
 		//Test that MainMenuView has been initial
 		app.setView(new BuilderMainMenuView(app, model));
 		assertTrue(app.getView() instanceof BuilderMainMenuView);
-	    levelEditorView = new BuilderLevelEditorView(app, model);
+	//	((BuilderMainMenuView)(app.initialView)).btnNewLevel.mousePressed();
 		tearDown();	
 	}
 

@@ -18,6 +18,7 @@ public class BuilderApplication extends JFrame {
 
   protected BuilderModel model;
   protected JPanel view = null;
+  public JPanel initialView;
 
   public ResourceLoader loader;
 
@@ -36,7 +37,7 @@ public class BuilderApplication extends JFrame {
 
   private void initialize(SplashScreen splash) {
 	  
-	    JPanel initialView = new BuilderMainMenuView(this, model);
+	    initialView = new BuilderMainMenuView(this, model);
 	    long loadStart = System.currentTimeMillis();
 	    this.addQuitListener(null);
 	    this.initializeResources();
