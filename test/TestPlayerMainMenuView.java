@@ -38,7 +38,7 @@ public class TestPlayerMainMenuView {
 		app.dispose();
 		app = null;
 	}
-	
+
 	@Test
 	public void test() {
 		//Set the context window

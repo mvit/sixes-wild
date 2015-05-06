@@ -33,7 +33,7 @@ public class BuilderBoardMouseCtrl extends MouseAdapter {
     return view.boardView.identifyPoint(event.getX(), event.getY());
   }
 
-  protected void applyCell(MouseEvent event) {
+  public void applyCell(MouseEvent event) {
     BuilderLevelEditorView view = (BuilderLevelEditorView) app.getView();
     BoardView boardView = view.boardView;
 
