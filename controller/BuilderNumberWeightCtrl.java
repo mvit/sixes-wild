@@ -64,5 +64,7 @@ public class BuilderNumberWeightCtrl implements ChangeListener {
       model.discardLevel();
       model.realizeLevel();
     }
+
+    app.getView().repaint();
   }
 }

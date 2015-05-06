@@ -51,5 +51,7 @@ public class BuilderMultiplierWeightCtrl implements ChangeListener {
       model.discardLevel();
       model.realizeLevel();
     }
+
+    app.getView().repaint();
   }
 }
