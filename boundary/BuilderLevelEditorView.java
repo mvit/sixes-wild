@@ -52,6 +52,7 @@ public class BuilderLevelEditorView extends JPanel {
   public JTextField tfThreshold[] = new JTextField[3];
   public JTextField tfCounter;
   public JRadioButton button;
+  public JButton btnMakePlayable;
 
   public JSlider[] numberSliders, multiplierSliders;
 
@@ -114,7 +115,7 @@ public class BuilderLevelEditorView extends JPanel {
     btnRedo.addActionListener(new BuilderRedoCtrl(app, model));
     panelControls.add(btnRedo);
 
-    JButton btnMakePlayable = new JButton("[  ]");
+    btnMakePlayable = new JButton("[  ]");
     btnMakePlayable.addActionListener(new BuilderSetCellTypeCtrl(app, model,
       CellType.PLAYABLE));
     panelControls.add(btnMakePlayable);
