@@ -1,10 +1,16 @@
 package test;
 
 import static org.junit.Assert.*;
+
+import java.awt.event.ActionEvent;
+
 import model.BuilderModel;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
+import controller.BuilderNewLevelCtrl;
 import boundary.BuilderApplication;
 import boundary.BuilderLevelEditorView;
 import boundary.BuilderMainMenuView;
@@ -23,26 +29,28 @@ public class TestBuilderLevelEditor {
 	BuilderModel model;
 	ResourceLoader loader;
 	
-	
-	private void setUp() {
+
+    @Before
+	public void setUp() {
 	    loader = new ResourceLoader();
 	    model = new BuilderModel();
 	    app = new BuilderApplication(model, loader);
 	}
-	
-	private void tearDown() {
+
+    @After
+	public void tearDown() {
 		app.dispose();
 		app = null;
 	}
 	
 	@Test
 	public void test() {
-		setUp();
+
 		//Test that MainMenuView has been initial
 		app.setView(new BuilderMainMenuView(app, model));
 		assertTrue(app.getView() instanceof BuilderMainMenuView);
-	//	((BuilderMainMenuView)(app.initialView)).btnNewLevel.mousePressed();
-		tearDown();	
+		ActionEvent event1 = new ActionEvent(((BuilderMainMenuView)(app.initialView)).btnNewLevel, 0, "yes");
+		new BuilderNewLevelCtrl(app, model).actionPerformed(event1);
 	}
 
 }
