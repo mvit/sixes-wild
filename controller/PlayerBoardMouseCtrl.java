@@ -63,26 +63,7 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
   }
 
   @Override
-  public void mouseClicked(MouseEvent event) {
-	  System.out.println("Clicked");
-    Point point;
-    if (event.getButton() != MouseEvent.BUTTON1 ||
-        (point = identifyPoint(event)) == null
-    		|| isNullTile(point)){
-      return;
-    }
-
-    switch (model.playerState) {
-    case REMOVE:
-      removeCtrl.startRemove(point);
-      break;
-    case SWAP:
-      swapCtrl.startSwap(point);
-      break;
-    default:
-     // fizzleMove();
-    }
-  }
+  public void mouseClicked(MouseEvent event) {}
 
   @Override
   public void mouseEntered(MouseEvent event) {}
@@ -111,11 +92,24 @@ public class PlayerBoardMouseCtrl implements MouseListener, MouseMotionListener
   public void mouseReleased(MouseEvent event) {
 	  System.out.println("Released");
     Point point;
+    
     if (event.getButton() == MouseEvent.BUTTON1 &&
-        model.playerState == PlayerState.SELECT &&
         (point = identifyPoint(event)) != null) {
-      finishMoveCtrl.finishMove(point);
+    	switch (model.playerState) {
+        case REMOVE:
+          removeCtrl.startRemove(point);
+          break;
+        case SWAP:
+          swapCtrl.startSwap(point);
+          break;
+        case SELECT:
+            finishMoveCtrl.finishMove(point);
+            break;
+        default:
+        	break;
+        	}
     }
+    
   }
 
   @Override
