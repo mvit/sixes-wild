@@ -70,6 +70,8 @@ public class BuilderModel {
   public void clearHistory() {
     history.clear();
     history.trimToSize();
+    redoIndex = 0;
+    holdHistory = false;
   }
 
   /**
