@@ -108,7 +108,7 @@ public class PlayerProgress implements Iterable<LevelProgress>, WriteStream {
    *
    * @return The number of completed levels.
    */
-  public int completedLevels() {
+  public int attemptedLevels() {
     return levels.size();
   }
 
@@ -133,15 +133,16 @@ public class PlayerProgress implements Iterable<LevelProgress>, WriteStream {
    * @param score
    */
   public void setAchievedScore(int level, int score, boolean passedLevel) {
-    int completedLevels = levels.size();
-    if (level == completedLevels) {
+    int attemptedLevels = levels.size();
+    if (level == attemptedLevels) {
       levels.add(new LevelProgress(level, score, passedLevel));
-    } else if (level < completedLevels) {
+    } else if (level < attemptedLevels) {
       LevelProgress progress = levels.get(level);
       if (progress.bestScore < score) {
         progress.bestScore = score;
       }
       progress.lastPlayed = new Date();
+      progress.passedLevel = progress.passedLevel || passedLevel;
     } else {
       // HAHA NOPE
     }
