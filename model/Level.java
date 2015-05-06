@@ -28,39 +28,6 @@ public class Level implements WriteStream {
   public int currentScore;
 
   /**
-   * Checks the header of the given InputStream to ensure it is a level.
-   *
-   * @param in The stream to check.
-   * @return Whether the given file could be a valid level.
-   */
-  protected static boolean checkHeader(InputStream in) throws IOException {
-    byte headerBytes[] = new byte[4];
-    if (in.read(headerBytes) != headerBytes.length) {
-      return false;
-    }
-
-    if (!header.equals(new String(headerBytes, StandardCharsets.US_ASCII))) {
-      return false;
-    }
-
-    return true;
-  }
-
-  /**
-   * Checks the header of the given file to ensure it is a level.
-   *
-   * @param file
-   * @return Whether the given file could be a valid level.
-   */
-  public static boolean checkHeader(File file) {
-    try {
-      return Level.checkHeader(new FileInputStream(file));
-    } catch (IOException err) {
-      return false;
-    }
-  }
-
-  /**
    * Gets an abstract Level constructor which reads from a DataInputStream.
    *
    * @return The readable object.
