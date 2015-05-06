@@ -51,6 +51,7 @@ public class BuilderLevelEditorView extends JPanel {
 
   public JTextField tfThreshold[] = new JTextField[3];
   public JTextField tfCounter;
+  public JRadioButton button;
 
   public JSlider[] numberSliders, multiplierSliders;
 
@@ -146,7 +147,7 @@ public class BuilderLevelEditorView extends JPanel {
     panelBoard.add(panelType, BorderLayout.NORTH);
 
     for (Variation variation : Variation.values()) {
-      JRadioButton button = new JRadioButton(variation.name);
+      button = new JRadioButton(variation.name);
       button.addActionListener(new BuilderSetVariationCtrl(app, model,
         variation));
       variationButtons.put(variation, button);
