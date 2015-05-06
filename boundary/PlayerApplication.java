@@ -9,7 +9,7 @@ import model.PlayerModel;
 /**
  * The player application boundary class.
  *
- * @author Eli Skeggs
+ * @author Eli Skeggs and Maurizio Vitale
  */
 public class PlayerApplication extends JFrame {
   public static final String title = "Sixes Wild";
@@ -71,33 +71,35 @@ public class PlayerApplication extends JFrame {
 
   }
   private void initializeResources() {
-    for (int i = 1; i <= 6; i++) {
-      loader.addResource(i + ".png");
-    }
-    for (int i = 2; i <= 3; i++) {
-      loader.addResource("x" + i + ".png");
-    }
+	    for (int i = 1; i <= 6; i++) {
+	        loader.addResource(i + ".png");
+	      }
+	      for (int i = 2; i <= 3; i++) {
+	        loader.addResource("x" + i + ".png");
+	      }
+	      
+	      loader.addResource("playable.png");
+	      loader.addResource("selected.png");
+	      loader.addResource("marked.png");
+	      loader.addResource("bucket.png");
+	      loader.addResource("inert.png");
+	      
+	      loader.addResource("logo.png");
+	      loader.addResource("star.png");
+	      loader.addResource("starempty.png");
+	      
+	      loader.addResource("swap.png");
+	      loader.addResource("scramble.png");
+	      loader.addResource("remove.png");
 
-    loader.addResource("playable.png");
-    loader.addResource("selected.png");
-    loader.addResource("marked.png");
-    loader.addResource("bucket.png");
-    loader.addResource("inert.png");
-
-    loader.addResource("logo.png");
-
-    loader.addResource("swap.png");
-    loader.addResource("scramble.png");
-    loader.addResource("remove.png");
-
-
-    try {
-      loader.loadResources();
-    } catch (IOException err) {
-      System.err.println(err.getMessage());
-      err.printStackTrace();
-      return;
-    }
+	      
+	      try {
+	          loader.loadResources();
+	        } catch (IOException err) {
+	          System.err.println(err.getMessage());
+	          err.printStackTrace();
+	          return;
+	        }
   }
   /**
    * Add a quit listener for when the user clicks the close button on the
