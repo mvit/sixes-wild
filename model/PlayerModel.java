@@ -29,7 +29,7 @@ public class PlayerModel {
   public void discardLevel() {
     // discard the board
     if (level != null) {
-      if(level.rules.variation == Variation.LIGHTNING)
+      if(level.rules.variation == Variation.LIGHTNING && timer!=null)
     	  timer.task.cancel();
       level.discardBoard();
     }
