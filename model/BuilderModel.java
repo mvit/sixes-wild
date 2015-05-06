@@ -48,7 +48,11 @@ public class BuilderModel {
   public boolean undo() {
     if (redoIndex > 0) {
       holdHistory = true;
+      boolean isPreview = level.currentBoard != null;
       level = history.get(--redoIndex).snapshot;
+      if (isPreview) {
+        realizeLevel();
+      }
       return true;
     }
     return false;
@@ -61,7 +65,11 @@ public class BuilderModel {
   public boolean redo() {
     if (redoIndex < history.size() - 1) {
       holdHistory = true;
+      boolean isPreview = level.currentBoard != null;
       level = history.get(++redoIndex).snapshot;
+      if (isPreview) {
+        realizeLevel();
+      }
       return true;
     }
     return false;
