@@ -257,7 +257,7 @@ public abstract class BoardView extends JPanel {
    *
    * @author Eli Skeggs
    */
-  protected class Box {
+  public class Box {
     public int x1, y1, x2, y2;
 
     /**
