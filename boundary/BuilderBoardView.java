@@ -47,29 +47,29 @@ public class BuilderBoardView extends BoardView {
   protected void paintCell(Graphics g, int x, int y,
       int x1, int y1, int x2, int y2) {
     Board board = model.level.currentBoard;
-    boolean isPreview = board != null;
     if (board == null) {
       board = model.level.initialBoard;
     }
 
     Cell cell = board.grid[x][y];
-    String resource;
     switch (cell.type) {
     case PLAYABLE:
-      resource = cell.tile == null ? "playable.png" : (cell.tile.number + 1) +
-        ".png";
+      g.drawImage(getCache(cell.tile == null ? "playable.png" :
+        (cell.tile.number + 1) + ".png"), x1, y1, null);
+
+      if (cell.tile != null && cell.tile.multiplier > 1) {
+        g.drawImage(getCache("x" + cell.tile.multiplier + ".png"), x1, y1, null);
+      }
       break;
 
     case BUCKET:
-      resource = "bucket.png";
+      g.drawImage(getCache("bucket.png"), x1, y1, null);
       break;
 
     // TODO: should probably warn in case of default
     case INERT:
     default:
-      resource = "inert.png";
+      g.drawImage(getCache("inert.png"), x1, y1, null);
     }
-
-    g.drawImage(getCache(resource), x1, y1, null);
   }
 }
