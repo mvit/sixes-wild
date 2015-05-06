@@ -119,10 +119,6 @@ public class PlayerBoardView extends BoardView {
     if (multiplier > 1) {
       g.drawImage(getCache("x" + multiplier), x1, y1, null);
     }
-
-    if (cell.marked) {
-      g.drawImage(getCache("marked.png"), x1, y1, null);
-    }
     
     if (cell.type != null) {
         switch (cell.type) {
@@ -145,6 +141,9 @@ public class PlayerBoardView extends BoardView {
           g.drawImage(getCache("inert.png"), x1, y1, null);
         }
     }
+    if (cell.marked) {
+        g.drawImage(getCache("marked.png"), x1, y1, null);
+      }
 
     Point tmp = new Point(x, y);
     if (model.move != null && model.move.points.contains(tmp) && model.playerState != PlayerState.NONE) {
