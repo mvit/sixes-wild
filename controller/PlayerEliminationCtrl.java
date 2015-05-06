@@ -51,7 +51,7 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
       }
     }
 
-    return false;
+    return true;
   }
 
   private boolean isFullyMarked() {
