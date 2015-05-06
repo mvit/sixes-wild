@@ -8,12 +8,6 @@ import controller.ResetProgressCtrl;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -22,7 +16,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.PlayerModel;
-import model.PlayerProgress;
 
 /**
  * PlayerMainMenuView which displays the main menu for the player application.

@@ -41,16 +41,17 @@ public class PlayerReleaseCtrl implements PlayerVariationCtrl {
   private boolean allBucketsFull() {
 	for (int x = 0; x < Board.width; x++) {
 		for (int y = 0; y < Board.height; y++) {
-			  if (model.level.currentBoard.grid[x][y].type == CellType.BUCKET
-					 && model.level.currentBoard.grid[x][y].tile != null) {
-				  if (model.level.currentBoard.grid[x][y].tile.number != 5) {
-					  System.out.println("Something messed up and a non-Six is in your bucket: " + x + " " + y);
+			  if (model.level.currentBoard.grid[x][y].type == CellType.BUCKET) {
+				  if (model.level.currentBoard.grid[x][y].tile != null) {
+					  if (model.level.currentBoard.grid[x][y].tile.number != 5) {
+						  System.out.println("Something messed up and a non-Six is in your bucket: " + x + " " + y);
+					  }
 				  }
-			  }
-			  else {
-				  return false;
-			  }
-		  }
+				  else {
+					  return false;
+				  }
+		 	  }
+		}
 	}
 	return true;
 }
