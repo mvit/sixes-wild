@@ -28,7 +28,7 @@ public class BuilderBoardMouseCtrl extends MouseAdapter {
     this.model = model;
   }
 
-  Point identifyPoint(MouseEvent event) {
+  public Point identifyPoint(MouseEvent event) {
     BuilderLevelEditorView view = (BuilderLevelEditorView) app.getView();
     return view.boardView.identifyPoint(event.getX(), event.getY());
   }
