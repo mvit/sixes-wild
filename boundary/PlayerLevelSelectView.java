@@ -33,12 +33,14 @@ public class PlayerLevelSelectView extends JPanel {
   PlayerApplication app;
   PlayerModel model;
 
-  JPanel panelTopContent, panelLevel;
+  public JPanel panelTopContent, panelLevel;
 
-  JPanel panelLevelInfo = null;
-  JLabel lblLevel = null, lblType = null, lblScore = null;
+  public JPanel panelLevelInfo = null;
+  public JLabel lblLevel = null, lblType = null, lblScore = null;
 
   public PlayerPreviewBoardView boardView;
+  
+  public JButton[] selectButtons;
 
   public PlayerLevelSelectView(PlayerApplication app, PlayerModel model) {
     this.app = app;
@@ -115,6 +117,8 @@ public class PlayerLevelSelectView extends JPanel {
       }
     }
 
+    selectButtons = new JButton[files.size()];
+
     int width = 4, height = (int) Math.ceil((double) files.size() / width);
     content.setLayout(new GridLayout(height, width, 0, 0));
 
@@ -163,9 +167,10 @@ public class PlayerLevelSelectView extends JPanel {
           name));
         selectButton.setText("<html>Level " + name + "<br>" + (progress == null
           ? "Not attempted" : (level.rules.variation.name.equals("Lightning") ? "Time Left: " + progress.getScore() : "Score: " + progress.getScore())) +
-          "<br>Variation: " + level.rules.variation.name + "</html>");
+          "<br>Type: " + level.rules.variation.name + "</html>");
       }
 
+      selectButtons[levelNumber] = selectButton;
       panelLevel.add(selectButton);
       content.add(panelLevel);
     }

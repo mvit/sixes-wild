@@ -6,3 +6,6 @@ play: compile
 
 build:
 	java boundary.BuilderApplication
+
+gource:
+	gource --seconds-per-day 1 --auto-skip-seconds 0.1 --max-files 0
