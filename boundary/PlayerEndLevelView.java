@@ -1,9 +1,11 @@
 package boundary;
 
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -19,7 +21,7 @@ import model.Variation;
 /**
  * PlayerEndLevelView comes up when a level is completed.
  *
- * @author Bailey Sheridan
+ * @author Bailey Sheridan and Maurizio Vitale
  */
 public class PlayerEndLevelView extends JDialog{
   PlayerApplication app;
@@ -63,8 +65,30 @@ public class PlayerEndLevelView extends JDialog{
 
     JPanel panel = new JPanel();
     panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-    panel.add(new JLabel(endMsg));
-    panel.add(new JLabel("Score: " + model.score));
+    
+    JLabel lblEndMsg = new JLabel(endMsg);
+    lblEndMsg.setAlignmentX(CENTER_ALIGNMENT);
+    panel.add(lblEndMsg);
+
+    JLabel lblEndScore = new JLabel("Score: " + model.score);
+    lblEndScore.setAlignmentX(CENTER_ALIGNMENT);
+    panel.add(lblEndScore);
+    
+    JPanel panelStars = new JPanel();
+    panelStars.setLayout(new GridLayout(0,3,0,0));
+    
+    for (int i = 0; i < 3; i++) {
+  	  JLabel star;
+  	  if (model.score > model.level.rules.scoreThresholds[i]) {
+  		  star = new JLabel(new ImageIcon(app.loader.getResource("star.png")));
+  	  }
+  	  else {
+  		  star = new JLabel(new ImageIcon(app.loader.getResource("starempty.png")));
+  	  }
+  	  panelStars.add(star);
+    }
+    panel.add(panelStars);
+    
     backBut.setAlignmentX(CENTER_ALIGNMENT);
     retryBut.setAlignmentX(CENTER_ALIGNMENT);
     panel.add(backBut);
