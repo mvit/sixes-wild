@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JSlider;
+import javax.swing.event.ChangeEvent;
+
 import model.BuilderModel;
 import model.CellType;
 import model.Variation;
@@ -14,6 +17,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import controller.BuilderBoardMouseCtrl;
+import controller.BuilderMultiplierWeightCtrl;
 import controller.BuilderNewLevelCtrl;
 import controller.BuilderSetCellTypeCtrl;
 import controller.BuilderSetVariationCtrl;
@@ -71,10 +75,14 @@ public class TestBuilderLevelEditor {
 		MouseEvent event4 = new MouseEvent(((BuilderLevelEditorView)(app.getView())).boardView, MouseEvent.MOUSE_PRESSED, 0, 0, 100, 100, 1, false, MouseEvent.BUTTON1);
 		builderBoardMouseCtrl.mousePressed(event4);
 		builderBoardMouseCtrl.mouseDragged(event4);
+		builderBoardMouseCtrl.identifyPoint(event4);
 		builderBoardMouseCtrl.mouseReleased(event4);
 		assertEquals(model.level.initialBoard.grid[3][8].type, CellType.PLAYABLE);
 
-
+		//Test if multiplier slider sets the multiplier probability
+		ChangeEvent event5 = new ChangeEvent(new JSlider(0, 100, 50));
+		new BuilderMultiplierWeightCtrl(app, model, 1).stateChanged(event5);
+		assertEquals (model.level.rules.multiplierWeights[1], 50);
 	}
 
 }

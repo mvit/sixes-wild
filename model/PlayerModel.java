@@ -23,13 +23,6 @@ public class PlayerModel {
    */
   public PlayerModel() {}
 
-  /**
-   * Create a player model from a builder model to enable previews.
-   */
-  public PlayerModel(BuilderModel model) {
-    level = model.level;
-  }
-
   public void discardLevel() {
     // discard the board
     if (level != null) {
