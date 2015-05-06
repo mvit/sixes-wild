@@ -2,13 +2,21 @@ package test;
 
 import static org.junit.Assert.*;
 
+import java.awt.Component;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 
 import model.PlayerModel;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 
+import controller.PlayerInstructionsCtrl;
+import controller.PlayerLoadLevelSelectCtrl;
 import boundary.PlayerApplication;
+import boundary.PlayerInstructionsView;
+import boundary.PlayerLevelSelectView;
 import boundary.PlayerMainMenuView;
 import boundary.ResourceLoader;
 
@@ -18,26 +26,37 @@ public class TestPlayerMainMenuView {
 	PlayerModel model;
 	ResourceLoader loader;
 	
-	
-	private void setUp() {
+	@Before
+	public void setUp() {
 	    loader = new ResourceLoader();
 	    model = new PlayerModel();
 	    app = new PlayerApplication(model, loader);
 	}
 	
-	private void tearDown() {
+	@After
+	public void tearDown() {
 		app.dispose();
 		app = null;
 	}
 	
 	@Test
 	public void test() {
-		setUp();
 		app.setView(new PlayerMainMenuView(app, model));
 		assertTrue(app.getView() instanceof PlayerMainMenuView);
-		MouseEvent e = new MouseEvent(app.getView(), 0, 0, 0, 0, 0, 0, false);
-		tearDown();	
-		//app.getView().
+		
+		ActionEvent event1 = new ActionEvent(((PlayerMainMenuView) app.getView()).btnLevelSelect, 0, "yes" );
+		new PlayerLoadLevelSelectCtrl(app, model).actionPerformed(event1);
+		assertTrue(app.getView() instanceof PlayerLevelSelectView);
+		
+		app.setView(new PlayerMainMenuView(app, model));
+		assertTrue(app.getView() instanceof PlayerMainMenuView);
+		
+		ActionEvent event2 = new ActionEvent(((PlayerMainMenuView) app.getView()).btnInstructions, 0, "yes" );
+		new PlayerInstructionsCtrl(app, model).actionPerformed(event2);
+		assertTrue(app.getView() instanceof PlayerInstructionsView);
+		
+		app.setView(new PlayerMainMenuView(app, model));
+		assertTrue(app.getView() instanceof PlayerMainMenuView);
 	}
 
 }
