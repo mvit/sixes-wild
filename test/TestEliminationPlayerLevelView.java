@@ -31,7 +31,7 @@ import boundary.ResourceLoader;
  * @author Eli Skeggs and Maurizio Vitale
  *
  */
-public class TestPuzzlePlayerLevelView {
+public class TestEliminationPlayerLevelView {
   PlayerApplication app;
   PlayerModel model;
   ResourceLoader loader;
@@ -57,11 +57,11 @@ public class TestPuzzlePlayerLevelView {
     ActionEvent event1 = new ActionEvent(((PlayerLevelSelectView) app.getView()).selectButtons[0], 0, "yes");
     new PlayerLevelSelectCtrl(app, model,"1").actionPerformed(event1);
     ActionEvent event2 = new ActionEvent(((PlayerLevelSelectView) app.getView()).btnPlayLevel, 0, "yes");
-    new PlayerLoadLevelCtrl(app, model,"1").actionPerformed(event2);
+    new PlayerLoadLevelCtrl(app, model,"3").actionPerformed(event2);
     assertTrue(app.getView() instanceof PlayerLevelView);
 
     //Variation tests
-    assertEquals(Variation.PUZZLE, model.variation);
+    assertEquals(Variation.ELIMINATION, model.variation);
     assertEquals(0, model.score);
     int moves = model.counter;
     Tile[] tiles = new Tile[6];
@@ -93,6 +93,7 @@ public class TestPuzzlePlayerLevelView {
     assertEquals(moves - 1, model.counter);
 
     //Test Remove on the first (0,0) tile
+    model.level.currentBoard.grid[0][0].tile = new Tile(1);
     moves = model.counter;
     //Select the remove move
     ActionEvent event3 = new ActionEvent(((PlayerLevelView) app.getView()).btnRemove, 0, "yes");
@@ -149,15 +150,6 @@ public class TestPuzzlePlayerLevelView {
     new PlayerRestartLevelCtrl(app, model).actionPerformed(event6);
     assertNotEquals(moves,model.counter);
     assertEquals(0,model.score);
-    
-    //Test End Level
-    model.counter = 1;
-    
-    mouseEvent = new MouseEvent(boardView, MouseEvent.MOUSE_PRESSED, 0, 0, start.x1 + 1, start.y1 + 1, 1, false, MouseEvent.BUTTON1);
-    mouseCtrl.mousePressed(mouseEvent);
-
-    mouseEvent = new MouseEvent(boardView, MouseEvent.MOUSE_RELEASED, 0, 0, start.x1 + 1, start.y1 + 1, 1, false, MouseEvent.BUTTON1);
-    mouseCtrl.mouseReleased(mouseEvent);
     
     
     
