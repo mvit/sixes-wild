@@ -53,6 +53,8 @@ public class BuilderLevelEditorView extends JPanel {
   public JTextField tfCounter;
   public JRadioButton button;
   public JButton btnMakePlayable;
+  public JButton btnMakeSlot;
+  public JButton btnMakeSix;
 
   public JSlider[] numberSliders, multiplierSliders;
 
@@ -125,11 +127,11 @@ public class BuilderLevelEditorView extends JPanel {
       CellType.INERT));
     panelControls.add(btnMakeInert);
 
-    JButton btnMakeSix = new JButton("6");
+    btnMakeSix = new JButton("6");
     btnMakeSix.addActionListener(new BuilderSetTileCtrl(app, model, 5, 1));
     panelControls.add(btnMakeSix);
 
-    JButton btnMakeSlot = new JButton("[6]");
+    btnMakeSlot = new JButton("[6]");
     btnMakeSlot.addActionListener(new BuilderSetCellTypeCtrl(app, model,
       CellType.BUCKET));
     panelControls.add(btnMakeSlot);

@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JButton;
 import javax.swing.JSlider;
 import javax.swing.event.ChangeEvent;
 
@@ -69,7 +70,7 @@ public class TestBuilderLevelEditor {
 		assertEquals(Variation.RELEASE, model.level.rules.variation);
 
 		//Check if Tile Type is set
-		ActionEvent event3 = new ActionEvent(((BuilderLevelEditorView)(app.getView())).btnMakePlayable, 0, "yes");
+		ActionEvent event3 = new ActionEvent(((BuilderLevelEditorView)(app.getView())).btnMakeSix, 0, "yes");
 		new BuilderSetCellTypeCtrl(app, model, CellType.PLAYABLE).actionPerformed(event3);
 		BuilderBoardMouseCtrl builderBoardMouseCtrl = new BuilderBoardMouseCtrl (app, model);
 		MouseEvent event4 = new MouseEvent(((BuilderLevelEditorView)(app.getView())).boardView, MouseEvent.MOUSE_PRESSED, 0, 0, 100, 100, 1, false, MouseEvent.BUTTON1);
