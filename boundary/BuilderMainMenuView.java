@@ -23,6 +23,7 @@ import model.BuilderModel;
 public class BuilderMainMenuView extends JPanel {
   BuilderApplication app;
   BuilderModel model;
+  public JButton btnNewLevel;
 
   public BuilderMainMenuView(BuilderApplication app, BuilderModel model) {
     this.app = app;
@@ -51,7 +52,7 @@ public class BuilderMainMenuView extends JPanel {
     lblBuilder.setAlignmentY(Component.CENTER_ALIGNMENT);
     panelContent.add(lblBuilder);
 
-    JButton btnNewLevel = new JButton("New Level");
+    btnNewLevel = new JButton("New Level");
     btnNewLevel.addActionListener(new BuilderNewLevelCtrl(app, model));
     btnNewLevel.setAlignmentX(Component.CENTER_ALIGNMENT);
     btnNewLevel.setAlignmentY(Component.CENTER_ALIGNMENT);
