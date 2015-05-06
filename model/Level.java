@@ -92,6 +92,7 @@ public class Level implements WriteStream {
   public Level(Level src) {
     rules = new Rules(src.rules);
     initialBoard = new Board(src.initialBoard);
+    initialBoard.rules = src.rules;
     currentBoard = null;
     currentScore = 0;
   }
@@ -139,6 +140,7 @@ public class Level implements WriteStream {
    */
   public void realizeBoard() {
     currentBoard = new Board(initialBoard);
+    currentBoard.rules = rules;
     currentBoard.realizeTiles();
     currentScore = 0;
   }

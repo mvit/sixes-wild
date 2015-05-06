@@ -52,8 +52,7 @@ public class Board {
    * @param src
    */
   public Board(Board src) {
-    // TODO: rules need to be copied for the snapshot usage in the Builder
-    this.rules = src.rules;
+    this.rules = null;
 
     for (int x = 0; x < width; x++) {
       for (int y = 0; y < height; y++) {
