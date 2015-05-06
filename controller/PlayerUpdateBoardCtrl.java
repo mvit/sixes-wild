@@ -23,52 +23,6 @@ public class PlayerUpdateBoardCtrl {
     this.model = model;
   }
 
-  /**
-   * TODO(skeggse): restructure with queued events.
-   */
-  public void processBoard() {
-    Board board = model.level.currentBoard;
-    for (int y = Board.height - 1; y >= 0; y--) {
-      /*try {
-        Thread.sleep(15);
-        // app.getView().paintImmediately(0, 0, 1500, 1500);
-      } catch (InterruptedException err) {
-      }*/
-      boolean hasEmpty = false;
-      for (int x = Board.width - 1; x >= 0; x--) {
-        Cell cell = board.grid[x][y];
-        if (cell.type != CellType.INERT && cell.type != CellType.BUCKET
-            && cell.tile == null) {
-          cell.tile = board.takeTileAbove(x, y);
-          hasEmpty = true;
-          try {
-            Thread.sleep(10);
-            app.getView().paintImmediately(0, 0, 1500, 1500);
-          } catch (InterruptedException err) {
-          }
-        }
-        if (cell.type == CellType.BUCKET
-            && board.getTileAbove(x, y).number == 5
-            && board.grid[x][y].tile == null) {
-          board.grid[x][y].tile = board.takeTileAbove(x, y);
-          hasEmpty = true;
-          try {
-            Thread.sleep(10);
-            app.getView().paintImmediately(0, 0, 1500, 1500);
-          } catch (InterruptedException err) {
-          }
-        }
-      }
-      if (hasEmpty) {
-        try {
-          Thread.sleep(70);
-          // app.getView().paintImmediately(0, 0, 1500, 1500);
-        } catch (InterruptedException err) {
-        }
-      }
-    }
-  }
-
   public void processBoardSmooth() {
     Board board = model.level.currentBoard;
     for (int numPass = 0; numPass < Board.height; numPass++) {
