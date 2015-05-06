@@ -59,7 +59,6 @@ public class PlayerEndLevelCtrl implements Runnable {
    */
   public void endLevel() {
     // always set the achieved score, even if we haven't crossed a threshold
-    // TODO: set the passedlevel flag appropriately
     model.progress.setAchievedScore(model.levelnum, model.score, isComplete);
 
     // writes progress to file
