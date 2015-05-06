@@ -158,8 +158,13 @@ public class Level implements WriteStream {
    * @param lev
    * @return
    */
-  public boolean equals(Level lev) {
-	  return (rules.equals(lev.rules) && initialBoard.equals(lev.initialBoard));
+  @Override
+  public boolean equals(Object obj) {
+	  if(obj instanceof Level) {
+		  Level lev = (Level) obj;
+		  return (rules.equals(lev.rules) && initialBoard.equals(lev.initialBoard));
+	  }
+	  return false;
   }
 
 }

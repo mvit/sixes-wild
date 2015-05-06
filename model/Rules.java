@@ -171,9 +171,14 @@ public class Rules {
    * @param rul
    * @return
    */
-  public boolean equals(Rules rul) {
-	  return ((variation.equals(rul.variation)) && (initialCounter == rul.initialCounter)
+  @Override
+  public boolean equals(Object obj) {
+	  if (obj instanceof Rules) {
+		  Rules rul = (Rules) obj;
+		  return ((variation.equals(rul.variation)) && (initialCounter == rul.initialCounter)
 			  && (scoreThresholds.equals(rul.scoreThresholds)) && (numberWeights.equals(rul.numberWeights))
 			  && (multiplierWeights.equals(rul.multiplierWeights)));
+	  }
+	  return false;
   }
 }
