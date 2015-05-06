@@ -59,5 +59,10 @@ public class BuilderNumberWeightCtrl implements ChangeListener {
     rules.numberWeights[number] = source.getValue();
 
     model.takeSnapshot();
+
+    if (model.level.currentBoard != null) {
+      model.discardLevel();
+      model.realizeLevel();
+    }
   }
 }

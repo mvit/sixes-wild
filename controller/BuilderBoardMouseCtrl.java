@@ -70,6 +70,11 @@ public class BuilderBoardMouseCtrl extends MouseAdapter {
       applyCell(event);
       dragging = false;
       model.takeSnapshot();
+
+      if (model.level.currentBoard != null) {
+        model.discardLevel();
+        model.realizeLevel();
+      }
     }
   }
 

@@ -46,5 +46,10 @@ public class BuilderMultiplierWeightCtrl implements ChangeListener {
     rules.multiplierWeights[multiplier] = source.getValue();
 
     model.takeSnapshot();
+
+    if (model.level.currentBoard != null) {
+      model.discardLevel();
+      model.realizeLevel();
+    }
   }
 }

@@ -20,7 +20,8 @@ public class BuilderSetVariationCtrl implements ActionListener {
   /**
    * Create the controller for a given application and model.
    */
-  public BuilderSetVariationCtrl(BuilderApplication app, BuilderModel model, Variation variation) {
+  public BuilderSetVariationCtrl(BuilderApplication app, BuilderModel model,
+      Variation variation) {
     this.app = app;
     this.model = model;
     this.variation = variation;
@@ -39,6 +40,11 @@ public class BuilderSetVariationCtrl implements ActionListener {
 
       model.level.rules.variation = variation;
       model.takeSnapshot();
+
+      if (model.level.currentBoard != null) {
+        model.discardLevel();
+        model.realizeLevel();
+      }
 
       view.updateView();
     }
