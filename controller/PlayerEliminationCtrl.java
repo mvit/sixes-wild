@@ -49,9 +49,10 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
       for (Point point : model.move.points) {
         model.level.currentBoard.grid[point.x][point.y].marked = true;
       }
+      return true;
     }
 
-    return true;
+    return false;
   }
 
   private boolean isFullyMarked() {
