@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.EventQueue;
+
 import boundary.PlayerApplication;
 import model.Board;
 import model.CellType;
@@ -23,18 +25,18 @@ public class PlayerReleaseCtrl implements PlayerVariationCtrl {
   }
 
   public boolean finishMove() {
-    if (model.counter <= 0) {
-      return false;
-    }
+	    if (model.counter <= 0) {
+	      return false;
+	    }
 
-    model.counter--;
+	    model.counter--;
 
-    if (model.move.isValid()) {
-      return allBucketsFull();
-    }
+	    if (model.counter == 0) {
+	      EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model, allBucketsFull()));
+	    }
 
-    return false;
-  }
+	    return model.move.isValid();
+	  }
 
   private boolean allBucketsFull() {
 	for (int x = 0; x < Board.width; x++) {

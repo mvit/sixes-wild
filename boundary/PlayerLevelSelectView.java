@@ -3,17 +3,22 @@ package boundary;
 import controller.PlayerLevelSelectCtrl;
 import controller.PlayerLoadLevelCtrl;
 import controller.PlayerMainMenuCtrl;
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.ListIterator;
+
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+
 import model.Level;
 import model.LevelProgress;
 import model.PlayerModel;
@@ -189,7 +194,23 @@ public class PlayerLevelSelectView extends JPanel {
 
       lblScore = new JLabel("Score: " + score);
       panelLevelInfo.add(lblScore);
-
+      
+      BufferedImage starImg = app.loader.getResource("star.png");
+      BufferedImage blankStarImg = app.loader.getResource("starempty.png");   
+      
+      JPanel panelStars = new JPanel();
+      panelStars.setLayout(new GridLayout(0,3,0,0));
+      for (int i = 0; i < 3; i++) {
+    	  JLabel star;
+    	  if (score > model.level.rules.scoreThresholds[i]) {
+    		  star = new JLabel(new ImageIcon(starImg));
+    	  }
+    	  else {
+    		  star = new JLabel(new ImageIcon(blankStarImg));
+    	  }
+    	  panelStars.add(star);
+      }
+      panelLevelInfo.add(panelStars);
       panelTopContent.add(panelLevelInfo);
 
       // a preview of the game board

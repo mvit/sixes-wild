@@ -5,12 +5,14 @@ import static org.junit.Assert.*;
 import java.awt.event.ActionEvent;
 
 import model.BuilderModel;
+import model.Variation;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import controller.BuilderNewLevelCtrl;
+import controller.BuilderSetVariationCtrl;
 import boundary.BuilderApplication;
 import boundary.BuilderLevelEditorView;
 import boundary.BuilderMainMenuView;
@@ -45,12 +47,19 @@ public class TestBuilderLevelEditor {
 	
 	@Test
 	public void test() {
-
-		//Test that MainMenuView has been initial
+		
 		app.setView(new BuilderMainMenuView(app, model));
-		assertTrue(app.getView() instanceof BuilderMainMenuView);
+		
+		//Test if view has been changed
 		ActionEvent event1 = new ActionEvent(((BuilderMainMenuView)(app.initialView)).btnNewLevel, 0, "yes");
 		new BuilderNewLevelCtrl(app, model).actionPerformed(event1);
+		assertTrue(app.getView() instanceof BuilderLevelEditorView);
+		
+		//Test if the variation has changed to RELEASE
+		ActionEvent event2 = new ActionEvent(((BuilderLevelEditorView)(app.getView())).button, 0, "yes");
+		new BuilderSetVariationCtrl(app, model, Variation.RELEASE).actionPerformed(event2);
+		assertEquals(Variation.RELEASE, model.level.rules.variation);
+		
 	}
 
 }
