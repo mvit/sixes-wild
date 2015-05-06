@@ -26,16 +26,28 @@ public class PlayerApplication extends JFrame {
    * @param loader
    */
   public PlayerApplication(PlayerModel model, ResourceLoader loader) {
+    this(model, loader, 2000);
+  }
+
+  /**
+   * Create a player application from the given model, resource loader, and
+   * minimum splash screen time.
+   *
+   * @param model
+   * @param loader
+   */
+  public PlayerApplication(PlayerModel model, ResourceLoader loader,
+      long duration) {
     super(title);
 
     this.model = model;
     this.loader = loader;
     SplashScreen splash = showSplash("splash2.png");
     initializeResources();
-    initializeView(splash);
+    initializeView(splash, duration);
   }
 
-  private void initializeView(SplashScreen splash) {
+  private void initializeView(SplashScreen splash, long duration) {
     JPanel initialView = new PlayerMainMenuView(this, model);
     long loadStart = System.currentTimeMillis();
     this.addQuitListener(null);
@@ -43,9 +55,9 @@ public class PlayerApplication extends JFrame {
     (new PlayerLoadProgressCtrl(this, model)).loadProgress();
 
     long loadElapsed = System.currentTimeMillis() - loadStart;
-    if (loadElapsed < 2000) {
+    if (loadElapsed < duration) {
       try {
-        Thread.sleep(2000 - loadElapsed);
+        Thread.sleep(duration - loadElapsed);
       } catch (InterruptedException err) {
         // if we've been interrupted, just close the splash screen
       } finally {
@@ -77,7 +89,7 @@ public class PlayerApplication extends JFrame {
 	      for (int i = 2; i <= 3; i++) {
 	        loader.addResource("x" + i + ".png");
 	      }
-	      
+
 	      loader.addResource("playable.png");
 	      loader.addResource("selected.png");
 	      loader.addResource("marked.png");
@@ -85,16 +97,16 @@ public class PlayerApplication extends JFrame {
 	      loader.addResource("inert.png");
 	      loader.addResource("stargame.png");
 	      loader.addResource("stargameempty.png");
-	      
+
 	      loader.addResource("logo.png");
 	      loader.addResource("star.png");
 	      loader.addResource("starempty.png");
-	      
+
 	      loader.addResource("swap.png");
 	      loader.addResource("scramble.png");
 	      loader.addResource("remove.png");
 
-	      
+
 	      try {
 	          loader.loadResources();
 	        } catch (IOException err) {

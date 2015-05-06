@@ -28,22 +28,34 @@ public class BuilderApplication extends JFrame {
    * @param loader
    */
   public BuilderApplication(BuilderModel model, ResourceLoader loader) {
+    this(model, loader, 2000);
+  }
+
+  /**
+   * Create a builder application from the given model, resource loader, and
+   * minimum splash screen time.
+   *
+   * @param model
+   * @param loader
+   */
+  public BuilderApplication(BuilderModel model, ResourceLoader loader,
+      long duration) {
     this.model = model;
     this.loader = loader;
     SplashScreen splash = makeSplashScreen("splash2levelbuilder.png");
-    this.initialize(splash);
+    this.initialize(splash, duration);
   }
 
-  private void initialize(SplashScreen splash) {
+  private void initialize(SplashScreen splash, long duration) {
     initialView = new BuilderMainMenuView(this, model);
     long loadStart = System.currentTimeMillis();
     this.addQuitListener(null);
     this.initializeResources();
     // extend time if necessary
     long loadElapsed = System.currentTimeMillis() - loadStart;
-    if (loadElapsed < 2000) {
+    if (loadElapsed < duration) {
       try {
-        Thread.sleep(2000 - loadElapsed);
+        Thread.sleep(duration - loadElapsed);
       } catch (InterruptedException err) {
         // if we've been interrupted, just close the splash screen
       } finally {

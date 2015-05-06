@@ -47,20 +47,6 @@ public class Level implements WriteStream {
   }
 
   /**
-   * Checks the header of the given file to ensure it is a level.
-   *
-   * @param file
-   * @return Whether the given file could be a valid level.
-   */
-  public static boolean checkHeader(File file) {
-    try {
-      return Level.checkHeader(new FileInputStream(file));
-    } catch (IOException err) {
-      return false;
-    }
-  }
-
-  /**
    * Gets an abstract Level constructor which reads from a DataInputStream.
    *
    * @return The readable object.

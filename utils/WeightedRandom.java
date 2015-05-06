@@ -30,12 +30,20 @@ public class WeightedRandom {
    * @return The index into the weights array that has been selected.
    */
   public int weightedRandom(int[] weights) {
+    if (weights.length <= 0) {
+      return -1;
+    }
+
     int sum = 0, onlyValid = 0;
     for (int i = 0; i < weights.length; i++) {
       sum += weights[i];
       if (weights[i] > 0) {
         onlyValid = i;
       }
+    }
+
+    if (sum == 0) {
+      throw new RuntimeException("no available weights to choose from");
     }
 
     // shortcut if there's only one valid weight

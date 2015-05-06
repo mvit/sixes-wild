@@ -25,20 +25,20 @@ public class TestPlayerMainMenuView {
 	PlayerApplication app;
 	PlayerModel model;
 	ResourceLoader loader;
-	
+
 	@Before
 	public void setUp() {
 	    loader = new ResourceLoader();
 	    model = new PlayerModel();
-	    app = new PlayerApplication(model, loader);
+	    app = new PlayerApplication(model, loader, 0);
 	}
-	
+
 	@After
 	public void tearDown() {
 		app.dispose();
 		app = null;
 	}
-	
+
 	@Test
 	public void test() {
 		//Set the context window

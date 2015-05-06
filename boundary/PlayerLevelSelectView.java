@@ -41,6 +41,7 @@ public class PlayerLevelSelectView extends JPanel {
   public PlayerPreviewBoardView boardView;
   
   public JButton[] selectButtons;
+  public JButton btnPlayLevel;
 
   public PlayerLevelSelectView(PlayerApplication app, PlayerModel model) {
     this.app = app;
@@ -231,7 +232,7 @@ public class PlayerLevelSelectView extends JPanel {
       panelLevelOptions.setBorder(null);
       panelLevel.add(panelLevelOptions, BorderLayout.SOUTH);
 
-      JButton btnPlayLevel = new JButton("Play Level");
+      btnPlayLevel = new JButton("Play Level");
       btnPlayLevel.addActionListener(new PlayerLoadLevelCtrl(app, model,
         (levelNumber + 1) + ""));
       panelLevelOptions.add(btnPlayLevel);
