@@ -25,14 +25,14 @@ public class TestPlayerMainMenuView {
 	PlayerApplication app;
 	PlayerModel model;
 	ResourceLoader loader;
-	
+
 	@Before
 	public void setUp() {
 	    loader = new ResourceLoader();
 	    model = new PlayerModel();
-	    app = new PlayerApplication(model, loader);
+	    app = new PlayerApplication(model, loader, 0);
 	}
-	
+
 	@After
 	public void tearDown() {
 		app.dispose();

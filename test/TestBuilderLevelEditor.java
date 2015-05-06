@@ -34,13 +34,13 @@ public class TestBuilderLevelEditor {
 	BuilderApplication app;
 	BuilderModel model;
 	ResourceLoader loader;
-	
+
 
     @Before
 	public void setUp() {
 	    loader = new ResourceLoader();
 	    model = new BuilderModel();
-	    app = new BuilderApplication(model, loader);
+	    app = new BuilderApplication(model, loader, 0);
 	}
 
     @After
@@ -48,22 +48,22 @@ public class TestBuilderLevelEditor {
 		app.dispose();
 		app = null;
 	}
-	
+
 	@Test
 	public void test() {
-		
+
 		app.setView(new BuilderMainMenuView(app, model));
-		
+
 		//Test if view has been changed
 		ActionEvent event1 = new ActionEvent(((BuilderMainMenuView)(app.initialView)).btnNewLevel, 0, "yes");
 		new BuilderNewLevelCtrl(app, model).actionPerformed(event1);
 		assertTrue(app.getView() instanceof BuilderLevelEditorView);
-		
+
 		//Test if the variation has changed to RELEASE
 		ActionEvent event2 = new ActionEvent(((BuilderLevelEditorView)(app.getView())).button, 0, "yes");
 		new BuilderSetVariationCtrl(app, model, Variation.RELEASE).actionPerformed(event2);
 		assertEquals(Variation.RELEASE, model.level.rules.variation);
-		
+
 		//Check if Tile Type is set
 		ActionEvent event3 = new ActionEvent(((BuilderLevelEditorView)(app.getView())).btnMakePlayable, 0, "yes");
 		new BuilderSetCellTypeCtrl(app, model, CellType.PLAYABLE).actionPerformed(event3);
@@ -73,8 +73,8 @@ public class TestBuilderLevelEditor {
 		builderBoardMouseCtrl.mouseDragged(event4);
 		builderBoardMouseCtrl.mouseReleased(event4);
 		assertEquals(model.level.initialBoard.grid[3][8].type, CellType.PLAYABLE);
-		
-		
+
+
 	}
 
 }
