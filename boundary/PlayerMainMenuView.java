@@ -3,10 +3,17 @@ package boundary;
 import controller.ExitCtrl;
 import controller.PlayerInstructionsCtrl;
 import controller.PlayerLoadLevelSelectCtrl;
+import controller.ResetProgressCtrl;
 
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -15,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import model.PlayerModel;
+import model.PlayerProgress;
 
 /**
  * PlayerMainMenuView which displays the main menu for the player application.
@@ -72,6 +80,12 @@ public class PlayerMainMenuView extends JPanel {
     btnInstructions.setAlignmentX(Component.CENTER_ALIGNMENT);
     btnInstructions.setAlignmentY(Component.CENTER_ALIGNMENT);
 
+    JButton btnResetProgress = new JButton("Reset Progress");
+    btnResetProgress.addActionListener(new ResetProgressCtrl(app, model));
+    btnResetProgress.setAlignmentX(Component.CENTER_ALIGNMENT);
+    btnResetProgress.setAlignmentY(Component.CENTER_ALIGNMENT);
+    panelContent.add(btnResetProgress);
+    
     JButton btnExit = new JButton("Exit");
     panelContent.add(btnExit);
     btnExit.addActionListener(new ExitCtrl());

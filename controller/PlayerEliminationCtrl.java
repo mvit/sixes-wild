@@ -41,7 +41,7 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
     model.counter--;
 
     if (model.counter == 0) {
-      EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model, fullyMarked));
+      EventQueue.invokeLater(new PlayerEndLevelCtrl(app, model, isFullyMarked()));
     }
 
     if (model.move.isValid()) {
@@ -49,21 +49,23 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
       for (Point point : model.move.points) {
         model.level.currentBoard.grid[point.x][point.y].marked = true;
       }
-
-      for (int i = 0; i < 9; i++) {
-        for (int j = 0; j < 9; j++) {
-          if (!model.level.currentBoard.grid[i][j].marked && model.level.currentBoard.grid[i][j].type!=CellType.INERT) {
-            return true;
-          }
-        }
-      }
-      fullyMarked = true;
-      return true;
     }
 
     return false;
   }
 
+  private boolean isFullyMarked() {
+      for (int i = 0; i < 9; i++) {
+          for (int j = 0; j < 9; j++) {
+            if (!model.level.currentBoard.grid[i][j].marked && model.level.currentBoard.grid[i][j].type!=CellType.INERT) {
+              return false;
+            }
+          }
+        }
+        fullyMarked = true;
+        return true;
+  }
+  
   @Override
   public boolean remove() {
     // TODO: implement
