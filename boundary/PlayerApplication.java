@@ -152,6 +152,6 @@ public class PlayerApplication extends JFrame {
     ResourceLoader loader = new ResourceLoader();
     PlayerModel model = new PlayerModel();
     // initialize main app
-    PlayerApplication app = new PlayerApplication(model, loader);
+    new PlayerApplication(model, loader);
   }
 }

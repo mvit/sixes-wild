@@ -6,7 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import model.BuilderModel;
-import model.PlayerModel;
 
 /**
  * The builder application boundary class.
@@ -141,6 +140,6 @@ public class BuilderApplication extends JFrame {
     ResourceLoader loader = new ResourceLoader();
     BuilderModel model = new BuilderModel();
     // initialize main app
-    BuilderApplication app = new BuilderApplication(model, loader);
+    new BuilderApplication(model, loader);
   }
 }

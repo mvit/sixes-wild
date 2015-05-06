@@ -1,17 +1,11 @@
 package controller;
 
 import boundary.BuilderApplication;
-import boundary.PlayerApplication;
-import boundary.PlayerLevelView;
-import boundary.QuitListener;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import javax.swing.JPanel;
-
 import model.BuilderModel;
-import model.PlayerModel;
 
 /**
  * Preview a work-in-progress level from the builder application.

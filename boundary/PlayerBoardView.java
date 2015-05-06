@@ -12,7 +12,6 @@ import model.Cell;
 import model.PlayerModel;
 import model.PlayerState;
 import model.Point;
-import model.Rules;
 import utils.ScaleImage;
 
 /**

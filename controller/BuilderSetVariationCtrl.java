@@ -4,7 +4,6 @@ import boundary.BuilderApplication;
 import boundary.BuilderLevelEditorView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JSlider;
 import model.BuilderModel;
 import model.Rules;
 import model.Variation;

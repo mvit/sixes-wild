@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
-import utils.ScaleImage;
 import model.Board;
 import model.PlayerModel;
 import model.Cell;

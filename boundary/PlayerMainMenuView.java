@@ -6,7 +6,6 @@ import controller.PlayerLoadLevelSelectCtrl;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagLayout;
 
 import javax.swing.BoxLayout;

@@ -275,7 +275,6 @@ public class BuilderLevelEditorView extends JPanel {
 
     variationButtons.get(rules.variation).setSelected(true);
 
-    int maxValue = 100 * Rules.maxNumber;
     boolean noBlocks = model.level.rules.variation == Variation.RELEASE;
 
     JSlider lastSlider = numberSliders[Rules.maxNumber - 1];
@@ -284,8 +283,6 @@ public class BuilderLevelEditorView extends JPanel {
     for (int i = 0; i < Rules.maxNumber; i++) {
       numberSliders[i].setValue(rules.numberWeights[i]);
     }
-
-    maxValue = 100 * Rules.maxMultiplier;
 
     for (int i = 0; i < Rules.maxMultiplier; i++) {
       multiplierSliders[i].setValue(rules.multiplierWeights[i]);
