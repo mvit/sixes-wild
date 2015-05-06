@@ -34,70 +34,70 @@ public class PlayerApplication extends JFrame {
     initializeResources();
     initializeView(splash);
   }
-  
+
   private void initializeView(SplashScreen splash) {
-	    JPanel initialView = new PlayerMainMenuView(this, model);
-	    long loadStart = System.currentTimeMillis();
-	    this.addQuitListener(null);
+    JPanel initialView = new PlayerMainMenuView(this, model);
+    long loadStart = System.currentTimeMillis();
+    this.addQuitListener(null);
 
-	    (new PlayerLoadProgressCtrl(this, model)).loadProgress();
+    (new PlayerLoadProgressCtrl(this, model)).loadProgress();
 
-	    long loadElapsed = System.currentTimeMillis() - loadStart;
-	    if (loadElapsed < 2000) {
-	      try {
-	        Thread.sleep(2000 - loadElapsed);
-	      } catch (InterruptedException err) {
-	        // if we've been interrupted, just close the splash screen
-	      } finally {
-	        splash.close();
-	      }
-	    }
+    long loadElapsed = System.currentTimeMillis() - loadStart;
+    if (loadElapsed < 2000) {
+      try {
+        Thread.sleep(2000 - loadElapsed);
+      } catch (InterruptedException err) {
+        // if we've been interrupted, just close the splash screen
+      } finally {
+        splash.close();
+      }
+    }
 
-	    // start main app
-	    this.setView(initialView);
+    // start main app
+    this.setView(initialView);
   }
-  
+
   private SplashScreen showSplash(String name) {
-	    SplashScreen splash = null;
-	    
-	    try {
-	      splash = new SplashScreen(name);
-	    } catch (IOException err) {
-	      System.err.println(err.getMessage());
-	      err.printStackTrace();
-	    }
-	    
-	    return splash;
-	    
+    SplashScreen splash = null;
+
+    try {
+      splash = new SplashScreen(name);
+    } catch (IOException err) {
+      System.err.println(err.getMessage());
+      err.printStackTrace();
+    }
+
+    return splash;
+
   }
   private void initializeResources() {
-	    for (int i = 1; i <= 6; i++) {
-	        loader.addResource(i + ".png");
-	      }
-	      for (int i = 2; i <= 3; i++) {
-	        loader.addResource("x" + i + ".png");
-	      }
-	      
-	      loader.addResource("playable.png");
-	      loader.addResource("selected.png");
-	      loader.addResource("marked.png");
-	      loader.addResource("bucket.png");
-	      loader.addResource("inert.png");
-	      
-	      loader.addResource("logo.png");
-	      
-	      loader.addResource("swap.png");
-	      loader.addResource("scramble.png");
-	      loader.addResource("remove.png");
+    for (int i = 1; i <= 6; i++) {
+      loader.addResource(i + ".png");
+    }
+    for (int i = 2; i <= 3; i++) {
+      loader.addResource("x" + i + ".png");
+    }
 
-	      
-	      try {
-	          loader.loadResources();
-	        } catch (IOException err) {
-	          System.err.println(err.getMessage());
-	          err.printStackTrace();
-	          return;
-	        }
+    loader.addResource("playable.png");
+    loader.addResource("selected.png");
+    loader.addResource("marked.png");
+    loader.addResource("bucket.png");
+    loader.addResource("inert.png");
+
+    loader.addResource("logo.png");
+
+    loader.addResource("swap.png");
+    loader.addResource("scramble.png");
+    loader.addResource("remove.png");
+
+
+    try {
+      loader.loadResources();
+    } catch (IOException err) {
+      System.err.println(err.getMessage());
+      err.printStackTrace();
+      return;
+    }
   }
   /**
    * Add a quit listener for when the user clicks the close button on the
@@ -149,6 +149,5 @@ public class PlayerApplication extends JFrame {
     PlayerModel model = new PlayerModel();
     // initialize main app
     PlayerApplication app = new PlayerApplication(model, loader);
-
   }
 }
