@@ -39,9 +39,11 @@ public class PlayerLevelSelectView extends JPanel {
   public JLabel lblLevel = null, lblType = null, lblScore = null;
 
   public PlayerPreviewBoardView boardView;
-  
+
   public JButton[] selectButtons;
   public JButton btnPlayLevel;
+
+  protected PlayerLoadLevelCtrl prevLoader;
 
   public PlayerLevelSelectView(PlayerApplication app, PlayerModel model) {
     this.app = app;
@@ -204,10 +206,10 @@ public class PlayerLevelSelectView extends JPanel {
     	  lblScore = new JLabel("Time Left: " + score);
       }
       panelLevelInfo.add(lblScore);
-      
+
       BufferedImage starImg = app.loader.getResource("star.png");
-      BufferedImage blankStarImg = app.loader.getResource("starempty.png");   
-      
+      BufferedImage blankStarImg = app.loader.getResource("starempty.png");
+
       JPanel panelStars = new JPanel();
       panelStars.setLayout(new GridLayout(0,3,0,0));
       for (int i = 0; i < 3; i++) {
@@ -233,8 +235,6 @@ public class PlayerLevelSelectView extends JPanel {
       panelLevel.add(panelLevelOptions, BorderLayout.SOUTH);
 
       btnPlayLevel = new JButton("Play Level");
-      btnPlayLevel.addActionListener(new PlayerLoadLevelCtrl(app, model,
-        (levelNumber + 1) + ""));
       panelLevelOptions.add(btnPlayLevel);
 
       JButton btnResetScore = new JButton("Reset Score");
@@ -247,10 +247,15 @@ public class PlayerLevelSelectView extends JPanel {
       lblType.setText("Type: " + variation);
       lblScore.setText("Score: " + score);
 
+      btnPlayLevel.removeActionListener(prevLoader);
+
       if (boardView != null) {
         panelLevel.remove(boardView);
       }
     }
+
+    prevLoader = new PlayerLoadLevelCtrl(app, model, (levelNumber + 1) + "");
+    btnPlayLevel.addActionListener(prevLoader);
 
     boardView = new PlayerPreviewBoardView(app, model);
     boardView.setAlignmentY(0);
