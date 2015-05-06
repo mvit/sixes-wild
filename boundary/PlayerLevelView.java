@@ -171,7 +171,7 @@ public class PlayerLevelView extends JPanel {
     lblScoreNum.setText(Integer.toString(model.score));
     lblCounterNum.setText(Integer.toString(model.counter));
     for (int i = 0; i < 3; i++) {
-    	if (model.score > model.level.rules.scoreThresholds[i]) {
+    	if (model.score >= model.level.rules.scoreThresholds[i]) {
     	  System.out.println(model.level.rules.scoreThresholds[i]);
     	  lblStar[i].setIcon(new ImageIcon(app.loader.getResource("stargame.png")));;
     	}

@@ -79,7 +79,7 @@ public class PlayerEndLevelView extends JDialog{
     
     for (int i = 0; i < 3; i++) {
   	  JLabel star;
-  	  if (model.score > model.level.rules.scoreThresholds[i]) {
+  	  if (model.score >= model.level.rules.scoreThresholds[i]) {
   		  star = new JLabel(new ImageIcon(app.loader.getResource("star.png")));
   	  }
   	  else {

@@ -162,7 +162,7 @@ public class PlayerLevelSelectView extends JPanel {
         selectButton.addActionListener(new PlayerLevelSelectCtrl(app, model,
           name));
         selectButton.setText("<html>Level " + name + "<br>" + (progress == null
-          ? "Not attempted" : "Score: " + progress.getScore()) +
+          ? "Not attempted" : (level.rules.variation.name.equals("Lightning") ? "Time Left: " + progress.getScore() : "Score: " + progress.getScore())) +
           "<br>Variation: " + level.rules.variation.name + "</html>");
       }
 
@@ -191,8 +191,12 @@ public class PlayerLevelSelectView extends JPanel {
 
       lblType = new JLabel("Type: " + variation);
       panelLevelInfo.add(lblType);
-
-      lblScore = new JLabel("Score: " + score);
+      if (!variation.equals("Lightning")) {
+    	  lblScore = new JLabel("Score: " + score);
+      }
+      else {
+    	  lblScore = new JLabel("Time Left: " + score);
+      }
       panelLevelInfo.add(lblScore);
       
       BufferedImage starImg = app.loader.getResource("star.png");
@@ -202,7 +206,7 @@ public class PlayerLevelSelectView extends JPanel {
       panelStars.setLayout(new GridLayout(0,3,0,0));
       for (int i = 0; i < 3; i++) {
     	  JLabel star;
-    	  if (score > model.level.rules.scoreThresholds[i]) {
+    	  if (score >= model.level.rules.scoreThresholds[i]) {
     		  star = new JLabel(new ImageIcon(starImg));
     	  }
     	  else {
