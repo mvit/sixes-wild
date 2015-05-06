@@ -31,23 +31,18 @@ public class PlayerSwapCtrl implements ActionListener {
     if (model.playerState != PlayerState.SWAP) {
       System.out.println("You borked it somehow (Triggered swap when player state != swap)");
       model.move = new Move();
-      if(model.counter>0)
-    	  model.counter--;
     } else if (model.variation == Variation.RELEASE
     			&& model.level.currentBoard.grid[point.x][point.y].tile.number == 5) {
         model.move = new Move();
-        if(model.counter>0)
-        	model.counter--;
     } else if (model.move.points.size() == 0) {
-      model.move.expand(model.level.currentBoard, point);
+    	model.move = new Move();
+        model.move.expand(model.level.currentBoard, point);
     } else if (model.move.points.size() == 1) {
       if (model.move.isAdjacent(point)) {
         model.move.expand(model.level.currentBoard, point);
         swap();
         model.move = new Move();
         model.playerState = PlayerState.NONE;
-        if(model.counter>0)
-        	model.counter--;
       } else {
         // TODO: what should happen here? anything?
       }
@@ -55,11 +50,9 @@ public class PlayerSwapCtrl implements ActionListener {
       System.out.println("You borked it somehow (Too many tiles in swap)");
       model.move = new Move();
       model.playerState = PlayerState.NONE;
-      PlayerVariationCtrl pVar = model.variation.createCtrl(app, model);
-      pVar.finishMove();
+  }
     app.getView().repaint();
     ((PlayerLevelView) app.getView()).update();
-  }
 }
 
   protected void swap() {
@@ -79,6 +72,9 @@ public class PlayerSwapCtrl implements ActionListener {
     Tile swap = cellA.tile;
     cellA.tile = cellB.tile;
     cellB.tile = swap;
+    
+    PlayerVariationCtrl pVar = model.variation.createCtrl(app, model);
+    pVar.finishMove();
   }
 
   @Override
