@@ -3,7 +3,9 @@ package controller;
 import java.io.File;
 
 import utils.StreamFileUtils;
+import model.Move;
 import model.PlayerModel;
+import model.PlayerState;
 import boundary.PlayerApplication;
 import boundary.PlayerEndLevelView;
 
@@ -59,6 +61,8 @@ public class PlayerEndLevelCtrl implements Runnable {
    */
   public void endLevel() {
     // always set the achieved score, even if we haven't crossed a threshold
+	model.playerState = PlayerState.NONE;
+	model.move = new Move();
     model.progress.setAchievedScore(model.levelnum, model.score, isComplete);
 
     // writes progress to file
