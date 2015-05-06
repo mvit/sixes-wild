@@ -21,6 +21,7 @@ import controller.BuilderBoardMouseCtrl;
 import controller.BuilderMultiplierWeightCtrl;
 import controller.BuilderNewLevelCtrl;
 import controller.BuilderSetCellTypeCtrl;
+import controller.BuilderSetTileCtrl;
 import controller.BuilderSetVariationCtrl;
 import boundary.BuilderApplication;
 import boundary.BuilderLevelEditorView;
@@ -70,7 +71,7 @@ public class TestBuilderLevelEditor {
 		assertEquals(Variation.RELEASE, model.level.rules.variation);
 
 		//Check if Tile Type is set
-		ActionEvent event3 = new ActionEvent(((BuilderLevelEditorView)(app.getView())).btnMakeSix, 0, "yes");
+		ActionEvent event3 = new ActionEvent(((BuilderLevelEditorView)(app.getView())).btnMakePlayable, 0, "yes");
 		new BuilderSetCellTypeCtrl(app, model, CellType.PLAYABLE).actionPerformed(event3);
 		BuilderBoardMouseCtrl builderBoardMouseCtrl = new BuilderBoardMouseCtrl (app, model);
 		MouseEvent event4 = new MouseEvent(((BuilderLevelEditorView)(app.getView())).boardView, MouseEvent.MOUSE_PRESSED, 0, 0, 100, 100, 1, false, MouseEvent.BUTTON1);
@@ -84,6 +85,18 @@ public class TestBuilderLevelEditor {
 		ChangeEvent event5 = new ChangeEvent(new JSlider(0, 100, 50));
 		new BuilderMultiplierWeightCtrl(app, model, 1).stateChanged(event5);
 		assertEquals (model.level.rules.multiplierWeights[1], 50);
+		
+
+		//Check if Tile Type is set
+		ActionEvent event6 = new ActionEvent(((BuilderLevelEditorView)(app.getView())).btnMakeSix, 0, "yes");
+		new BuilderSetTileCtrl(app, model, 5, 1).actionPerformed(event6);
+		BuilderBoardMouseCtrl builderBoardMouseCtrl2 = new BuilderBoardMouseCtrl (app, model);
+		MouseEvent event7 = new MouseEvent(((BuilderLevelEditorView)(app.getView())).boardView, MouseEvent.MOUSE_PRESSED, 0, 0, 100, 100, 1, false, MouseEvent.BUTTON1);
+		builderBoardMouseCtrl2.mousePressed(event7);
+		builderBoardMouseCtrl2.mouseDragged(event7);
+		builderBoardMouseCtrl2.identifyPoint(event7);
+		builderBoardMouseCtrl2.mouseReleased(event7);
+		assertEquals(model.level.initialBoard.grid[3][8].type, CellType.PLAYABLE);
 	}
 
 }
