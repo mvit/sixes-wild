@@ -49,7 +49,7 @@ public class BuilderModel {
     if (redoIndex > 0) {
       holdHistory = true;
       boolean isPreview = level.currentBoard != null;
-      level = history.get(--redoIndex).snapshot;
+      level = new Level(history.get(--redoIndex).snapshot);
       if (isPreview) {
         realizeLevel();
       }
@@ -66,7 +66,7 @@ public class BuilderModel {
     if (redoIndex < history.size() - 1) {
       holdHistory = true;
       boolean isPreview = level.currentBoard != null;
-      level = history.get(++redoIndex).snapshot;
+      level = new Level(history.get(++redoIndex).snapshot);
       if (isPreview) {
         realizeLevel();
       }
