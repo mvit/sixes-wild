@@ -38,11 +38,7 @@ public class PlayerInstructionsView extends JPanel {
 
     JTextPane txtpnInSixesWild = new JTextPane();
     txtpnInSixesWild.setEditable(false);
-    txtpnInSixesWild.setText("To play Sixes Wild, click and drag your mouse " +
-      "across adjacent numbered tiles that add up to 6. Try to get the " +
-      "highest score possible!\r\n\r\nThere are three available special moves" +
-      ":\r\n  Swap: Swap two adjacent tiles\r\n  Scramble: Scramble the " +
-      "board\r\n  Remove: Remove a tile");
+    txtpnInSixesWild.setText("To play Sixes Wild, click and drag your mouse across adjacent numbered tiles that add up to 6. Try to get the highest score possible!\r\n\r\nThere are four current variations:\r\n  Puzzle: Classic! Complete moves within the move limit and get a high score.\r\n  Lightning: Complete moves against a timer!\r\n  Elimination: Try to cover the entire board with marked tiles!\r\n  Release: Drop those \"6\" tiles into buckets!\r\n\r\nThere are three available special moves:\r\n  Swap: Swap two adjacent tiles by clicking on one and then the other.\r\n  Scramble: Scramble the board.\r\n  Remove: Remove a tile by clicking on it.");
     panel.add(txtpnInSixesWild);
 
     JLabel lblInstructions = new JLabel("Instructions");
