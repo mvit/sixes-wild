@@ -16,7 +16,7 @@ import model.Tile;
 import model.Variation;
 
 /**
- * @author Eli Skeggs, Nick Chaput
+ * @author Eli Skeggs, Nick Chaput and Bailey Sheridan
  */
 public class PlayerSwapCtrl implements ActionListener {
   PlayerApplication app;
