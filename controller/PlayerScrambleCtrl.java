@@ -50,7 +50,8 @@ public class PlayerScrambleCtrl implements ActionListener {
     for (Cell cell : cells) {
       cell.tile = tileIter.next();
     }
-    model.counter--;
+    PlayerVariationCtrl pVar = model.variation.createCtrl(app, model);
+    pVar.finishMove();
     app.getView().repaint();
     ((PlayerLevelView) app.getView()).update();
   }

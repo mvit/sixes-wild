@@ -36,6 +36,7 @@ public class PlayerRemoveCtrl implements ActionListener{
     }
     //pVar.remove();
     remove();
+    pVar.finishMove();
     model.playerState = PlayerState.NONE;
     model.move = new Move();
   }

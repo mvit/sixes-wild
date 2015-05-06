@@ -18,8 +18,7 @@ public class PlayerLightningCtrl implements PlayerVariationCtrl {
   }
 
   public boolean specialMove() {
-    model.counter--;
-    return false;
+    return true;
   }
 
   public boolean finishMove() {

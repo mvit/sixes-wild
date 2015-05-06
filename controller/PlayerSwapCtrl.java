@@ -55,12 +55,12 @@ public class PlayerSwapCtrl implements ActionListener {
       System.out.println("You borked it somehow (Too many tiles in swap)");
       model.move = new Move();
       model.playerState = PlayerState.NONE;
-      if(model.counter>0)
-    	  model.counter--;
-    }
+      PlayerVariationCtrl pVar = model.variation.createCtrl(app, model);
+      pVar.finishMove();
     app.getView().repaint();
     ((PlayerLevelView) app.getView()).update();
   }
+}
 
   protected void swap() {
     int numCells = model.move.points.size();
