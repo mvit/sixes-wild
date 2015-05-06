@@ -18,7 +18,6 @@ import utils.StreamFileUtils;
 public class PlayerLoadLevelCtrl implements ActionListener {
   PlayerApplication app;
   PlayerModel model;
-  LightningTimer timer;
   String filename;
 
   /**
@@ -51,7 +50,7 @@ public class PlayerLoadLevelCtrl implements ActionListener {
       // TODO: instantiate a new variation controller, and let it setup any
       // necessary long-term controllers, including lightning timer
       if (model.level.rules.variation == Variation.LIGHTNING) {
-        timer = new LightningTimer(app, model);
+        model.timer = new LightningTimer(app, model);
       }
     }
   }

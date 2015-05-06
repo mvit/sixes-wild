@@ -1,5 +1,7 @@
 package model;
 
+import controller.LightningTimer;
+
 /**
  * Top-level player container.
  *
@@ -9,6 +11,7 @@ public class PlayerModel {
   public Level level = null;
   public Move move = new Move();
   public int counter = 0;
+  public LightningTimer timer;
   public int score = 0;
   public int levelnum = 0;
 
@@ -26,6 +29,7 @@ public class PlayerModel {
   public void discardLevel() {
     // discard the board
     if (level != null) {
+      timer.task.cancel();
       level.discardBoard();
     }
   }

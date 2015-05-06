@@ -13,7 +13,7 @@ import boundary.PlayerApplication;
 public class LightningTimer extends Timer {
   PlayerApplication app;
   PlayerModel model;
-  LightningTimerTask task;
+  public LightningTimerTask task;
 
   /**
    * Creates a new LightningTimer.
