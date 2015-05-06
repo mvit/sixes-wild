@@ -18,13 +18,18 @@ import controller.PlayerBoardMouseCtrl;
 import controller.PlayerLevelSelectCtrl;
 import controller.PlayerLoadLevelCtrl;
 import controller.PlayerRemoveCtrl;
+import controller.PlayerScrambleCtrl;
 import controller.PlayerSwapCtrl;
 import boundary.PlayerApplication;
 import boundary.PlayerBoardView;
 import boundary.PlayerLevelSelectView;
 import boundary.PlayerLevelView;
 import boundary.ResourceLoader;
-
+/**
+ * 
+ * @author Eli Skeggs and Maurizio Vitale
+ *
+ */
 public class TestPuzzlePlayerLevelView {
   PlayerApplication app;
   PlayerModel model;
@@ -101,7 +106,17 @@ public class TestPuzzlePlayerLevelView {
     mouseCtrl.mouseReleased(mouseEvent);
 
     assertEquals(moves - 1, model.counter);
+    
+    //Test Scramble on Board
+    moves = model.counter;
+    //Select the remove move
+    ActionEvent event4 = new ActionEvent(((PlayerLevelView) app.getView()).btnScramble, 0, "yes");
+    new PlayerScrambleCtrl(app, model).actionPerformed(event4);
 
+    assertEquals(PlayerState.NONE, model.playerState);
+    
+    assertEquals(moves - 1, model.counter);
+    
     //Test Swap on the first (0,0) tile and second (1,0) tiles
     moves = model.counter;
     start = boardView.identifyCell(0, 0);
@@ -111,8 +126,8 @@ public class TestPuzzlePlayerLevelView {
     Tile tile1 = model.level.currentBoard.grid[0][0].tile;
     Tile tile2 = model.level.currentBoard.grid[1][0].tile;
     //Select the remove move
-    ActionEvent event4 = new ActionEvent(((PlayerLevelView) app.getView()).btnSwap, 0, "yes");
-    new PlayerSwapCtrl(app, model).actionPerformed(event4);
+    ActionEvent event5 = new ActionEvent(((PlayerLevelView) app.getView()).btnSwap, 0, "yes");
+    new PlayerSwapCtrl(app, model).actionPerformed(event5);
 
     assertEquals(PlayerState.SWAP, model.playerState);
 
