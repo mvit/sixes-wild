@@ -17,32 +17,7 @@ public class PlayerLightningCtrl implements PlayerVariationCtrl {
     this.model = model;
   }
 
-  public boolean specialMove() {
-    return true;
-  }
-
   public boolean finishMove() {
     return model.counter > 0 && model.move.isValid();
-  }
-
-  @Override
-  public boolean remove() {
-    // TODO: implement
-    specialMove();
-    return false;
-  }
-
-  @Override
-  public boolean scramble() {
-    // TODO: implement
-    specialMove();
-    return false;
-  }
-
-  @Override
-  public boolean swap() {
-    // TODO: implement
-    specialMove();
-    return false;
   }
 }

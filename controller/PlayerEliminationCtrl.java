@@ -28,10 +28,6 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
     fullyMarked = false;
   }
 
-  public boolean specialMove() {
-    return true;
-  }
-
   public boolean finishMove() {
     if (model.counter <= 0) {
       return false;
@@ -68,26 +64,5 @@ public class PlayerEliminationCtrl implements PlayerVariationCtrl {
         }
         fullyMarked = true;
         return true;
-  }
-  
-  @Override
-  public boolean remove() {
-    // TODO: implement
-    specialMove();
-    return false;
-  }
-
-  @Override
-  public boolean scramble() {
-    // TODO: implement
-    specialMove();
-    return false;
-  }
-
-  @Override
-  public boolean swap() {
-    // TODO: implement
-    specialMove();
-    return false;
   }
 }

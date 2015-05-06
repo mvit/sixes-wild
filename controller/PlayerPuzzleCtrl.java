@@ -17,10 +17,6 @@ public class PlayerPuzzleCtrl implements PlayerVariationCtrl {
     this.model = model;
   }
 
-  public boolean specialMove() {
-    return true;
-  }
-
   public boolean finishMove() {
     if (model.counter <= 0) {
       return false;
@@ -33,26 +29,5 @@ public class PlayerPuzzleCtrl implements PlayerVariationCtrl {
     }
 
     return model.move.isValid();
-  }
-
-  @Override
-  public boolean remove() {
-    // TODO: implement
-    specialMove();
-    return false;
-  }
-
-  @Override
-  public boolean scramble() {
-    // TODO: implement
-    specialMove();
-    return false;
-  }
-
-  @Override
-  public boolean swap() {
-    // TODO: implement
-    specialMove();
-    return false;
   }
 }

@@ -19,10 +19,6 @@ public class PlayerReleaseCtrl implements PlayerVariationCtrl {
     this.model = model;
   }
 
-  public boolean specialMove() {
-	  return true;
-  }
-
   public boolean finishMove() {
 	    if (model.counter <= 0) {
 	      return false;
@@ -61,27 +57,6 @@ public class PlayerReleaseCtrl implements PlayerVariationCtrl {
 	}
 	return true;
 }
-
-@Override
-  public boolean remove() {
-    // TODO: implement
-    specialMove();
-    return false;
-  }
-
-  @Override
-  public boolean scramble() {
-    // TODO: implement
-    specialMove();
-    return false;
-  }
-
-  @Override
-  public boolean swap() {
-    // TODO: implement
-    specialMove();
-    return false;
-  }
 
   public void redundantFinish() {
 	    if (model.counter == 0) {
